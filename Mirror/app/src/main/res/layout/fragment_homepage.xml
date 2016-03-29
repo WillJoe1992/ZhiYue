@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_main_margin_left"
+                android:layout_marginTop="@dimen/activity_main_margin_top"
+                android:text="@string/activity_main_home"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/activity_main_title_text_size_" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="@dimen/activity_main_margin_top"
+                android:src="@mipmap/pull_down_image" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_main_margin_left"
+            android:layout_marginTop="7dp"
+            android:src="@mipmap/under_title_line" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_main_margin_left"
+            android:layout_marginTop="@dimen/activity_main_margin_top"
+            android:text="@string/activity_main_rank"
+            android:textColor="@color/text_color" />
+    </LinearLayout>
+
+    <!-- 這裡是RecyclerView-->
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="@dimen/fragment_homepage_recycler_margintop"
+        android:id="@+id/fragment_homepage_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_homepage_recycler_hei">
+
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>
