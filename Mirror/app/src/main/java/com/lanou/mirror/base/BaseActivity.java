@@ -19,7 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
 
     }
-
+    //获取数据
     protected abstract void initData();
 
     //绑定组件

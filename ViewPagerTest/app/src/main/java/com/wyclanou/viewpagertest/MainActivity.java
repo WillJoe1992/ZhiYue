@@ -1,4 +1,4 @@
-package com.lanou.mirror;
+package com.wyclanou.viewpagertest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
