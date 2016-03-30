@@ -8,24 +8,23 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24px"
-        android:layout_marginTop="30px"
-        android:layout_marginLeft="45px"
-        android:textStyle="bold"
-        android:text="女款|高级灰黑框太阳镜"/>
+        android:textSize="@dimen/activity_glass_content_content_title_text_size"
+        android:layout_marginTop="@dimen/actiivty_glass_content_content_title_text_margintop"
+        android:layout_marginLeft="@dimen/activity_glass_content_content_margin"
+        android:textStyle="bold"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="45px"
-        android:layout_marginRight="45px"
-        android:layout_marginTop="20px"
+        android:layout_marginLeft="@dimen/activity_glass_content_content_margin"
+        android:layout_marginRight="@dimen/activity_glass_content_content_margin"
+        android:layout_marginTop="@dimen/activity_glass_content_conetent_img_margintop"
         android:background="@mipmap/black_line"/>
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="880px"
-        android:layout_margin="45px"
+        android:layout_height="@dimen/activity_glass_content_content_img_heith"
+        android:layout_margin="@dimen/activity_glass_content_content_margin"
         android:background="@mipmap/ic_launcher"/>
 
 

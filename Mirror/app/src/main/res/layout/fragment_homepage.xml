@@ -24,11 +24,11 @@
                 android:textSize="@dimen/fragment_homepage_title_text_size" />
 
             <ImageView
-                android:layout_marginTop="@dimen/fragment_homepage_pulldown_margintop"
-                android:layout_alignTop="@+id/fragment_homepage_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/fragment_homepage_title"
                 android:layout_marginLeft="@dimen/fragment_homepage_pulldown_marginleft"
+                android:layout_marginTop="@dimen/fragment_homepage_pulldown_margintop"
                 android:src="@mipmap/pull_down_image" />
 
         </RelativeLayout>
