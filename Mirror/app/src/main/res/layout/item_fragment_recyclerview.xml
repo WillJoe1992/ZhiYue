@@ -5,6 +5,7 @@
     android:orientation="vertical">
     
     <ImageView
+        android:id="@+id/fragment_homepage_recyclerview_iv"
         android:src="@mipmap/ic_launcher"
         android:layout_marginLeft="12dp"
         android:layout_width="277dp"
