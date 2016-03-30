@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Created by zouwei on 16/3/19.-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#50a6a6a6"
+    android:orientation="vertical">
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="45px"
+        android:layout_marginTop="105px"
+        android:src="@mipmap/share" />
+
+    <LinearLayout
+        android:layout_width="535px"
+        android:layout_height="570px"
+        android:layout_gravity="center"
+        android:layout_marginTop="40px"
+        android:background="@mipmap/show_out_frame"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_gravity="center"
+            android:layout_marginTop="75px"
+            android:text="stealer"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_marginTop="50px"
+            android:layout_width="440px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@mipmap/line_under_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15px"
+            android:text="女款|高级灰黑框太阳镜"
+            android:textColor="@android:color/white"
+            android:textSize="30px" />
+
+        <ImageView
+            android:layout_width="440px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@mipmap/line_under_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="大神大神都看见爱上的科技爱好速度
+            dasdasdsad d撒
+            asddsadsadsadsad的
+            啊飒飒大师
+            大神大神大神大神快八十肯定不卡机的哈里还多久卡萨丁好看撒谎的空间撒都没能帮忙是你不插卡"
+            android:textColor="@android:color/white"
+            android:textSize="10dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:layout_marginTop="2dp"
+                android:background="@mipmap/moneyrmb" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:text="2222"
+                android:textColor="@android:color/white"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:text="滑动浏览详情"
+        android:textColor="@android:color/white"
+        android:textSize="10dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/down_arrows" />
+
+</LinearLayout>

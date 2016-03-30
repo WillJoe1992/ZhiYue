@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?><!--Created by zouwei on 16/3/19.-->
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="510px"
+        android:layout_height="285px"
+        android:background="@android:color/black"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:layout_marginTop="20px"
+            android:background="@mipmap/line_under_title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26px"
+                android:layout_weight="1"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="来自时尚之都韩国"
+                    android:textColor="@android:color/white"
+                    android:textSize="24px"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_marginTop="5px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="The frame comes from Kero"
+                    android:textColor="@android:color/white"
+                    android:textSize="15px"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24px"
+                android:layout_marginRight="24px"
+                android:layout_marginTop="20px"
+                android:text="首尔"
+                android:textColor="@android:color/white"
+                android:textSize="23dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:layout_marginTop="20px"
+            android:background="@mipmap/line_under_title" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21px"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:text="大家快来撒等等哈说离开的哈萨克接电话卡就收到货就卡死大神"
+            android:textColor="@android:color/white"
+            android:textSize="20px" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

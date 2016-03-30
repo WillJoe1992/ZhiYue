@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Created by zouwei on 16/3/19.-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24px"
+        android:layout_marginTop="30px"
+        android:layout_marginLeft="45px"
+        android:textStyle="bold"
+        android:text="女款|高级灰黑框太阳镜"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45px"
+        android:layout_marginRight="45px"
+        android:layout_marginTop="20px"
+        android:background="@mipmap/black_line"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="880px"
+        android:layout_margin="45px"
+        android:background="@mipmap/ic_launcher"/>
+
+
+</LinearLayout>
