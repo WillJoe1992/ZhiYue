@@ -1,10 +1,9 @@
-package com.lanou.mirror.base.special;
+package com.lanou.mirror.special;
 
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;

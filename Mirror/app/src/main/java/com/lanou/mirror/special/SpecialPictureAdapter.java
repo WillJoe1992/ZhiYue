@@ -1,7 +1,6 @@
-package com.lanou.mirror.base.special;
+package com.lanou.mirror.special;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Display;
 import android.view.LayoutInflater;
