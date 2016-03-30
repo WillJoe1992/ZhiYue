@@ -6,9 +6,9 @@
     
     <ImageView
         android:id="@+id/fragment_homepage_recyclerview_iv"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginLeft="12dp"
-        android:layout_width="277dp"
-        android:layout_height="440dp" />
+        android:src="@mipmap/ceshizhuanyongmeinv"
+        android:layout_marginLeft="@dimen/fragment_homepage_recycler_marginleft"
+        android:layout_width="@dimen/fragment_homepage_recycle_wid"
+        android:layout_height="@dimen/fragment_homepage_recycler_hei" />
 
 </LinearLayout>
