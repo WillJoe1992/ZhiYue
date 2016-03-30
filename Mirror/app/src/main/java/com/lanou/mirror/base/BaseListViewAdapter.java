@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
 import java.util.List;
 
 /**
- * Created by dllo on 16/3/19.
+ * Created by zouwei on 16/3/19.
  */
 public abstract class BaseListViewAdapter<T> extends BaseAdapter{
     protected Context context;

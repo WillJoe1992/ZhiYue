@@ -3,8 +3,10 @@ package com.lanou.mirror.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.zhy.autolayout.config.AutoLayoutConifg;
+
 /**
- * Created by dllo on 16/3/2.
+ * Created by zouwei on 16/3/2.
  */
 public class BaseApplication extends Application {
 
@@ -13,6 +15,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        AutoLayoutConifg.getInstance().useDeviceSize();
         context =this;
 
     }

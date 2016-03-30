@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 /**
- * Created by dllo on 16/3/19.
+ * Created by zouwei on 16/3/19.
  */
 public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public int headerItemCount;
