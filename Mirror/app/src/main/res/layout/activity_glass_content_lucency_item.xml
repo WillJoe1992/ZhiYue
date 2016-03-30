@@ -59,9 +59,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="45px"
+            android:layout_marginRight="45px"
+            android:layout_marginTop="60px"
             android:gravity="center"
             android:text="大神大神都看见爱上的科技爱好速度
             dasdasdsad d撒
@@ -69,28 +69,28 @@
             啊飒飒大师
             大神大神大神大神快八十肯定不卡机的哈里还多久卡萨丁好看撒谎的空间撒都没能帮忙是你不插卡"
             android:textColor="@android:color/white"
-            android:textSize="10dp" />
+            android:textSize="20px" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="15dp"
+            android:layout_height="24px"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="36px"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="10dp"
+                android:layout_height="20px"
                 android:layout_marginTop="2dp"
                 android:background="@mipmap/moneyrmb" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="1dp"
+                android:layout_marginLeft="2px"
                 android:text="2222"
                 android:textColor="@android:color/white"
-                android:textSize="12dp" />
+                android:textSize="24px" />
 
         </LinearLayout>
 
@@ -100,16 +100,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="120px"
         android:text="滑动浏览详情"
         android:textColor="@android:color/white"
-        android:textSize="10dp" />
+        android:textSize="20px" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20px"
         android:background="@mipmap/down_arrows" />
 
 </LinearLayout>
