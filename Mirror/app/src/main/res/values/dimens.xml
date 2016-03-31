@@ -47,7 +47,7 @@
     <dimen name="activity_glass_content_lucency_title_texthei">40px</dimen>
     <dimen name="activity_glass_content_lucency_title_text_margintop">75px</dimen>
     <dimen name="activity_glass_content_lucency_underline_black_wid">440px</dimen>
-    <dimen name="activity_glass_content_lucency_underline_black_margintop"></dimen>
+    <dimen name="activity_glass_content_lucency_underline_black_margintop">50px</dimen>
     <dimen name="activity_glass_content_lucency_glass_text_margin">15px</dimen>
     <dimen name="activity_glass_content_lucency_glass_textsize">30px</dimen>
     <dimen name="activity_glass_content_lucency_content_text_marginleft_right">45px</dimen>
@@ -81,5 +81,9 @@
     <dimen name="special_content_picture_item_sharebtn_marginend">26dp</dimen>
     <dimen name="special_content_picture_item_sharebtn_paddingbottom">20dp</dimen>
 
+    <dimen name="activity_atlas_title_margintop">18px</dimen>
+    <dimen name="activity_atlas_title_textsize">19px</dimen>
+    <dimen name="activity_atlas_marginleft_right">17px</dimen>
+    <dimen name="activity_atlas_linewid">390px</dimen>
 
 </resources>

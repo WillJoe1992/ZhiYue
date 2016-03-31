@@ -29,13 +29,13 @@ public class MainActivity extends BaseActivity {
                 getSupportFragmentManager(), data);
         verticalViewPager.setAdapter(fragmentAdapter);
     }
+
     public List<Fragment> getFragmentList() {
         List<Fragment> listFragments = new ArrayList<Fragment>();
 
         for (int i = 0; i < 5; i++) {
             HomePagerFragment oneFragment = new HomePagerFragment();
             listFragments.add(oneFragment);
-
         }
         return listFragments;
     }

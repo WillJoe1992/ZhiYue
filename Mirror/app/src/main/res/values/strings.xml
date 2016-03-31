@@ -3,4 +3,5 @@
     <string name="activity_main_home">瀏覽所有分類</string>
     <string name="activity_main_rank">顯示排序為 最新推廣</string>
     <string name="login">登錄</string>
+    <string name="atlas_title">商品細節展示</string>
 </resources>
