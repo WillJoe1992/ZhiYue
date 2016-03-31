@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.zhy.autolayout.AutoLayoutActivity;
+
 /**
  * Created by zouwei on 16/3/2.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AutoLayoutActivity{
 
 
     @Override

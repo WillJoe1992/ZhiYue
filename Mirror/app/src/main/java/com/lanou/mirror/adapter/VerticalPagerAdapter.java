@@ -23,6 +23,8 @@ public class VerticalPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public Fragment getItem(int arg0) {
 		// TODO Auto-generated method stub
+
+
 		return fragments.get(arg0);
 	}
 
