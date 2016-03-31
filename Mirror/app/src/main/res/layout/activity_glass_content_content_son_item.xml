@@ -8,17 +8,17 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="510px"
-        android:layout_height="285px"
-        android:background="@android:color/black"
+        android:layout_width="@dimen/activity_glass_content_content_son_layoutwidth"
+        android:layout_height="@dimen/activity_glass_content_content_son_layoutheith"
+        android:background="@color/activity_glass_content_content_son_background"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25px"
-            android:layout_marginRight="25px"
-            android:layout_marginTop="20px"
+            android:layout_marginLeft="@dimen/activity_glass_content_content_son_image_marginleft_right"
+            android:layout_marginRight="@dimen/activity_glass_content_content_son_image_marginleft_right"
+            android:layout_marginTop="@dimen/activity_glass_content_content_son_image_margintop"
             android:background="@mipmap/line_under_title" />
 
         <LinearLayout
@@ -29,7 +29,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="26px"
+                android:layout_marginTop="@dimen/activity_glass_content_content_son_layout_margintop"
                 android:layout_weight="1"
 
                 android:orientation="vertical">
@@ -39,50 +39,50 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="来自时尚之都韩国"
-                    android:textColor="@android:color/white"
-                    android:textSize="24px"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/activity_glass_content_content_son_textsize"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_marginTop="5px"
+                    android:layout_marginTop="@dimen/activity_glass_content_content_son_entext_margintop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="The frame comes from Kero"
-                    android:textColor="@android:color/white"
-                    android:textSize="15px"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/activity_glass_content_content_son_entext_size"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24px"
-                android:layout_marginRight="24px"
-                android:layout_marginTop="20px"
+                android:layout_marginLeft="@dimen/activity_glass_content_content_son_place_text_marginleft_right"
+                android:layout_marginRight="@dimen/activity_glass_content_content_son_place_text_marginleft_right"
+                android:layout_marginTop="@dimen/activity_glass_content_content_son_place_text_topmargin"
                 android:text="首尔"
                 android:textColor="@android:color/white"
-                android:textSize="23dp" />
+                android:textSize="@dimen/activity_glass_content_content_son_place_textsize" />
 
         </LinearLayout>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25px"
-            android:layout_marginRight="25px"
-            android:layout_marginTop="20px"
+            android:layout_marginLeft="@dimen/activity_glass_content_content_son_second_image_margin_left_right"
+            android:layout_marginRight="@dimen/activity_glass_content_content_son_second_image_margin_left_right"
+            android:layout_marginTop="@dimen/activity_glass_content_content_son_second_image_margintop"
             android:background="@mipmap/line_under_title" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="21px"
-            android:layout_marginLeft="40px"
-            android:layout_marginRight="40px"
+            android:layout_marginTop="@dimen/activity_glass_content_content_son_content_text_margin_top"
+            android:layout_marginLeft="@dimen/activity_glass_content_content_son_content_text_marginleft_right"
+            android:layout_marginRight="@dimen/activity_glass_content_content_son_content_text_marginleft_right"
             android:text="大家快来撒等等哈说离开的哈萨克接电话卡就收到货就卡死大神"
-            android:textColor="@android:color/white"
-            android:textSize="20px" />
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/activity_glass_content_content_son_content_textsize" />
 
 
     </LinearLayout>
