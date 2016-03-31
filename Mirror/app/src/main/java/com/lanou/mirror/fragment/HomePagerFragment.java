@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,6 @@ import com.lanou.mirror.base.BaseFragment;
 public class HomePagerFragment extends BaseFragment {
     private RecyclerView homePageRecyclerView;
     private HomePagerRecyclerViewAdapter homePagerRecyclerViewAdapter;
-
     @Override
     public int getlayout() {
         return R.layout.fragment_homepage;
@@ -39,6 +39,5 @@ public class HomePagerFragment extends BaseFragment {
         gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         homePageRecyclerView.setLayoutManager(gridLayoutManager);
         homePageRecyclerView.setAdapter(homePagerRecyclerViewAdapter);
-
     }
 }

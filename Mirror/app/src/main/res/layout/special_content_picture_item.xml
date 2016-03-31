@@ -3,7 +3,7 @@
     android:id="@+id/special_content_picture_item_rv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/special_content_picture_background"
+    android:background="@color/glass_content_lucecy_background"
     android:orientation="vertical">
 
     <LinearLayout

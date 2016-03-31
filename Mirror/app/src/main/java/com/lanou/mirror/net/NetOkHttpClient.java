@@ -1,6 +1,10 @@
 package com.lanou.mirror.net;
 
-import com.squareup.okhttp.Call;
+import android.os.Handler;
+import android.os.Looper;
+
+import com.google.gson.Gson;
+import com.google.gson.internal.$Gson$Types;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
@@ -9,34 +13,199 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.util.Map;
+import java.util.Set;
 
 /**
- * Created by dllo on 16/3/30.
+ * Created by SAZ on 16/3/30.
  */
 public class NetOkHttpClient {
-//okHttp自带异步回调接口
-Callback callback;
-    //调用接口的方法为保证异步在网络解析前调用
-    public void setCallback(Callback callback){
-        this.callback = callback;
-    }
-    //网络解析的post头文件
-    public RequestBody formBody;
-    public void postKeyValue(String url,HashMap<String,String> head) {
-        OkHttpClient okHttpClient = new OkHttpClient();
-        FormEncodingBuilder formEncodingBuilder = new FormEncodingBuilder();
-        for (String key : head.keySet()) {
-            formBody = formEncodingBuilder.add(key,head.get(key)).build();
-        }
-        //请求网络
-        final Request request = new Request.Builder()
-                .url(url)
-                .post(formBody)
-                .build();
-        //安卓自带回调方法
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(callback);
+    private static NetOkHttpClient mInstance;
+    private OkHttpClient mOkHttpClient;
+    private Handler mDelivery;
+    private Gson mGson;
+
+
+    private static final String TAG = "OkHttpClientManager";
+
+    public NetOkHttpClient() {
+        mOkHttpClient = new OkHttpClient();
+        //cookie enabled
+        mOkHttpClient.setCookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ORIGINAL_SERVER));
+        mDelivery = new Handler(Looper.getMainLooper());
+        mGson = new Gson();
+
     }
 
+    public static NetOkHttpClient getInstance()
+    {
+        if (mInstance == null)
+        {
+            synchronized (NetOkHttpClient.class)
+            {
+                if (mInstance == null)
+                {
+                    mInstance=new NetOkHttpClient();
+
+                }
+            }
+        }
+        return mInstance;
+    }
+
+    //对外暴漏的方法
+    public static void postAsyn(String url, final ResultCallback callback, Map<String, String> params)
+    {
+        getInstance()._postAsyn(url, callback, params);
+    }
+    /**
+     * 异步的post请求
+     *
+     * @param url
+     * @param callback
+     * @param params
+     */
+    private void _postAsyn(String url, final ResultCallback callback, Map<String, String> params)
+    {
+        Param[] paramsArr = map2Params(params);
+        Request request = buildPostRequest(url, paramsArr);
+        deliveryResult(callback, request);
+    }
+    public static class Param
+    {
+        public Param()
+        {
+        }
+
+        public Param(String key, String value)
+        {
+            this.key = key;
+            this.value = value;
+        }
+
+        String key;
+        String value;
+    }
+
+    private Param[] map2Params(Map<String, String> params)
+    {
+        if (params == null) return new Param[0];
+        int size = params.size();
+        Param[] res = new Param[size];
+        Set<Map.Entry<String, String>> entries = params.entrySet();
+        int i = 0;
+        for (Map.Entry<String, String> entry : entries)
+        {
+            res[i++] = new Param(entry.getKey(), entry.getValue());
+        }
+        return res;
+    }
+    public static abstract class ResultCallback<T>
+    {
+        Type mType;
+
+        public ResultCallback()
+        {
+            mType = getSuperclassTypeParameter(getClass());
+        }
+
+        static Type getSuperclassTypeParameter(Class<?> subclass)
+        {
+            Type superclass = subclass.getGenericSuperclass();
+            if (superclass instanceof Class)
+            {
+                throw new RuntimeException("Missing type parameter.");
+            }
+            ParameterizedType parameterized = (ParameterizedType) superclass;
+            return $Gson$Types.canonicalize(parameterized.getActualTypeArguments()[0]);
+        }
+
+        public abstract void onError(Request request, Exception e);
+
+        public abstract void onResponse(T response);
+    }
+    private Request buildPostRequest(String url, Param[] params)
+    {
+        if (params == null)
+        {
+            params = new Param[0];
+        }
+        FormEncodingBuilder builder = new FormEncodingBuilder();
+        for (Param param : params)
+        {
+            builder.add(param.key, param.value);
+        }
+        RequestBody requestBody = builder.build();
+        return new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build();
+    }
+    //Result返回
+    private void deliveryResult(final ResultCallback callback, Request request)
+    {
+        mOkHttpClient.newCall(request).enqueue(new Callback()
+        {
+            @Override
+            public void onFailure(final Request request, final IOException e)
+            {
+                sendFailedStringCallback(request, e, callback);
+            }
+
+            @Override
+            public void onResponse(final Response response)
+            {
+                try
+                {
+                    final String string = response.body().string();
+                    if (callback.mType == String.class)
+                    {
+                        sendSuccessResultCallback(string, callback);
+                    } else
+                    {
+                        Object o = mGson.fromJson(string, callback.mType);
+                        sendSuccessResultCallback(o, callback);
+                    }
+
+
+                } catch (IOException e)
+                {
+                    sendFailedStringCallback(response.request(), e, callback);
+                } catch (Exception e)//Json解析的错误
+                {
+                    sendFailedStringCallback(response.request(), e, callback);
+                }
+
+            }
+        });
+    }
+    //解析成功回调
+    private void sendSuccessResultCallback(final Object object, final ResultCallback callback)
+    {
+        mDelivery.post(new Runnable() {
+            @Override
+            public void run() {
+                if (callback != null) {
+                    callback.onResponse(object);
+                }
+            }
+        });
+    }
+    //解析失败回调
+    private void sendFailedStringCallback(final Request request, final Exception e, final ResultCallback callback)
+    {
+        mDelivery.post(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                if (callback != null)
+                    callback.onError(request, e);
+            }
+        });
+    }
 }
