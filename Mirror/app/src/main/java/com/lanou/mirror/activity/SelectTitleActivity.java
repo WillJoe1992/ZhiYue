@@ -1,10 +1,8 @@
 package com.lanou.mirror.activity;
 
 
-/**
- * Created by wyc on 16/3/31.
- */
-public class SelectTitleActivity {
+
+
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,9 +16,7 @@ import com.lanou.mirror.adapter.HomePagerRecyclerViewAdapter;
 import com.lanou.mirror.adapter.SelectTitleRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseActivity;
 
-/**
- * Created by dllo on 16/3/31.
- */
+
 public class SelectTitleActivity extends BaseActivity{
 
     private TextView tvTop,tvAll,tvFlatGlass,tvSunGlass,tvSpecial,tvShoppingCart,tvGoback,tvExit,tvBottom;
