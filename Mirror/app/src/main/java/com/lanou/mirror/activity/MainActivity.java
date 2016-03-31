@@ -35,6 +35,7 @@ public class MainActivity extends BaseActivity {
 
         for (int i = 0; i < 5; i++) {
             HomePagerFragment oneFragment = new HomePagerFragment();
+//            oneFragment.fragmentHomepageTitle.setText("你好");
             listFragments.add(oneFragment);
         }
         return listFragments;

@@ -11,7 +11,6 @@ import com.zhy.autolayout.AutoLayoutActivity;
  */
 public abstract class BaseActivity extends AutoLayoutActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
