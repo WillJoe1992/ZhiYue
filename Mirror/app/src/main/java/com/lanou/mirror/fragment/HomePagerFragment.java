@@ -55,7 +55,7 @@ public class HomePagerFragment extends BaseFragment {
         head.put("token","");
         head.put("goods_id",url);
         Log.d("aaaaaaaa",url);
-        NetOkHttpClient.postAsyn(URL.TEST_GOODS_LIST, new NetOkHttpClient.ResultCallback<String>() {
+        NetOkHttpClient.postAsyn(URL.GOODS_LIST, new NetOkHttpClient.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
 
