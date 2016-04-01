@@ -7,6 +7,8 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.lanou.mirror.R;
 import com.lanou.mirror.adapter.SelectTitleRecyclerViewAdapter;
@@ -21,7 +23,8 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity implements SelectTitleRecyclerViewAdapter.ClickListener{
     private VerticalViewPager verticalViewPager;
-    List<Fragment> data;
+    private List<Fragment> data;
+    private long exitTime = 0;
 
 
     @Override
@@ -51,26 +54,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         fragmentAll.setArguments(bundleAll);
         listFragments.add(fragmentAll);
 
-//        bundleAll.putString("titleName", "浏览平光镜");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-//        bundleAll.putString("titleName", "浏览太阳镜");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-//        bundleAll.putString("titleName", "专题分享");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-//        bundleAll.putString("titleName", "我的购物车");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-//        bundleAll.putString("titleName", "返回首页");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-//        bundleAll.putString("titleName", "退出");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-
-
+        
         Bundle bundleFlatGlass = new Bundle();
         bundleFlatGlass.putString("titleName", "浏览平光镜");
         HomePagerFragment fragmentFlatGlass = new HomePagerFragment();
@@ -136,5 +120,25 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(receiver);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void exit() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                    Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            finish();
+            System.exit(0);
+        }
     }
 }

@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,9 +26,8 @@ import java.util.ArrayList;
 public class SelectTitleActivity extends BaseActivity implements  SelectTitleRecyclerViewAdapter.ClickListener {
 
 
-    private TextView tvTop,tvAll,tvFlatGlass,tvSunGlass,tvSpecial,tvShoppingCart,tvGoback,tvExit,tvBottom;
-    private LinearLayout lineAll,lineFlatGlass,lineSunGlass,lineSpecial,lineShoppingCart,lineGoback,lineExit;
-    private ImageView underLineAll,underLineFlatGlass,underLineSunGlass,underLineSpecial,underShoppingCart,underGoback,underExit;
+    private TextView tvTop,tvBottom;
+
 
     private RecyclerView selectTitleRc;
     private SelectTitleRecyclerViewAdapter selectTitleRecyclerViewAdapter;
@@ -46,6 +46,20 @@ public class SelectTitleActivity extends BaseActivity implements  SelectTitleRec
         tvTop=BlindView(R.id.tv_top);
         tvBottom=BlindView(R.id.tv_bottom);
         selectTitleRc=BlindView(R.id.select_title_rc);
+
+        tvTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        tvBottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         Intent getIntent = getIntent();
         String title =getIntent.getStringExtra("title");
