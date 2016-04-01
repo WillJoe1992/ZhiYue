@@ -1,23 +1,20 @@
 package com.lanou.mirror.activity;
 
 
-
-
-
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lanou.mirror.R;
-import com.lanou.mirror.adapter.HomePagerRecyclerViewAdapter;
 import com.lanou.mirror.adapter.SelectTitleRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseActivity;
 
+/**
+ * Created by wyc on 16/3/31.
+ */
 
-public class SelectTitleActivity extends BaseActivity{
+public class SelectTitleActivity extends BaseActivity {
 
     private TextView tvTop,tvAll,tvFlatGlass,tvSunGlass,tvSpecial,tvShoppingCart,tvGoback,tvExit,tvBottom;
     private LinearLayout lineAll,lineFlatGlass,lineSunGlass,lineSpecial,lineShoppingCart,lineGoback,lineExit;
@@ -25,6 +22,10 @@ public class SelectTitleActivity extends BaseActivity{
 
     private RecyclerView selectTitleRc;
     private SelectTitleRecyclerViewAdapter selectTitleRecyclerViewAdapter;
+
+    public SelectTitleActivity() {
+    }
+
     @Override
     protected void initData() {
 

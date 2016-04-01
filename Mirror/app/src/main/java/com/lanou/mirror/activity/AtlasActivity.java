@@ -1,5 +1,6 @@
 package com.lanou.mirror.activity;
 
+import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
 
 /**
@@ -18,6 +19,6 @@ public class AtlasActivity extends BaseActivity {
 
     @Override
     protected int setcontent() {
-        return 0;
+        return R.layout.activity_atlas;
     }
 }
