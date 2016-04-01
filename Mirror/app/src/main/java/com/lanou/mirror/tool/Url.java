@@ -4,6 +4,7 @@ package com.lanou.mirror.tool;
  * Created by dllo on 16/4/1.
  */
 public interface URL {
+    
     String URL = "http://api101.test.mirroreye.cn/";
 
     String STORY_LIST = URL + "index.php/story/story_list";
