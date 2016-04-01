@@ -5,6 +5,7 @@ package com.lanou.mirror.activity;
 
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,7 @@ import com.lanou.mirror.adapter.SelectTitleRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.bean.SelectTitleRecyclerBean;
 import com.lanou.mirror.constant.Constant;
+import com.lanou.mirror.net.JSONGlassesClassification;
 
 import java.util.ArrayList;
 
@@ -33,8 +35,6 @@ public class SelectTitleActivity extends BaseActivity implements  SelectTitleRec
     private SelectTitleRecyclerViewAdapter selectTitleRecyclerViewAdapter;
     private ArrayList<SelectTitleRecyclerBean> selectTitleRecyclerBeans ;
 
-    public SelectTitleActivity() {
-    }
 
     @Override
     protected void initData() {
@@ -46,19 +46,18 @@ public class SelectTitleActivity extends BaseActivity implements  SelectTitleRec
         tvTop=BlindView(R.id.tv_top);
         tvBottom=BlindView(R.id.tv_bottom);
         selectTitleRc=BlindView(R.id.select_title_rc);
-
         Intent getIntent = getIntent();
         String title =getIntent.getStringExtra("title");
-
+        Log.d("aaa",title);
         selectTitleRecyclerBeans=new ArrayList<>();
         selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("瀏覽所有分類"));
+        selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("手工阳镜"));
         selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("浏览平光镜"));
         selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("浏览太阳镜"));
         selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("专题分享"));
         selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("我的购物车"));
         selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("返回首页"));
         selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("退出"));
-
 
         Log.d("SelectTitleActivity", title);
         for(int i= 0 ;i<selectTitleRecyclerBeans.size();i++) {

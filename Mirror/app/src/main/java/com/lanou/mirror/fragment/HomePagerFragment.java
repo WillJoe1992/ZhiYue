@@ -52,8 +52,6 @@ public class HomePagerFragment extends BaseFragment {
                 Intent intent = new Intent(getContext(), SelectTitleActivity.class);
                 intent.putExtra("title",fragmentHomepageTitle.getText());
                 startActivity(intent);
-
-
             }
         });
     }
