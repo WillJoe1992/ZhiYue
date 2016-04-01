@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/background">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#00000000"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/line_all"
@@ -13,23 +14,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tv_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#536482"
                 android:layout_marginTop="60px"
                 android:paddingLeft="75px"
                 android:text="全部分类"
+                android:textColor="#536482"
                 android:textSize="22px" />
+
             <ImageView
                 android:id="@+id/under_line_all"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="75px"
-                android:paddingTop="20px"
+                android:background="@mipmap/line_under_title"
+                android:layout_marginTop="20px"
                 android:visibility="gone"
-                android:background="@mipmap/line_under_title" />
+                 />
 
         </LinearLayout>
     </LinearLayout>
