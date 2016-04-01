@@ -57,7 +57,7 @@ public class NetOkHttpClient {
         return mInstance;
     }
 
-    //对外暴漏的方法
+    //对外暴漏的方法,post表格形式请求,参数网址,接口,post头文件
     public static void postAsyn(String url, final ResultCallback callback, Map<String, String> params)
     {
         getInstance()._postAsyn(url, callback, params);
