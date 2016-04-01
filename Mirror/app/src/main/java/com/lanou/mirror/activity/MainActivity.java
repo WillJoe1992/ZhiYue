@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -18,6 +19,10 @@ import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.constant.Constant;
 import com.lanou.mirror.fragment.AllFragment;
 import com.lanou.mirror.fragment.HomePagerFragment;
+import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
+import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
+import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntity;
+import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
 import com.lanou.mirror.net.JSONGlassesClassification;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.special.SpecialFragment;
@@ -38,6 +43,15 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
     private List<Fragment> data;
     private long exitTime = 0;
+
+    // 数据库
+    private SQLiteDatabase db;
+    // 管理者
+    private DaoMaster mDaoMaster;
+    // 会话
+    private DaoSession mDaoSession;
+    // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
+    private LabelEntityDao labelEntityDao;
 
 
     @Override
@@ -69,6 +83,8 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     @Override
     protected void initView() {
         verticalViewPager = BlindView(R.id.vertical_viewpager);
+
+
         head = new HashMap<>();
     }
 
@@ -83,7 +99,17 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         fragmentAll.setArguments(bundleAll);
         listFragments.add(fragmentAll);
 
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"mirrorlib.db",null);
+        db = helper.getWritableDatabase();
+        mDaoMaster = new DaoMaster(db);
+        mDaoSession = mDaoMaster.newSession();
+        labelEntityDao = mDaoSession.getLabelEntityDao();
 
+        labelEntityDao.deleteAll();
+        for (int i = 0; i <jsonGlassesClassification.getData().size() ; i++) {
+            LabelEntity labelEntity = new LabelEntity((long) i,jsonGlassesClassification.getData().get(i).getCategory_name());
+            labelEntityDao.insert(labelEntity);
+        }
 
         for (int i = 0; i <jsonGlassesClassification.getData().size() ; i++) {
             Bundle bundleFlatGlass = new Bundle();
@@ -92,6 +118,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
             HomePagerFragment fragmentFlatGlass = new HomePagerFragment();
             fragmentFlatGlass.setArguments(bundleFlatGlass);
             listFragments.add(fragmentFlatGlass);
+
         }
 
 
@@ -155,7 +182,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     }
 
     @Override
-    public void ClickListener(int popMenuPosition) {
+    public void ClickListener ( int popMenuPosition) {
         verticalViewPager.setCurrentItem(popMenuPosition);
     }
 
