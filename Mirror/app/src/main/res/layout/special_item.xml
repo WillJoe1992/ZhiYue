@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="650px"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="22px">
 <ImageView
-    android:layout_width="match_parent"
+    android:id="@+id/special_iv"
+    android:layout_width="650px"
     android:layout_height="704px"
-    android:id="@+id/imageView" />
+    android:scaleType="fitXY"/>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="540px"
         android:layout_height="128px"
         android:orientation="vertical"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/special_iv"
+        android:layout_alignParentStart="true"
+        android:background="@color/text_color">
         <ImageView
             android:layout_marginTop="34px"
             android:layout_marginLeft="32px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/black_line"/>
+            android:background="@mipmap/black_line"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,6 +35,7 @@
             android:layout_height="wrap_content"
             android:text="babababababab"
             android:textSize="30px" />
+
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.lanou.mirror.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
         homePageViewHolder.homepageModle.setText(jsonGlasses.getData().getList().get(position).getModel());
         homePageViewHolder.homepageProduct.setText(jsonGlasses.getData().getList().get(position).getProduct_area());
         homePageViewHolder.homepagePrice.setText(jsonGlasses.getData().getList().get(position).getGoods_price());
+        Log.d("IIIIIII",""+jsonGlasses.getData().getList().get(position).getGoods_img());
     }
 
     @Override
