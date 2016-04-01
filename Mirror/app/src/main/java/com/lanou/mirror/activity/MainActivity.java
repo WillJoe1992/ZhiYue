@@ -17,6 +17,7 @@ import com.lanou.mirror.adapter.SelectTitleRecyclerViewAdapter;
 import com.lanou.mirror.adapter.VerticalPagerAdapter;
 import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.constant.Constant;
+import com.lanou.mirror.fragment.AllFragment;
 import com.lanou.mirror.fragment.HomePagerFragment;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
@@ -24,6 +25,7 @@ import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntity;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
 import com.lanou.mirror.net.JSONGlassesClassification;
 import com.lanou.mirror.net.NetOkHttpClient;
+import com.lanou.mirror.special.SpecialFragment;
 import com.lanou.mirror.tool.URL;
 import com.lanou.mirror.tool.VerticalViewPager;
 import com.squareup.okhttp.Request;
@@ -92,7 +94,8 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
         Bundle bundleAll = new Bundle();
         bundleAll.putString("titleName", "瀏覽所有分類");
-        HomePagerFragment fragmentAll = new HomePagerFragment();
+        bundleAll.putSerializable("CategoryId","110");
+        AllFragment fragmentAll = new AllFragment();
         fragmentAll.setArguments(bundleAll);
         listFragments.add(fragmentAll);
 
@@ -111,7 +114,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         for (int i = 0; i <jsonGlassesClassification.getData().size() ; i++) {
             Bundle bundleFlatGlass = new Bundle();
             bundleFlatGlass.putString("titleName", jsonGlassesClassification.getData().get(i).getCategory_name());
-            bundleFlatGlass.putString("allURL", jsonGlassesClassification.getData() + "");
+            bundleFlatGlass.putString("CategoryId", jsonGlassesClassification.getData().get(i).getCategory_id());
             HomePagerFragment fragmentFlatGlass = new HomePagerFragment();
             fragmentFlatGlass.setArguments(bundleFlatGlass);
             listFragments.add(fragmentFlatGlass);
@@ -143,26 +146,29 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         
 
         Bundle bundleSpecial = new Bundle();
+        SpecialFragment fragmentSpecial = new SpecialFragment();
         bundleSpecial.putString("titleName", "专题分享");
-        HomePagerFragment fragmentSpecial = new HomePagerFragment();
         fragmentSpecial.setArguments(bundleSpecial);
         listFragments.add(fragmentSpecial);
 
 
         Bundle bundleShoppingCart = new Bundle();
         bundleShoppingCart.putString("titleName", "我的购物车");
+        bundleShoppingCart.putSerializable("CategoryId", "110");
         HomePagerFragment fragmentShoppingCart = new HomePagerFragment();
         fragmentShoppingCart.setArguments(bundleShoppingCart);
         listFragments.add(fragmentShoppingCart);
 
         Bundle bundleGoback = new Bundle();
         bundleGoback.putString("titleName", "返回首页");
+        bundleGoback.putString("CategoryId", "110");
         HomePagerFragment fragmentGoback = new HomePagerFragment();
         fragmentGoback.setArguments(bundleGoback);
         listFragments.add(fragmentGoback);
 
         Bundle bundleExit = new Bundle();
         bundleExit.putString("titleName", "退出");
+        bundleExit.putString("CategoryId","110");
         HomePagerFragment fragmentExit = new HomePagerFragment();
         fragmentExit.setArguments(bundleExit);
         listFragments.add(fragmentExit);
