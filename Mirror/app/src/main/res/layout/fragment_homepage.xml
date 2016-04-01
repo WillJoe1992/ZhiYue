@@ -60,6 +60,4 @@
         android:layout_marginLeft="@dimen/fragment_homepage_recycler_marginleft"
         android:layout_marginTop="@dimen/fragment_homepage_recycler_margintop">
     </android.support.v7.widget.RecyclerView>
-
-
 </RelativeLayout>
