@@ -51,25 +51,6 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         fragmentAll.setArguments(bundleAll);
         listFragments.add(fragmentAll);
 
-//        bundleAll.putString("titleName", "浏览平光镜");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-//        bundleAll.putString("titleName", "浏览太阳镜");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-//        bundleAll.putString("titleName", "专题分享");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-//        bundleAll.putString("titleName", "我的购物车");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-//        bundleAll.putString("titleName", "返回首页");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-//        bundleAll.putString("titleName", "退出");
-//        fragmentAll.setArguments(bundleAll);
-//        listFragments.add(fragmentAll);
-
 
         Bundle bundleFlatGlass = new Bundle();
         bundleFlatGlass.putString("titleName", "浏览平光镜");
