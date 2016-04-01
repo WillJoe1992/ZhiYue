@@ -7,6 +7,8 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
@@ -28,9 +30,14 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity implements SelectTitleRecyclerViewAdapter.ClickListener {
     private VerticalViewPager verticalViewPager;
-    List<Fragment> data;
+
     private HashMap<String, String> head;
     private JSONGlassesClassification jsonGlassesClassification;
+
+    private List<Fragment> data;
+    private long exitTime = 0;
+
+
     @Override
     protected void initData() {
         IntentFilter filter = new IntentFilter();
@@ -74,6 +81,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         listFragments.add(fragmentAll);
 
 
+
         for (int i = 0; i <jsonGlassesClassification.getData().size() ; i++) {
             Bundle bundleFlatGlass = new Bundle();
             bundleFlatGlass.putString("titleName", jsonGlassesClassification.getData().get(i).getCategory_name());
@@ -105,10 +113,10 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 //        fragmentHandGlass .setArguments(bundleHandGlass);
 //        listFragments.add(fragmentHandGlass);
         ////////////////////////////
+        
 
-         Bundle bundleSpecial = new Bundle();
-         bundleSpecial.putString("titleName", "专题分享");
-
+        Bundle bundleSpecial = new Bundle();
+        bundleSpecial.putString("titleName", "专题分享");
         HomePagerFragment fragmentSpecial = new HomePagerFragment();
         fragmentSpecial.setArguments(bundleSpecial);
         listFragments.add(fragmentSpecial);
@@ -162,5 +170,25 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(receiver);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void exit() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                    Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            finish();
+            System.exit(0);
+        }
     }
 }

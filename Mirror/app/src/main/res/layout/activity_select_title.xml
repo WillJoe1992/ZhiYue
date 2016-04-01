@@ -20,8 +20,8 @@
      <android.support.v7.widget.RecyclerView
          android:id="@+id/select_title_rc"
          android:layout_width="match_parent"
-         android:layout_height="0dp"
-         android:layout_weight="1"
+         android:layout_height="wrap_content"
+
          />
 
 
@@ -29,7 +29,8 @@
       <TextView
           android:id="@+id/tv_bottom"
           android:layout_width="match_parent"
-          android:layout_height="200px"
+          android:layout_height="0dp"
+          android:layout_weight="1"
           android:textSize="22px" />
 
 
