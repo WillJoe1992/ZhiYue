@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class SelectTitleActivity extends BaseActivity implements  SelectTitleRecyclerViewAdapter.ClickListener {
 
+
     private TextView tvTop,tvAll,tvFlatGlass,tvSunGlass,tvSpecial,tvShoppingCart,tvGoback,tvExit,tvBottom;
     private LinearLayout lineAll,lineFlatGlass,lineSunGlass,lineSpecial,lineShoppingCart,lineGoback,lineExit;
     private ImageView underLineAll,underLineFlatGlass,underLineSunGlass,underLineSpecial,underShoppingCart,underGoback,underExit;
@@ -31,6 +32,10 @@ public class SelectTitleActivity extends BaseActivity implements  SelectTitleRec
     private RecyclerView selectTitleRc;
     private SelectTitleRecyclerViewAdapter selectTitleRecyclerViewAdapter;
     private ArrayList<SelectTitleRecyclerBean> selectTitleRecyclerBeans ;
+
+    public SelectTitleActivity() {
+    }
+
     @Override
     protected void initData() {
 

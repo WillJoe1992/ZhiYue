@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/fragment_homepage_recyclerview_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fragment_homepage_recycler_marginleft"
+        android:src="@mipmap/ceshizhuanyongmeinv" />
+
+    <TextView
+        android:id="@+id/homepage_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20px"
+        android:layout_marginTop="370px"
+        android:text="MMMMM"
+        android:textSize="13px"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/homepage_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="218px"
+        android:layout_marginTop="370px"
+        android:text="￥111111"
+        android:textSize="13px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/homepage_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20px"
+        android:layout_marginTop="396px"
+        android:text="产地"
+        android:textSize="13px" />
+
+    <ImageView
+        android:layout_width="252px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_marginTop="426px"
+        android:src="@mipmap/black_line" />
+
+    <TextView
+        android:id="@+id/homepage_modle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23px"
+        android:layout_marginTop="441px"
+        android:text="太阳镜"
+        android:textSize="18px" />
+
+
+</RelativeLayout>

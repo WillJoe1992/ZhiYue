@@ -21,7 +21,7 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View viewHome = LayoutInflater.from(context).inflate(R.layout.item_fragment_recyclerview, null);
+        View viewHome = LayoutInflater.from(context).inflate(R.layout.item_homepagefragment_recyclerview, null);
         return new HomePageViewHolder(viewHome);
     }
 
