@@ -108,6 +108,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
          Bundle bundleSpecial = new Bundle();
          bundleSpecial.putString("titleName", "专题分享");
+
         HomePagerFragment fragmentSpecial = new HomePagerFragment();
         fragmentSpecial.setArguments(bundleSpecial);
         listFragments.add(fragmentSpecial);
