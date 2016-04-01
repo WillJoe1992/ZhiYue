@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.net.JSONGlasses;
+import com.lanou.mirror.net.NetHelper;
 
 /**
  * Created by wyc on 16/3/30.
@@ -25,13 +27,20 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View viewHome = LayoutInflater.from(context).inflate(R.layout.item_homepagefragment_recyclerview, null);
+        View viewHome = LayoutInflater.from(context).inflate(R.layout.item_homepagefragment_recyclerview, parent, false);
         return new HomePageViewHolder(viewHome);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
+
+        NetHelper netHelper = new NetHelper();
+        ImageLoader imageLoader = netHelper.getImageLoader();
+        imageLoader.get(jsonGlasses.getData().getList().get(position).getGoods_img()
+                , ImageLoader.getImageListener(homePageViewHolder.ic, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+
+
         homePageViewHolder.homepageBrand.setText(jsonGlasses.getData().getList().get(position).getBrand());
         homePageViewHolder.homepageModle.setText(jsonGlasses.getData().getList().get(position).getModel());
         homePageViewHolder.homepageProduct.setText(jsonGlasses.getData().getList().get(position).getProduct_area());
@@ -52,7 +61,7 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
             ic = (ImageView) itemView.findViewById(R.id.fragment_homepage_recyclerview_iv);
             homepageBrand= (TextView) itemView.findViewById(R.id.homepage_brand);
             homepagePrice= (TextView) itemView.findViewById(R.id.homepage_price);
-            homepageProduct= (TextView) itemView.findViewById(R.id.homepage_product);
+            homepageProduct= (TextView) itemView.findViewById(R.id.homepage_comefrom);
             homepageModle= (TextView) itemView.findViewById(R.id.homepage_modle);
         }
     }

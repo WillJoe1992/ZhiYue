@@ -13,8 +13,8 @@
     <dimen name="fragment_homepage_title_text_size">30px</dimen>
     <dimen name="fragment_homepage_recycler_hei">888px</dimen>
     <dimen name="fragment_homepage_recycle_wid">554px</dimen>
-    <dimen name="fragment_homepage_recycler_margintop">228px</dimen>
-    <dimen name="fragment_homepage_recycler_marginleft">14px</dimen>
+    <dimen name="fragment_homepage_recycler_margintop">165px</dimen>
+
 
     <dimen name="activity_glass_content_content_title_text_size">24px</dimen>
     <dimen name="actiivty_glass_content_content_title_text_margintop">30px</dimen>
