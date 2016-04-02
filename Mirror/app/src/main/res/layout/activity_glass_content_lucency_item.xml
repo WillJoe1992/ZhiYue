@@ -61,7 +61,7 @@
             android:layout_marginRight="@dimen/activity_glass_content_lucency_content_text_marginleft_right"
             android:layout_marginTop="@dimen/activity_glass_content_lucency_content_text_margintop"
             android:gravity="center"
-            android:textColor="@android:color/white"
+            android:textColor="@color/text_color"
             android:textSize="@dimen/activity_glass_content_lucency_content_textsize" />
 
         <LinearLayout
@@ -93,7 +93,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_glass_content_lucency_pulldown_text_margintop"
-        android:text="滑动浏览详情"
         android:textColor="@color/text_color"
         android:textSize="@dimen/activity_glass_content_lucency_pulldown_textsize" />
 
