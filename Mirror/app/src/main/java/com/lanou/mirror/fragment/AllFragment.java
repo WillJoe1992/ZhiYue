@@ -1,28 +1,15 @@
 package com.lanou.mirror.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.lanou.mirror.R;
-import com.lanou.mirror.activity.SelectTitleActivity;
 import com.lanou.mirror.adapter.AllRecyclerViewAdapter;
-import com.lanou.mirror.adapter.HomePagerRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseFragment;
-import com.lanou.mirror.net.JSONGlasses;
-import com.lanou.mirror.net.JSONSpecial;
-import com.lanou.mirror.net.NetOkHttpClient;
-import com.lanou.mirror.special.SpecialAdapter;
-import com.lanou.mirror.tool.MyToast;
-import com.lanou.mirror.tool.URL;
-import com.squareup.okhttp.Request;
+import com.lanou.mirror.bean.JSONGlasses;
+import com.lanou.mirror.bean.JSONSpecial;
 
 import java.util.HashMap;
 
@@ -40,15 +27,15 @@ public class AllFragment extends BaseFragment{
     private JSONGlasses jsonGlasses;
     private JSONSpecial jsonSpecial;
     @Override
-    public int getlayout() {
+    public int getLayout() {
         return R.layout.fragment_homepage;
     }
 
     @Override
     protected void initView() {
-        titleSelect =BlindView(R.id.title_select);
-        homePageRecyclerView = BlindView(R.id.fragment_homepage_recyclerview);
-        fragmentHomepageTitle= BlindView(R.id.fragment_homepage_title);
+        titleSelect = BindView(R.id.title_select);
+        homePageRecyclerView = BindView(R.id.fragment_homepage_recyclerview);
+        fragmentHomepageTitle= BindView(R.id.fragment_homepage_title);
 
         Bundle bundle = getArguments();
         String titleName = (String) bundle.get("titleName");

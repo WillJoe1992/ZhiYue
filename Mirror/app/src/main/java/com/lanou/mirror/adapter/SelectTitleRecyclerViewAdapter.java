@@ -1,7 +1,6 @@
 package com.lanou.mirror.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -83,7 +82,7 @@ public class SelectTitleRecyclerViewAdapter extends RecyclerView.Adapter<SelectT
 //            Intent intent =new Intent();
 //            intent.putExtra("n", tvAll.getText());
 
-            clickListener.ClickListener(position);
+            clickListener.setClickListener(position);
 
             Log.d("TitleViewHolder", "!!!!!!!!!!");
             Log.e("TitleViewHolder", "position:" + position);
@@ -94,7 +93,7 @@ public class SelectTitleRecyclerViewAdapter extends RecyclerView.Adapter<SelectT
         }
     }
     public interface ClickListener {
-        void ClickListener(int popMenuPosition);
+        void setClickListener(int popMenuPosition);
     }
     public void setPositionClickListener(ClickListener listener){
         this.clickListener = listener;

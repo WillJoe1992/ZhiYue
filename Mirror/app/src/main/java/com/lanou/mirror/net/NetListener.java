@@ -8,5 +8,5 @@ import org.json.JSONObject;
  */
 public interface NetListener {
     void getSuccess(JSONObject jsonObject);
-    void getfailed(String string);
+    void getFailed(String string);
 }

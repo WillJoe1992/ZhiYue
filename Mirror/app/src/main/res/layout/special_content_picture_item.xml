@@ -53,6 +53,6 @@
         android:layout_marginBottom="@dimen/special_content_picture_item_sharebtn_margin_bottom_right"
         android:layout_marginEnd="@dimen/special_content_picture_item_sharebtn_marginend"
         android:layout_marginRight="@dimen/special_content_picture_item_sharebtn_margin_bottom_right"
-        android:background="@mipmap/fx"
+        android:background="@mipmap/share"
         android:paddingBottom="@dimen/special_content_picture_item_sharebtn_paddingbottom" />
 </RelativeLayout>

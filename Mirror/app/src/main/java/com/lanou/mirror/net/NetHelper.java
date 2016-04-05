@@ -9,7 +9,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -43,33 +42,6 @@ public class NetHelper {
     }
 
 
-
-
-    //从网络获取信息
-    private void getDataFromNet(String url,final Map<String,String> head , final NetListener netListener){
-        JsonObjectRequest request =new JsonObjectRequest(url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                netListener.getSuccess(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                netListener.getfailed("拉取失败");
-            }
-        }
-        ){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-
-                if(head!=null){
-                    return head;//
-                }
-                return super.getHeaders();
-            }
-        };
-         requestQueue.add(request);
-    }
 
 
 }

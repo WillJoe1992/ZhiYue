@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
-import com.lanou.mirror.net.JSONGlasses;
+import com.lanou.mirror.bean.JSONGlasses;
 import com.lanou.mirror.net.NetHelper;
 
 /**
@@ -38,7 +38,7 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
         NetHelper netHelper = new NetHelper();
         ImageLoader imageLoader = netHelper.getImageLoader();
         imageLoader.get(jsonGlasses.getData().getList().get(position).getGoods_img()
-                , ImageLoader.getImageListener(homePageViewHolder.ic, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+                , ImageLoader.getImageListener(homePageViewHolder.imageView, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
 
 
         homePageViewHolder.homepageBrand.setText(jsonGlasses.getData().getList().get(position).getBrand());
@@ -54,11 +54,12 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     }
 
     class HomePageViewHolder extends RecyclerView.ViewHolder {
-        ImageView ic;
+        ImageView imageView
+                ;
         TextView homepageBrand,homepagePrice,homepageProduct,homepageModle;
         public HomePageViewHolder(View itemView) {
             super(itemView);
-            ic = (ImageView) itemView.findViewById(R.id.fragment_homepage_recyclerview_iv);
+            imageView = (ImageView) itemView.findViewById(R.id.fragment_homepage_recyclerview_iv);
             homepageBrand= (TextView) itemView.findViewById(R.id.homepage_brand);
             homepagePrice= (TextView) itemView.findViewById(R.id.homepage_price);
             homepageProduct= (TextView) itemView.findViewById(R.id.homepage_comefrom);

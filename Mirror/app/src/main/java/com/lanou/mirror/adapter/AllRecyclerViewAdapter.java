@@ -1,9 +1,6 @@
 package com.lanou.mirror.adapter;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,15 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
-import com.lanou.mirror.net.JSONGlasses;
-import com.lanou.mirror.net.JSONSpecial;
+import com.lanou.mirror.bean.JSONGlasses;
+import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.net.NetHelper;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -44,7 +39,7 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
 
     class HomePageViewHolder extends RecyclerView.ViewHolder {
         ImageView ic;
-        TextView homepageBrand, homepagePrice, homepageProduct, homepageModle;
+        TextView homepageBrand, homepagePrice, homepageProduct, homepageModel;
 
         public HomePageViewHolder(View itemView) {
             super(itemView);
@@ -52,7 +47,7 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
             homepageBrand = (TextView) itemView.findViewById(R.id.homepage_brand);
             homepagePrice = (TextView) itemView.findViewById(R.id.homepage_price);
             homepageProduct = (TextView) itemView.findViewById(R.id.homepage_comefrom);
-            homepageModle = (TextView) itemView.findViewById(R.id.homepage_modle);
+            homepageModel = (TextView) itemView.findViewById(R.id.homepage_modle);
         }
     }
 
@@ -104,7 +99,7 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
 
                     break;
                 case 2:
-                    View specialView = LayoutInflater.from(context).inflate(R.layout.special_item, parent, false);
+                    View specialView = LayoutInflater.from(context).inflate(R.layout.item_special, parent, false);
                     viewHolder = new SpecialViewHolder(specialView);
                     break;
             }
@@ -133,7 +128,7 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
 
 
                     homePageViewHolder.homepageBrand.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getBrand());
-                    homePageViewHolder.homepageModle.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getModel());
+                    homePageViewHolder.homepageModel.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getModel());
                     homePageViewHolder.homepageProduct.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getProduct_area());
                     homePageViewHolder.homepagePrice.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getGoods_price());
                     jsonGlassesNum = jsonGlassesNum++;

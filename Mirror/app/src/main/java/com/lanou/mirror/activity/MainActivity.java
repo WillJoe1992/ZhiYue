@@ -26,14 +26,13 @@ import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntity;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
-import com.lanou.mirror.net.JSONGlassesClassification;
+import com.lanou.mirror.bean.JSONGlassesClassification;
 import com.lanou.mirror.net.NetOkHttpClient;
-import com.lanou.mirror.special.SpecialFragment;
+import com.lanou.mirror.fragment.SpecialFragment;
 import com.lanou.mirror.tool.URL;
 import com.lanou.mirror.tool.VerticalViewPager;
 import com.squareup.okhttp.Request;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,7 +82,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     }
     @Override
     protected void initView() {
-        verticalViewPager = BlindView(R.id.vertical_viewpager);
+        verticalViewPager = BindView(R.id.vertical_viewpager);
 
 
         head = new HashMap<>();
@@ -161,30 +160,17 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         shoppingCarFragment.setArguments(bundleShoppingCart);
         listFragments.add(shoppingCarFragment);
 
-        Bundle bundleGoback = new Bundle();
-        bundleGoback.putString("titleName", "返回首页");
-        bundleGoback.putString("CategoryId", "110");
-        HomePagerFragment fragmentGoback = new HomePagerFragment();
-        fragmentGoback.setArguments(bundleGoback);
-        listFragments.add(fragmentGoback);
-
-        Bundle bundleExit = new Bundle();
-        bundleExit.putString("titleName", "退出");
-        bundleExit.putString("CategoryId", "110");
-        HomePagerFragment fragmentExit = new HomePagerFragment();
-        fragmentExit.setArguments(bundleExit);
-        listFragments.add(fragmentExit);
 
         return listFragments;
     }
 
     @Override
-    protected int setcontent() {
+    protected int setContent() {
         return R.layout.activity_main;
     }
 
     @Override
-    public void ClickListener(int popMenuPosition) {
+    public void setClickListener(int popMenuPosition) {
         verticalViewPager.setCurrentItem(popMenuPosition);
     }
 
@@ -228,7 +214,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     }
 
     public void goToLogin() {
-        loginText = BlindView(R.id.goto_login);
+        loginText = BindView(R.id.goto_login);
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

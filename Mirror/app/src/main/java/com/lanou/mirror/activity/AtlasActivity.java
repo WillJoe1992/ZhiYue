@@ -18,7 +18,7 @@ public class AtlasActivity extends BaseActivity {
     }
 
     @Override
-    protected int setcontent() {
+    protected int setContent() {
         return R.layout.activity_atlas;
     }
 }

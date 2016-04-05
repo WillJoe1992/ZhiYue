@@ -1,24 +1,22 @@
-package com.lanou.mirror.special;
+package com.lanou.mirror.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
 import com.lanou.mirror.activity.SelectTitleActivity;
+import com.lanou.mirror.activity.SpecialActivity;
+import com.lanou.mirror.adapter.SpecialAdapter;
 import com.lanou.mirror.base.BaseFragment;
-import com.lanou.mirror.net.JSONSpecial;
+import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.net.NetOkHttpClient;
-import com.lanou.mirror.tool.MyToast;
 import com.lanou.mirror.tool.URL;
 import com.squareup.okhttp.Request;
 
@@ -35,7 +33,7 @@ public class SpecialFragment extends BaseFragment{
     private SpecialAdapter specialAdapter;
     private JSONSpecial jsonSpecial;
     @Override
-    public int getlayout() {
+    public int getLayout() {
         return R.layout.fragment_homepage;
     }
 
@@ -43,8 +41,8 @@ public class SpecialFragment extends BaseFragment{
     protected void initView() {
 
         head=new HashMap<>();
-        titleSelect =BlindView(R.id.title_select);
-        fragmentHomepageTitle= BlindView(R.id.fragment_homepage_title);
+        titleSelect = BindView(R.id.title_select);
+        fragmentHomepageTitle= BindView(R.id.fragment_homepage_title);
         Bundle bundle = getArguments();
         String titleName = (String) bundle.get("titleName");
         fragmentHomepageTitle.setText(titleName);
@@ -93,6 +91,6 @@ public class SpecialFragment extends BaseFragment{
 
     @Override
     protected void dataView() {
-        homePageRecyclerView = BlindView(R.id.fragment_homepage_recyclerview);
+        homePageRecyclerView = BindView(R.id.fragment_homepage_recyclerview);
     }
 }

@@ -1,4 +1,4 @@
-package com.lanou.mirror.special;
+package com.lanou.mirror.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,13 +7,13 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
-import com.lanou.mirror.net.JSONSpecial;
+import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.net.NetHelper;
+import com.lanou.mirror.adapter.SpecialPictureAdapter;
 
 /**
  * Created by SAZ on 16/3/29.
@@ -64,12 +64,12 @@ public class SpecialActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        activitySpecialContentImageView = BlindView(R.id.activity_special_content_image_view);
-        recyclerView = BlindView(R.id.activity_special_content_rv);
+        activitySpecialContentImageView = BindView(R.id.activity_special_content_image_view);
+        recyclerView = BindView(R.id.activity_special_content_rv);
     }
 
     @Override
-    protected int setcontent() {
+    protected int setContent() {
         return R.layout.activity_special_content;
     }
 

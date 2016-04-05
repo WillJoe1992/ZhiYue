@@ -1,27 +1,21 @@
 package com.lanou.mirror.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
-import com.lanou.mirror.activity.MainActivity;
 import com.lanou.mirror.activity.SelectTitleActivity;
 import com.lanou.mirror.adapter.HomePagerRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseFragment;
-import com.lanou.mirror.net.JSONGlasses;
+import com.lanou.mirror.bean.JSONGlasses;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.URL;
 import com.squareup.okhttp.Request;
@@ -39,15 +33,15 @@ public class HomePagerFragment extends BaseFragment {
     private HashMap<String, String> head;
     private JSONGlasses jsonGlasses;
     @Override
-    public int getlayout() {
+    public int getLayout() {
         return R.layout.fragment_homepage;
     }
 
     @Override
     protected void initView() {
         head=new HashMap<>();
-        titleSelect =BlindView(R.id.title_select);
-        fragmentHomepageTitle= BlindView(R.id.fragment_homepage_title);
+        titleSelect = BindView(R.id.title_select);
+        fragmentHomepageTitle= BindView(R.id.fragment_homepage_title);
         Bundle bundle = getArguments();
         String titleName = (String) bundle.get("titleName");
         String url = (String) bundle.get("CategoryId");
@@ -94,7 +88,7 @@ public class HomePagerFragment extends BaseFragment {
 
     @Override
     protected void dataView() {
-        homePageRecyclerView = BlindView(R.id.fragment_homepage_recyclerview);
+        homePageRecyclerView = BindView(R.id.fragment_homepage_recyclerview);
 
     }
 

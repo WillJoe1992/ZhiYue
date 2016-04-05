@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/activity_glass_content_lucency_img_rmbhei"
                 android:layout_marginTop="@dimen/activity_glass_content_lucency_img_rmb_margintop"
-                android:background="@mipmap/moneyrmb" />
+                android:background="@mipmap/money_rmb" />
 
             <TextView
                 android:layout_width="match_parent"

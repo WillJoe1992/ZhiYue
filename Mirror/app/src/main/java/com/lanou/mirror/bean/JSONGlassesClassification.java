@@ -1,4 +1,4 @@
-package com.lanou.mirror.net;
+package com.lanou.mirror.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.Preference;

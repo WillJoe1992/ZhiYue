@@ -3,14 +3,11 @@ package com.lanou.mirror.activity;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lanou.mirror.R;
@@ -21,7 +18,6 @@ import com.lanou.mirror.constant.Constant;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
-import com.lanou.mirror.net.JSONGlassesClassification;
 
 import java.util.ArrayList;
 
@@ -52,9 +48,9 @@ public class SelectTitleActivity extends BaseActivity implements SelectTitleRecy
 
     @Override
     protected void initView() {
-        tvTop = BlindView(R.id.tv_top);
-        tvBottom = BlindView(R.id.tv_bottom);
-        selectTitleRc = BlindView(R.id.select_title_rc);
+        tvTop = BindView(R.id.tv_top);
+        tvBottom = BindView(R.id.tv_bottom);
+        selectTitleRc = BindView(R.id.select_title_rc);
 
         tvTop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,13 +114,13 @@ public class SelectTitleActivity extends BaseActivity implements SelectTitleRecy
     }
 
     @Override
-    protected int setcontent() {
+    protected int setContent() {
         return R.layout.activity_select_title;
     }
 
 
     @Override
-    public void ClickListener(int popMenuPosition) {
+    public void setClickListener(int popMenuPosition) {
         finish();
         Intent intent = new Intent();
         Log.e("SelectTitleActivity", "popMenuPosition:" + popMenuPosition);

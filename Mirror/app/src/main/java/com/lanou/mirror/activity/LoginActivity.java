@@ -24,10 +24,10 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        phoneEdt = BlindView(R.id.login_phone_edt);
-        passwordEdt = BlindView(R.id.login_password_edt);
-        loginBtn = BlindView(R.id.login_btn);
-        registBtn = BlindView(R.id.login_regist_btn);
+        phoneEdt = BindView(R.id.login_phone_edt);
+        passwordEdt = BindView(R.id.login_password_edt);
+        loginBtn = BindView(R.id.login_btn);
+        registBtn = BindView(R.id.login_regist_btn);
         setLoginBtn();
     }
 
@@ -74,7 +74,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    protected int setcontent() {
+    protected int setContent() {
         return R.layout.activity_login;
     }
 }

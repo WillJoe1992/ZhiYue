@@ -17,7 +17,7 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(getlayout(),null);
+        return inflater.inflate(getLayout(),container,false);
     }
 
     //绑定组件
@@ -38,12 +38,12 @@ public abstract class BaseFragment extends Fragment {
 
 
 
-    public abstract int getlayout();
+    public abstract int getLayout();
     protected abstract void initView();
     protected abstract void dataView();
 
     //方便绑定布局的
-    protected <T extends View>T BlindView (int id){
+    protected <T extends View>T BindView(int id){
         return (T)getView().findViewById(id);
     }
 }

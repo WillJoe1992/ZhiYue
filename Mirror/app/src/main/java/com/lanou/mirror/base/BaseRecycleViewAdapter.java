@@ -93,7 +93,7 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Rec
         return headerItemCount != 0 && position < headerItemCount;
     }
 
-    public boolean isbottomView(int position) {
+    public boolean isBottomView(int position) {
         return bottomItemCount != 0 && position < bottomItemCount;
     }
 

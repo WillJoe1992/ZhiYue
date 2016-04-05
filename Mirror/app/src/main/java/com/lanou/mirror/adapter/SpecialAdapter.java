@@ -1,4 +1,4 @@
-package com.lanou.mirror.special;
+package com.lanou.mirror.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -6,12 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
-import com.lanou.mirror.net.JSONSpecial;
+import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.net.NetHelper;
 
 /**
@@ -26,7 +25,7 @@ private SpecialOnClick specialOnClick;
 
     @Override
     public HolderSpecialAdapter onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.special_item,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_special,parent,false);
         HolderSpecialAdapter holderSpecialAdapter=new HolderSpecialAdapter(view);
         return holderSpecialAdapter;
     }
@@ -61,7 +60,7 @@ private SpecialOnClick specialOnClick;
             specialIv= (ImageView) itemView.findViewById(R.id.special_iv);
         }
     }
-    interface SpecialOnClick{
+   public interface SpecialOnClick{
         void specialOnClick(int position);
     }
     public void MySpecialOnClick(SpecialOnClick specialOnClick){

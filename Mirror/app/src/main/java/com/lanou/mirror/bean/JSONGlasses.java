@@ -1,4 +1,4 @@
-package com.lanou.mirror.net;
+package com.lanou.mirror.bean;
 
 import java.util.List;
 
