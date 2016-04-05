@@ -32,22 +32,43 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void setLoginBtn() {
-    loginBtn.addTextChangedListener(new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+        if (phoneEdt.getText().toString().isEmpty() || passwordEdt.getText().toString().isEmpty()) {
+            loginBtn.setEnabled(false);
+            loginBtn.setBackgroundResource(R.mipmap.login_btn_gray);
         }
 
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        phoneEdt.addTextChangedListener(new TextWatcher() {
 
-        }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        @Override
-        public void afterTextChanged(Editable s) {
 
-        }
-    });
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (phoneEdt.getText().toString().isEmpty() || passwordEdt.getText().toString().isEmpty()) {
+                    loginBtn.setEnabled(false);
+                    loginBtn.setBackgroundResource(R.mipmap.login_btn_gray);
+                } else if (phoneEdt.getText().length() > 0 || passwordEdt.getText().length() > 3) {
+                    loginBtn.setEnabled(true);
+                    loginBtn.setBackgroundResource(R.drawable.login_btn);
+                    loginBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(LoginActivity.this, "啊啊啊啊啊啊啊啊", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
 
 
     }
