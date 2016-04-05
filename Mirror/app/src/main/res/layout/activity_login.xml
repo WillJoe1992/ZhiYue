@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="30px"
+        android:text="账号登录"
+        android:textSize="36px"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="54px"
+        android:layout_marginTop="35px"
+        android:src="@mipmap/login_close" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35px"
+        android:layout_marginRight="35px"
+        android:layout_marginTop="90px"
+        android:src="@mipmap/black_horiaontal_line" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="140px"
+        android:text="手机号"
+        android:textSize="25px" />
+
+    <EditText
+        android:id="@+id/login_phone_edt"
+        android:layout_width="match_parent"
+        android:layout_height="87px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="187px"
+        android:background="@color/text_color" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="302px"
+        android:text="密码"
+        android:textSize="25px" />
+
+    <EditText
+        android:id="@+id/login_password_edt"
+        android:layout_width="match_parent"
+        android:layout_height="87px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="345px"
+        android:background="@color/text_color" />
+
+    <Button
+        android:id="@+id/login_btn"
+        android:textColor="@color/text_color"
+        android:enabled="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="473px"
+        android:background="@drawable/login_btn"
+        android:text="登录" />
+
+    <Button
+        android:id="@+id/login_regist_btn"
+        android:textColor="@color/text_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="590px"
+        android:background="@drawable/login_new_user"
+        android:text="创建账号" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="47px"
+        android:layout_marginLeft="247px"
+        android:src="@mipmap/sina_icon" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="47px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="247px"
+        android:src="@mipmap/wechat_icon" />
+
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="219px"
+        android:text="使用社交账号"
+        android:layout_centerHorizontal="true"
+        android:textSize="30px"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>
