@@ -42,14 +42,7 @@ public class NetHelper {
         return imageLoader;
     }
 
-    //传入身份证号
-    public void getInformation(String idCard ,NetListener netListener){
-        String idUrl="http://apis.baidu.com/chazhao/idcard/idcard?idcard="+idCard;
-        Map<String, String> head= new HashMap<>();
-        head.put("apikey","759df290e956ddd03cc092e862d9a7b6");
 
-        getDataFromNet(idUrl,head ,netListener);
-    }
 
     //从网络获取信息
     private void getDataFromNet(String url,final Map<String,String> head , final NetListener netListener){
