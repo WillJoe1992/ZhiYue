@@ -21,6 +21,7 @@
         android:src="@mipmap/mirror_home" />
 
     <TextView
+        android:id="@+id/goto_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

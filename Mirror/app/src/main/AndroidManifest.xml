@@ -19,6 +19,7 @@
 
 
         <activity android:name=".activity.SelectTitleActivity"/>
+        <activity android:name=".activity.LoginActivity"/>
 
         <meta-data android:name="design_width" android:value="768">
         </meta-data>

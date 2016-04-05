@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -37,6 +39,7 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity implements SelectTitleRecyclerViewAdapter.ClickListener {
     private VerticalViewPager verticalViewPager;
+    private TextView loginText;
 
     private HashMap<String, String> head;
     private JSONGlassesClassification jsonGlassesClassification;
@@ -86,6 +89,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
 
         head = new HashMap<>();
+        goToLogin();
     }
 
     public List<Fragment> getFragmentList() {
@@ -94,24 +98,24 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
         Bundle bundleAll = new Bundle();
         bundleAll.putString("titleName", "瀏覽所有分類");
-        bundleAll.putSerializable("CategoryId","110");
+        bundleAll.putSerializable("CategoryId", "110");
         AllFragment fragmentAll = new AllFragment();
         fragmentAll.setArguments(bundleAll);
         listFragments.add(fragmentAll);
 
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"mirrorlib.db",null);
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "mirrorlib.db", null);
         db = helper.getWritableDatabase();
         mDaoMaster = new DaoMaster(db);
         mDaoSession = mDaoMaster.newSession();
         labelEntityDao = mDaoSession.getLabelEntityDao();
 
         labelEntityDao.deleteAll();
-        for (int i = 0; i <jsonGlassesClassification.getData().size() ; i++) {
-            LabelEntity labelEntity = new LabelEntity((long) i,jsonGlassesClassification.getData().get(i).getCategory_name());
+        for (int i = 0; i < jsonGlassesClassification.getData().size(); i++) {
+            LabelEntity labelEntity = new LabelEntity((long) i, jsonGlassesClassification.getData().get(i).getCategory_name());
             labelEntityDao.insert(labelEntity);
         }
 
-        for (int i = 0; i <jsonGlassesClassification.getData().size() ; i++) {
+        for (int i = 0; i < jsonGlassesClassification.getData().size(); i++) {
             Bundle bundleFlatGlass = new Bundle();
             bundleFlatGlass.putString("titleName", jsonGlassesClassification.getData().get(i).getCategory_name());
             bundleFlatGlass.putString("CategoryId", jsonGlassesClassification.getData().get(i).getCategory_id());
@@ -143,7 +147,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 //        fragmentHandGlass .setArguments(bundleHandGlass);
 //        listFragments.add(fragmentHandGlass);
         ////////////////////////////
-        
+
 
         Bundle bundleSpecial = new Bundle();
         SpecialFragment fragmentSpecial = new SpecialFragment();
@@ -168,7 +172,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
         Bundle bundleExit = new Bundle();
         bundleExit.putString("titleName", "退出");
-        bundleExit.putString("CategoryId","110");
+        bundleExit.putString("CategoryId", "110");
         HomePagerFragment fragmentExit = new HomePagerFragment();
         fragmentExit.setArguments(bundleExit);
         listFragments.add(fragmentExit);
@@ -182,7 +186,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     }
 
     @Override
-    public void ClickListener ( int popMenuPosition) {
+    public void ClickListener(int popMenuPosition) {
         verticalViewPager.setCurrentItem(popMenuPosition);
     }
 
@@ -223,5 +227,16 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
             finish();
             System.exit(0);
         }
+    }
+
+    public void goToLogin() {
+        loginText = BlindView(R.id.goto_login);
+        loginText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
