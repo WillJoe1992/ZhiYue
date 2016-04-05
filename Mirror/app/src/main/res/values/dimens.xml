@@ -11,8 +11,6 @@
     <dimen name="fragment_homepage_undertitle_line_width">246px</dimen>
     <dimen name="fragment_homepage_rank_text_margintop">25px</dimen>
     <dimen name="fragment_homepage_title_text_size">30px</dimen>
-    <dimen name="fragment_homepage_recycler_hei">888px</dimen>
-    <dimen name="fragment_homepage_recycle_wid">554px</dimen>
     <dimen name="fragment_homepage_recycler_margintop">165px</dimen>
 
 
@@ -86,5 +84,41 @@
     <dimen name="activity_atlas_marginleft_right">17px</dimen>
     <dimen name="activity_atlas_linewid">390px</dimen>
     <dimen name="activity_atlas_line_margintop">20px</dimen>
+
+    <dimen name="activity_select_layouthei">70px</dimen>
+    <dimen name="activity_select_paddingleft">75px</dimen>
+    <dimen name="activity_select_textsize">22px</dimen>
+
+    <dimen name="fragment_homepage_recyclerview_item_layout_wid">405px</dimen>
+    <dimen name="fragment_homepage_recyclerview_item_layout_hei">650px</dimen>
+    <dimen name="fragment_homepage_re_recycler_hei">405px</dimen>
+    <dimen name="fragment_homepage_re_recycler_wid">650px</dimen>
+    <dimen name="fragment_homepage_re_recycler_marginleft">20px</dimen>
+    <dimen name="fragment_homepage_recycler_linlayout_hei">200px</dimen>
+    <dimen name="fragment_homepage_recycler_linlayout_marginbottom">20px</dimen>
+    <dimen name="fragment_homepage_recycler_linlayout_textsize">25px</dimen>
+    <dimen name="fragment_homepage_recycler_text_margintop">20px</dimen>
+    <dimen name="fragment_homepage_recycler_image_margintop">25px</dimen>
+    <dimen name="fragment_homepage_recycler_brand_margintop">15px</dimen>
+    <dimen name="fragment_homepage_recycler_brand_textsize">25px</dimen>
+    <dimen name="fragment_homepage_recycler_text_image_marginleft_right">20px</dimen>
+
+    <dimen name="select_item_text_margintop">60px</dimen>
+    <dimen name="select_item_paddingleft">75px</dimen>
+    <dimen name="select_item_textsize">22px</dimen>
+    <dimen name="select_item_image_marginleft">75px</dimen>
+    <dimen name="select_item_image_margintop">20px</dimen>
+
+    <dimen name="special_item_relayout_wid">650px</dimen>
+    <dimen name="special_item_relayout_marginleft">22px</dimen>
+    <dimen name="special_item_relayout_imagewid">650px</dimen>
+    <dimen name="special_item_relayout_imagehei">704px</dimen>
+    <dimen name="special_item_linlayout_wid">540px</dimen>
+    <dimen name="special_item_linlayout_hei">128px</dimen>
+    <dimen name="special_item_black_underline_marginleft">32px</dimen>
+    <dimen name="special_item_black_underline_margintop">16px</dimen>
+    <dimen name="special_item_linlayout_marginleft">32px</dimen>
+    <dimen name="special_item_linlayout_margintop">34px</dimen>
+    <dimen name="special_item_textsize">30px</dimen>
 
 </resources>

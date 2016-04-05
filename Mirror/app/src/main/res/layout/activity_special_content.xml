@@ -14,5 +14,5 @@
         android:id="@+id/activity_special_content_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignTop="@+id/activity_special_content_image_view"></android.support.v7.widget.RecyclerView>
+        android:layout_alignTop="@+id/activity_special_content_image_view"/>
 </RelativeLayout>

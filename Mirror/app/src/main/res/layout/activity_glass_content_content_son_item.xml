@@ -38,7 +38,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:text="来自时尚之都韩国"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/activity_glass_content_content_son_textsize"
                     android:textStyle="bold" />
@@ -60,7 +59,6 @@
                 android:layout_marginLeft="@dimen/activity_glass_content_content_son_place_text_marginleft_right"
                 android:layout_marginRight="@dimen/activity_glass_content_content_son_place_text_marginleft_right"
                 android:layout_marginTop="@dimen/activity_glass_content_content_son_place_text_topmargin"
-                android:text="首尔"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/activity_glass_content_content_son_place_textsize" />
 
@@ -80,7 +78,6 @@
             android:layout_marginTop="@dimen/activity_glass_content_content_son_content_text_margin_top"
             android:layout_marginLeft="@dimen/activity_glass_content_content_son_content_text_marginleft_right"
             android:layout_marginRight="@dimen/activity_glass_content_content_son_content_text_marginleft_right"
-            android:text="大家快来撒等等哈说离开的哈萨克接电话卡就收到货就卡死大神"
             android:textColor="@color/text_color"
             android:textSize="@dimen/activity_glass_content_content_son_content_textsize" />
 

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="405px"
-    android:layout_height="650px"
-    android:layout_marginLeft="20px"
-    >
+    android:layout_width="500px"
+    android:layout_height="790px"
+    android:layout_marginLeft="@dimen/fragment_homepage_re_recycler_marginleft">
 
 
     <ImageView
@@ -12,84 +11,90 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:src="@mipmap/ceshizhuanyongmeinv" />
-   <LinearLayout
-       android:layout_alignParentBottom="true"
-       android:layout_width="match_parent"
-       android:layout_height="170px"
-       android:background="@color/text_color"
-       android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20px"
-
+        android:layout_height="@dimen/fragment_homepage_recycler_linlayout_hei"
+        android:layout_alignParentBottom="true"
+        android:background="@color/text_color"
         android:orientation="vertical">
-        <RelativeLayout
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/fragment_homepage_recycler_linlayout_marginbottom"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_marginLeft="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+                    android:layout_marginRight="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+                    android:id="@+id/homepage_brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/fragment_homepage_recycler_linlayout_textsize"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_marginLeft="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+                    android:layout_marginRight="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+                    android:id="@+id/homepage_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/fragment_homepage_recycler_linlayout_textsize"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/rmb_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_toLeftOf="@id/homepage_price"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/fragment_homepage_recycler_linlayout_textsize"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
             <TextView
-                android:id="@+id/homepage_brand"
+                android:id="@+id/homepage_comefrom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="GENTLE MONSTER"
-                android:textSize="20px"
-                android:textColor="@android:color/black"
-                android:textStyle="bold" />
-            <TextView
+                android:layout_marginTop="@dimen/fragment_homepage_recycler_text_margintop"
+                android:layout_marginLeft="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+                android:layout_marginRight="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+                android:textSize="@dimen/fragment_homepage_recycler_linlayout_textsize" />
 
-                android:id="@+id/homepage_price"
-                android:layout_alignParentRight="true"
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fragment_homepage_recycler_image_margintop"
+                android:layout_marginLeft="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+                android:layout_marginRight="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+                android:background="@mipmap/black_line" />
+
+            <TextView
+                android:layout_marginLeft="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+                android:layout_marginRight="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+                android:id="@+id/homepage_modle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="111111"
-                android:textSize="20px"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/rmb_icon"
-                android:layout_toLeftOf="@id/homepage_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="￥"
-                android:textSize="20px"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                android:layout_gravity="right"/>
-
-        </RelativeLayout>
-        <TextView
-            android:id="@+id/homepage_comefrom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20px"
-            android:textSize="20px"
-            android:text="韩国首尔"/>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25px"
-            android:background="@mipmap/black_line"/>
-        <TextView
-            android:id="@+id/homepage_modle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15px"
-            android:textSize="25px"
-            android:text="女款|罗马假日太阳镜"/>
+                android:layout_marginTop="@dimen/fragment_homepage_recycler_brand_margintop"
+                android:textSize="@dimen/fragment_homepage_recycler_brand_textsize" />
 
 
-
-
+        </LinearLayout>
 
 
     </LinearLayout>
-
-
-
-   </LinearLayout>
-    
-
 
 
 </RelativeLayout>
