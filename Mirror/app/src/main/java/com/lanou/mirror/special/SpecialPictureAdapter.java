@@ -27,21 +27,21 @@ public class SpecialPictureAdapter extends RecyclerView.Adapter<SpecialPictureAd
 
     @Override
     public SpecialPictureHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        SpecialPictureHolder specialPictureHolder = null;
         mHeaderView = LayoutInflater.from(parent.getContext()).inflate(R.layout.special_content_picture_item, parent, false);
         if (mHeaderView!= null && viewType == TYPE_HEADER) {
-            SpecialPictureHolder specialPictureHolder = new SpecialPictureHolder(mHeaderView);
+            specialPictureHolder = new SpecialPictureHolder(mHeaderView);
             ViewGroup.LayoutParams layoutParams = specialPictureHolder.specialContentPictureItemRv.getLayoutParams();
             layoutParams.height = getScreenHeight(context);
             specialPictureHolder.specialContentPictureItemRv.setLayoutParams(layoutParams);
-            return specialPictureHolder;
         }else {
         View nullView = LayoutInflater.from(parent.getContext()).inflate(R.layout.special_content_picture_null_item, parent, false);
-        SpecialPictureHolder specialPictureHolder = new SpecialPictureHolder(nullView);
+        specialPictureHolder = new SpecialPictureHolder(nullView);
         ViewGroup.LayoutParams layoutParams = specialPictureHolder.specialContentPictureNullItemView.getLayoutParams();
         layoutParams.height = getScreenHeight(context);
         specialPictureHolder.specialContentPictureNullItemView.setLayoutParams(layoutParams);
-        return specialPictureHolder;
         }
+        return specialPictureHolder;
     }
 
     @Override

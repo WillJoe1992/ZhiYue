@@ -12,28 +12,28 @@ import java.util.List;
 /**
  * Created by zouwei on 16/3/19.
  */
-public abstract class BaseListViewAdapter<T> extends BaseAdapter{
+public abstract class BaseListViewAdapter<T> extends BaseAdapter {
     protected Context context;
     protected List<T> list;
 
     protected abstract int getItemResource();
-    protected abstract  View getItemView(int position,ViewHolder holder,View convertView);
+
+    protected abstract View getItemView(int position, ViewHolder holder, View convertView);
 
     public BaseListViewAdapter(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
-    public void addData(List<T> list){
-        this.list =list;
+    public void addData(List<T> list) {
+        this.list = list;
         notifyDataSetChanged();
 
     }
 
 
-
     @Override
     public int getCount() {
-        return list !=null ? list.size():0;
+        return list != null ? list.size() : 0;
     }
 
     @Override
@@ -49,31 +49,33 @@ public abstract class BaseListViewAdapter<T> extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-     ViewHolder holder;
-        if(convertView == null){
-            convertView = LayoutInflater.from(context).inflate(getItemResource(),null);
-            holder= new ViewHolder(convertView);
+        ViewHolder holder;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(getItemResource(), null);
+            holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else {
-            holder= (ViewHolder)convertView.getTag();
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
-        return getItemView(position, holder,convertView);
+        return getItemView(position, holder, convertView);
     }
-    public class ViewHolder{
-        private SparseArray<View> views =new SparseArray<View>();
+
+    public class ViewHolder {
+        private SparseArray<View> views = new SparseArray<View>();
         private View convertView;
 
         public ViewHolder(View convertView) {
             this.convertView = convertView;
         }
-        public <T extends  View> T getView(int resId){
+
+        public <T extends View> T getView(int resId) {
             View v = views.get(resId);
-            if(v ==null ){
-                v =convertView.findViewById(resId);
+            if (v == null) {
+                v = convertView.findViewById(resId);
                 views.put(resId, v);
             }
-            return (T)v;
+            return (T) v;
         }
     }
 }
