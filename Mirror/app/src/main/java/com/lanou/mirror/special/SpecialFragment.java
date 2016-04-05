@@ -78,8 +78,11 @@ public class SpecialFragment extends BaseFragment{
                 homePageRecyclerView.setAdapter(specialAdapter);
                 specialAdapter.MySpecialOnClick(new SpecialAdapter.SpecialOnClick() {
                     @Override
-                    public void specialOnClick() {
-                        MyToast.myToast("hgfdgdfgfdgdfg");
+                    public void specialOnClick(int position) {
+                        Intent intent=new Intent(getContext(),SpecialActivity.class);
+                        intent.putExtra("jsonSpecial",jsonSpecial);
+                        intent.putExtra("position",position);
+                        startActivity(intent);
                     }
                 });
             }
