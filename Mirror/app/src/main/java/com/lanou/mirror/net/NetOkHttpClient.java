@@ -36,12 +36,13 @@ public class NetOkHttpClient {
         mOkHttpClient = new OkHttpClient();
         //cookie enabled
         mOkHttpClient.setCookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ORIGINAL_SERVER));
+        //表示主线程
         mDelivery = new Handler(Looper.getMainLooper());
         mGson = new Gson();
 
     }
 
-    public static NetOkHttpClient getInstance()
+        public static NetOkHttpClient getInstance()
     {
         if (mInstance == null)
         {
@@ -183,7 +184,6 @@ public class NetOkHttpClient {
             }
         });
     }
-    //解析成功回调
     private void sendSuccessResultCallback(final Object object, final ResultCallback callback)
     {
         mDelivery.post(new Runnable() {

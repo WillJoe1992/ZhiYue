@@ -32,7 +32,7 @@ private SpecialOnClick specialOnClick;
     }
 
     @Override
-    public void onBindViewHolder(HolderSpecialAdapter holder, int position) {
+    public void onBindViewHolder(HolderSpecialAdapter holder, final int position) {
       holder.specialTitle.setText(jsonSpecial.getData().getList().get(position).getStory_title());
         NetHelper netHelper=new NetHelper();
         ImageLoader imageLoader = netHelper.getImageLoader();
@@ -41,7 +41,7 @@ private SpecialOnClick specialOnClick;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                specialOnClick.specialOnClick();
+                specialOnClick.specialOnClick(position);
                 Log.d("Sysout","relativeLayout");
             }
         });
@@ -62,7 +62,7 @@ private SpecialOnClick specialOnClick;
         }
     }
     interface SpecialOnClick{
-        void specialOnClick();
+        void specialOnClick(int position);
     }
     public void MySpecialOnClick(SpecialOnClick specialOnClick){
         this.specialOnClick=specialOnClick;

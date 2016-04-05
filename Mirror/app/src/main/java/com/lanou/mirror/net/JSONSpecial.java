@@ -1,11 +1,12 @@
 package com.lanou.mirror.net;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by dllo on 16/4/1.
  */
-public class JSONSpecial {
+public class JSONSpecial implements Serializable {
 
     /**
      * result : 1
@@ -46,7 +47,7 @@ public class JSONSpecial {
         return data;
     }
 
-    public static class DataEntity {
+    public static class DataEntity implements Serializable {
         /**
          * first_time : 1453782706
          * last_time : 1453545748
@@ -84,7 +85,7 @@ public class JSONSpecial {
             return list;
         }
 
-        public static class PaginationEntity {
+        public static class PaginationEntity implements Serializable {
             private String first_time;
             private String last_time;
             private String has_more;
@@ -114,7 +115,7 @@ public class JSONSpecial {
             }
         }
 
-        public static class ListEntity {
+        public static class ListEntity implements Serializable {
             private String story_title;
             private String story_des;
             private String story_img;
@@ -203,7 +204,7 @@ public class JSONSpecial {
                 return story_data;
             }
 
-            public static class StoryDataEntity {
+            public static class StoryDataEntity implements Serializable {
                 private String story_date_type;
                 private List<String> img_array;
                 /**
@@ -250,7 +251,7 @@ public class JSONSpecial {
                     return text_array;
                 }
 
-                public static class TextArrayEntity {
+                public static class TextArrayEntity implements Serializable{
                     private String verticalTitle;
                     private String verticalTitleColor;
                     private String smallTitle;
@@ -407,7 +408,7 @@ public class JSONSpecial {
                         return good_info;
                     }
 
-                    public static class GoodInfoEntity {
+                    public static class GoodInfoEntity implements Serializable {
                         private String goods_id;
                         private String goods_pic;
                         private String model;
@@ -577,7 +578,7 @@ public class JSONSpecial {
                             return design_des;
                         }
 
-                        public static class GoodsDataEntity {
+                        public static class GoodsDataEntity implements Serializable {
                             private String introContent;
                             private String cellHeight;
                             private String name;
@@ -634,7 +635,7 @@ public class JSONSpecial {
                             }
                         }
 
-                        public static class DesignDesEntity {
+                        public static class DesignDesEntity implements Serializable {
                             private String img;
                             private String cellHeight;
                             private String type;

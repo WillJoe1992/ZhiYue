@@ -19,6 +19,7 @@ import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.constant.Constant;
 import com.lanou.mirror.fragment.AllFragment;
 import com.lanou.mirror.fragment.HomePagerFragment;
+import com.lanou.mirror.fragment.ShoppingCarFragment;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntity;
@@ -53,7 +54,6 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
     private LabelEntityDao labelEntityDao;
 
-
     @Override
     protected void initData() {
         IntentFilter filter = new IntentFilter();
@@ -77,9 +77,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
                 verticalViewPager.setAdapter(fragmentAdapter);
             }
         }, head);
-
     }
-
     @Override
     protected void initView() {
         verticalViewPager = BlindView(R.id.vertical_viewpager);
@@ -143,7 +141,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 //        fragmentHandGlass .setArguments(bundleHandGlass);
 //        listFragments.add(fragmentHandGlass);
         ////////////////////////////
-        
+
 
         Bundle bundleSpecial = new Bundle();
         SpecialFragment fragmentSpecial = new SpecialFragment();
@@ -155,9 +153,9 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         Bundle bundleShoppingCart = new Bundle();
         bundleShoppingCart.putString("titleName", "我的购物车");
         bundleShoppingCart.putSerializable("CategoryId", "110");
-        HomePagerFragment fragmentShoppingCart = new HomePagerFragment();
-        fragmentShoppingCart.setArguments(bundleShoppingCart);
-        listFragments.add(fragmentShoppingCart);
+        ShoppingCarFragment shoppingCarFragment=new ShoppingCarFragment();
+        shoppingCarFragment.setArguments(bundleShoppingCart);
+        listFragments.add(shoppingCarFragment);
 
         Bundle bundleGoback = new Bundle();
         bundleGoback.putString("titleName", "返回首页");
