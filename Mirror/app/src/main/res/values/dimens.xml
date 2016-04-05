@@ -113,7 +113,7 @@
     <dimen name="special_item_relayout_marginleft">22px</dimen>
     <dimen name="special_item_relayout_imagewid">650px</dimen>
     <dimen name="special_item_relayout_imagehei">704px</dimen>
-    <dimen name="special_item_linlayout_wid">540px</dimen>
+    <dimen name="special_item_linlayout_wid">500px</dimen>
     <dimen name="special_item_linlayout_hei">128px</dimen>
     <dimen name="special_item_black_underline_marginleft">32px</dimen>
     <dimen name="special_item_black_underline_margintop">16px</dimen>

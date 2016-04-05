@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/special_item_relayout_wid"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/special_item_relayout_marginleft">
 
     <ImageView
         android:id="@+id/special_iv"
-        android:layout_width="@dimen/special_item_relayout_imagewid"
+        android:layout_width="@dimen/special_item_linlayout_wid"
         android:layout_height="@dimen/special_item_relayout_imagehei"
         android:scaleType="fitXY" />
 
@@ -21,7 +21,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/special_item_black_underline_marginleft"
+            android:layout_marginLeft="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+            android:layout_marginRight="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
             android:layout_marginTop="@dimen/special_item_black_underline_margintop"
             android:background="@mipmap/black_line" />
 
