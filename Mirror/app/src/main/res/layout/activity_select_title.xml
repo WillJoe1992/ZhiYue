@@ -38,24 +38,4 @@
   </LinearLayout>
 
 
-
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/activity_main_mirror_login_marginbottom"
-        android:layout_marginLeft="@dimen/activity_main_mirror_login_marginleft_or_right"
-        android:src="@mipmap/mirror_home" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/activity_main_mirror_login_marginbottom"
-        android:layout_marginRight="@dimen/activity_main_mirror_login_marginleft_or_right"
-        android:text="@string/login"
-        android:textColor="@color/text_color" />
-
 </RelativeLayout>
