@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONSpecial;
-import com.lanou.mirror.net.NetHelper;
+import com.lanou.mirror.net.NetImageLoader;
 
 /**
  * Created by dllo on 16/4/1.
@@ -19,8 +19,10 @@ import com.lanou.mirror.net.NetHelper;
 public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.HolderSpecialAdapter>{
 private JSONSpecial jsonSpecial;
 private SpecialOnClick specialOnClick;
+    private NetImageLoader netImageLoader;
     public SpecialAdapter(JSONSpecial jsonSpecial) {
         this.jsonSpecial = jsonSpecial;
+        netImageLoader=new NetImageLoader();
     }
 
     @Override
@@ -33,10 +35,7 @@ private SpecialOnClick specialOnClick;
     @Override
     public void onBindViewHolder(HolderSpecialAdapter holder, final int position) {
       holder.specialTitle.setText(jsonSpecial.getData().getList().get(position).getStory_title());
-        NetHelper netHelper=new NetHelper();
-        ImageLoader imageLoader = netHelper.getImageLoader();
-        imageLoader.get(jsonSpecial.getData().getList().get(position).getStory_img()
-                , ImageLoader.getImageListener(holder.specialIv, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+      netImageLoader.getImgOfLoader(holder.specialIv,jsonSpecial.getData().getList().get(position).getStory_img());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONSpecial;
+import com.lanou.mirror.net.NetImageLoader;
 import com.lanou.mirror.tool.GetScreenHeight;
 
 /**
@@ -21,6 +22,7 @@ public class SpecialPictureAdapter extends RecyclerView.Adapter<SpecialPictureAd
     public static final int TYPE_HEADER = 0;
     public static final int TYPE_NORMAL = 1;
     private View mHeaderView;
+
     JSONSpecial jsonSpecial;
     int MainPosition;
     public SpecialPictureAdapter(Context context, JSONSpecial jsonSpecial,int MainPosition) {
