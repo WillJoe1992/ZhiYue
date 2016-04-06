@@ -28,6 +28,7 @@
 
         <activity android:name=".activity.RegisterActivity"/>
 
+        <activity android:name=".activity.AtlasActivity"/>
 
         <meta-data android:name="design_width" android:value="768">
         </meta-data>

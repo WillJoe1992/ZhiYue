@@ -81,7 +81,7 @@
 
     <dimen name="activity_atlas_title_margintop">18px</dimen>
     <dimen name="activity_atlas_title_textsize">19px</dimen>
-    <dimen name="activity_atlas_marginleft_right">17px</dimen>
+    <dimen name="activity_atlas_marginleft_right">39px</dimen>
     <dimen name="activity_atlas_linewid">390px</dimen>
     <dimen name="activity_atlas_line_margintop">20px</dimen>
 
