@@ -4,4 +4,16 @@
     <string name="activity_main_rank">顯示排序為 最新推廣</string>
     <string name="login">登錄</string>
     <string name="atlas_title">商品細節展示</string>
+    <string name="login_text">賬號登錄</string>
+    <string name="login_phone">手機號</string>
+    <string name="login_password">密碼</string>
+    <string name="login_logintext">登錄</string>
+    <string name="login_register">創建賬號</string>
+    <string name="login_snstext">使用社交賬號</string>
+    <string name="register_text">創建賬號</string>
+    <string name="register_phone_text">手機號</string>
+    <string name="register_authcode_text">驗證碼</string>
+    <string name="register_authcode">發送驗證碼</string>
+    <string name="register_password">設置密碼</string>
+    <string name="register_newuser">創建賬號</string>
 </resources>

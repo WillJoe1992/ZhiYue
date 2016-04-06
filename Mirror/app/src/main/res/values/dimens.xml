@@ -121,4 +121,45 @@
     <dimen name="special_item_linlayout_margintop">34px</dimen>
     <dimen name="special_item_textsize">30px</dimen>
 
+    <dimen name="login_marginleft">30px</dimen>
+    <dimen name="login_marginright">30px</dimen>
+    <dimen name="login_logintext">36px</dimen>
+    <dimen name="login_image_close_marginright">54px</dimen>
+    <dimen name="login_image_close_margintop">35px</dimen>
+    <dimen name="login_image_marginleft">35px</dimen>
+    <dimen name="login_image_marginright">35px</dimen>
+    <dimen name="login_image_margintop">90px</dimen>
+    <dimen name="login_phonetext_margintop">140px</dimen>
+    <dimen name="login_phone_textsize">25px</dimen>
+    <dimen name="login_phoneedt_hei">87px</dimen>
+    <dimen name="login_phoneedt_margintop">187px</dimen>
+    <dimen name="login_passwordtext_margintop">302px</dimen>
+    <dimen name="login_passwrod_textsize">25px</dimen>
+    <dimen name="login_passwordedt_hei">87px</dimen>
+    <dimen name="login_passwordedt_margintop">345px</dimen>
+    <dimen name="login_loginbtn_margintop">473px</dimen>
+    <dimen name="login_registerbtn_margintop">590px</dimen>
+    <dimen name="login_sina_marginbottom">47px</dimen>
+    <dimen name="login_sina_marginleft">247px</dimen>
+    <dimen name="login_wechat_marginbottom">47px</dimen>
+    <dimen name="login_wechat_marginright">247px</dimen>
+    <dimen name="login_snstext_marginbottom">219px</dimen>
+    <dimen name="login_sns_textsize">30px</dimen>
+    <dimen name="register_phonetext_margintop">153px</dimen>
+    <dimen name="register_phoneedt_hei">90px</dimen>
+    <dimen name="register_phoneedt_margintop">201px</dimen>
+    <dimen name="register_authcodetext_marginleft">30px</dimen>
+    <dimen name="register_authcode_margintop">325px</dimen>
+    <dimen name="register_authcode_edt_hei">80px</dimen>
+    <dimen name="register_authcode_marginleft">30px</dimen>
+    <dimen name="register_authcode_edt_margintop">376px</dimen>
+    <dimen name="register_authcodebtn_hei">80px</dimen>
+    <dimen name="register_authcodebtn_margintop">376px</dimen>
+    <dimen name="register_password_text_margintop">488px</dimen>
+    <dimen name="register_passwordedt_hei">90px</dimen>
+    <dimen name="register_passwordedt_margintop">535px</dimen>
+    <dimen name="register_newuserbtn_hei">115px</dimen>
+    <dimen name="register_newuser_margintop">681px</dimen>
+
+
 </resources>
