@@ -126,5 +126,9 @@ public class HomePagerFragment extends BaseFragment {
     }
 
 
-
+    @Override
+    public void onDestroy() {
+        Log.d("Sysout", "Destroy");
+        super.onDestroy();
+    }
 }

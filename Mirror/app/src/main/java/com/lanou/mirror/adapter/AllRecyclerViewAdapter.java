@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
+import com.lanou.mirror.bean.JSONAll;
 import com.lanou.mirror.bean.JSONGlasses;
 import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.net.NetImageLoader;
@@ -22,18 +23,17 @@ import java.util.Random;
  */
 public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
     private Context context;
-    private JSONGlasses jsonGlasses;
-    private JSONSpecial jsonSpecial;
+    private JSONAll jsonAll;
+
     private SpecialOnClick specialOnClick;
     private Random random=new Random();
     private NetImageLoader netImageLoader;
-    public AllRecyclerViewAdapter(Context context, JSONGlasses jsonGlasses, JSONSpecial jsonSpecial) {
-        if (jsonSpecial != null) {
+    public AllRecyclerViewAdapter(Context context, JSONAll jsonAll) {
+
             this.context = context;
-            this.jsonGlasses = jsonGlasses;
-            this.jsonSpecial = jsonSpecial;
+            this.jsonAll = jsonAll;
             netImageLoader=new NetImageLoader();
-        }
+
 
 
     }
@@ -67,30 +67,13 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
 
-        int sumGlass=0,sumSpecial=0;
-        int i;
-        if (sumGlass ==jsonGlasses.getData().getList().size()){
-            i=2;
-        }else if (sumSpecial ==jsonSpecial.getData().getList().size()){
-            i=1;
-        }else{
-            i =random.nextInt(2)+1;
-        }
-
-        if (i==1){
-            sumGlass++;
-
-        }else if(i==2){
-            sumSpecial++;
-        }
-        Log.d("AllRecyclerViewAdapter", "i:" + i);
-        return i;
+        return Integer.valueOf(jsonAll.getData().getList().get(position).getType());
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
-        if (jsonSpecial != null) {
+
             switch (viewType) {
 
                 case 1:
@@ -104,7 +87,7 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
                     viewHolder = new SpecialViewHolder(specialView);
                     break;
             }
-        }
+
         return viewHolder;
     }
 
@@ -112,9 +95,8 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         int viewType = getItemViewType(position);
         Log.d("ShowNewstabsonAdapter", "viewType:" + viewType);
-        int jsonGlassesNum = 0;
-        int jsonSpecialNum = 0;
-        if (jsonSpecial != null) {
+
+
             switch (viewType) {
 
                 case 1:
@@ -125,42 +107,41 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
 //                    homePageImageLoader.get(jsonGlasses.getData().getList().get(jsonGlassesNum).getGoods_img()
 //                            , ImageLoader.getImageListener(homePageViewHolder.ic, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
 
-                    netImageLoader.getImgOfLoader(homePageViewHolder.ic,jsonGlasses.getData().getList().get(jsonGlassesNum).getGoods_img());
-                    homePageViewHolder.homepageBrand.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getBrand());
-                    homePageViewHolder.homepageModel.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getModel());
-                    homePageViewHolder.homepageProduct.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getProduct_area());
-                    homePageViewHolder.homepagePrice.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getGoods_price());
-                    jsonGlassesNum = jsonGlassesNum++;
+                    netImageLoader.getImgOfLoader(homePageViewHolder.ic,jsonAll.getData().getList().get(position).getData_info().getGoods_img());
+                    homePageViewHolder.homepageBrand.setText(jsonAll.getData().getList().get(position).getData_info().getBrand());
+                    homePageViewHolder.homepageModel.setText(jsonAll.getData().getList().get(position).getData_info().getModel());
+                    homePageViewHolder.homepageProduct.setText(jsonAll.getData().getList().get(position).getData_info().getProduct_area());
+                    homePageViewHolder.homepagePrice.setText(jsonAll.getData().getList().get(position).getData_info().getGoods_price());
+
 
 
                     break;
                 case 2:
-                    SpecialViewHolder specialViewHolder = (SpecialViewHolder) holder;
-                    specialViewHolder.specialTitle.setText(jsonSpecial.getData().getList().get(position).getStory_title());
-//                    NetHelper specialNetHelper = new NetHelper();
-//                    ImageLoader specialImageLoader = specialNetHelper.getImageLoader();
-//                    specialImageLoader.get(jsonSpecial.getData().getList().get(position).getStory_img()
-//                            , ImageLoader.getImageListener(specialViewHolder.specialIv, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
-                    netImageLoader.getImgOfLoader(specialViewHolder.specialIv,jsonSpecial.getData().getList().get(position).getStory_img());
-                    holder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            specialOnClick.specialOnClick();
-                            Log.d("Sysout", "relativeLayout");
-                        }
-                    });
+//                    SpecialViewHolder specialViewHolder = (SpecialViewHolder) holder;
+//                    specialViewHolder.specialTitle.setText(jsonAll.getData().getList().get(position).getData_info().);
+////                    NetHelper specialNetHelper = new NetHelper();
+////                    ImageLoader specialImageLoader = specialNetHelper.getImageLoader();
+////                    specialImageLoader.get(jsonSpecial.getData().getList().get(position).getStory_img()
+////                            , ImageLoader.getImageListener(specialViewHolder.specialIv, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+//                    netImageLoader.getImgOfLoader(specialViewHolder.specialIv,jsonAll.getData().getList().get(position).getStory_img());
+//                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            specialOnClick.specialOnClick();
+//                            Log.d("Sysout", "relativeLayout");
+//                        }
+//                    });
                     break;
             }
-        }
+
     }
 
     @Override
     public int getItemCount() {
-        if (jsonSpecial != null) {
 
-            return (jsonGlasses.getData().getList().size() + jsonSpecial.getData().getList().size()) > 0 ? jsonGlasses.getData().getList().size() + jsonSpecial.getData().getList().size() : 0;
-        }
-        return 0;
+
+            return (jsonAll.getData().getList().size() ) > 0 ? jsonAll.getData().getList().size()  : 0;
+
     }
 
     interface SpecialOnClick {

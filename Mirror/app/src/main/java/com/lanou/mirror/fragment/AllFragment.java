@@ -15,11 +15,13 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.lanou.mirror.R;
 import com.lanou.mirror.activity.MainActivity;
 import com.lanou.mirror.adapter.AllRecyclerViewAdapter;
 import com.lanou.mirror.adapter.SelectTitleRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseFragment;
+import com.lanou.mirror.bean.JSONAll;
 import com.lanou.mirror.bean.JSONGlasses;
 import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.bean.SelectTitleRecyclerBean;
@@ -27,6 +29,9 @@ import com.lanou.mirror.constant.Constant;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
+import com.lanou.mirror.net.NetOkHttpClient;
+import com.lanou.mirror.tool.URL;
+import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +47,7 @@ public class AllFragment extends BaseFragment {
 
     private HashMap<String, String> headGlasses;
     private HashMap<String, String> headSpecial;
-    private JSONGlasses jsonGlasses;
+    private JSONAll jsonAll;
     private JSONSpecial jsonSpecial;
 
     private ArrayList<SelectTitleRecyclerBean> selectTitleRecyclerBeans;
@@ -80,28 +85,28 @@ public class AllFragment extends BaseFragment {
         headGlasses = new HashMap<>();
         headGlasses.put("device_type", "1");
         headGlasses.put("token", "");
-        headGlasses.put("goods_id", url);
+        headGlasses.put("page", "");
+        headGlasses.put("last_time", "");
+        NetOkHttpClient.postAsyn(URL.INDEX_MRTJ, new NetOkHttpClient.ResultCallback<String>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                Log.d("111", "111");
+                //// TODO: 16/4/6 如果报错进这里
+            }
 
-//        NetOkHttpClient.postAsyn(URL.GOODS_LIST, new NetOkHttpClient.ResultCallback<String>() {
-//            @Override
-//            public void onError(Request request, Exception e) {
-//            Log.d("111","111");
-//            }
-//
-//            @Override
-//            public void onResponse(String response) {
-//                Gson gson = new Gson();
-//                jsonGlasses = gson.fromJson(response, JSONGlasses.class);
-//                allRecyclerViewAdapter = new AllRecyclerViewAdapter(getContext(),jsonGlasses,null);
-//                GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),1);
-//                gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-//                homePageRecyclerView.setLayoutManager(gridLayoutManager);
-//                homePageRecyclerView.setAdapter(allRecyclerViewAdapter);
-//
-//
-//
-//            }
-//        }, headGlasses);
+            @Override
+            public void onResponse(String response) {
+                Gson gson = new Gson();
+                jsonAll = gson.fromJson(response, JSONAll.class);
+                allRecyclerViewAdapter = new AllRecyclerViewAdapter(getContext(), jsonAll);
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
+                gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                homePageRecyclerView.setLayoutManager(gridLayoutManager);
+                homePageRecyclerView.setAdapter(allRecyclerViewAdapter);
+
+
+            }
+        }, headGlasses);
 //        headSpecial=new HashMap<>();
 //        headSpecial.put("device_type","1");
 //        headSpecial.put("token","");
