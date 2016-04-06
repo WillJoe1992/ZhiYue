@@ -13,7 +13,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONGlasses;
 import com.lanou.mirror.bean.JSONSpecial;
-import com.lanou.mirror.net.NetHelper;
+import com.lanou.mirror.net.NetImageLoader;
 
 import java.util.Random;
 
@@ -26,12 +26,13 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
     private JSONSpecial jsonSpecial;
     private SpecialOnClick specialOnClick;
     private Random random=new Random();
-
+    private NetImageLoader netImageLoader;
     public AllRecyclerViewAdapter(Context context, JSONGlasses jsonGlasses, JSONSpecial jsonSpecial) {
         if (jsonSpecial != null) {
             this.context = context;
             this.jsonGlasses = jsonGlasses;
             this.jsonSpecial = jsonSpecial;
+            netImageLoader=new NetImageLoader();
         }
 
 
@@ -118,15 +119,13 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
 
                 case 1:
                     HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
-                    // datas.get(position).getImgsrcs();
-                    //  datas.get(position).getTitles();
 
-                    NetHelper homePageNetHelper = new NetHelper();
-                    ImageLoader homePageImageLoader = homePageNetHelper.getImageLoader();
-                    homePageImageLoader.get(jsonGlasses.getData().getList().get(jsonGlassesNum).getGoods_img()
-                            , ImageLoader.getImageListener(homePageViewHolder.ic, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+//                    NetHelper homePageNetHelper = new NetHelper();
+//                    ImageLoader homePageImageLoader = homePageNetHelper.getImageLoader();
+//                    homePageImageLoader.get(jsonGlasses.getData().getList().get(jsonGlassesNum).getGoods_img()
+//                            , ImageLoader.getImageListener(homePageViewHolder.ic, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
 
-
+                    netImageLoader.getImgOfLoader(homePageViewHolder.ic,jsonGlasses.getData().getList().get(jsonGlassesNum).getGoods_img());
                     homePageViewHolder.homepageBrand.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getBrand());
                     homePageViewHolder.homepageModel.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getModel());
                     homePageViewHolder.homepageProduct.setText(jsonGlasses.getData().getList().get(jsonGlassesNum).getProduct_area());
@@ -138,10 +137,11 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
                 case 2:
                     SpecialViewHolder specialViewHolder = (SpecialViewHolder) holder;
                     specialViewHolder.specialTitle.setText(jsonSpecial.getData().getList().get(position).getStory_title());
-                    NetHelper specialNetHelper = new NetHelper();
-                    ImageLoader specialImageLoader = specialNetHelper.getImageLoader();
-                    specialImageLoader.get(jsonSpecial.getData().getList().get(position).getStory_img()
-                            , ImageLoader.getImageListener(specialViewHolder.specialIv, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+//                    NetHelper specialNetHelper = new NetHelper();
+//                    ImageLoader specialImageLoader = specialNetHelper.getImageLoader();
+//                    specialImageLoader.get(jsonSpecial.getData().getList().get(position).getStory_img()
+//                            , ImageLoader.getImageListener(specialViewHolder.specialIv, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+                    netImageLoader.getImgOfLoader(specialViewHolder.specialIv,jsonSpecial.getData().getList().get(position).getStory_img());
                     holder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

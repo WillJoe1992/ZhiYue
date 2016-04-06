@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONGlasses;
-import com.lanou.mirror.net.NetHelper;
+import com.lanou.mirror.net.NetImageLoader;
 
 /**
  * Created by wyc on 16/3/30.
@@ -20,9 +20,11 @@ import com.lanou.mirror.net.NetHelper;
 public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     private Context context;
     private JSONGlasses jsonGlasses;
+    private NetImageLoader netImageLoader;
     public HomePagerRecyclerViewAdapter(Context context,JSONGlasses jsonGlasses) {
         this.context = context;
         this.jsonGlasses=jsonGlasses;
+        netImageLoader=new NetImageLoader();
     }
 
     @Override
@@ -34,13 +36,7 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
-
-        NetHelper netHelper = new NetHelper();
-        ImageLoader imageLoader = netHelper.getImageLoader();
-        imageLoader.get(jsonGlasses.getData().getList().get(position).getGoods_img()
-                , ImageLoader.getImageListener(homePageViewHolder.imageView, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
-
-
+        netImageLoader.getImgOfLoader(homePageViewHolder.imageView,jsonGlasses.getData().getList().get(position).getGoods_img());
         homePageViewHolder.homepageBrand.setText(jsonGlasses.getData().getList().get(position).getBrand());
         homePageViewHolder.homepageModle.setText(jsonGlasses.getData().getList().get(position).getModel());
         homePageViewHolder.homepageProduct.setText(jsonGlasses.getData().getList().get(position).getProduct_area());

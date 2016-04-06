@@ -12,8 +12,8 @@ import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.bean.JSONSpecial;
-import com.lanou.mirror.net.NetHelper;
 import com.lanou.mirror.adapter.SpecialPictureAdapter;
+import com.lanou.mirror.net.NetImageLoader;
 
 /**
  * Created by SAZ on 16/3/29.
@@ -24,9 +24,10 @@ public class SpecialActivity extends BaseActivity {
     private SpecialPictureAdapter specialPictureAdapter;
     private LinearLayoutManager linearLayoutManager;
     private ImageView activitySpecialContentImageView;
-
+    private NetImageLoader netImageLoader;
     @Override
     protected void initData() {
+        netImageLoader=new NetImageLoader();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -37,11 +38,7 @@ public class SpecialActivity extends BaseActivity {
         final int position=intent.getExtras().getInt("position");
         specialPictureAdapter = new SpecialPictureAdapter(this,jsonSpecial,position);
         recyclerView.setAdapter(specialPictureAdapter);
-        //首次进入时加载一张图片
-        final NetHelper netHelper=new NetHelper();
-        ImageLoader imageLoader = netHelper.getImageLoader();
-        imageLoader.get(jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(0),
-                ImageLoader.getImageListener(activitySpecialContentImageView, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+         netImageLoader.getImgOfLoader(activitySpecialContentImageView,jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(0));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -50,11 +47,9 @@ public class SpecialActivity extends BaseActivity {
                 if (jsonSpecial.getData().getList().get(position).getStory_data().getStory_date_type().equals("1")) {
                     //判断Fragment划过两个
                     if (linearLayoutManager.findFirstVisibleItemPosition() % 2 == 0) {
-                        int i=linearLayoutManager.findFirstVisibleItemPosition()/2;
-                        ImageLoader imageLoader = netHelper.getImageLoader();
-                        imageLoader.get(jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i),
-                                ImageLoader.getImageListener(activitySpecialContentImageView, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
-                        Log.d("aaaaaaaaaa",jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i));
+                        int i = linearLayoutManager.findFirstVisibleItemPosition() / 2;
+                        netImageLoader.getImgOfLoader(activitySpecialContentImageView,jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i));
+                        Log.d("aaaaaaaaaa", jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i));
                     }
                 }
 
