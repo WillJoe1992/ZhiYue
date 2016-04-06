@@ -1,12 +1,11 @@
 package com.lanou.mirror.base;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.zhy.autolayout.AutoLayoutActivity;
 
-import java.util.ArrayList;
 
 /**
  * Created by zouwei on 16/3/2.
@@ -16,7 +15,10 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        //设置屏幕全屏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(setContent());
         initView();
         initData();
