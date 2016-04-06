@@ -1,5 +1,6 @@
 package com.lanou.mirror.activity;
 
+import android.animation.ObjectAnimator;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -60,7 +61,6 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
     private List<Fragment> data;
     private long exitTime = 0;
-    private AnimationDrawable mirrorAnim;
 
     private TextView tvTop, tvBottom;
     private RecyclerView selectTitleRc;
@@ -254,14 +254,14 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
             }
         });
     }
+
     public void setMirrorAnim(){
         mirrorIv = BindView(R.id.mirror_icon);
         mirrorIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mirrorIv.setImageResource(R.drawable.mirror_anim);
-                mirrorAnim = (AnimationDrawable) mirrorIv.getDrawable();
-                mirrorAnim.start();
+                ObjectAnimator.ofFloat(v, "scaleY", 1.0f, 1.2f, 1.0f, 1.2f, 1.0f).setDuration(600).start();
+                ObjectAnimator.ofFloat(v, "scaleX", 1.0f, 1.2f, 1.0f, 1.2f, 1.0f).setDuration(600).start();
             }
         });
     }
