@@ -1,9 +1,11 @@
 package com.lanou.mirror.base;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.lanou.mirror.R;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 
@@ -35,8 +37,12 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     protected abstract int setContent() ;
 
 
-
-
+    @Override
+    protected void onDestroy() {
+        setContentView(R.layout.blanklayout);
+        Log.d("Sysout","destroy");
+        super.onDestroy();
+    }
 
     //方便绑定布局的
     protected <T extends View>T BindView(int id){
