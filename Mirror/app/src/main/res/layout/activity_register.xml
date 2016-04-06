@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,7 +14,7 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/activity_login_close"
+        android:id="@+id/activity_register_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -29,4 +30,79 @@
         android:layout_marginTop="@dimen/login_image_margintop"
         android:src="@mipmap/black_horiaontal_line" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginTop="@dimen/register_phonetext_margintop"
+        android:text="@string/register_phone_text" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/register_phoneedt_hei"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginRight="@dimen/login_marginright"
+        android:layout_marginTop="@dimen/register_phoneedt_margintop"
+        android:background="@color/text_color"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/register_authcodetext_marginleft"
+        android:layout_marginTop="@dimen/register_authcode_margintop"
+        android:text="@string/register_authcode_text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="@dimen/register_authcode_edt_hei"
+            android:layout_marginLeft="@dimen/register_authcode_marginleft"
+            android:layout_marginTop="@dimen/register_authcode_edt_margintop"
+            android:layout_weight="7"
+            android:background="@color/text_color"
+            android:maxLength="6"
+            android:singleLine="true" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/register_authcodebtn_hei"
+            android:layout_marginRight="@dimen/login_marginright"
+            android:layout_marginTop="@dimen/register_authcodebtn_margintop"
+            android:layout_weight="3"
+            android:background="@drawable/login_new_user"
+            android:text="@string/register_authcode"
+            android:textColor="@color/text_color" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginTop="@dimen/register_password_text_margintop"
+        android:text="@string/register_password" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/register_passwordedt_hei"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginRight="@dimen/login_marginright"
+        android:layout_marginTop="@dimen/register_passwordedt_margintop"
+        android:background="@color/text_color"
+        android:singleLine="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/register_newuserbtn_hei"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginRight="@dimen/login_marginright"
+        android:layout_marginTop="@dimen/register_newuser_margintop"
+        android:background="@drawable/login_new_user"
+        android:text="@string/register_newuser"
+        android:textColor="@color/text_color" />
 </RelativeLayout>

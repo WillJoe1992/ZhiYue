@@ -11,4 +11,9 @@
     <string name="login_register">創建賬號</string>
     <string name="login_snstext">使用社交賬號</string>
     <string name="register_text">創建賬號</string>
+    <string name="register_phone_text">手機號</string>
+    <string name="register_authcode_text">驗證碼</string>
+    <string name="register_authcode">發送驗證碼</string>
+    <string name="register_password">設置密碼</string>
+    <string name="register_newuser">創建賬號</string>
 </resources>

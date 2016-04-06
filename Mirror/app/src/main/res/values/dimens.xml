@@ -145,6 +145,21 @@
     <dimen name="login_wechat_marginright">247px</dimen>
     <dimen name="login_snstext_marginbottom">219px</dimen>
     <dimen name="login_sns_textsize">30px</dimen>
+    <dimen name="register_phonetext_margintop">153px</dimen>
+    <dimen name="register_phoneedt_hei">90px</dimen>
+    <dimen name="register_phoneedt_margintop">201px</dimen>
+    <dimen name="register_authcodetext_marginleft">30px</dimen>
+    <dimen name="register_authcode_margintop">325px</dimen>
+    <dimen name="register_authcode_edt_hei">80px</dimen>
+    <dimen name="register_authcode_marginleft">30px</dimen>
+    <dimen name="register_authcode_edt_margintop">376px</dimen>
+    <dimen name="register_authcodebtn_hei">80px</dimen>
+    <dimen name="register_authcodebtn_margintop">376px</dimen>
+    <dimen name="register_password_text_margintop">488px</dimen>
+    <dimen name="register_passwordedt_hei">90px</dimen>
+    <dimen name="register_passwordedt_margintop">535px</dimen>
+    <dimen name="register_newuserbtn_hei">115px</dimen>
+    <dimen name="register_newuser_margintop">681px</dimen>
 
 
 </resources>

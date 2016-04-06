@@ -45,7 +45,8 @@
         android:layout_marginLeft="@dimen/login_marginleft"
         android:layout_marginRight="@dimen/login_marginright"
         android:layout_marginTop="@dimen/login_phoneedt_margintop"
-        android:background="@color/text_color" />
+        android:background="@color/text_color"
+        android:singleLine="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,30 +63,31 @@
         android:layout_marginLeft="@dimen/login_marginleft"
         android:layout_marginRight="@dimen/login_marginright"
         android:layout_marginTop="@dimen/login_passwordedt_margintop"
-        android:background="@color/text_color" />
+        android:background="@color/text_color"
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/login_btn"
-        android:textColor="@color/text_color"
-        android:enabled="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/login_marginleft"
         android:layout_marginRight="@dimen/login_marginright"
         android:layout_marginTop="@dimen/login_loginbtn_margintop"
         android:background="@drawable/login_btn"
-        android:text="@string/login_logintext" />
+        android:enabled="true"
+        android:text="@string/login_logintext"
+        android:textColor="@color/text_color" />
 
     <Button
         android:id="@+id/login_register_btn"
-        android:textColor="@color/text_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/login_marginleft"
         android:layout_marginRight="@dimen/login_marginright"
         android:layout_marginTop="@dimen/login_registerbtn_margintop"
         android:background="@drawable/login_new_user"
-        android:text="@string/login_register" />
+        android:text="@string/login_register"
+        android:textColor="@color/text_color" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -99,20 +101,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/login_wechat_marginbottom"
         android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/login_wechat_marginbottom"
         android:layout_marginRight="@dimen/login_wechat_marginright"
         android:src="@mipmap/wechat_icon" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/login_snstext_marginbottom"
         android:text="@string/login_snstext"
-        android:layout_centerHorizontal="true"
         android:textSize="@dimen/login_sns_textsize"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

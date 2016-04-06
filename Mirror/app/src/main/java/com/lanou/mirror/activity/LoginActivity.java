@@ -59,15 +59,16 @@ public class LoginActivity extends BaseActivity {
 
     public void setLoginBtn() {
         MyTextWatcher myTextWatcher = new MyTextWatcher();
-        phoneEdt.addTextChangedListener(myTextWatcher);
-        passwordEdt.addTextChangedListener(myTextWatcher);
+        phoneEdt.addTextChangedListener(myTextWatcher); // 添加phoneEdt的监听
+        passwordEdt.addTextChangedListener(myTextWatcher);//添加passwordEdt的监听
         if (phoneEdt.getText().toString().isEmpty() || passwordEdt.getText().toString().isEmpty()) {
-            loginBtn.setEnabled(false);
+            loginBtn.setEnabled(false);// 使loginBtn为不可点击状态
             loginBtn.setBackgroundResource(R.mipmap.login_btn_gray);
         }
     }
-
+    // 对editText进行监听
     private class MyTextWatcher implements TextWatcher {
+
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -85,7 +86,7 @@ public class LoginActivity extends BaseActivity {
                 loginBtn.setEnabled(false);
                 loginBtn.setBackgroundResource(R.mipmap.login_btn_gray);
             } else if (phoneEdt.getText().toString().length() > 0 || passwordEdt.getText().toString().length() > 3) {
-                loginBtn.setEnabled(true);
+                loginBtn.setEnabled(true);// 使loginBtn为可点击状态
                 loginBtn.setBackgroundResource(R.drawable.login_btn);
             }
         }
