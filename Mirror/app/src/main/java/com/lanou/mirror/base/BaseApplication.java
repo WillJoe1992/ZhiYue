@@ -33,10 +33,13 @@ public class BaseApplication extends Application {
         myActivitys.add(activity);
     }
 
+
+    //移除activity
     public static void removeActivity(Activity activity) {
         myActivitys.remove(activity);
     }
 
+    //finish掉所有的activity
     public static void finshAll() {
         for(Activity activity:myActivitys){
             if (!activity.isFinishing()){

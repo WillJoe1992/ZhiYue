@@ -205,7 +205,8 @@ public class HomePagerFragment extends BaseFragment {
         homePageRecyclerView = BindView(R.id.fragment_homepage_recyclerview);
 
     }
-//初始化数据库
+
+    //初始化数据库
     private void setupDatabase() {
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(getContext(), "mirrorlib.db", null);
         db = helper.getWritableDatabase();
