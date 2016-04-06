@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lanou.mirror.R;
+import com.lanou.mirror.activity.MainActivity;
 import com.lanou.mirror.activity.SelectTitleActivity;
 import com.lanou.mirror.base.BaseFragment;
 
@@ -16,6 +17,7 @@ import com.lanou.mirror.base.BaseFragment;
 public class ShoppingCarFragment extends BaseFragment{
     private RelativeLayout titleSelect;
     public TextView fragmentHomepageTitle;
+    String title;
     @Override
     public int getLayout() {
         return R.layout.fragment_shopping_car;
@@ -31,9 +33,13 @@ public class ShoppingCarFragment extends BaseFragment{
         titleSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), SelectTitleActivity.class);
-                intent.putExtra("title",fragmentHomepageTitle.getText());
-                startActivity(intent);
+
+                title = fragmentHomepageTitle.getText().toString();
+                ((MainActivity)getActivity()).showPopupWindow(view,title);
+
+//                Intent intent = new Intent(getContext(), SelectTitleActivity.class);
+//                intent.putExtra("title",fragmentHomepageTitle.getText());
+//                startActivity(intent);
             }
         });
     }

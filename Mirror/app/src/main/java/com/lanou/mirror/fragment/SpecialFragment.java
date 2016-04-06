@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
+import com.lanou.mirror.activity.MainActivity;
 import com.lanou.mirror.activity.SelectTitleActivity;
 import com.lanou.mirror.activity.SpecialActivity;
 import com.lanou.mirror.adapter.SpecialAdapter;
@@ -32,6 +33,7 @@ public class SpecialFragment extends BaseFragment{
     private HashMap<String, String> head;
     private SpecialAdapter specialAdapter;
     private JSONSpecial jsonSpecial;
+    private String title;
     @Override
     public int getLayout() {
         return R.layout.fragment_homepage;
@@ -54,9 +56,13 @@ public class SpecialFragment extends BaseFragment{
         titleSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), SelectTitleActivity.class);
-                intent.putExtra("title", fragmentHomepageTitle.getText());
-                startActivity(intent);
+
+
+                title = fragmentHomepageTitle.getText().toString();
+                ((MainActivity)getActivity()).showPopupWindow(v,title);
+//                Intent intent = new Intent(getContext(), SelectTitleActivity.class);
+//                intent.putExtra("title", fragmentHomepageTitle.getText());
+//                startActivity(intent);
             }
         });
         NetOkHttpClient.postAsyn(URL.TEST_STORY_LIST, new NetOkHttpClient.ResultCallback<String>() {
