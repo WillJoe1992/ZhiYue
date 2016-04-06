@@ -7,60 +7,61 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30px"
-        android:layout_marginTop="30px"
-        android:text="账号登录"
-        android:textSize="36px"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginTop="@dimen/login_marginright"
+        android:text="@string/login_text"
+        android:textSize="@dimen/login_logintext"
         android:textStyle="bold" />
 
     <ImageView
+        android:id="@+id/activity_login_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="54px"
-        android:layout_marginTop="35px"
+        android:layout_marginRight="@dimen/login_image_close_marginright"
+        android:layout_marginTop="@dimen/login_image_close_margintop"
         android:src="@mipmap/login_close" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="35px"
-        android:layout_marginRight="35px"
-        android:layout_marginTop="90px"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:layout_marginTop="@dimen/login_image_margintop"
         android:src="@mipmap/black_horiaontal_line" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30px"
-        android:layout_marginTop="140px"
-        android:text="手机号"
-        android:textSize="25px" />
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginTop="@dimen/login_phonetext_margintop"
+        android:text="@string/login_phone"
+        android:textSize="@dimen/login_phone_textsize" />
 
     <EditText
         android:id="@+id/login_phone_edt"
         android:layout_width="match_parent"
-        android:layout_height="87px"
-        android:layout_marginLeft="30px"
-        android:layout_marginRight="30px"
-        android:layout_marginTop="187px"
+        android:layout_height="@dimen/login_phoneedt_hei"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginRight="@dimen/login_marginright"
+        android:layout_marginTop="@dimen/login_phoneedt_margintop"
         android:background="@color/text_color" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30px"
-        android:layout_marginTop="302px"
-        android:text="密码"
-        android:textSize="25px" />
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginTop="@dimen/login_passwordtext_margintop"
+        android:text="@string/login_password"
+        android:textSize="@dimen/login_passwrod_textsize" />
 
     <EditText
         android:id="@+id/login_password_edt"
         android:layout_width="match_parent"
-        android:layout_height="87px"
-        android:layout_marginLeft="30px"
-        android:layout_marginRight="30px"
-        android:layout_marginTop="345px"
+        android:layout_height="@dimen/login_passwordedt_hei"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginRight="@dimen/login_marginright"
+        android:layout_marginTop="@dimen/login_passwordedt_margintop"
         android:background="@color/text_color" />
 
     <Button
@@ -69,46 +70,46 @@
         android:enabled="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30px"
-        android:layout_marginRight="30px"
-        android:layout_marginTop="473px"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginRight="@dimen/login_marginright"
+        android:layout_marginTop="@dimen/login_loginbtn_margintop"
         android:background="@drawable/login_btn"
-        android:text="登录" />
+        android:text="@string/login_logintext" />
 
     <Button
-        android:id="@+id/login_regist_btn"
+        android:id="@+id/login_register_btn"
         android:textColor="@color/text_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30px"
-        android:layout_marginRight="30px"
-        android:layout_marginTop="590px"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginRight="@dimen/login_marginright"
+        android:layout_marginTop="@dimen/login_registerbtn_margintop"
         android:background="@drawable/login_new_user"
-        android:text="创建账号" />
+        android:text="@string/login_register" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="47px"
-        android:layout_marginLeft="247px"
+        android:layout_marginBottom="@dimen/login_sina_marginbottom"
+        android:layout_marginLeft="@dimen/login_sina_marginleft"
         android:src="@mipmap/sina_icon" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="47px"
+        android:layout_marginBottom="@dimen/login_wechat_marginbottom"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="247px"
+        android:layout_marginRight="@dimen/login_wechat_marginright"
         android:src="@mipmap/wechat_icon" />
 
     <TextView
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="219px"
-        android:text="使用社交账号"
+        android:layout_marginBottom="@dimen/login_snstext_marginbottom"
+        android:text="@string/login_snstext"
         android:layout_centerHorizontal="true"
-        android:textSize="30px"
+        android:textSize="@dimen/login_sns_textsize"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
