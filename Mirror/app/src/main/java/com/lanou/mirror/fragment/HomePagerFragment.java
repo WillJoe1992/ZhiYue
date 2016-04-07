@@ -1,31 +1,21 @@
 package com.lanou.mirror.fragment;
 
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
 import com.lanou.mirror.activity.MainActivity;
-import com.lanou.mirror.activity.SelectTitleActivity;
 import com.lanou.mirror.adapter.HomePagerRecyclerViewAdapter;
-import com.lanou.mirror.adapter.SelectTitleRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseFragment;
 import com.lanou.mirror.bean.JSONGlasses;
-import com.lanou.mirror.bean.SelectTitleRecyclerBean;
-import com.lanou.mirror.constant.Constant;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
@@ -33,7 +23,6 @@ import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.URL;
 import com.squareup.okhttp.Request;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -70,8 +59,8 @@ public class HomePagerFragment extends BaseFragment {
     protected void initView() {
         //绑定布局
         head = new HashMap<>();
-        titleSelect = BindView(R.id.title_select);
-        fragmentHomepageTitle = BindView(R.id.fragment_homepage_title);
+        titleSelect = bindView(R.id.title_select);
+        fragmentHomepageTitle = bindView(R.id.fragment_homepage_title);
         //bundle传值的获取
         Bundle bundle = getArguments();
         String titleName = (String) bundle.get("titleName");
@@ -121,7 +110,7 @@ public class HomePagerFragment extends BaseFragment {
 
     @Override
     protected void dataView() {
-        homePageRecyclerView = BindView(R.id.fragment_homepage_recyclerview);
+        homePageRecyclerView = bindView(R.id.fragment_homepage_recyclerview);
 
     }
 

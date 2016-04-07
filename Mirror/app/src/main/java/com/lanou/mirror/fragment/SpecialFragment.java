@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
 import com.lanou.mirror.activity.MainActivity;
-import com.lanou.mirror.activity.SelectTitleActivity;
 import com.lanou.mirror.activity.SpecialActivity;
 import com.lanou.mirror.adapter.SpecialAdapter;
 import com.lanou.mirror.base.BaseFragment;
@@ -43,8 +42,8 @@ public class SpecialFragment extends BaseFragment{
     protected void initView() {
 
         head=new HashMap<>();
-        titleSelect = BindView(R.id.title_select);
-        fragmentHomepageTitle= BindView(R.id.fragment_homepage_title);
+        titleSelect = bindView(R.id.title_select);
+        fragmentHomepageTitle= bindView(R.id.fragment_homepage_title);
         Bundle bundle = getArguments();
         String titleName = (String) bundle.get("titleName");
         fragmentHomepageTitle.setText(titleName);
@@ -97,6 +96,6 @@ public class SpecialFragment extends BaseFragment{
 
     @Override
     protected void dataView() {
-        homePageRecyclerView = BindView(R.id.fragment_homepage_recyclerview);
+        homePageRecyclerView = bindView(R.id.fragment_homepage_recyclerview);
     }
 }

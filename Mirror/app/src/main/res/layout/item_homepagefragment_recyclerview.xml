@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/line"
     android:layout_width="500px"
     android:layout_height="790px"
     android:layout_marginLeft="@dimen/fragment_homepage_re_recycler_marginleft">

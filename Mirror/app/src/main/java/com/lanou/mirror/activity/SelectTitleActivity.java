@@ -48,9 +48,9 @@ public class SelectTitleActivity extends BaseActivity implements SelectTitleRecy
 
     @Override
     protected void initView() {
-        tvTop = BindView(R.id.tv_top);
-        tvBottom = BindView(R.id.tv_bottom);
-        selectTitleRc = BindView(R.id.select_title_rc);
+        tvTop = bindView(R.id.tv_top);
+        tvBottom = bindView(R.id.tv_bottom);
+        selectTitleRc = bindView(R.id.select_title_rc);
 
         tvTop.setOnClickListener(new View.OnClickListener() {
             @Override
