@@ -34,8 +34,28 @@ public class MirrorLib {
         // 添加类的属性,根据属性生成数据库表中的字段
         entity.addStringProperty("labelname");
 
+        Entity entity1=schema.addEntity("AllHolder");
+        entity1.addIdProperty().autoincrement().primaryKey();
+        entity1.addStringProperty("Goods_img");
+        entity1.addStringProperty("Brand");
+        entity1.addStringProperty("Model");
+        entity1.addStringProperty("Product_area");
+        entity1.addStringProperty("Goods_price");
+        entity1.addStringProperty("Story_title");
+        entity1.addStringProperty("Story_img");
+        entity1.addStringProperty("Type");
 
+        Entity homePager=schema.addEntity("HomePager");
+        homePager.addIdProperty().autoincrement().primaryKey();
+        homePager.addStringProperty("Goods_img");
+        homePager.addStringProperty("Brand");
+        homePager.addStringProperty("Model");
+        homePager.addStringProperty("Product_area");
+        homePager.addStringProperty("Goods_price");
 
-
+        Entity special=schema.addEntity("Special");
+        special.addIdProperty().autoincrement().primaryKey();
+        special.addStringProperty("Story_title");
+        special.addStringProperty("Story_img");
     }
 }

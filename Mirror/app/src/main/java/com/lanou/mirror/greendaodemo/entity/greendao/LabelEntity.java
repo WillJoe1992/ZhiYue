@@ -20,10 +20,6 @@ public class LabelEntity {
         this.id = id;
         this.labelname = labelname;
     }
-    public LabelEntity(String labelname) {
-
-        this.labelname = labelname;
-    }
 
     public Long getId() {
         return id;

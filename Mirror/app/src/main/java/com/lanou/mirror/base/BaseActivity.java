@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
 
     @Override
     protected void onDestroy() {
-        setContentView(R.layout.blanklayout);
+        BaseApplication.removeActivity(this);
         Log.d("Sysout","destroy");
         super.onDestroy();
     }

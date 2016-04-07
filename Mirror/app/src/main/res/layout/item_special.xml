@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="500px"
-    android:layout_height="wrap_content"
+    android:layout_height="800px"
     android:layout_marginLeft="@dimen/special_item_relayout_marginleft">
 
     <ImageView
         android:id="@+id/special_iv"
-        android:layout_width="@dimen/special_item_linlayout_wid"
-        android:layout_height="@dimen/special_item_relayout_imagehei"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scaleType="fitXY" />
 
     <LinearLayout
         android:layout_width="@dimen/special_item_linlayout_wid"
         android:layout_height="@dimen/special_item_linlayout_hei"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/special_iv"
         android:background="@color/text_color"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:layout_width="wrap_content"

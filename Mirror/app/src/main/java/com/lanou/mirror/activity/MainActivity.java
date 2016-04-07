@@ -43,6 +43,7 @@ import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
 import com.lanou.mirror.bean.JSONGlassesClassification;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.fragment.SpecialFragment;
+import com.lanou.mirror.tool.ShowToast;
 import com.lanou.mirror.tool.URL;
 import com.lanou.mirror.tool.VerticalViewPager;
 import com.squareup.okhttp.Request;
@@ -70,9 +71,6 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     private PopupWindow popupWindow;
 
 
-
-
-
     // 数据库
     private SQLiteDatabase db;
     // 管理者
@@ -92,10 +90,12 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         filter.addAction(Constant.ACTION_POSITION);
         registerReceiver(receiver, filter);
         head.put("token", "");
+        setupDatabase();
         NetOkHttpClient.postAsyn(URL.CATEGORY_LIST, new NetOkHttpClient.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
-
+                addNotData();
+                ShowToast.showToast("请检查网络");
             }
 
             @Override
@@ -110,14 +110,22 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
             }
         }, head);
     }
+
+    private void addNotData() {
+        data = NoGetFragmentList();
+        VerticalPagerAdapter fragmentAdapter = new VerticalPagerAdapter(
+                getSupportFragmentManager(), data);
+        verticalViewPager.setAdapter(fragmentAdapter);
+    }
+
     @Override
     protected void initView() {
         verticalViewPager = BindView(R.id.vertical_viewpager);
-
-
         head = new HashMap<>();
         goToLogin();
         setMirrorAnim();
+        //只加载一个
+        verticalViewPager.setOffscreenPageLimit(0);
     }
 
     public List<Fragment> getFragmentList() {
@@ -136,22 +144,32 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         mDaoMaster = new DaoMaster(db);
         mDaoSession = mDaoMaster.newSession();
         labelEntityDao = mDaoSession.getLabelEntityDao();
-
-        labelEntityDao.deleteAll();
-        for (int i = 0; i < jsonGlassesClassification.getData().size(); i++) {
-            LabelEntity labelEntity = new LabelEntity((long) i, jsonGlassesClassification.getData().get(i).getCategory_name());
-            labelEntityDao.insert(labelEntity);
+        if (jsonGlassesClassification!=null) {
+            labelEntityDao.deleteAll();
+            for (int i = 0; i < jsonGlassesClassification.getData().size(); i++) {
+                LabelEntity labelEntity = new LabelEntity((long) i, jsonGlassesClassification.getData().get(i).getCategory_name());
+                labelEntityDao.insert(labelEntity);
+            }
+            for (int i = 0; i < jsonGlassesClassification.getData().size(); i++) {
+                Bundle bundleFlatGlass = new Bundle();
+                bundleFlatGlass.putString("titleName", jsonGlassesClassification.getData().get(i).getCategory_name());
+                bundleFlatGlass.putString("CategoryId", jsonGlassesClassification.getData().get(i).getCategory_id());
+                HomePagerFragment fragmentFlatGlass = new HomePagerFragment();
+                fragmentFlatGlass.setArguments(bundleFlatGlass);
+                listFragments.add(fragmentFlatGlass);
+            }
         }
-
-        for (int i = 0; i < jsonGlassesClassification.getData().size(); i++) {
-            Bundle bundleFlatGlass = new Bundle();
-            bundleFlatGlass.putString("titleName", jsonGlassesClassification.getData().get(i).getCategory_name());
-            bundleFlatGlass.putString("CategoryId", jsonGlassesClassification.getData().get(i).getCategory_id());
-            HomePagerFragment fragmentFlatGlass = new HomePagerFragment();
-            fragmentFlatGlass.setArguments(bundleFlatGlass);
-            listFragments.add(fragmentFlatGlass);
-
-        }
+        /*
+        * else if(labelEntityDao!=null){
+            for (int i = 0; i <labelEntityDao.loadAll().size() ; i++) {
+                Bundle bundleFlatGlass = new Bundle();
+                bundleFlatGlass.putString("titleName", labelEntityDao.loadAll().get(i).getLabelname());
+                bundleFlatGlass.putString("CategoryId", String.valueOf(labelEntityDao.loadAll().get(i).getId()));
+                HomePagerFragment fragmentFlatGlass = new HomePagerFragment();
+                fragmentFlatGlass.setArguments(bundleFlatGlass);
+                listFragments.add(fragmentFlatGlass);
+            }
+        }*/
 
 
         ///////////////////////////
@@ -187,7 +205,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         Bundle bundleShoppingCart = new Bundle();
         bundleShoppingCart.putString("titleName", "我的购物车");
         bundleShoppingCart.putSerializable("CategoryId", "110");
-        ShoppingCarFragment shoppingCarFragment=new ShoppingCarFragment();
+        ShoppingCarFragment shoppingCarFragment = new ShoppingCarFragment();
         shoppingCarFragment.setArguments(bundleShoppingCart);
         listFragments.add(shoppingCarFragment);
 
@@ -255,7 +273,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         });
     }
 
-    public void setMirrorAnim(){
+    public void setMirrorAnim() {
         mirrorIv = BindView(R.id.mirror_icon);
         mirrorIv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,11 +284,11 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         });
     }
 
-    public void showPopupWindow(View v,String title) {
+    public void showPopupWindow(View v, String title) {
 //设置popwindow里的参数
 
         DisplayMetrics dm = new DisplayMetrics();
-       getWindowManager().getDefaultDisplay().getMetrics(dm);
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
         View view = getLayoutInflater().inflate(R.layout.activity_select_title, null);
         popupWindow = new PopupWindow(view, dm.widthPixels, dm.heightPixels - 190, true);
 
@@ -287,8 +305,8 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         });
 
 //获取title如果数据库没有手动添加
-        setupDatabase();
-        if (labelEntityDao.loadAll().size() > 0) {
+
+        if (labelEntityDao!=null) {
             selectTitleRecyclerBeans = new ArrayList<>();
             selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("瀏覽所有分類"));
             for (int i = 0; i < labelEntityDao.loadAll().size(); i++) {
@@ -345,6 +363,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         popupWindow.showAtLocation(v, Gravity.NO_GRAVITY, 0, 0);
 
     }
+
     //初始化数据库
     private void setupDatabase() {
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "mirrorlib.db", null);
@@ -353,5 +372,39 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         daoSession = daoMaster.newSession();
         labelEntityDao = daoSession.getLabelEntityDao();
     }
+    public List<Fragment> NoGetFragmentList(){
+        List<Fragment> listFragments = new ArrayList<Fragment>();
+        Bundle bundleAll = new Bundle();
+        bundleAll.putString("titleName", "瀏覽所有分類");
+        bundleAll.putSerializable("CategoryId", "110");
+        AllFragment fragmentAll = new AllFragment();
+        fragmentAll.setArguments(bundleAll);
+        listFragments.add(fragmentAll);
+        if (labelEntityDao!=null) {
+            for (int i = 0; i < labelEntityDao.loadAll().size(); i++) {
+                Bundle bundleFlatGlass = new Bundle();
+                bundleFlatGlass.putString("titleName", labelEntityDao.loadAll().get(i).getLabelname());
+                bundleFlatGlass.putString("CategoryId", String.valueOf(labelEntityDao.loadAll().get(i).getId()));
+                HomePagerFragment fragmentFlatGlass = new HomePagerFragment();
+                fragmentFlatGlass.setArguments(bundleFlatGlass);
+                listFragments.add(fragmentFlatGlass);
+            }
+        }
 
+        Bundle bundleSpecial = new Bundle();
+        SpecialFragment fragmentSpecial = new SpecialFragment();
+        bundleSpecial.putString("titleName", "专题分享");
+        fragmentSpecial.setArguments(bundleSpecial);
+        listFragments.add(fragmentSpecial);
+
+
+        Bundle bundleShoppingCart = new Bundle();
+        bundleShoppingCart.putString("titleName", "我的购物车");
+        bundleShoppingCart.putSerializable("CategoryId", "110");
+        ShoppingCarFragment shoppingCarFragment = new ShoppingCarFragment();
+        shoppingCarFragment.setArguments(bundleShoppingCart);
+        listFragments.add(shoppingCarFragment);
+
+        return listFragments;
+    }
 }

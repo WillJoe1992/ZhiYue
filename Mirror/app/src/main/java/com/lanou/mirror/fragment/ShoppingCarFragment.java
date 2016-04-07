@@ -1,6 +1,7 @@
 package com.lanou.mirror.fragment;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -10,6 +11,9 @@ import com.lanou.mirror.R;
 import com.lanou.mirror.activity.MainActivity;
 import com.lanou.mirror.activity.SelectTitleActivity;
 import com.lanou.mirror.base.BaseFragment;
+import com.lanou.mirror.greendaodemo.entity.greendao.AllHolderDao;
+import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
+import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 
 /**
  * Created by dllo on 16/4/5.
@@ -48,5 +52,6 @@ public class ShoppingCarFragment extends BaseFragment{
     protected void dataView() {
 
     }
+
 
 }

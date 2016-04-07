@@ -51,8 +51,6 @@ import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
 import com.lanou.mirror.adapter.VerticalPagerAdapter;
-import com.lanou.mirror.tool.VerticalViewPager;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;

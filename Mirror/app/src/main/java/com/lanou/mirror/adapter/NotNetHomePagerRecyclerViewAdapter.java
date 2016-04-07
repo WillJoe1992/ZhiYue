@@ -9,21 +9,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONGlasses;
+import com.lanou.mirror.greendaodemo.entity.greendao.HomePagerDao;
 import com.lanou.mirror.net.NetImageLoader;
 
+import java.util.ArrayList;
+
 /**
- * Created by wyc on 16/3/30.
+ * Created by dllo on 16/4/7.
  */
-public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
+public class NotNetHomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     private Context context;
-    private JSONGlasses jsonGlasses;
     private NetImageLoader netImageLoader;
-    public HomePagerRecyclerViewAdapter(Context context,JSONGlasses jsonGlasses) {
+    private HomePagerDao homePagerDaos;
+    public NotNetHomePagerRecyclerViewAdapter(Context context,HomePagerDao homePagerDaos) {
         this.context = context;
-        this.jsonGlasses=jsonGlasses;
+        this.homePagerDaos=homePagerDaos;
         netImageLoader=new NetImageLoader();
     }
 
@@ -36,17 +38,17 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
-        netImageLoader.getImgOfLoader(homePageViewHolder.imageView,jsonGlasses.getData().getList().get(position).getGoods_img());
-        homePageViewHolder.homepageBrand.setText(jsonGlasses.getData().getList().get(position).getBrand());
-        homePageViewHolder.homepageModle.setText(jsonGlasses.getData().getList().get(position).getModel());
-        homePageViewHolder.homepageProduct.setText(jsonGlasses.getData().getList().get(position).getProduct_area());
-        homePageViewHolder.homepagePrice.setText(jsonGlasses.getData().getList().get(position).getGoods_price());
-        Log.d("IIIIIII",""+jsonGlasses.getData().getList().get(position).getGoods_img());
+        netImageLoader.getImgOfLoader(homePageViewHolder.imageView, homePagerDaos.loadAll().get(position).getGoods_img());
+        homePageViewHolder.homepageBrand.setText(homePagerDaos.loadAll().get(position).getBrand());
+        homePageViewHolder.homepageModle.setText(homePagerDaos.loadAll().get(position).getModel());
+        homePageViewHolder.homepageProduct.setText(homePagerDaos.loadAll().get(position).getProduct_area());
+        homePageViewHolder.homepagePrice.setText(homePagerDaos.loadAll().get(position).getGoods_price());
+        Log.d("IIIIIII", "" + homePagerDaos.loadAll().get(position).getGoods_img());
     }
 
     @Override
     public int getItemCount() {
-        return jsonGlasses.getData().getList().size()>0?jsonGlasses.getData().getList().size():0;
+        return homePagerDaos.loadAll().size()>0?homePagerDaos.loadAll().size():0;
     }
 
     class HomePageViewHolder extends RecyclerView.ViewHolder {

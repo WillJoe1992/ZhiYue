@@ -14,22 +14,28 @@ import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
 import com.lanou.mirror.activity.MainActivity;
 import com.lanou.mirror.adapter.AllRecyclerViewAdapter;
+import com.lanou.mirror.adapter.NotNetAllAdapter;
 import com.lanou.mirror.adapter.SelectTitleRecyclerViewAdapter;
+import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.base.BaseFragment;
 import com.lanou.mirror.bean.JSONAll;
 import com.lanou.mirror.bean.JSONGlasses;
 import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.bean.SelectTitleRecyclerBean;
 import com.lanou.mirror.constant.Constant;
+import com.lanou.mirror.greendaodemo.entity.greendao.AllHolder;
+import com.lanou.mirror.greendaodemo.entity.greendao.AllHolderDao;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
 import com.lanou.mirror.net.NetOkHttpClient;
+import com.lanou.mirror.tool.ShowToast;
 import com.lanou.mirror.tool.URL;
 import com.squareup.okhttp.Request;
 
@@ -59,16 +65,17 @@ public class AllFragment extends BaseFragment {
     // 数据库
     private SQLiteDatabase db;
     // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
-    private LabelEntityDao labelEntityDao;
+    private AllHolderDao allHolderDao;
     //操作数据库
     // 管理者
     private DaoMaster daoMaster;
     // 会话
     private DaoSession daoSession;
-
+    private NotNetAllAdapter notNetAllAdapter;
 
     @Override
     public int getLayout() {
+        Log.d("ssssssssssss","sssssssssssss");
         return R.layout.fragment_homepage;
     }
 
@@ -87,24 +94,26 @@ public class AllFragment extends BaseFragment {
         headGlasses.put("token", "");
         headGlasses.put("page", "");
         headGlasses.put("last_time", "");
+        setupDatabase();
         NetOkHttpClient.postAsyn(URL.INDEX_MRTJ, new NetOkHttpClient.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
                 Log.d("111", "111");
-                //// TODO: 16/4/6 如果报错进这里
+                addNotNet();
+                ShowToast.showToast("网络连接错误");
             }
 
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
                 jsonAll = gson.fromJson(response, JSONAll.class);
-                allRecyclerViewAdapter = new AllRecyclerViewAdapter(getContext(), jsonAll);
+                allRecyclerViewAdapter = new AllRecyclerViewAdapter(getActivity(), jsonAll);
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
                 gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 homePageRecyclerView.setLayoutManager(gridLayoutManager);
                 homePageRecyclerView.setAdapter(allRecyclerViewAdapter);
-
-
+                allHolderDao.deleteAll();
+                addHolder(jsonAll);
             }
         }, headGlasses);
 //        headSpecial=new HashMap<>();
@@ -158,10 +167,43 @@ public class AllFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 title = fragmentHomepageTitle.getText().toString();
-                ((MainActivity)getActivity()).showPopupWindow(v, title);
+                ((MainActivity) getActivity()).showPopupWindow(v, title);
 
             }
         });
+    }
+
+    private void addNotNet() {
+        Log.d("ssssss", allHolderDao.loadAll().get(0).getBrand());
+        if (allHolderDao.loadAll().size() > 0) {
+            notNetAllAdapter = new NotNetAllAdapter(getContext(), allHolderDao);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
+            gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            homePageRecyclerView.setLayoutManager(gridLayoutManager);
+            homePageRecyclerView.setAdapter(notNetAllAdapter);
+            ShowToast.showToast("网络连接错误");
+        }
+    }
+
+    private void addHolder(JSONAll jsonAll) {
+        for (int i = 0; i < jsonAll.getData().getList().size(); i++) {
+            AllHolder allHolder = new AllHolder();
+            allHolder.setGoods_img(jsonAll.getData().getList().get(i).getData_info().getGoods_img());
+            allHolder.setBrand(jsonAll.getData().getList().get(i).getData_info().getBrand());
+            allHolder.setModel(jsonAll.getData().getList().get(i).getData_info().getModel());
+            allHolder.setGoods_price(jsonAll.getData().getList().get(i).getData_info().getGoods_price());
+            allHolder.setType(jsonAll.getData().getList().get(i).getType());
+            allHolderDao.insert(allHolder);
+        }
+
+    }
+
+    private void setupDatabase() {
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(BaseApplication.getContext(), "AllHolder.db", null);
+        db = helper.getWritableDatabase();
+        daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+        allHolderDao = daoSession.getAllHolderDao();
     }
 
     @Override
@@ -169,5 +211,5 @@ public class AllFragment extends BaseFragment {
 
     }
 
-  
+
 }

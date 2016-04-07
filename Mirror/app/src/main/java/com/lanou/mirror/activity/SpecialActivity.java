@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
+import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.adapter.SpecialPictureAdapter;
 import com.lanou.mirror.net.NetImageLoader;
@@ -42,7 +43,7 @@ public class SpecialActivity extends BaseActivity {
         specialPictureAdapter = new SpecialPictureAdapter(this, jsonSpecial, position);
         recyclerView.setAdapter(specialPictureAdapter);
 
-        // netImageLoader.getImgOfLoader(activitySpecialContentImageView,jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(0));
+         netImageLoader.getImgOfLoader(activitySpecialContentImageView,jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(0));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -52,7 +53,7 @@ public class SpecialActivity extends BaseActivity {
                     //判断Fragment划过两个
                     if (linearLayoutManager.findFirstVisibleItemPosition() % 2 == 0) {
                         int i = linearLayoutManager.findFirstVisibleItemPosition() / 2;
-                       // netImageLoader.getImgOfLoader(activitySpecialContentImageView,jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i));
+                        netImageLoader.getImgOfLoader(activitySpecialContentImageView,jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i));
                         Log.d("aaaaaaaaaa", jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i));
                     }
                 }
@@ -72,4 +73,11 @@ public class SpecialActivity extends BaseActivity {
         return R.layout.activity_special_content;
     }
 
+    @Override
+    protected void onPause() {
+        Log.d("aaaaaaa","finish()");
+
+        finish();
+        super.onPause();
+    }
 }

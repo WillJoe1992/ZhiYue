@@ -1,5 +1,6 @@
 package com.lanou.mirror.net;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
@@ -11,7 +12,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseApplication;
+import com.lanou.mirror.tool.MyLog;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -46,7 +50,7 @@ public class NetImageLoader {
             File file = BaseApplication.getContext().getFilesDir() ;
             diskPath=file.getAbsolutePath();
         }
-        Log.d("abc", "--->>>" + diskPath);
+       // Log.d("abc", "--->>>" + diskPath);
         //新建文件夹(判断文件是否存在不存在新建一个);
         File file=new File(diskPath+"/img");
         if(!file.exists()){
@@ -91,7 +95,8 @@ public class NetImageLoader {
 
             String fileName=url.substring(url.lastIndexOf("/")+1,url.length());
             String filePath = diskPath+"/"+fileName;
-            Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+           // Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+            Bitmap bitmap=compressImage(BitmapFactory.decodeFile(filePath));
             return bitmap;
         }
 
@@ -99,13 +104,15 @@ public class NetImageLoader {
         public void putBitmap(String url, Bitmap bitmap) {
             String fileName=url.substring(url.lastIndexOf("/")+1,url.length());
             String filePath = diskPath+"/"+MD5(fileName);
+            MyLog.showLog("abc", "--->>>" + filePath);
             //以字节流的方式保存到所指定文件
             FileOutputStream fos = null;
             try {
                 //以流的形式写入相应路径
                 fos=new FileOutputStream(filePath);
                 //将bitmap对象写入对象中;
-                bitmap.compress(Bitmap.CompressFormat.PNG,100,fos);
+           bitmap.compress(Bitmap.CompressFormat.PNG,100,fos);
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 //关流
@@ -130,7 +137,7 @@ public class NetImageLoader {
             //内存大小
             long maxSize=Runtime.getRuntime().maxMemory();
             //分配相应的缓存空间
-            int cacheSize= (int) (maxSize/32);
+            int cacheSize= (int) (maxSize/8);
             cache=new LruCache<String, Bitmap>(cacheSize){
                 @Override
                 protected int sizeOf(String key, Bitmap value) {
@@ -184,5 +191,21 @@ public class NetImageLoader {
         }
 
         return hex.toString();// 32位
+    }
+
+
+    private Bitmap compressImage(Bitmap image) {
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    //    image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        int options = 100;
+        while ( baos.toByteArray().length / 1024>100) {  //循环判断如果压缩后图片是否大于100kb,大于继续压缩
+            baos.reset();//重置baos即清空baos
+            image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+            options -= 10;//每次都减少10
+        }
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
+        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
+        return bitmap;
     }
 }
