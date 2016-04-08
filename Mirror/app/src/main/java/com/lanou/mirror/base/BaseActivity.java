@@ -40,12 +40,11 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     @Override
     protected void onDestroy() {
         BaseApplication.removeActivity(this);
-        Log.d("Sysout","destroy");
         super.onDestroy();
     }
 
     //方便绑定布局的
-    protected <T extends View>T BindView(int id){
+    protected <T extends View>T bindView(int id){
         return (T)findViewById(id);
     }
 }

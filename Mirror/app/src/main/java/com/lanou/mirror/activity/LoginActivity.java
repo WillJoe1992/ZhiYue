@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
@@ -28,11 +27,11 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        phoneEdt = BindView(R.id.login_phone_edt);
-        passwordEdt = BindView(R.id.login_password_edt);
-        loginBtn = BindView(R.id.login_btn);
-        registerBtn = BindView(R.id.login_register_btn);
-        closeImage = BindView(R.id.activity_login_close);
+        phoneEdt = bindView(R.id.login_phone_edt);
+        passwordEdt = bindView(R.id.login_password_edt);
+        loginBtn = bindView(R.id.login_btn);
+        registerBtn = bindView(R.id.login_register_btn);
+        closeImage = bindView(R.id.activity_login_close);
         setLoginBtn(); // 设置登录按钮在editText没输入东西的时候为不可点击状态
         goBack(); // 返回首页
         goToRegister(); // 去注册界面

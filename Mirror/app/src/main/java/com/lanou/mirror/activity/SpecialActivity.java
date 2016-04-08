@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.WindowManager;
 
 import android.widget.ImageView;
 
-import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.base.BaseApplication;
@@ -64,8 +62,8 @@ public class SpecialActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        activitySpecialContentImageView = BindView(R.id.activity_special_content_image_view);
-        recyclerView = BindView(R.id.activity_special_content_rv);
+        activitySpecialContentImageView = bindView(R.id.activity_special_content_image_view);
+        recyclerView = bindView(R.id.activity_special_content_rv);
     }
 
     @Override

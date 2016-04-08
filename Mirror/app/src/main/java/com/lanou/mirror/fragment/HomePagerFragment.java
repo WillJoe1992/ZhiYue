@@ -67,8 +67,8 @@ public class HomePagerFragment extends BaseFragment {
     protected void initView() {
         //绑定布局
         head = new HashMap<>();
-        titleSelect = BindView(R.id.title_select);
-        fragmentHomepageTitle = BindView(R.id.fragment_homepage_title);
+        titleSelect = bindView(R.id.title_select);
+        fragmentHomepageTitle = bindView(R.id.fragment_homepage_title);
         //bundle传值的获取
         Bundle bundle = getArguments();
         String titleName = (String) bundle.get("titleName");
@@ -144,8 +144,8 @@ public class HomePagerFragment extends BaseFragment {
 
 
     @Override
-    protected void dataView() {
-        homePageRecyclerView = BindView(R.id.fragment_homepage_recyclerview);
+    protected void dataView() {        homePageRecyclerView = bindView(R.id.fragment_homepage_recyclerview);
+
     }
 
 

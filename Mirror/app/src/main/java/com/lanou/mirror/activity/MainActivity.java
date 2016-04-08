@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,8 +17,6 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -30,7 +27,6 @@ import com.lanou.mirror.R;
 import com.lanou.mirror.adapter.SelectTitleRecyclerViewAdapter;
 import com.lanou.mirror.adapter.VerticalPagerAdapter;
 import com.lanou.mirror.base.BaseActivity;
-import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.bean.SelectTitleRecyclerBean;
 import com.lanou.mirror.constant.Constant;
 import com.lanou.mirror.fragment.AllFragment;
@@ -120,8 +116,8 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
     @Override
     protected void initView() {
-        verticalViewPager = BindView(R.id.vertical_viewpager);
-        head = new HashMap<>();
+        verticalViewPager = bindView(R.id.vertical_viewpager);
+       head = new HashMap<>();
         goToLogin();
         setMirrorAnim();
         //只加载一个
@@ -263,7 +259,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     }
 
     public void goToLogin() {
-        loginText = BindView(R.id.goto_login);
+        loginText = bindView(R.id.goto_login);
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -272,9 +268,8 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
             }
         });
     }
-
-    public void setMirrorAnim() {
-        mirrorIv = BindView(R.id.mirror_icon);
+    public void setMirrorAnim(){
+        mirrorIv = bindView(R.id.mirror_icon);
         mirrorIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

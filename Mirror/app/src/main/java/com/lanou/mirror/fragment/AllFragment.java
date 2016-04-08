@@ -1,15 +1,11 @@
 package com.lanou.mirror.fragment;
 
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -25,7 +21,6 @@ import com.lanou.mirror.adapter.SelectTitleRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.base.BaseFragment;
 import com.lanou.mirror.bean.JSONAll;
-import com.lanou.mirror.bean.JSONGlasses;
 import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.bean.SelectTitleRecyclerBean;
 import com.lanou.mirror.constant.Constant;
@@ -81,9 +76,9 @@ public class AllFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        titleSelect = BindView(R.id.title_select);
-        homePageRecyclerView = BindView(R.id.fragment_homepage_recyclerview);
-        fragmentHomepageTitle = BindView(R.id.fragment_homepage_title);
+        titleSelect = bindView(R.id.title_select);
+        homePageRecyclerView = bindView(R.id.fragment_homepage_recyclerview);
+        fragmentHomepageTitle = bindView(R.id.fragment_homepage_title);
 
         Bundle bundle = getArguments();
         String titleName = (String) bundle.get("titleName");

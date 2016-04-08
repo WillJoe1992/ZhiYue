@@ -67,7 +67,7 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void dataView();
 
     //方便绑定布局的
-    protected <T extends View>T BindView(int id){
+    protected <T extends View>T bindView(int id){
         return (T)getView().findViewById(id);
     }
 

@@ -1,14 +1,19 @@
 package com.lanou.mirror.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.lanou.mirror.R;
+import com.lanou.mirror.base.BaseApplication;
+import com.lanou.mirror.bean.JSONAtlas;
+import com.lanou.mirror.tool.URL;
 
 /**
  * Created by wyc on 16/4/6.
@@ -16,9 +21,15 @@ import com.lanou.mirror.R;
 public class AtlasAdapter extends RecyclerView.Adapter {
     private final int TYPE_VIDEO = 0;
     private final int TYPE_IMAGE = 1;
+    private JSONAtlas data;
 
-    public AtlasAdapter() {
+    public AtlasAdapter(JSONAtlas data) {
+        this.data = data;
     }
+
+
+
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,22 +53,30 @@ public class AtlasAdapter extends RecyclerView.Adapter {
         int type = getItemViewType(position);
         switch (type){
             case TYPE_VIDEO:
+                AtlasVideoViewHolder videoViewHolder = (AtlasVideoViewHolder) holder;
 
+                MediaController mediaController = new MediaController(BaseApplication.getContext());
+                videoViewHolder.videoView.setMediaController(mediaController);
                 break;
             case TYPE_IMAGE:
-
+                AtlasImageViewHolder imageViewHolder = (AtlasImageViewHolder) holder;
                 break;
         }
     }
 
     @Override
     public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+        if (position == 0){
+            return TYPE_VIDEO;
+        }else {
+            return TYPE_IMAGE;
+
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return data.getData().getList().size();
     }
 
 
