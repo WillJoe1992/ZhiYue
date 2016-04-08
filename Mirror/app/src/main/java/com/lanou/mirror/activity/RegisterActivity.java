@@ -19,7 +19,7 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        registerClose = BindView(R.id.activity_register_close);
+        registerClose = bindView(R.id.activity_register_close);
         setRegisterClose();
 
     }

@@ -1,16 +1,19 @@
 package com.lanou.mirror.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
+import com.lanou.mirror.activity.EveryGlassesActivity;
 import com.lanou.mirror.bean.JSONGlasses;
 import com.lanou.mirror.net.NetImageLoader;
 
@@ -41,6 +44,7 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
         homePageViewHolder.homepageModle.setText(jsonGlasses.getData().getList().get(position).getModel());
         homePageViewHolder.homepageProduct.setText(jsonGlasses.getData().getList().get(position).getProduct_area());
         homePageViewHolder.homepagePrice.setText(jsonGlasses.getData().getList().get(position).getGoods_price());
+        homePageViewHolder.position=position;
         Log.d("IIIIIII",""+jsonGlasses.getData().getList().get(position).getGoods_img());
     }
 
@@ -50,9 +54,10 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     }
 
     class HomePageViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView
-                ;
+        ImageView imageView;
         TextView homepageBrand,homepagePrice,homepageProduct,homepageModle;
+        RelativeLayout line;
+        int position;
         public HomePageViewHolder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.fragment_homepage_recyclerview_iv);
@@ -60,6 +65,16 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
             homepagePrice= (TextView) itemView.findViewById(R.id.homepage_price);
             homepageProduct= (TextView) itemView.findViewById(R.id.homepage_comefrom);
             homepageModle= (TextView) itemView.findViewById(R.id.homepage_modle);
+            line= (RelativeLayout) itemView.findViewById(R.id.line);
+            line.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent =new Intent(context, EveryGlassesActivity.class);
+                    intent.putExtra("goodsId",jsonGlasses.getData().getList().get(position).getGoods_id());
+                    Log.d("HomePageViewHolder", jsonGlasses.getData().getList().get(position).getGoods_id());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }
