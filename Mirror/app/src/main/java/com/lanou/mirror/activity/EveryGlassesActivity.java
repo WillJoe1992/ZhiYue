@@ -237,7 +237,8 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
                 Toast.makeText(EveryGlassesActivity.this, "点击了返回按钮", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.everyglasses_button_topic:
-                Toast.makeText(EveryGlassesActivity.this, "点击了佩戴图集按钮", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EveryGlassesActivity.this,AtlasActivity.class);
+                startActivity(intent);
                 break;
             case R.id.everyglasses_button_buy:
                 Toast.makeText(EveryGlassesActivity.this, "点击了购买按钮", Toast.LENGTH_SHORT).show();

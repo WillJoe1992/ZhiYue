@@ -22,6 +22,7 @@
         android:src="@mipmap/black_horiaontal_line" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/atlas_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_atlas_marginleft_right"
