@@ -169,7 +169,6 @@ public class AllFragment extends BaseFragment {
     }
 
     private void addNotNet() {
-        Log.d("ssssss", allHolderDao.loadAll().get(0).getBrand());
         if (allHolderDao.loadAll().size() > 0) {
             notNetAllAdapter = new NotNetAllAdapter(getContext(), allHolderDao);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);

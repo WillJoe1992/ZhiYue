@@ -2,6 +2,7 @@ package com.lanou.mirror.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     private Context context;
     private JSONGlasses jsonGlasses;
     private NetImageLoader netImageLoader;
+    private AnimationDrawable animationDrawable;
     public HomePagerRecyclerViewAdapter(Context context,JSONGlasses jsonGlasses) {
         this.context = context;
         this.jsonGlasses=jsonGlasses;
@@ -54,10 +56,11 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     }
 
     class HomePageViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        ImageView imageView,fragmentLoadingIv;
         TextView homepageBrand,homepagePrice,homepageProduct,homepageModle;
         RelativeLayout line;
         int position;
+
         public HomePageViewHolder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.fragment_homepage_recyclerview_iv);
@@ -66,15 +69,26 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
             homepageProduct= (TextView) itemView.findViewById(R.id.homepage_comefrom);
             homepageModle= (TextView) itemView.findViewById(R.id.homepage_modle);
             line= (RelativeLayout) itemView.findViewById(R.id.line);
+            fragmentLoadingIv= (ImageView) itemView.findViewById(R.id.fragment_loading_iv);
+
+            fragmentLoadingIv.setImageResource(R.drawable.loading);
+            animationDrawable = (AnimationDrawable) fragmentLoadingIv.getDrawable();
+            animationDrawable.start();
             line.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent =new Intent(context, EveryGlassesActivity.class);
+
                     intent.putExtra("goodsId",jsonGlasses.getData().getList().get(position).getGoods_id());
+                    intent.putExtra("picUrl",jsonGlasses.getData().getList().get(position).getGoods_img());
                     Log.d("HomePageViewHolder", jsonGlasses.getData().getList().get(position).getGoods_id());
+
+
                     context.startActivity(intent);
                 }
             });
         }
     }
 }
+
+

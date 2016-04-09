@@ -22,6 +22,7 @@ import com.lanou.mirror.adapter.HomePagerRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.bean.JSONAllson;
 import com.lanou.mirror.bean.JSONGlasses;
+import com.lanou.mirror.net.NetImageLoader;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.FullyGridLayoutManager;
 import com.lanou.mirror.tool.ObservableScrollView;
@@ -56,7 +57,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
     private JSONAllson jsonAllson;
 
     private TextView everyglassesEnglishTitle,everyglassesName,everyglassesGlassesContent,everyglassesPrice,everyglassesNameBeforerecyclerview;
-
+    private ImageView backGround;
 
     @Override
     protected void initView() {
@@ -64,6 +65,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
         ivBack = bindView(R.id.everyglasses_button_back);
         ivBuy = bindView(R.id.everyglasses_button_buy);
         tvToPic = bindView(R.id.everyglasses_button_topic);
+        backGround= bindView(R.id.background);
 
         everyglassesEnglishTitle=bindView(R.id.everyglasses_englishTitle);
         everyglassesName=bindView(R.id.everyglasses_name);
@@ -75,6 +77,8 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
 
         Intent intent =getIntent();
         goodsId=intent.getStringExtra("goodsId");
+        NetImageLoader netImageLoader =new NetImageLoader();
+        netImageLoader.getImgOfLoader(backGround,intent.getStringExtra("picUrl"));
 
         Log.d("EveryGlassesActivity", goodsId);
         head=new HashMap<>();

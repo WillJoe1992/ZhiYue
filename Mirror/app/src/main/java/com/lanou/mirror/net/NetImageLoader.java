@@ -159,7 +159,7 @@ public class NetImageLoader {
     }
     public void getImgOfLoader(ImageView imageView,String net){
         String url =net==null?"http://img5.imgtn.bdimg.com/it/u=115697286,2847986213&fm=21&gp=0.jpg":net;
-        ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView, R.mipmap.ic_launcher,R.mipmap.ic_launcher);
+        ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView, 0,R.mipmap.ic_launcher);
         imageLoader.get(url,listener);
     }
     /**
