@@ -24,7 +24,9 @@ import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.HomePager;
 import com.lanou.mirror.greendaodemo.entity.greendao.HomePagerDao;
+import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
 import com.lanou.mirror.net.NetOkHttpClient;
+import com.lanou.mirror.tool.MyLog;
 import com.lanou.mirror.tool.ShowToast;
 import com.lanou.mirror.tool.URL;
 import com.squareup.okhttp.Request;
@@ -56,7 +58,7 @@ public class HomePagerFragment extends BaseFragment {
     private DaoSession daoSession;
 
     private NotNetHomePagerRecyclerViewAdapter notNetHomePagerRecyclerViewAdapter;
-
+    private LoginDao loginDao;
     @Override
     public int getLayout() {
         return R.layout.fragment_homepage;
@@ -73,13 +75,19 @@ public class HomePagerFragment extends BaseFragment {
         Bundle bundle = getArguments();
         String titleName = (String) bundle.get("titleName");
         String url = (String) bundle.get("CategoryId");
-
+        //初始化数据库
+        setupDatabase();
         //给head赋值然后进行网络拉取
         head.put("device_type", "1");
-        head.put("token", "");
+        //用户已登录返回token
+        if (loginDao.loadAll().size()>0 && loginDao.loadAll().get(0).getToken() != null) {
+            MyLog.showLog("HomePagerdbtoken", loginDao.loadAll().get(0).getToken());
+            head.put("token", loginDao.loadAll().get(0).getToken());
+        } else {
+            head.put("token", "");
+        }
         head.put("goods_id", url);
         Log.d("aaaaaaaa", url);
-        setupDatabase();
        // addNotNet();
         //网络拉取
         NetOkHttpClient.postAsyn(URL.GOODS_LIST, new NetOkHttpClient.ResultCallback<String>() {
@@ -161,5 +169,11 @@ public class HomePagerFragment extends BaseFragment {
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
         homePagerDao = daoSession.getHomePagerDao();
+        /////toke数据库
+        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(BaseApplication.getContext(), "Login.db", null);
+        SQLiteDatabase db2 = helper2.getWritableDatabase();
+        DaoMaster daoMaster2 = new DaoMaster(db2);
+        DaoSession daoSession2 = daoMaster2.newSession();
+        loginDao = daoSession2.getLoginDao();
     }
 }

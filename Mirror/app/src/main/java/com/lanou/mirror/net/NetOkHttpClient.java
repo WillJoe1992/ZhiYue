@@ -12,6 +12,8 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -42,7 +44,7 @@ public class NetOkHttpClient {
 
     }
 
-        public static NetOkHttpClient getInstance()
+    public static NetOkHttpClient getInstance()
     {
         if (mInstance == null)
         {
@@ -91,7 +93,6 @@ public class NetOkHttpClient {
         String key;
         String value;
     }
-
     private Param[] map2Params(Map<String, String> params)
     {
         if (params == null) return new Param[0];
@@ -127,7 +128,7 @@ public class NetOkHttpClient {
 
         public abstract void onError(Request request, Exception e);
 
-        public abstract void onResponse(T response);
+        public abstract void onResponse(T response) throws JSONException;
     }
     private Request buildPostRequest(String url, Param[] params)
     {
@@ -190,7 +191,11 @@ public class NetOkHttpClient {
             @Override
             public void run() {
                 if (callback != null) {
-                    callback.onResponse(object);
+                    try {
+                        callback.onResponse(object);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

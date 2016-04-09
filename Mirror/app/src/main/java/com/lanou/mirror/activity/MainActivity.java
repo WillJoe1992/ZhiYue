@@ -37,8 +37,10 @@ import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntity;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
 import com.lanou.mirror.bean.JSONGlassesClassification;
+import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.fragment.SpecialFragment;
+import com.lanou.mirror.tool.MyLog;
 import com.lanou.mirror.tool.ShowToast;
 import com.lanou.mirror.tool.URL;
 import com.lanou.mirror.tool.VerticalViewPager;
@@ -50,7 +52,7 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity implements SelectTitleRecyclerViewAdapter.ClickListener {
     private VerticalViewPager verticalViewPager;
-    private TextView loginText;
+    private TextView loginText,shoppingText;
     private ImageView mirrorIv;
 
     private HashMap<String, String> head;
@@ -79,14 +81,41 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     private DaoSession daoSession;
     // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
     private LabelEntityDao labelEntityDao;
-
+    private LoginDao loginDao;
     @Override
     protected void initData() {
+        MyLog.showLog("主Activity","启动");
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constant.ACTION_POSITION);
         registerReceiver(receiver, filter);
-        head.put("token", "");
         setupDatabase();
+        //用户已登录返回token
+        if (loginDao.loadAll().size()>0) {
+            MyLog.showLog("dbtoken",loginDao.loadAll().get(0).getToken());
+            head.put("token", loginDao.loadAll().get(0).getToken());
+            loginText.setVisibility(View.GONE);
+            shoppingText.setVisibility(View.VISIBLE);
+            shoppingText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ObjectAnimator.ofFloat(view, "scaleY", 1.0f, 1.2f, 1.0f, 1.2f, 1.0f).setDuration(600).start();
+                    ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 1.2f, 1.0f, 1.2f, 1.0f).setDuration(600).start();
+                     verticalViewPager.setCurrentItem(jsonGlassesClassification.getData().size()+2);
+                }
+            });
+        } else {
+            MyLog.showLog("dbtoken","用户未登录");
+            head.put("token", "");
+            loginText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ObjectAnimator.ofFloat(v, "scaleY", 1.0f, 1.2f, 1.0f, 1.2f, 1.0f).setDuration(600).start();
+                    ObjectAnimator.ofFloat(v, "scaleX", 1.0f, 1.2f, 1.0f, 1.2f, 1.0f).setDuration(600).start();
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
         NetOkHttpClient.postAsyn(URL.CATEGORY_LIST, new NetOkHttpClient.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -260,19 +289,16 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
     public void goToLogin() {
         loginText = bindView(R.id.goto_login);
-        loginText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+        shoppingText=bindView(R.id.shopping_car);
+
     }
+
     public void setMirrorAnim(){
         mirrorIv = bindView(R.id.mirror_icon);
         mirrorIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //动画效果
                 ObjectAnimator.ofFloat(v, "scaleY", 1.0f, 1.2f, 1.0f, 1.2f, 1.0f).setDuration(600).start();
                 ObjectAnimator.ofFloat(v, "scaleX", 1.0f, 1.2f, 1.0f, 1.2f, 1.0f).setDuration(600).start();
             }
@@ -340,6 +366,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         selectTitleRc.setLayoutManager(gridLayoutManager);
         selectTitleRc.setAdapter(selectTitleRecyclerViewAdapter);
+        //弹出选项弹窗
         selectTitleRecyclerViewAdapter.setPositionClickListener(new SelectTitleRecyclerViewAdapter.ClickListener() {
             @Override
             public void setClickListener(int popMenuPosition) {
@@ -366,6 +393,12 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
         labelEntityDao = daoSession.getLabelEntityDao();
+        /////toke数据库
+        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(this, "Login.db", null);
+        SQLiteDatabase db2 = helper2.getWritableDatabase();
+        DaoMaster daoMaster2 = new DaoMaster(db2);
+        DaoSession daoSession2 = daoMaster2.newSession();
+        loginDao = daoSession2.getLoginDao();
     }
     public List<Fragment> NoGetFragmentList(){
         List<Fragment> listFragments = new ArrayList<Fragment>();

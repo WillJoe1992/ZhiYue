@@ -1,15 +1,40 @@
 package com.lanou.mirror.activity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.mtp.MtpConstants;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
+import com.lanou.mirror.base.BaseApplication;
+import com.lanou.mirror.bean.LoginBean;
+import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
+import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
+import com.lanou.mirror.greendaodemo.entity.greendao.Login;
+import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
+import com.lanou.mirror.net.NetOkHttpClient;
+import com.lanou.mirror.tool.MyLog;
+import com.lanou.mirror.tool.MyToast;
+import com.lanou.mirror.tool.ShowToast;
+import com.lanou.mirror.tool.URL;
+import com.squareup.okhttp.Request;
+
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Created by wyc on 16/4/5.
@@ -19,7 +44,13 @@ public class LoginActivity extends BaseActivity {
     private Button loginBtn, registerBtn;
     private MyTextWatcher myTextWatcher;
     private ImageView closeImage;
+    String phone,password;
 
+    private SQLiteDatabase db;
+    private LoginDao loginDao;
+    private DaoMaster daoMaster;
+    private DaoSession daoSession;
+    private HashMap<String,String>head;
     @Override
     protected void initData() {
 
@@ -87,13 +118,67 @@ public class LoginActivity extends BaseActivity {
             } else if (phoneEdt.getText().toString().length() > 0 || passwordEdt.getText().toString().length() > 3) {
                 loginBtn.setEnabled(true);// 使loginBtn为可点击状态
                 loginBtn.setBackgroundResource(R.drawable.login_btn);
+                loginBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        phone=phoneEdt.getText().toString();
+                        password=passwordEdt.getText().toString();
+                        head=new HashMap<String, String>();
+                        head.put("phone_number",phone);
+                        head.put("password",password);
+                        NetOkHttpClient.postAsyn(URL.USER_LOGIN, new NetOkHttpClient.ResultCallback<String> (){
+                            @Override
+                            public void onError(Request request, Exception e) {
+                                ShowToast.showToast("网络连接错误");
+                            }
+
+                            @Override
+                            public void onResponse(String response) throws JSONException {
+                               MyLog.showLog("登录状态",response.toString());
+                                LoginBean loginBean=new LoginBean();
+                                Map<String,String> data=new HashMap<>();
+                                data=loginBean.getLoginBean(response);
+                               if(data.get("result").equals("1")&&data!=null){
+                                   ShowToast.showToast("登录成功");
+                                   //将凭证传入数据库
+                                   setupDatabase();
+                                   loginDao.deleteAll();
+                                   Login login=new Login();
+                                   login.setToken(data.get("token"));
+                                   login.setUid(data.get("uid"));
+                                   loginDao.insert(login);
+                                   Intent intent=new Intent(BaseApplication.getContext(),MainActivity.class);
+                                   startActivity(intent);
+                                   finish();
+                               }else {
+                                   ShowToast.showToast(data.get("msg"));
+                               }
+                            }
+                        },head);
+                    }
+                });
             }
         }
+
+
     }
 
 
     @Override
     protected int setContent() {
         return R.layout.activity_login;
+    }
+    private void setupDatabase() {
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"Login.db",null);
+        db=helper.getWritableDatabase();
+        daoMaster=new DaoMaster(db);
+        daoSession=daoMaster.newSession();
+        loginDao=daoSession.getLoginDao();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        return super.onKeyDown(keyCode, event);
     }
 }

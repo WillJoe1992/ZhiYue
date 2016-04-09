@@ -29,7 +29,9 @@ import com.lanou.mirror.greendaodemo.entity.greendao.AllHolderDao;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
+import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
 import com.lanou.mirror.net.NetOkHttpClient;
+import com.lanou.mirror.tool.MyLog;
 import com.lanou.mirror.tool.ShowToast;
 import com.lanou.mirror.tool.URL;
 import com.squareup.okhttp.Request;
@@ -67,15 +69,16 @@ public class AllFragment extends BaseFragment {
     // 会话
     private DaoSession daoSession;
     private NotNetAllAdapter notNetAllAdapter;
-
+    private LoginDao loginDao;
     @Override
     public int getLayout() {
-        Log.d("ssssssssssss","sssssssssssss");
+        Log.d("ssssssssssss", "sssssssssssss");
         return R.layout.fragment_homepage;
     }
 
     @Override
     protected void initView() {
+        MyLog.showLog("AllFragment","启动");
         titleSelect = bindView(R.id.title_select);
         homePageRecyclerView = bindView(R.id.fragment_homepage_recyclerview);
         fragmentHomepageTitle = bindView(R.id.fragment_homepage_title);
@@ -84,12 +87,18 @@ public class AllFragment extends BaseFragment {
         String titleName = (String) bundle.get("titleName");
         String url = (String) bundle.get("CategoryId");
         fragmentHomepageTitle.setText(titleName);
+        setupDatabase();
         headGlasses = new HashMap<>();
         headGlasses.put("device_type", "1");
-        headGlasses.put("token", "");
+        //用户已登录返回token
+        if (loginDao.loadAll().size()>0 && loginDao.loadAll().get(0).getToken() != null) {
+            MyLog.showLog("ALLdbtoken",loginDao.loadAll().get(0).getToken());
+           headGlasses.put("token",loginDao.loadAll().get(0).getToken());
+        } else {
+            headGlasses.put("token", "");
+        }
         headGlasses.put("page", "");
         headGlasses.put("last_time", "");
-        setupDatabase();
         NetOkHttpClient.postAsyn(URL.INDEX_MRTJ, new NetOkHttpClient.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -199,6 +208,13 @@ public class AllFragment extends BaseFragment {
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
         allHolderDao = daoSession.getAllHolderDao();
+        loginDao = daoSession.getLoginDao();
+        /////toke数据库
+        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(BaseApplication.getContext(), "Login.db", null);
+        SQLiteDatabase db2 = helper2.getWritableDatabase();
+        DaoMaster daoMaster2 = new DaoMaster(db2);
+        DaoSession daoSession2 = daoMaster2.newSession();
+        loginDao = daoSession2.getLoginDao();
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONSpecial;
+import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
 
 /**
@@ -19,10 +20,12 @@ import com.lanou.mirror.net.NetImageLoader;
 public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.HolderSpecialAdapter>{
 private JSONSpecial jsonSpecial;
 private SpecialOnClick specialOnClick;
-    private NetImageLoader netImageLoader;
+ //   private NetImageLoader netImageLoader;
+    private ImageLoaderHelper imageLoaderHelper;
     public SpecialAdapter(JSONSpecial jsonSpecial) {
         this.jsonSpecial = jsonSpecial;
-        netImageLoader=new NetImageLoader();
+    //    netImageLoader=new NetImageLoader();
+        imageLoaderHelper=new ImageLoaderHelper();
     }
 
     @Override
@@ -35,7 +38,8 @@ private SpecialOnClick specialOnClick;
     @Override
     public void onBindViewHolder(HolderSpecialAdapter holder, final int position) {
       holder.specialTitle.setText(jsonSpecial.getData().getList().get(position).getStory_title());
-      netImageLoader.getImgOfLoader(holder.specialIv, jsonSpecial.getData().getList().get(position).getStory_img());
+    //  netImageLoader.getImgOfLoader(holder.specialIv, jsonSpecial.getData().getList().get(position).getStory_img());
+        imageLoaderHelper.loadImage(jsonSpecial.getData().getList().get(position).getStory_img(),holder.specialIv);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,10 +61,12 @@ private SpecialOnClick specialOnClick;
             super(itemView);
             specialTitle= (TextView) itemView.findViewById(R.id.special_title);
             specialIv= (ImageView) itemView.findViewById(R.id.special_iv);
+
         }
     }
    public interface SpecialOnClick{
         void specialOnClick(int position);
+
     }
     public void MySpecialOnClick(SpecialOnClick specialOnClick){
         this.specialOnClick=specialOnClick;

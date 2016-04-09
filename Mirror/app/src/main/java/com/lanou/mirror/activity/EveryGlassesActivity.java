@@ -2,6 +2,7 @@ package com.lanou.mirror.activity;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,8 +23,13 @@ import com.lanou.mirror.adapter.HomePagerRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.bean.JSONAllson;
 import com.lanou.mirror.bean.JSONGlasses;
+import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
+import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
+import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.FullyGridLayoutManager;
+import com.lanou.mirror.tool.MyLog;
+import com.lanou.mirror.tool.MyToast;
 import com.lanou.mirror.tool.ObservableScrollView;
 import com.lanou.mirror.tool.ScrollViewListener;
 import com.lanou.mirror.tool.URL;
@@ -54,6 +60,18 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
 
     private HashMap<String, String> head;
     private JSONAllson jsonAllson;
+    // 数据库
+    private SQLiteDatabase db;
+    // 管理者
+    private DaoMaster mDaoMaster;
+    // 会话
+    private DaoSession mDaoSession;
+    // 管理者
+    private DaoMaster daoMaster;
+    // 会话
+    private DaoSession daoSession;
+
+    private LoginDao loginDao;
 
     private TextView everyglassesEnglishTitle,everyglassesName,everyglassesGlassesContent,everyglassesPrice,everyglassesNameBeforerecyclerview;
 
@@ -70,6 +88,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
         everyglassesGlassesContent=bindView(R.id.everyglasses_glassesContent);
         everyglassesPrice=bindView(R.id.everyglasses_price);
         everyglassesNameBeforerecyclerview=bindView(R.id.everyglasses_name_beforerecyclerview);
+        setupDatabase();
 
 
 
@@ -234,14 +253,30 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
         switch (v.getId()){
             case R.id.everyglasses_button_back:
                 // TODO 跳转
+                finish();
                 Toast.makeText(EveryGlassesActivity.this, "点击了返回按钮", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.everyglasses_button_topic:
                 Toast.makeText(EveryGlassesActivity.this, "点击了佩戴图集按钮", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.everyglasses_button_buy:
-                Toast.makeText(EveryGlassesActivity.this, "点击了购买按钮", Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(EveryGlassesActivity.this, "点击了购买按钮", Toast.LENGTH_SHORT).show();
+                MyLog.showLog("cccccccc",loginDao.loadAll().get(0).getToken());
+                if(!loginDao.loadAll().get(0).getToken().isEmpty()&&loginDao.loadAll().get(0).getToken().length()>0){
+                   MyLog.showLog("hhhhhhhhhh","hhhhhhhhhh");
+                }else {
+                    Intent intent=new Intent(EveryGlassesActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
+    }
+    //初始化数据库
+    private void setupDatabase() {
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "Login.db", null);
+        db = helper.getWritableDatabase();
+        daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+        loginDao = daoSession.getLoginDao();
     }
 }

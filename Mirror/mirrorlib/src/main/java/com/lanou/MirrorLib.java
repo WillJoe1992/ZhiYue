@@ -57,5 +57,10 @@ public class MirrorLib {
         special.addIdProperty().autoincrement().primaryKey();
         special.addStringProperty("Story_title");
         special.addStringProperty("Story_img");
+
+        Entity login=schema.addEntity("Login");
+        login.addIdProperty().autoincrement().primaryKey();
+        login.addStringProperty("token");
+        login.addStringProperty("uid");
     }
 }

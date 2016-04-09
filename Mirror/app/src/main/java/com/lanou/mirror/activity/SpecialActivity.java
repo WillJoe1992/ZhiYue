@@ -12,6 +12,7 @@ import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.adapter.SpecialPictureAdapter;
+import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
 
 /**
@@ -23,14 +24,16 @@ public class SpecialActivity extends BaseActivity {
     private SpecialPictureAdapter specialPictureAdapter;
     private LinearLayoutManager linearLayoutManager;
     private ImageView activitySpecialContentImageView;
-    private NetImageLoader netImageLoader;
+ //   private NetImageLoader netImageLoader;
+    private ImageLoaderHelper imageLoaderHelper;
     private JSONSpecial jsonSpecial;
     private int position;
 
     @Override
     protected void initData() {
-        netImageLoader=new NetImageLoader();
+    //    netImageLoader=new NetImageLoader();
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        imageLoaderHelper=new ImageLoaderHelper();
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         Intent intent = getIntent();
@@ -41,7 +44,8 @@ public class SpecialActivity extends BaseActivity {
         specialPictureAdapter = new SpecialPictureAdapter(this, jsonSpecial, position);
         recyclerView.setAdapter(specialPictureAdapter);
 
-         netImageLoader.getImgOfLoader(activitySpecialContentImageView,jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(0));
+      //   netImageLoader.getImgOfLoader(activitySpecialContentImageView, jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(0));
+        imageLoaderHelper.loadImage(jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(0),activitySpecialContentImageView);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -51,11 +55,18 @@ public class SpecialActivity extends BaseActivity {
                     //判断Fragment划过两个
                     if (linearLayoutManager.findFirstVisibleItemPosition() % 2 == 0) {
                         int i = linearLayoutManager.findFirstVisibleItemPosition() / 2;
-                        netImageLoader.getImgOfLoader(activitySpecialContentImageView,jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i));
+                    //    netImageLoader.getImgOfLoader(activitySpecialContentImageView, jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i));
+                        imageLoaderHelper.loadImage(jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i),activitySpecialContentImageView);
                         Log.d("aaaaaaaaaa", jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i));
                     }
                 }
 
+            }
+        });
+        specialPictureAdapter.SpecialOnClickBack(new SpecialPictureAdapter.SpecialOnClickBack() {
+            @Override
+            public void SpecialOnClickBack() {
+                finish();
             }
         });
     }

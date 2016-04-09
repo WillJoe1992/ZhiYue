@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONAll;
+import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
 
 import java.util.Random;
@@ -24,13 +25,15 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
 
     private SpecialOnClick specialOnClick;
     private Random random=new Random();
-    private NetImageLoader netImageLoader;
+ //   private NetImageLoader netImageLoader;
+
+    private ImageLoaderHelper imageLoaderHelper;
     public AllRecyclerViewAdapter(Context context, JSONAll jsonAll) {
 
             this.context = context;
             this.jsonAll = jsonAll;
-            netImageLoader=new NetImageLoader();
-
+//            netImageLoader=new NetImageLoader();
+            imageLoaderHelper=new ImageLoaderHelper();
 
 
     }
@@ -99,7 +102,8 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
                 case 1:
                     HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
 
-                    netImageLoader.getImgOfLoader(homePageViewHolder.allImageView,jsonAll.getData().getList().get(position).getData_info().getGoods_img());
+//                    netImageLoader.getImgOfLoader(homePageViewHolder.allImageView,jsonAll.getData().getList().get(position).getData_info().getGoods_img());
+                    imageLoaderHelper.loadImage(jsonAll.getData().getList().get(position).getData_info().getGoods_img(),homePageViewHolder.allImageView);
                     homePageViewHolder.homepageBrand.setText(jsonAll.getData().getList().get(position).getData_info().getBrand());
                     homePageViewHolder.homepageModel.setText(jsonAll.getData().getList().get(position).getData_info().getModel());
                     homePageViewHolder.homepageProduct.setText(jsonAll.getData().getList().get(position).getData_info().getProduct_area());

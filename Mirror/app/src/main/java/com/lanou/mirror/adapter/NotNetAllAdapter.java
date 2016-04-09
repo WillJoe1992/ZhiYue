@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.lanou.mirror.R;
 import com.lanou.mirror.greendaodemo.entity.greendao.AllHolderDao;
+import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
 import com.lanou.mirror.tool.MyLog;
 
@@ -22,11 +23,13 @@ import java.util.ArrayList;
 public class NotNetAllAdapter extends RecyclerView.Adapter{
     private Context context;
     private AllHolderDao allHolderDao;
-    private NetImageLoader netImageLoader;
+ //   private NetImageLoader netImageLoader;
+    private ImageLoaderHelper imageLoaderHelper;
     public NotNetAllAdapter(Context context, AllHolderDao allHolderDao) {
         this.context = context;
         this.allHolderDao = allHolderDao;
-        netImageLoader=new NetImageLoader();
+  //      netImageLoader=new NetImageLoader();
+        imageLoaderHelper=new ImageLoaderHelper();
     }
 
     @Override
@@ -60,7 +63,8 @@ public class NotNetAllAdapter extends RecyclerView.Adapter{
 
             case 1:
                 HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
-                netImageLoader.getImgOfLoader(homePageViewHolder.allImageView,allHolderDao.loadAll().get(position).getStory_img());
+         //       MyLog.showLog("NotNetAllAdapter",allHolderDao.loadAll().get(position).getStory_img());
+                imageLoaderHelper.loadImage(allHolderDao.loadAll().get(position).getGoods_img(),homePageViewHolder.allImageView);
                 homePageViewHolder.homepageBrand.setText(allHolderDao.loadAll().get(position).getBrand());
                 homePageViewHolder.homepageModel.setText(allHolderDao.loadAll().get(position).getModel());
                 homePageViewHolder.homepageProduct.setText(allHolderDao.loadAll().get(position).getProduct_area());
