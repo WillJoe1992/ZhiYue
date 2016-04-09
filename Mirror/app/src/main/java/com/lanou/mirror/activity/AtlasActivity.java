@@ -2,6 +2,7 @@ package com.lanou.mirror.activity;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
@@ -18,12 +19,15 @@ import com.squareup.okhttp.Request;
 
 import java.util.HashMap;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 /**
  * Created by wyc on 16/3/31.
  */
 public class AtlasActivity extends BaseActivity {
-    private HashMap<String,String> head;
+    public static HashMap<String,String> head;
     private JSONAtlas data;
+    private JCVideoPlayer jcVideoPlayer;
     private RecyclerView recyclerView;
     private AtlasAdapter atlasAdapter;
 
@@ -47,8 +51,10 @@ public class AtlasActivity extends BaseActivity {
             public void onResponse(String response) {
                 Gson gson = new Gson();
                 data = gson.fromJson(response,JSONAtlas.class);
+                Log.d("asd","asd"+data.getData().getList().get(0).getWear_video().get(0).getData());
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(atlasActivity,1);
-
+                Log.d("AtlasActivity", response);
+                recyclerView.setLayoutManager(gridLayoutManager);
                 atlasAdapter = new AtlasAdapter(data);
                 recyclerView.setAdapter(atlasAdapter);
             }
@@ -59,6 +65,7 @@ public class AtlasActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        recyclerView = bindView(R.id.atlas_recyclerview);
 
     }
 

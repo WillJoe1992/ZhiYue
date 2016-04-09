@@ -80,10 +80,10 @@
     <dimen name="special_content_picture_item_sharebtn_paddingbottom">20dp</dimen>
 
     <dimen name="activity_atlas_title_margintop">18px</dimen>
-    <dimen name="activity_atlas_title_textsize">19px</dimen>
+    <dimen name="activity_atlas_title_textsize">29px</dimen>
     <dimen name="activity_atlas_marginleft_right">39px</dimen>
     <dimen name="activity_atlas_linewid">390px</dimen>
-    <dimen name="activity_atlas_line_margintop">20px</dimen>
+    <dimen name="activity_atlas_line_margintop">10px</dimen>
 
     <dimen name="activity_select_layouthei">70px</dimen>
     <dimen name="activity_select_paddingleft">75px</dimen>

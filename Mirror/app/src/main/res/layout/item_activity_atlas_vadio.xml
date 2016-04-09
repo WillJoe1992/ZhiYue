@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <VideoView
-        android:id="@+id/atlas_item_video"
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+        android:id="@+id/atlas_jcvideo"
         android:layout_width="match_parent"
-        android:layout_height="417px"
-        android:layout_marginTop="20px" />
+        android:layout_height="200dp" />
 
 </LinearLayout>

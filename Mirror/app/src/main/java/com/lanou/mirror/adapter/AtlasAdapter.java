@@ -1,19 +1,14 @@
 package com.lanou.mirror.adapter;
 
-import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.MediaController;
-import android.widget.VideoView;
-
 import com.lanou.mirror.R;
-import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.bean.JSONAtlas;
-import com.lanou.mirror.tool.URL;
+import com.lanou.mirror.net.NetImageLoader;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 /**
  * Created by wyc on 16/4/6.
@@ -26,9 +21,6 @@ public class AtlasAdapter extends RecyclerView.Adapter {
     public AtlasAdapter(JSONAtlas data) {
         this.data = data;
     }
-
-
-
 
 
     @Override
@@ -51,24 +43,31 @@ public class AtlasAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         int type = getItemViewType(position);
-        switch (type){
+        String atlasType = data.getData().getList().get(0).getWear_video().get(0).getType();
+
+        switch (type) {
             case TYPE_VIDEO:
                 AtlasVideoViewHolder videoViewHolder = (AtlasVideoViewHolder) holder;
+                if (Integer.valueOf(atlasType) == 8) {
+                    videoViewHolder.jcVideoPlayer.setUp(data.getData().getList().get(0).getWear_video().get(0).getData()," ");
 
-                MediaController mediaController = new MediaController(BaseApplication.getContext());
-                videoViewHolder.videoView.setMediaController(mediaController);
+                }
                 break;
             case TYPE_IMAGE:
                 AtlasImageViewHolder imageViewHolder = (AtlasImageViewHolder) holder;
+                if (Integer.valueOf(atlasType) != 1) {
+                    NetImageLoader netImageLoader = new NetImageLoader();
+                    netImageLoader.getImgOfLoader(imageViewHolder.imageView, data.getData().getList().get(0).getWear_video().get(1).getData());
+                }
                 break;
         }
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0){
+        if (position == 0) {
             return TYPE_VIDEO;
-        }else {
+        } else {
             return TYPE_IMAGE;
 
         }
@@ -90,11 +89,11 @@ public class AtlasAdapter extends RecyclerView.Adapter {
     }
 
     class AtlasVideoViewHolder extends RecyclerView.ViewHolder {
-        private VideoView videoView;
+        private JCVideoPlayer jcVideoPlayer;
 
         public AtlasVideoViewHolder(View itemView) {
             super(itemView);
-            videoView = (VideoView) itemView.findViewById(R.id.atlas_item_video);
+            jcVideoPlayer = (JCVideoPlayer) itemView.findViewById(R.id.atlas_jcvideo);
         }
     }
 }
