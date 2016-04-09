@@ -38,6 +38,7 @@
         android:text="@string/register_phone_text" />
 
     <EditText
+        android:id="@+id/phone_number"
         android:layout_width="match_parent"
         android:layout_height="@dimen/register_phoneedt_hei"
         android:layout_marginLeft="@dimen/login_marginleft"
@@ -59,6 +60,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/code"
             android:layout_width="0dp"
             android:layout_height="@dimen/register_authcode_edt_hei"
             android:layout_marginLeft="@dimen/register_authcode_marginleft"
@@ -69,6 +71,7 @@
             android:singleLine="true" />
 
         <Button
+            android:id="@+id/sms"
             android:layout_width="0dp"
             android:layout_height="@dimen/register_authcodebtn_hei"
             android:layout_marginRight="@dimen/login_marginright"
@@ -88,6 +91,7 @@
         android:text="@string/register_password" />
 
     <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="@dimen/register_passwordedt_hei"
         android:layout_marginLeft="@dimen/login_marginleft"
@@ -97,6 +101,7 @@
         android:singleLine="true" />
 
     <Button
+        android:id="@+id/login_new_user"
         android:layout_width="match_parent"
         android:layout_height="@dimen/register_newuserbtn_hei"
         android:layout_marginLeft="@dimen/login_marginleft"

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -12,7 +13,6 @@ import android.widget.TextView;
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.bean.JSONSpecial;
-import com.lanou.mirror.net.NetImageLoader;
 import com.lanou.mirror.tool.GetScreenHeight;
 
 /**
@@ -25,6 +25,7 @@ public class SpecialPictureAdapter extends RecyclerView.Adapter<SpecialPictureAd
     private View mHeaderView;
 
     JSONSpecial jsonSpecial;
+    SpecialOnClickBack specialOnClickBack;
     int MainPosition;
     public SpecialPictureAdapter(Context context, JSONSpecial jsonSpecial,int MainPosition) {
         this.context = BaseApplication.getContext();
@@ -35,7 +36,7 @@ public class SpecialPictureAdapter extends RecyclerView.Adapter<SpecialPictureAd
     @Override
     public SpecialPictureHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //加载有内容的布局
-        mHeaderView = LayoutInflater.from(parent.getContext()).inflate(R.layout.special_content_picture_item, parent, false);
+        mHeaderView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_special_content_picture, parent, false);
         SpecialPictureHolder specialPictureHolder=null;
         if (mHeaderView != null && viewType == TYPE_HEADER) {
             specialPictureHolder = new SpecialPictureHolder(mHeaderView);
@@ -44,7 +45,7 @@ public class SpecialPictureAdapter extends RecyclerView.Adapter<SpecialPictureAd
             specialPictureHolder.specialContentPictureItemRv.setLayoutParams(layoutParams);
         } else {
             //加载空的布局
-            View nullView = LayoutInflater.from(parent.getContext()).inflate(R.layout.special_content_picture_null_item, parent, false);
+            View nullView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_special_content_picture_null, parent, false);
             specialPictureHolder=new SpecialPictureHolder(nullView);
             ViewGroup.LayoutParams layoutParams = specialPictureHolder.specialContentPictureNullItemView.getLayoutParams();
             layoutParams.height= GetScreenHeight.getScreenHeight(context);
@@ -59,6 +60,12 @@ public class SpecialPictureAdapter extends RecyclerView.Adapter<SpecialPictureAd
             holder.specialContentItemShareTvContent.setText(jsonSpecial.getData().getList().get(MainPosition).getStory_data().getText_array().get(position).getSubTitle());
             holder.specialContentItemShareTvTitle.setText(jsonSpecial.getData().getList().get(MainPosition).getStory_data().getText_array().get(position).getSmallTitle());
             holder.specialContentItemShareTvBigTitle.setText(jsonSpecial.getData().getList().get(MainPosition).getStory_data().getText_array().get(position).getSmallTitle());
+            holder.specialBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    specialOnClickBack.SpecialOnClickBack();
+                }
+            });
         }
     }
 
@@ -71,7 +78,7 @@ public class SpecialPictureAdapter extends RecyclerView.Adapter<SpecialPictureAd
     class SpecialPictureHolder extends RecyclerView.ViewHolder {
         RelativeLayout specialContentPictureItemRv;
         LinearLayout specialContentPictureNullItemView;
-
+        ImageView specialBack;
         TextView specialContentItemShareTvTitle,specialContentItemShareTvBigTitle,specialContentItemShareTvContent;
         public SpecialPictureHolder(View itemView) {
             super(itemView);
@@ -80,6 +87,7 @@ public class SpecialPictureAdapter extends RecyclerView.Adapter<SpecialPictureAd
             specialContentItemShareTvTitle= (TextView) itemView.findViewById(R.id.special_content_item_share_tv_title);
             specialContentItemShareTvBigTitle= (TextView) itemView.findViewById(R.id.special_content_item_share_tv_big_title);
             specialContentItemShareTvContent= (TextView) itemView.findViewById(R.id.special_content_item_share_tv_content);
+            specialBack= (ImageView) itemView.findViewById(R.id.special_back);
         }
     }
 
@@ -90,5 +98,11 @@ public class SpecialPictureAdapter extends RecyclerView.Adapter<SpecialPictureAd
         } else {
             return TYPE_NORMAL;
         }
+    }
+    public interface SpecialOnClickBack{
+        void SpecialOnClickBack();
+    }
+    public void SpecialOnClickBack(SpecialOnClickBack specialOnClickBack){
+        this.specialOnClickBack=specialOnClickBack;
     }
 }

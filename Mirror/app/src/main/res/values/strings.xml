@@ -16,9 +16,7 @@
     <string name="register_authcode">發送驗證碼</string>
     <string name="register_password">設置密碼</string>
     <string name="register_newuser">創建賬號</string>
-
-
-
+    <string name="shopping">购物车</string>
 
 
 </resources>

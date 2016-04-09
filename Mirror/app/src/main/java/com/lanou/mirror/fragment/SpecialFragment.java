@@ -24,6 +24,7 @@ import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.greendaodemo.entity.greendao.AllHolderDao;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
+import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
 import com.lanou.mirror.greendaodemo.entity.greendao.Special;
 import com.lanou.mirror.greendaodemo.entity.greendao.SpecialDao;
 import com.lanou.mirror.net.NetOkHttpClient;
@@ -57,7 +58,7 @@ public class SpecialFragment extends BaseFragment{
     // 会话
     private DaoSession daoSession;
     private NotNetSpecialAdapter notNetSpecialAdapter;
-
+    private LoginDao loginDao;
     @Override
     public int getLayout() {
         return R.layout.fragment_homepage;
@@ -73,20 +74,25 @@ public class SpecialFragment extends BaseFragment{
         String titleName = (String) bundle.get("titleName");
         fragmentHomepageTitle.setText(titleName);
         head.put("device_type", "1");
-        head.put("token","");
+        //初始化数据库
+        setupDatabase();
+        //用户已登录返回token
+        if (loginDao.loadAll().size()>0 && loginDao.loadAll().get(0).getToken() != null) {
+            MyLog.showLog("SpecialPagerdbtoken", loginDao.loadAll().get(0).getToken());
+            head.put("token", loginDao.loadAll().get(0).getToken());
+        } else {
+            head.put("token", "");
+        }
         head.put("uid","");
         head.put("page","");
         head.put("last_time", "");
         titleSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 title = fragmentHomepageTitle.getText().toString();
                 ((MainActivity) getActivity()).showPopupWindow(v, title);
             }
         });
-        setupDatabase();
         NetOkHttpClient.postAsyn(URL.TEST_STORY_LIST, new NetOkHttpClient.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -109,9 +115,9 @@ public class SpecialFragment extends BaseFragment{
                 specialAdapter.MySpecialOnClick(new SpecialAdapter.SpecialOnClick() {
                     @Override
                     public void specialOnClick(int position) {
-                        Intent intent=new Intent(BaseApplication.getContext(),SpecialActivity.class);
-                        intent.putExtra("jsonSpecial",jsonSpecial);
-                        intent.putExtra("position",position);
+                        Intent intent=new Intent(getActivity(),SpecialActivity.class);
+                        intent.putExtra("jsonSpecial", jsonSpecial);
+                        intent.putExtra("position", position);
                         startActivity(intent);
                     }
                 });
@@ -127,7 +133,7 @@ public class SpecialFragment extends BaseFragment{
             notNetSpecialAdapter=new NotNetSpecialAdapter(specialDao);
             homePageRecyclerView.setAdapter(notNetSpecialAdapter);
         }
-        MyLog.showLog("wewewewewew",""+specialDao.loadAll().get(0).getStory_img());
+    //    MyLog.showLog("wewewewewew",""+specialDao.loadAll().get(0).getStory_img());
     }
 
     private void addHolder() {
@@ -156,5 +162,11 @@ public class SpecialFragment extends BaseFragment{
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
         specialDao = daoSession.getSpecialDao();
+        /////toke数据库
+        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(BaseApplication.getContext(), "Login.db", null);
+        SQLiteDatabase db2 = helper2.getWritableDatabase();
+        DaoMaster daoMaster2 = new DaoMaster(db2);
+        DaoSession daoSession2 = daoMaster2.newSession();
+        loginDao = daoSession2.getLoginDao();
     }
 }

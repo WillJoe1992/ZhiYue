@@ -74,8 +74,8 @@
     <dimen name="special_content_picture_item_contenttext_marginleft">32px</dimen>
     <dimen name="special_content_picture_item_contenttext_margintop">22px</dimen>
     <dimen name="special_content_picture_item_contenttext_size">20px</dimen>
-    <dimen name="special_content_picture_item_sharebtn_wid_hei">20dp</dimen>
-    <dimen name="special_content_picture_item_sharebtn_margin_bottom_right">20dp</dimen>
+    <dimen name="special_content_picture_item_sharebtn_wid_hei">30dp</dimen>
+    <dimen name="special_content_picture_item_sharebtn_margin_bottom_right">30dp</dimen>
     <dimen name="special_content_picture_item_sharebtn_marginend">26dp</dimen>
     <dimen name="special_content_picture_item_sharebtn_paddingbottom">20dp</dimen>
 

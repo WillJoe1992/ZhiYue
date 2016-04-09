@@ -5,7 +5,14 @@
     android:layout_height="match_parent"
     android:background="@color/glass_content_lucecy_background"
     android:orientation="vertical">
-
+    <ImageView
+        android:id="@+id/special_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/login_image_close_marginright"
+        android:layout_marginTop="@dimen/login_image_close_margintop"
+        android:src="@mipmap/login_close" />
     <LinearLayout
         android:layout_width="@dimen/special_content_picture_item_layoutwid"
         android:layout_height="@dimen/special_content_picture_item_layouthei"

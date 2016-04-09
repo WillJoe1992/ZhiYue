@@ -16,6 +16,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.activity.EveryGlassesActivity;
 import com.lanou.mirror.bean.JSONGlasses;
+import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
 
 /**
@@ -24,12 +25,18 @@ import com.lanou.mirror.net.NetImageLoader;
 public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     private Context context;
     private JSONGlasses jsonGlasses;
+<<<<<<< HEAD
     private NetImageLoader netImageLoader;
     private AnimationDrawable animationDrawable;
+=======
+ //   private NetImageLoader netImageLoader;
+    private ImageLoaderHelper imageLoaderHelper;
+>>>>>>> feature/宋爱珍
     public HomePagerRecyclerViewAdapter(Context context,JSONGlasses jsonGlasses) {
         this.context = context;
         this.jsonGlasses=jsonGlasses;
-        netImageLoader=new NetImageLoader();
+  //      netImageLoader=new NetImageLoader();
+        imageLoaderHelper=new ImageLoaderHelper();
     }
 
     @Override
@@ -41,7 +48,8 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
-        netImageLoader.getImgOfLoader(homePageViewHolder.imageView,jsonGlasses.getData().getList().get(position).getGoods_img());
+    //    netImageLoader.getImgOfLoader(homePageViewHolder.imageView,jsonGlasses.getData().getList().get(position).getGoods_img());
+        imageLoaderHelper.loadImage(jsonGlasses.getData().getList().get(position).getGoods_img(),homePageViewHolder.imageView);
         homePageViewHolder.homepageBrand.setText(jsonGlasses.getData().getList().get(position).getBrand());
         homePageViewHolder.homepageModle.setText(jsonGlasses.getData().getList().get(position).getModel());
         homePageViewHolder.homepageProduct.setText(jsonGlasses.getData().getList().get(position).getProduct_area());

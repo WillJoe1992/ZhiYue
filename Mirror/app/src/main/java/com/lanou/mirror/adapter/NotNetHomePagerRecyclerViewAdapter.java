@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONGlasses;
 import com.lanou.mirror.greendaodemo.entity.greendao.HomePagerDao;
+import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
 
 import java.util.ArrayList;
@@ -21,12 +22,14 @@ import java.util.ArrayList;
  */
 public class NotNetHomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     private Context context;
-    private NetImageLoader netImageLoader;
+ //   private NetImageLoader netImageLoader;
+    private ImageLoaderHelper imageLoaderHelper;
     private HomePagerDao homePagerDaos;
     public NotNetHomePagerRecyclerViewAdapter(Context context,HomePagerDao homePagerDaos) {
         this.context = context;
         this.homePagerDaos=homePagerDaos;
-        netImageLoader=new NetImageLoader();
+ //       netImageLoader=new NetImageLoader();
+        imageLoaderHelper=new ImageLoaderHelper();
     }
 
     @Override
@@ -38,7 +41,8 @@ public class NotNetHomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
-        netImageLoader.getImgOfLoader(homePageViewHolder.imageView, homePagerDaos.loadAll().get(position).getGoods_img());
+    //    netImageLoader.getImgOfLoader(homePageViewHolder.imageView, homePagerDaos.loadAll().get(position).getGoods_img());
+        imageLoaderHelper.loadImage(homePagerDaos.loadAll().get(position).getGoods_img(),homePageViewHolder.imageView);
         homePageViewHolder.homepageBrand.setText(homePagerDaos.loadAll().get(position).getBrand());
         homePageViewHolder.homepageModle.setText(homePagerDaos.loadAll().get(position).getModel());
         homePageViewHolder.homepageProduct.setText(homePagerDaos.loadAll().get(position).getProduct_area());
