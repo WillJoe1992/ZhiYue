@@ -57,7 +57,7 @@ public class AtlasAdapter extends RecyclerView.Adapter {
                 AtlasImageViewHolder imageViewHolder = (AtlasImageViewHolder) holder;
                 if (Integer.valueOf(atlasType) != 1) {
                     NetImageLoader netImageLoader = new NetImageLoader();
-                    netImageLoader.getImgOfLoader(imageViewHolder.imageView, data.getData().getList().get(0).getWear_video().get(1).getData());
+                    netImageLoader.getImgOfLoader(imageViewHolder.imageView, data.getData().getList().get(0).getWear_video().get(position+1).getData());
                 }
                 break;
         }
