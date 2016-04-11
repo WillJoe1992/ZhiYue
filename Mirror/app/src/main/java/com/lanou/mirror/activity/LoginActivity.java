@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.mtp.MtpConstants;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -35,15 +36,21 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.wechat.friends.Wechat;
+
 
 /**
  * Created by wyc on 16/4/5.
  */
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private EditText phoneEdt, passwordEdt;
     private Button loginBtn, registerBtn;
     private MyTextWatcher myTextWatcher;
-    private ImageView closeImage;
+    private ImageView closeImage,sinaLogin,weChatLogin;
     String phone,password;
 
     private SQLiteDatabase db;
@@ -63,6 +70,9 @@ public class LoginActivity extends BaseActivity {
         loginBtn = bindView(R.id.login_btn);
         registerBtn = bindView(R.id.login_register_btn);
         closeImage = bindView(R.id.activity_login_close);
+        sinaLogin = bindView(R.id.sina_login);
+        weChatLogin = bindView(R.id.weichat_login);
+        sinaLogin.setOnClickListener(this);
         setLoginBtn(); // 设置登录按钮在editText没输入东西的时候为不可点击状态
         goBack(); // 返回首页
         goToRegister(); // 去注册界面
@@ -96,6 +106,19 @@ public class LoginActivity extends BaseActivity {
             loginBtn.setBackgroundResource(R.mipmap.login_btn_gray);
         }
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.sina_login:
+                sinaGoToLogin();
+                break;
+            case R.id.weichat_login:
+                weChatGoToLogin();
+                break;
+        }
+    }
+
     // 对editText进行监听
     private class MyTextWatcher implements TextWatcher {
 
@@ -181,4 +204,57 @@ public class LoginActivity extends BaseActivity {
 
         return super.onKeyDown(keyCode, event);
     }
+    public void sinaGoToLogin() {
+        ShareSDK.initSDK(this);
+        Platform sinaPlatform = ShareSDK.getPlatform(SinaWeibo.NAME);
+        if (sinaPlatform.isAuthValid()) {
+            sinaPlatform.removeAccount();
+        }
+        sinaPlatform.setPlatformActionListener(new PlatformActionListener() {
+            @Override
+            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+                Log.i("android", platform.getDb().getUserName());
+            }
+
+            @Override
+            public void onError(Platform platform, int i, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onCancel(Platform platform, int i) {
+
+            }
+        });
+        sinaPlatform.SSOSetting(false);
+        sinaPlatform.showUser(null);
+    }
+    public void weChatGoToLogin() {
+        ShareSDK.initSDK(this);
+        Platform sinaPlatform = ShareSDK.getPlatform(Wechat.NAME);
+        if (sinaPlatform.isAuthValid()) {
+            sinaPlatform.removeAccount();
+        }
+        sinaPlatform.setPlatformActionListener(new PlatformActionListener() {
+            @Override
+            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+                Log.i("android", platform.getDb().getUserName());
+            }
+
+            @Override
+            public void onError(Platform platform, int i, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onCancel(Platform platform, int i) {
+
+            }
+        });
+        sinaPlatform.SSOSetting(false);
+        sinaPlatform.showUser(null);
+    }
+
+
+
 }

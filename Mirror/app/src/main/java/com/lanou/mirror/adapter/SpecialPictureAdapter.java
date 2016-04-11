@@ -43,6 +43,7 @@ public class SpecialPictureAdapter extends RecyclerView.Adapter<SpecialPictureAd
             ViewGroup.LayoutParams layoutParams = specialPictureHolder.specialContentPictureItemRv.getLayoutParams();
             layoutParams.height= GetScreenHeight.getScreenHeight(context);
             specialPictureHolder.specialContentPictureItemRv.setLayoutParams(layoutParams);
+
         } else {
             //加载空的布局
             View nullView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_special_content_picture_null, parent, false);
