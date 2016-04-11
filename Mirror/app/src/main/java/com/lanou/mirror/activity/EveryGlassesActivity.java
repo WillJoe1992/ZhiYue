@@ -3,6 +3,7 @@ package com.lanou.mirror.activity;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,13 +24,10 @@ import com.lanou.mirror.adapter.HomePagerRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.bean.JSONAllson;
 import com.lanou.mirror.bean.JSONGlasses;
-<<<<<<< HEAD
 import com.lanou.mirror.net.NetImageLoader;
-=======
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
->>>>>>> feature/宋爱珍
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.FullyGridLayoutManager;
 import com.lanou.mirror.tool.MyLog;
@@ -53,6 +51,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
 
     private RelativeLayout colorChanceRelativeLayout;
     private LinearLayout colorChanceLinearLayout;
+    private AnimationDrawable animationDrawable;
 
     // 按钮
     private ImageView ivBack, ivBuy;
@@ -87,6 +86,11 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
         ivBuy = bindView(R.id.everyglasses_button_buy);
         tvToPic = bindView(R.id.everyglasses_button_topic);
         backGround= bindView(R.id.background);
+
+        backGround.setImageResource(R.drawable.loading);
+        animationDrawable = (AnimationDrawable) backGround.getDrawable();
+        animationDrawable.start();
+
 
         everyglassesEnglishTitle=bindView(R.id.everyglasses_englishTitle);
         everyglassesName=bindView(R.id.everyglasses_name);
@@ -273,8 +277,8 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
                 if(!loginDao.loadAll().get(0).getToken().isEmpty()&&loginDao.loadAll().get(0).getToken().length()>0){
                    MyLog.showLog("hhhhhhhhhh","hhhhhhhhhh");
                 }else {
-                    Intent intent=new Intent(EveryGlassesActivity.this,LoginActivity.class);
-                    startActivity(intent);
+                    Intent intentEveryGlasses=new Intent(EveryGlassesActivity.this,LoginActivity.class);
+                    startActivity(intentEveryGlasses);
                 }
                 break;
         }

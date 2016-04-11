@@ -25,13 +25,13 @@ import com.lanou.mirror.net.NetImageLoader;
 public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     private Context context;
     private JSONGlasses jsonGlasses;
-<<<<<<< HEAD
+
     private NetImageLoader netImageLoader;
     private AnimationDrawable animationDrawable;
-=======
+
  //   private NetImageLoader netImageLoader;
     private ImageLoaderHelper imageLoaderHelper;
->>>>>>> feature/宋爱珍
+
     public HomePagerRecyclerViewAdapter(Context context,JSONGlasses jsonGlasses) {
         this.context = context;
         this.jsonGlasses=jsonGlasses;
