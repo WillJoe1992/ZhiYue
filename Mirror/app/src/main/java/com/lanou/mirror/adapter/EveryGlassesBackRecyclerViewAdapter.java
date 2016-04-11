@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.android.volley.toolbox.ImageLoader;
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONAllson;
+import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
 
 import java.util.ArrayList;
@@ -55,9 +56,11 @@ public class EveryGlassesBackRecyclerViewAdapter extends  RecyclerView.Adapter<E
 //
 //        }
       //  holder.iv.setImageResource(R.mipmap.glasses);
-
-        NetImageLoader netImageLoader =new NetImageLoader();
-        netImageLoader.getImgOfLoader(holder.iv,data.get(position).getImg());
+//
+//        NetImageLoader netImageLoader =new NetImageLoader();
+//        netImageLoader.getImgOfLoader(holder.iv,data.get(position).getImg());
+        ImageLoaderHelper imageLoaderHelper=new ImageLoaderHelper();
+        imageLoaderHelper.loadImage(data.get(position).getImg(),holder.iv);
     }
 
 

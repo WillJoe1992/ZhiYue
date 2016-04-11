@@ -33,5 +33,8 @@ dependencies {
     compile 'fm.jiecao:jiecaovideoplayer:2.0_preview'
     compile files('libs/universal-image-loader-1.8.6-with-sources.jar')
     compile files('libs/imageloder.jar')
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/宋爱珍
 }
