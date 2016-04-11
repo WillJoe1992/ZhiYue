@@ -23,13 +23,11 @@ import com.lanou.mirror.adapter.HomePagerRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.bean.JSONAllson;
 import com.lanou.mirror.bean.JSONGlasses;
-<<<<<<< HEAD
+import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
-=======
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
->>>>>>> feature/宋爱珍
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.FullyGridLayoutManager;
 import com.lanou.mirror.tool.MyLog;
@@ -99,9 +97,10 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
 
         Intent intent =getIntent();
         goodsId=intent.getStringExtra("goodsId");
-        NetImageLoader netImageLoader =new NetImageLoader();
-        netImageLoader.getImgOfLoader(backGround,intent.getStringExtra("picUrl"));
-
+      //  NetImageLoader netImageLoader =new NetImageLoader();
+       // netImageLoader.getImgOfLoader(backGround,intent.getStringExtra("picUrl"));
+        ImageLoaderHelper imageLoaderHelper=new ImageLoaderHelper();
+        imageLoaderHelper.loadImage(intent.getStringExtra("picUrl"),backGround);
         Log.d("EveryGlassesActivity", goodsId);
         head=new HashMap<>();
         //给head赋值然后进行网络拉取
@@ -264,17 +263,25 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
                 Toast.makeText(EveryGlassesActivity.this, "点击了返回按钮", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.everyglasses_button_topic:
-                Intent intent = new Intent(EveryGlassesActivity.this,AtlasActivity.class);
-                startActivity(intent);
+                if(!jsonAllson.getData().getGoods_id().isEmpty()){
+                    Intent intent = new Intent(EveryGlassesActivity.this,AtlasActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.everyglasses_button_buy:
              //   Toast.makeText(EveryGlassesActivity.this, "点击了购买按钮", Toast.LENGTH_SHORT).show();
-                MyLog.showLog("cccccccc",loginDao.loadAll().get(0).getToken());
-                if(!loginDao.loadAll().get(0).getToken().isEmpty()&&loginDao.loadAll().get(0).getToken().length()>0){
-                   MyLog.showLog("hhhhhhhhhh","hhhhhhhhhh");
+             //   MyLog.showLog("cccccccc",loginDao.loadAll().get(0).getToken());
+                if(!loginDao.loadAll().isEmpty()&&!jsonAllson.getData().getGoods_id().isEmpty()){
+                    Intent intent1=new Intent(EveryGlassesActivity.this,BuyActivity.class);
+                    intent1.putExtra("buyGoods_id",jsonAllson.getData().getGoods_id());
+                    intent1.putExtra("getToken",loginDao.loadAll().get(0).getToken());
+                    intent1.putExtra("img",jsonAllson.getData().getDesign_des().get(0).getImg());
+                    intent1.putExtra("goods_name",jsonAllson.getData().getGoods_name());
+                    intent1.putExtra("goods_price",jsonAllson.getData().getGoods_price());
+                    startActivity(intent1);
                 }else {
-                    Intent intent=new Intent(EveryGlassesActivity.this,LoginActivity.class);
-                    startActivity(intent);
+                    Intent intent2=new Intent(EveryGlassesActivity.this,LoginActivity.class);
+                    startActivity(intent2);
                 }
                 break;
         }
