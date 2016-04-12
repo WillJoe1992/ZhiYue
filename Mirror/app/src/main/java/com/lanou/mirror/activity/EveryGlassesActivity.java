@@ -3,6 +3,7 @@ package com.lanou.mirror.activity;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,6 +52,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
 
     private RelativeLayout colorChanceRelativeLayout;
     private LinearLayout colorChanceLinearLayout;
+    private AnimationDrawable animationDrawable;
 
     // 按钮
     private ImageView ivBack, ivBuy;
@@ -85,6 +87,11 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
         ivBuy = bindView(R.id.everyglasses_button_buy);
         tvToPic = bindView(R.id.everyglasses_button_topic);
         backGround= bindView(R.id.background);
+
+        backGround.setImageResource(R.drawable.loading);
+        animationDrawable = (AnimationDrawable) backGround.getDrawable();
+        animationDrawable.start();
+
 
         everyglassesEnglishTitle=bindView(R.id.everyglasses_englishTitle);
         everyglassesName=bindView(R.id.everyglasses_name);
@@ -280,6 +287,8 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
                     intent1.putExtra("goods_price",jsonAllson.getData().getGoods_price());
                     startActivity(intent1);
                 }else {
+                    Intent intentEveryGlasses=new Intent(EveryGlassesActivity.this,LoginActivity.class);
+                    startActivity(intentEveryGlasses);
                     Intent intent2=new Intent(EveryGlassesActivity.this,LoginActivity.class);
                     startActivity(intent2);
                 }

@@ -1,5 +1,6 @@
 package com.lanou.mirror.adapter;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,8 @@ import java.util.List;
  * Created by dllo on 16/4/1.
  */
 public class EveryGlassesBackRecyclerViewAdapter extends  RecyclerView.Adapter<EveryGlassesBackRecyclerViewAdapter.EveryGlassesBackRecyclerViewHolder> {
+
+    private AnimationDrawable animationDrawable;
 
     private List<JSONAllson.DataEntity.DesignDesEntity> data =new ArrayList<>();
 
@@ -86,6 +89,9 @@ public class EveryGlassesBackRecyclerViewAdapter extends  RecyclerView.Adapter<E
         public EveryGlassesBackRecyclerViewHolder(View itemView) {
             super(itemView);
             iv = (ImageView) itemView.findViewById(R.id.everyglasses_backrecyclerview_item_iv);
+            iv.setImageResource(R.drawable.loading);
+            animationDrawable = (AnimationDrawable) iv.getDrawable();
+            animationDrawable.start();
 
         }
 

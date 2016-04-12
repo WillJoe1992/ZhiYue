@@ -1,6 +1,7 @@
 package com.lanou.mirror.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,11 +24,12 @@ public class SpecialActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private SpecialPictureAdapter specialPictureAdapter;
     private LinearLayoutManager linearLayoutManager;
-    private ImageView activitySpecialContentImageView;
+    private ImageView activitySpecialContentImageView,fragmentLoadingIv;
  //   private NetImageLoader netImageLoader;
     private ImageLoaderHelper imageLoaderHelper;
     private JSONSpecial jsonSpecial;
     private int position;
+    private AnimationDrawable animationDrawable;
 
     @Override
     protected void initData() {
@@ -75,6 +77,12 @@ public class SpecialActivity extends BaseActivity {
     protected void initView() {
         activitySpecialContentImageView = bindView(R.id.activity_special_content_image_view);
         recyclerView = bindView(R.id.activity_special_content_rv);
+
+        fragmentLoadingIv= (ImageView)findViewById(R.id.fragment_loading_iv);
+
+        fragmentLoadingIv.setImageResource(R.drawable.loading);
+        animationDrawable = (AnimationDrawable) fragmentLoadingIv.getDrawable();
+        animationDrawable.start();
     }
 
     @Override

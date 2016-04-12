@@ -59,6 +59,7 @@ public class HomePagerFragment extends BaseFragment {
 
     private NotNetHomePagerRecyclerViewAdapter notNetHomePagerRecyclerViewAdapter;
     private LoginDao loginDao;
+
     @Override
     public int getLayout() {
         return R.layout.fragment_homepage;
@@ -80,7 +81,7 @@ public class HomePagerFragment extends BaseFragment {
         //给head赋值然后进行网络拉取
         head.put("device_type", "1");
         //用户已登录返回token
-        if (loginDao.loadAll().size()>0 && loginDao.loadAll().get(0).getToken() != null) {
+        if (loginDao.loadAll().size() > 0 && loginDao.loadAll().get(0).getToken() != null) {
             MyLog.showLog("HomePagerdbtoken", loginDao.loadAll().get(0).getToken());
             head.put("token", loginDao.loadAll().get(0).getToken());
         } else {
@@ -88,7 +89,7 @@ public class HomePagerFragment extends BaseFragment {
         }
         head.put("goods_id", url);
         Log.d("aaaaaaaa", url);
-       // addNotNet();
+        // addNotNet();
         //网络拉取
         NetOkHttpClient.postAsyn(URL.GOODS_LIST, new NetOkHttpClient.ResultCallback<String>() {
             @Override
@@ -133,7 +134,7 @@ public class HomePagerFragment extends BaseFragment {
             gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             homePageRecyclerView.setLayoutManager(gridLayoutManager);
             homePageRecyclerView.setAdapter(notNetHomePagerRecyclerViewAdapter);
-        }else {
+        } else {
             ShowToast.showToast("请检查网络");
         }
     }
@@ -152,7 +153,8 @@ public class HomePagerFragment extends BaseFragment {
 
 
     @Override
-    protected void dataView() {        homePageRecyclerView = bindView(R.id.fragment_homepage_recyclerview);
+    protected void dataView() {
+        homePageRecyclerView = bindView(R.id.fragment_homepage_recyclerview);
 
     }
 

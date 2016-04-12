@@ -4,6 +4,14 @@
     android:layout_height="800px"
     android:layout_marginLeft="@dimen/special_item_relayout_marginleft">
 
+
+    <ImageView
+        android:id="@+id/fragment_loading_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        />
+
     <ImageView
         android:id="@+id/special_iv"
         android:layout_width="match_parent"

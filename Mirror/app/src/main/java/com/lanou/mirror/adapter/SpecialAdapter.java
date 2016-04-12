@@ -1,5 +1,6 @@
 package com.lanou.mirror.adapter;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ private JSONSpecial jsonSpecial;
 private SpecialOnClick specialOnClick;
  //   private NetImageLoader netImageLoader;
     private ImageLoaderHelper imageLoaderHelper;
+    private AnimationDrawable animationDrawable;
     public SpecialAdapter(JSONSpecial jsonSpecial) {
         this.jsonSpecial = jsonSpecial;
     //    netImageLoader=new NetImageLoader();
@@ -56,11 +58,16 @@ private SpecialOnClick specialOnClick;
 
     public class HolderSpecialAdapter extends RecyclerView.ViewHolder{
         TextView specialTitle;
-        ImageView specialIv;
+        ImageView specialIv,fragmentLoadingIv;
         public HolderSpecialAdapter(View itemView) {
             super(itemView);
             specialTitle= (TextView) itemView.findViewById(R.id.special_title);
             specialIv= (ImageView) itemView.findViewById(R.id.special_iv);
+            fragmentLoadingIv= (ImageView) itemView.findViewById(R.id.fragment_loading_iv);
+
+            fragmentLoadingIv.setImageResource(R.drawable.loading);
+            animationDrawable = (AnimationDrawable) fragmentLoadingIv.getDrawable();
+            animationDrawable.start();
 
         }
     }
