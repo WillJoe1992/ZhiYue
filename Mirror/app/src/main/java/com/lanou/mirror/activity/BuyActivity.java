@@ -1,12 +1,20 @@
 package com.lanou.mirror.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
+import com.lanou.mirror.greendaodemo.entity.greendao.AllHolderDao;
 import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.MyLog;
@@ -81,7 +89,18 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.place_an_order:
-                ShowToast.showToast("购买");
+                AlertDialog.Builder builder=new AlertDialog.Builder(this);
+               // builder.setTitle("请选择支付方式");
+                View view1= LayoutInflater.from(this).inflate(R.layout.item_buy_view,null);
+                LinearLayout linearLayout= (LinearLayout) view1.findViewById(R.id.buy_linear_layout);
+                linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                    ShowToast.showToast("支付宝支付");
+                    }
+                });
+                builder.setView(view1);
+                builder.show().getWindow();
                 break;
             case R.id.buy_delete:
                 finish();

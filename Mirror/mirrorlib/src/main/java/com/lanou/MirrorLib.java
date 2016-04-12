@@ -62,5 +62,6 @@ public class MirrorLib {
         login.addIdProperty().autoincrement().primaryKey();
         login.addStringProperty("token");
         login.addStringProperty("uid");
+
     }
 }

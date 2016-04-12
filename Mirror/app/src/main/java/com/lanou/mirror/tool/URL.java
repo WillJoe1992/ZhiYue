@@ -5,7 +5,6 @@ package com.lanou.mirror.tool;
  */
 public interface URL {
     String URL = "http://api101.test.mirroreye.cn/";
-
     String STORY_LIST = URL + "index.php/story/story_list";
     String STORY_INFO = URL + "index.php/story/info";
     String USER_REG = URL + "index.php/user/reg";
