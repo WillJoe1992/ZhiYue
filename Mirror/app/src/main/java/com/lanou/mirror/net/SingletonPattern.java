@@ -10,7 +10,7 @@ import com.lanou.mirror.base.BaseApplication;
 public class SingletonPattern {
     private static SingletonPattern singletonPattern;
     private RequestQueue requestQueue;
-    private SingletonPattern() {
+    public SingletonPattern() {
         requestQueue= Volley.newRequestQueue(BaseApplication.getContext());
     }
 

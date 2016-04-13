@@ -22,6 +22,7 @@ import com.lanou.mirror.adapter.EveryGlassesBackRecyclerViewAdapter;
 import com.lanou.mirror.adapter.EveryGlassesFrontRecyclerViewAdapter;
 import com.lanou.mirror.adapter.HomePagerRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseActivity;
+import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.bean.JSONAllson;
 import com.lanou.mirror.bean.JSONGlasses;
 import com.lanou.mirror.net.ImageLoaderHelper;
@@ -41,6 +42,9 @@ import com.squareup.okhttp.Request;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
 public class EveryGlassesActivity extends BaseActivity implements ScrollViewListener, View.OnClickListener {
 
     private ObservableScrollView scrollViewFront = null;
@@ -55,7 +59,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
     private AnimationDrawable animationDrawable;
 
     // 按钮
-    private ImageView ivBack, ivBuy;
+    private ImageView ivBack, ivBuy,ivShare;
     private TextView tvToPic;
     private RelativeLayout buttonLayout;
     private boolean btnBL = false;
@@ -92,12 +96,14 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
         animationDrawable = (AnimationDrawable) backGround.getDrawable();
         animationDrawable.start();
 
-
         everyglassesEnglishTitle=bindView(R.id.everyglasses_englishTitle);
         everyglassesName=bindView(R.id.everyglasses_name);
         everyglassesGlassesContent=bindView(R.id.everyglasses_glassesContent);
         everyglassesPrice=bindView(R.id.everyglasses_price);
         everyglassesNameBeforerecyclerview=bindView(R.id.everyglasses_name_beforerecyclerview);
+
+        ivShare = bindView(R.id.everyglasses_share);
+        share(); // 分享
         setupDatabase();
 
 
@@ -302,5 +308,41 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
         loginDao = daoSession.getLoginDao();
+    }
+
+    public void share(){
+        ivShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareSDK.initSDK(BaseApplication.getContext());
+                OnekeyShare oks = new OnekeyShare();
+                //关闭sso授权
+                oks.disableSSOWhenAuthorize();
+
+                // 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
+                //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
+                // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
+                oks.setTitle("mob分享");
+                // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
+                oks.setTitleUrl("http://sharesdk.cn");
+                // text是分享文本，所有平台都需要这个字段
+                oks.setText("我是分享文本");
+                // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+                //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+                // url仅在微信（包括好友和朋友圈）中使用
+                oks.setUrl("http://sharesdk.cn");
+                // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+                oks.setComment("我是测试评论文本");
+                // site是分享此内容的网站名称，仅在QQ空间使用
+                oks.setSite(getString(R.string.app_name));
+                // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+                oks.setSiteUrl("http://sharesdk.cn");
+
+                // 启动分享GUI
+                oks.show(BaseApplication.getContext());
+
+
+            }
+        });
     }
 }
