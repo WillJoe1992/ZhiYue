@@ -68,9 +68,9 @@ public class NetOkHttpClient {
     /**
      * 异步的post请求
      *
-     * @param url
-     * @param callback
-     * @param params
+     * @param url 网址
+     * @param callback 接口
+     * @param params 头文件
      */
     private void _postAsyn(String url, final ResultCallback callback, Map<String, String> params)
     {
