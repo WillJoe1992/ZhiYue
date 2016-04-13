@@ -50,9 +50,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
+
 public class MainActivity extends BaseActivity implements SelectTitleRecyclerViewAdapter.ClickListener {
     private VerticalViewPager verticalViewPager;
-    private TextView loginText,shoppingText;
+    private TextView loginText, shoppingText;
     private ImageView mirrorIv;
 
     private HashMap<String, String> head;
@@ -61,7 +63,6 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     private List<Fragment> data;
     private long exitTime = 0;
 
-    private TextView tvTop, tvBottom;
     private RecyclerView selectTitleRc;
     private SelectTitleRecyclerViewAdapter selectTitleRecyclerViewAdapter;
     private ArrayList<SelectTitleRecyclerBean> selectTitleRecyclerBeans;
@@ -82,16 +83,19 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
     private LabelEntityDao labelEntityDao;
     private LoginDao loginDao;
+
     @Override
     protected void initData() {
-        MyLog.showLog("主Activity","启动");
+
+        //广播
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constant.ACTION_POSITION);
         registerReceiver(receiver, filter);
+
         setupDatabase();
         //用户已登录返回token
-        if (loginDao.loadAll().size()>0) {
-            MyLog.showLog("dbtoken",loginDao.loadAll().get(0).getToken());
+        if (loginDao.loadAll().size() > 0) {
+            MyLog.showLog("dbtoken", loginDao.loadAll().get(0).getToken());
             head.put("token", loginDao.loadAll().get(0).getToken());
             loginText.setVisibility(View.GONE);
             shoppingText.setVisibility(View.VISIBLE);
@@ -100,11 +104,11 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
                 public void onClick(View view) {
                     ObjectAnimator.ofFloat(view, "scaleY", 1.0f, 1.2f, 1.0f, 1.2f, 1.0f).setDuration(600).start();
                     ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 1.2f, 1.0f, 1.2f, 1.0f).setDuration(600).start();
-                     verticalViewPager.setCurrentItem(jsonGlassesClassification.getData().size()+2);
+                    verticalViewPager.setCurrentItem(jsonGlassesClassification.getData().size() + 2);
                 }
             });
         } else {
-            MyLog.showLog("dbtoken","用户未登录");
+            MyLog.showLog("dbtoken", "用户未登录");
             head.put("token", "");
             loginText.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -146,7 +150,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     @Override
     protected void initView() {
         verticalViewPager = bindView(R.id.vertical_viewpager);
-       head = new HashMap<>();
+        head = new HashMap<>();
         goToLogin();
         setMirrorAnim();
         //只加载一个
@@ -169,7 +173,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         mDaoMaster = new DaoMaster(db);
         mDaoSession = mDaoMaster.newSession();
         labelEntityDao = mDaoSession.getLabelEntityDao();
-        if (jsonGlassesClassification!=null) {
+        if (jsonGlassesClassification != null) {
             labelEntityDao.deleteAll();
             for (int i = 0; i < jsonGlassesClassification.getData().size(); i++) {
                 LabelEntity labelEntity = new LabelEntity((long) i, jsonGlassesClassification.getData().get(i).getCategory_name());
@@ -289,11 +293,11 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
     public void goToLogin() {
         loginText = bindView(R.id.goto_login);
-        shoppingText=bindView(R.id.shopping_car);
+        shoppingText = bindView(R.id.shopping_car);
 
     }
 
-    public void setMirrorAnim(){
+    public void setMirrorAnim() {
         mirrorIv = bindView(R.id.mirror_icon);
         mirrorIv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -327,7 +331,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
 //获取title如果数据库没有手动添加
 
-        if (labelEntityDao!=null) {
+        if (labelEntityDao != null) {
             selectTitleRecyclerBeans = new ArrayList<>();
             selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("瀏覽所有分類"));
             for (int i = 0; i < labelEntityDao.loadAll().size(); i++) {
@@ -386,8 +390,9 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
     }
 
-    //初始化数据库
+   //配置数据库
     private void setupDatabase() {
+        //初始化数据库
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "mirrorlib.db", null);
         db = helper.getWritableDatabase();
         daoMaster = new DaoMaster(db);
@@ -400,7 +405,8 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         DaoSession daoSession2 = daoMaster2.newSession();
         loginDao = daoSession2.getLoginDao();
     }
-    public List<Fragment> NoGetFragmentList(){
+
+    public List<Fragment> NoGetFragmentList() {
         List<Fragment> listFragments = new ArrayList<Fragment>();
         Bundle bundleAll = new Bundle();
         bundleAll.putString("titleName", "瀏覽所有分類");
@@ -408,7 +414,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         AllFragment fragmentAll = new AllFragment();
         fragmentAll.setArguments(bundleAll);
         listFragments.add(fragmentAll);
-        if (labelEntityDao!=null) {
+        if (labelEntityDao != null) {
             for (int i = 0; i < labelEntityDao.loadAll().size(); i++) {
                 Bundle bundleFlatGlass = new Bundle();
                 bundleFlatGlass.putString("titleName", labelEntityDao.loadAll().get(i).getLabelname());
