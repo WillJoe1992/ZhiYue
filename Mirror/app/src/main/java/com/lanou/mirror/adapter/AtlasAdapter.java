@@ -1,13 +1,23 @@
 package com.lanou.mirror.adapter;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Rect;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONAtlas;
 import com.lanou.mirror.net.NetImageLoader;
+import com.lanou.mirror.tool.GalleryActivity;
+
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 /**
@@ -17,9 +27,15 @@ public class AtlasAdapter extends RecyclerView.Adapter {
     private final int TYPE_VIDEO = 0;
     private final int TYPE_IMAGE = 1;
     private JSONAtlas data;
+    private Activity activity;
+    private String[] urls=new String[10];
 
-    public AtlasAdapter(JSONAtlas data) {
+    public AtlasAdapter(Activity activity, JSONAtlas data) {
         this.data = data;
+        this.activity=activity;
+        for(int i= 0; i<data.getData().getList().get(0).getWear_video().size()-2;i++){
+            urls[i]=data.getData().getList().get(0).getWear_video().get(i+2).getData();
+        }
     }
 
 
@@ -41,7 +57,7 @@ public class AtlasAdapter extends RecyclerView.Adapter {
 
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         int type = getItemViewType(position);
         String atlasType = data.getData().getList().get(0).getWear_video().get(0).getType();
 
@@ -59,6 +75,45 @@ public class AtlasAdapter extends RecyclerView.Adapter {
                     NetImageLoader netImageLoader = new NetImageLoader();
                     netImageLoader.getImgOfLoader(imageViewHolder.imageView, data.getData().getList().get(0).getWear_video().get(position+1).getData());
                 }
+//
+//                Glide.with(activity)
+//                        .load( data.getData().getList().get(0).getWear_video().get(position+1).getData())
+//                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+//                        .crossFade()
+//                        .into(imageViewHolder.imageView);
+
+                imageViewHolder.imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int[] location = new int[2];
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                            Rect frame = new Rect();
+                            activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+                            int statusBarHeight = frame.top;
+                            v.getLocationOnScreen(location);
+                            location[1] += statusBarHeight;
+                        } else {
+                            v.getLocationOnScreen(location);
+                        }
+                        v.invalidate();
+                        int width = v.getWidth();
+                        int height = v.getHeight();
+
+                        Intent intent = new Intent(activity, GalleryActivity.class);
+                        Bundle b = new Bundle();
+                        b.putStringArray(GalleryActivity.PHOTO_SOURCE_ID,urls);
+                        intent.putExtras(b);
+                        intent.putExtra(GalleryActivity.PHOTO_SELECT_POSITION, position);
+                        intent.putExtra(GalleryActivity.PHOTO_SELECT_X_TAG, location[0]);
+                        intent.putExtra(GalleryActivity.PHOTO_SELECT_Y_TAG, location[1]);
+                        intent.putExtra(GalleryActivity.PHOTO_SELECT_W_TAG, width);
+                        intent.putExtra(GalleryActivity.PHOTO_SELECT_H_TAG, height);
+                        activity.startActivity(intent);
+                        activity.overridePendingTransition(0, 0);
+                    }
+                });
+
+
                 break;
         }
     }

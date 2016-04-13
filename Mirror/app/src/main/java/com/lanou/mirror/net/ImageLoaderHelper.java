@@ -16,6 +16,7 @@ import java.io.File;
 
 /**
  * Created by dllo on 16/4/9.
+ *
  */
 
 public class ImageLoaderHelper {

@@ -33,5 +33,6 @@ dependencies {
     compile 'fm.jiecao:jiecaovideoplayer:2.0_preview'
     compile files('libs/universal-image-loader-1.8.6-with-sources.jar')
     compile files('libs/imageloder.jar')
+    compile 'com.github.bumptech.glide:glide:3.6.1'
 
 }

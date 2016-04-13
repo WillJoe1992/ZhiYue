@@ -55,7 +55,7 @@ public class AtlasActivity extends BaseActivity {
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(atlasActivity,1);
                 Log.d("AtlasActivity", response);
                 recyclerView.setLayoutManager(gridLayoutManager);
-                atlasAdapter = new AtlasAdapter(data);
+                atlasAdapter = new AtlasAdapter(atlasActivity,data);
                 recyclerView.setAdapter(atlasAdapter);
             }
         },head);
