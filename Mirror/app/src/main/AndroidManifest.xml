@@ -31,6 +31,7 @@
         <activity android:name=".activity.AtlasActivity"/>
 
         <activity android:name=".activity.EveryGlassesActivity"/>
+        <activity android:name=".tool.GalleryActivity"/>
         <activity android:name=".activity.BuyActivity"/>
         <meta-data android:name="design_width" android:value="768">
         </meta-data>

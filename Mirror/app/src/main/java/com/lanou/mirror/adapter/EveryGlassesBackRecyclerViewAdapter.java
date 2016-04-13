@@ -27,12 +27,6 @@ public class EveryGlassesBackRecyclerViewAdapter extends  RecyclerView.Adapter<E
 
     private List<JSONAllson.DataEntity.DesignDesEntity> data =new ArrayList<>();
 
-//    private MyItemListener listener;
-
-//    public void setMyItemListener(MyItemListener listener) {
-//        this.listener = listener;
-//    }
-
     /**
      * 自定义 添加数据方法
      */
@@ -52,13 +46,7 @@ public class EveryGlassesBackRecyclerViewAdapter extends  RecyclerView.Adapter<E
 
     @Override
     public void onBindViewHolder(EveryGlassesBackRecyclerViewHolder holder, int position) {
-//        if (data != null && data.size() > 0) {   // 判断  数据存在时
-//
-//        }
-      //  holder.iv.setImageResource(R.mipmap.glasses);
-//
-//        NetImageLoader netImageLoader =new NetImageLoader();
-//        netImageLoader.getImgOfLoader(holder.iv,data.get(position).getImg());
+
         ImageLoaderHelper imageLoaderHelper=new ImageLoaderHelper();
         imageLoaderHelper.loadImage(data.get(position).getImg(),holder.iv);
     }
@@ -69,9 +57,7 @@ public class EveryGlassesBackRecyclerViewAdapter extends  RecyclerView.Adapter<E
      */
     @Override
     public int getItemCount() {
-//        if (data != null && data.size() > 0) {
-//            return data.size();
-//        }
+
 
         return data.size() > 0 ? data.size() : 0;
     }
@@ -80,10 +66,8 @@ public class EveryGlassesBackRecyclerViewAdapter extends  RecyclerView.Adapter<E
 
     class EveryGlassesBackRecyclerViewHolder extends RecyclerView.ViewHolder  {
 
-        //        private TextView tv;
         private ImageView iv;
-//        private int position;  // 用于监听事件
-//        private LinearLayout linearLayout;
+
 
         //  缓存类 构造方法
         public EveryGlassesBackRecyclerViewHolder(View itemView) {
