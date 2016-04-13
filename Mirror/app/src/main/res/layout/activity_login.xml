@@ -28,7 +28,7 @@
         android:layout_marginLeft="@dimen/login_image_marginleft"
         android:layout_marginRight="@dimen/login_image_marginright"
         android:layout_marginTop="@dimen/login_image_margintop"
-        android:src="@mipmap/black_horiaontal_line" />
+        android:src="@mipmap/black_horizontal_line" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,6 +57,7 @@
         android:textSize="@dimen/login_passwrod_textsize" />
 
     <EditText
+        android:password="true"
         android:id="@+id/login_password_edt"
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_passwordedt_hei"

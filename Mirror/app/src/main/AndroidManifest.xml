@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lanou.mirror" >
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    package="com.lanou.mirror">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -17,11 +17,11 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name=".base.BaseApplication">
+        android:theme="@style/AppTheme">
         <activity android:name=".activity.WelcomeActivity">
 
             <intent-filter>
@@ -31,21 +31,26 @@
             </intent-filter>
         </activity>
 
-
         <activity android:name=".activity.SelectTitleActivity" />
 
         <activity android:name=".activity.SpecialActivity" />
 
-        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.LoginActivity" />
 
-        <activity android:name=".activity.RegisterActivity"/>
+        <activity android:name=".activity.RegisterActivity" />
 
-        <activity android:name=".activity.AtlasActivity"/>
+        <activity android:name=".activity.AtlasActivity" />
 
-        <activity android:name=".activity.EveryGlassesActivity"/>
+        <activity android:name=".activity.EveryGlassesActivity" />
 
         <activity android:name=".activity.BuyActivity" />
-        <activity android:name=".activity.MainActivity"/>
+
+        <activity android:name=".activity.MainActivity" />
+
+        <activity android:name=".activity.AddAddressActivity" />
+
+        <activity android:name=".activity.AllAddressActivity" />
+
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -69,13 +74,14 @@
         </activity>
 
 
-        <activity android:name=".tool.GalleryActivity"/>
-        <activity android:name=".activity.BuyActivity"/>
+        <activity android:name=".tool.GalleryActivity" />
 
-        <meta-data android:name="design_width" android:value="768">
-        </meta-data>
-        <meta-data android:name="design_height" android:value="1280">
-        </meta-data>
+        <meta-data
+            android:name="design_width"
+            android:value="768"></meta-data>
+        <meta-data
+            android:name="design_height"
+            android:value="1280"></meta-data>
     </application>
 
 
