@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/buy_delete"
         android:layout_marginTop="10px"
-        android:background="@mipmap/black_horiaontal_line"
+        android:background="@mipmap/black_horizontal_line"
         android:layout_marginLeft="1px"/>
 
     <LinearLayout
@@ -58,6 +58,7 @@
         android:background="@drawable/bg_liner">
 
         <TextView
+            android:id="@+id/goto_alladdress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
