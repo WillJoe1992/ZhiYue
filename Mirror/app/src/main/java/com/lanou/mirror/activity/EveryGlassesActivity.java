@@ -295,8 +295,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
                 }else {
                     Intent intentEveryGlasses=new Intent(EveryGlassesActivity.this,LoginActivity.class);
                     startActivity(intentEveryGlasses);
-                    Intent intent2=new Intent(EveryGlassesActivity.this,LoginActivity.class);
-                    startActivity(intent2);
+
                 }
                 break;
         }
