@@ -27,7 +27,7 @@ public class MirrorLib {
      * @param schema
      */
     private static void addNote(Schema schema) {
-        // 指定需要生成实体类的类名,类名确定了那么表名也是根据这个类名来自动命名的,例如下面这个,生成的表名叫做person_entity
+        // 指定需要生成实体类的类名,类名确定了那么表名也是根据这个类名来自动命名的,例如下面这个,生成的表名叫做LabelEntity
         Entity entity = schema.addEntity("LabelEntity");
         // 指定自增长主键
         entity.addIdProperty().autoincrement().primaryKey();

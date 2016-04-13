@@ -25,6 +25,7 @@ import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.HomePager;
 import com.lanou.mirror.greendaodemo.entity.greendao.HomePagerDao;
 import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
+import com.lanou.mirror.greendaodemo.entity.greendao.UsingData;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.MyLog;
 import com.lanou.mirror.tool.ShowToast;
@@ -46,19 +47,7 @@ public class HomePagerFragment extends BaseFragment {
     private JSONGlasses jsonGlasses;
 
     private String title;
-    // 数据库
-    private SQLiteDatabase db;
-    // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
-    //  private AllHolderDao allHolderDao;
-    private HomePagerDao homePagerDao;
-    //操作数据库
-    // 管理者
-    private DaoMaster daoMaster;
-    // 会话
-    private DaoSession daoSession;
-
     private NotNetHomePagerRecyclerViewAdapter notNetHomePagerRecyclerViewAdapter;
-    private LoginDao loginDao;
 
     @Override
     public int getLayout() {
@@ -76,14 +65,12 @@ public class HomePagerFragment extends BaseFragment {
         Bundle bundle = getArguments();
         String titleName = (String) bundle.get("titleName");
         String url = (String) bundle.get("CategoryId");
-        //初始化数据库
-        setupDatabase();
         //给head赋值然后进行网络拉取
         head.put("device_type", "1");
         //用户已登录返回token
-        if (loginDao.loadAll().size() > 0 && loginDao.loadAll().get(0).getToken() != null) {
-            MyLog.showLog("HomePagerdbtoken", loginDao.loadAll().get(0).getToken());
-            head.put("token", loginDao.loadAll().get(0).getToken());
+        if (UsingData.GetUsingData().getAllLoginDao().size() > 0 && UsingData.GetUsingData().getAllLoginDao().get(0).getToken() != null) {
+            MyLog.showLog("HomePagerdbtoken", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+            head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
         } else {
             head.put("token", "");
         }
@@ -108,7 +95,8 @@ public class HomePagerFragment extends BaseFragment {
                 gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 homePageRecyclerView.setLayoutManager(gridLayoutManager);
                 homePageRecyclerView.setAdapter(homePagerRecyclerViewAdapter);
-                homePagerDao.deleteAll();
+                //homePagerDao.deleteAll();
+                UsingData.GetUsingData().deleteHomePagerDao();
                 addHolder();
             }
         }, head);
@@ -128,8 +116,8 @@ public class HomePagerFragment extends BaseFragment {
     }
 
     private void addNotNet() {
-        if (homePagerDao != null) {
-            notNetHomePagerRecyclerViewAdapter = new NotNetHomePagerRecyclerViewAdapter(getContext(), homePagerDao);
+        if (UsingData.GetUsingData().getHomePagerDao() != null) {
+            notNetHomePagerRecyclerViewAdapter = new NotNetHomePagerRecyclerViewAdapter(getContext(), UsingData.GetUsingData().getHomePagerDao());
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
             gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             homePageRecyclerView.setLayoutManager(gridLayoutManager);
@@ -147,7 +135,7 @@ public class HomePagerFragment extends BaseFragment {
             homePager.setModel(jsonGlasses.getData().getList().get(i).getModel());
             homePager.setProduct_area(jsonGlasses.getData().getList().get(i).getProduct_area());
             homePager.setGoods_price(jsonGlasses.getData().getList().get(i).getGoods_price());
-            homePagerDao.insert(homePager);
+            UsingData.GetUsingData().addHomePagerDao(homePager);
         }
     }
 
@@ -163,19 +151,5 @@ public class HomePagerFragment extends BaseFragment {
     public void onDestroy() {
         Log.d("Sysout", "Destroy");
         super.onDestroy();
-    }
-
-    private void setupDatabase() {
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(BaseApplication.getContext(), "AllHolder.db", null);
-        db = helper.getWritableDatabase();
-        daoMaster = new DaoMaster(db);
-        daoSession = daoMaster.newSession();
-        homePagerDao = daoSession.getHomePagerDao();
-        /////toke数据库
-        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(BaseApplication.getContext(), "Login.db", null);
-        SQLiteDatabase db2 = helper2.getWritableDatabase();
-        DaoMaster daoMaster2 = new DaoMaster(db2);
-        DaoSession daoSession2 = daoMaster2.newSession();
-        loginDao = daoSession2.getLoginDao();
     }
 }

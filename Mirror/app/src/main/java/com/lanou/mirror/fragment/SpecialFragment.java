@@ -27,6 +27,7 @@ import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
 import com.lanou.mirror.greendaodemo.entity.greendao.Special;
 import com.lanou.mirror.greendaodemo.entity.greendao.SpecialDao;
+import com.lanou.mirror.greendaodemo.entity.greendao.UsingData;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.MyLog;
 import com.lanou.mirror.tool.ShowToast;
@@ -46,19 +47,19 @@ public class SpecialFragment extends BaseFragment{
     private SpecialAdapter specialAdapter;
     private JSONSpecial jsonSpecial;
     private String title;
-
-    private NotNetAllAdapter notNetAllAdapter;
-    // 数据库
-    private SQLiteDatabase db;
-    // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
-    private SpecialDao specialDao;
-    //操作数据库
-    // 管理者
-    private DaoMaster daoMaster;
-    // 会话
-    private DaoSession daoSession;
+//
+//    private NotNetAllAdapter notNetAllAdapter;
+//    // 数据库
+//    private SQLiteDatabase db;
+//    // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
+//    private SpecialDao specialDao;
+//    //操作数据库
+//    // 管理者
+//    private DaoMaster daoMaster;
+//    // 会话
+//    private DaoSession daoSession;
+//    private LoginDao loginDao;
     private NotNetSpecialAdapter notNetSpecialAdapter;
-    private LoginDao loginDao;
     @Override
     public int getLayout() {
         return R.layout.fragment_homepage;
@@ -75,11 +76,11 @@ public class SpecialFragment extends BaseFragment{
         fragmentHomepageTitle.setText(titleName);
         head.put("device_type", "1");
         //初始化数据库
-        setupDatabase();
+     //   setupDatabase();
         //用户已登录返回token
-        if (loginDao.loadAll().size()>0 && loginDao.loadAll().get(0).getToken() != null) {
-            MyLog.showLog("SpecialPagerdbtoken", loginDao.loadAll().get(0).getToken());
-            head.put("token", loginDao.loadAll().get(0).getToken());
+        if (UsingData.GetUsingData().getAllLoginDao().size()>0 && UsingData.GetUsingData().getAllLoginDao().get(0).getToken() != null) {
+            MyLog.showLog("SpecialPagerdbtoken", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+            head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
         } else {
             head.put("token", "");
         }
@@ -110,7 +111,8 @@ public class SpecialFragment extends BaseFragment{
                 homePageRecyclerView.setLayoutManager(gridLayoutManager);
                 specialAdapter=new SpecialAdapter(jsonSpecial);
                 homePageRecyclerView.setAdapter(specialAdapter);
-                specialDao.deleteAll();
+                //specialDao.deleteAll();
+                UsingData.GetUsingData().deleteSpecialDao();
                 addHolder();
                 specialAdapter.MySpecialOnClick(new SpecialAdapter.SpecialOnClick() {
                     @Override
@@ -126,11 +128,11 @@ public class SpecialFragment extends BaseFragment{
     }
 
     private void addNotNet() {
-        if(specialDao!=null){
+        if(UsingData.GetUsingData().getSpecialDao()!=null){
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),1);
             gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             homePageRecyclerView.setLayoutManager(gridLayoutManager);
-            notNetSpecialAdapter=new NotNetSpecialAdapter(specialDao);
+            notNetSpecialAdapter=new NotNetSpecialAdapter(UsingData.GetUsingData().getSpecialDao());
             homePageRecyclerView.setAdapter(notNetSpecialAdapter);
         }
     //    MyLog.showLog("wewewewewew",""+specialDao.loadAll().get(0).getStory_img());
@@ -142,7 +144,8 @@ public class SpecialFragment extends BaseFragment{
                 Special special=new Special();
                 special.setStory_img(jsonSpecial.getData().getList().get(i).getStory_img());
                 special.setStory_title(jsonSpecial.getData().getList().get(i).getStory_title());
-                specialDao.insert(special);
+              //  specialDao.insert(special);
+                UsingData.GetUsingData().addSpecialDao(special);
             }
         }else {
             ShowToast.showToast("请检查网络");
@@ -155,18 +158,18 @@ public class SpecialFragment extends BaseFragment{
         homePageRecyclerView = bindView(R.id.fragment_homepage_recyclerview);
     }
 
-    private void setupDatabase() {
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(getActivity()
-                , "AllHolder.db", null);
-        db = helper.getWritableDatabase();
-        daoMaster = new DaoMaster(db);
-        daoSession = daoMaster.newSession();
-        specialDao = daoSession.getSpecialDao();
-        /////toke数据库
-        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(BaseApplication.getContext(), "Login.db", null);
-        SQLiteDatabase db2 = helper2.getWritableDatabase();
-        DaoMaster daoMaster2 = new DaoMaster(db2);
-        DaoSession daoSession2 = daoMaster2.newSession();
-        loginDao = daoSession2.getLoginDao();
-    }
+//    private void setupDatabase() {
+//        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(getActivity()
+//                , "AllHolder.db", null);
+//        db = helper.getWritableDatabase();
+//        daoMaster = new DaoMaster(db);
+//        daoSession = daoMaster.newSession();
+//        specialDao = daoSession.getSpecialDao();
+//        /////toke数据库
+//        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(BaseApplication.getContext(), "Login.db", null);
+//        SQLiteDatabase db2 = helper2.getWritableDatabase();
+//        DaoMaster daoMaster2 = new DaoMaster(db2);
+//        DaoSession daoSession2 = daoMaster2.newSession();
+//        loginDao = daoSession2.getLoginDao();
+//    }
 }

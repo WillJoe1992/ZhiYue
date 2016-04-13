@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
@@ -23,13 +22,10 @@ import com.lanou.mirror.base.BaseFragment;
 import com.lanou.mirror.bean.JSONAll;
 import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.bean.SelectTitleRecyclerBean;
-import com.lanou.mirror.constant.Constant;
 import com.lanou.mirror.greendaodemo.entity.greendao.AllHolder;
-import com.lanou.mirror.greendaodemo.entity.greendao.AllHolderDao;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
-import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
-import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
+import com.lanou.mirror.greendaodemo.entity.greendao.UsingData;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.MyLog;
 import com.lanou.mirror.tool.ShowToast;
@@ -58,18 +54,7 @@ public class AllFragment extends BaseFragment {
     private PopupWindow popupWindow;
     private RecyclerView selectTitleRc;
     private SelectTitleRecyclerViewAdapter selectTitleRecyclerViewAdapter;
-
-    // 数据库
-    private SQLiteDatabase db;
-    // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
-    private AllHolderDao allHolderDao;
-    //操作数据库
-    // 管理者
-    private DaoMaster daoMaster;
-    // 会话
-    private DaoSession daoSession;
     private NotNetAllAdapter notNetAllAdapter;
-    private LoginDao loginDao;
     @Override
     public int getLayout() {
         Log.d("ssssssssssss", "sssssssssssss");
@@ -87,13 +72,12 @@ public class AllFragment extends BaseFragment {
         String titleName = (String) bundle.get("titleName");
         String url = (String) bundle.get("CategoryId");
         fragmentHomepageTitle.setText(titleName);
-        setupDatabase();
         headGlasses = new HashMap<>();
         headGlasses.put("device_type", "1");
         //用户已登录返回token
-        if (loginDao.loadAll().size()>0 && loginDao.loadAll().get(0).getToken() != null) {
-            MyLog.showLog("ALLdbtoken",loginDao.loadAll().get(0).getToken());
-           headGlasses.put("token",loginDao.loadAll().get(0).getToken());
+        if (UsingData.GetUsingData().getAllLoginDao().size()>0 && UsingData.GetUsingData().getAllLoginDao().get(0).getToken() != null) {
+            MyLog.showLog("ALLdbtoken",UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+           headGlasses.put("token",UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
         } else {
             headGlasses.put("token", "");
         }
@@ -116,7 +100,8 @@ public class AllFragment extends BaseFragment {
                 gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 homePageRecyclerView.setLayoutManager(gridLayoutManager);
                 homePageRecyclerView.setAdapter(allRecyclerViewAdapter);
-                allHolderDao.deleteAll();
+             //   allHolderDao.deleteAll();
+                UsingData.GetUsingData().deleteAllHolderDao(UsingData.GetUsingData().getHolderDa());
                 addHolder(jsonAll);
             }
         }, headGlasses);
@@ -178,8 +163,8 @@ public class AllFragment extends BaseFragment {
     }
 
     private void addNotNet() {
-        if (allHolderDao.loadAll().size() > 0) {
-            notNetAllAdapter = new NotNetAllAdapter(getContext(), allHolderDao);
+        if (UsingData.GetUsingData().getAllHolderDao().size()>0) {
+            notNetAllAdapter = new NotNetAllAdapter(getContext(), UsingData.GetUsingData().getHolderDa());
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
             gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             homePageRecyclerView.setLayoutManager(gridLayoutManager);
@@ -196,26 +181,11 @@ public class AllFragment extends BaseFragment {
             allHolder.setModel(jsonAll.getData().getList().get(i).getData_info().getModel());
             allHolder.setGoods_price(jsonAll.getData().getList().get(i).getData_info().getGoods_price());
             allHolder.setType(jsonAll.getData().getList().get(i).getType());
-            allHolderDao.insert(allHolder);
+         //   allHolderDao.insert(allHolder);
+            UsingData.GetUsingData().addAllHolderDao(allHolder);
         }
 
     }
-
-    private void setupDatabase() {
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(BaseApplication.getContext(), "AllHolder.db", null);
-        db = helper.getWritableDatabase();
-        daoMaster = new DaoMaster(db);
-        daoSession = daoMaster.newSession();
-        allHolderDao = daoSession.getAllHolderDao();
-        loginDao = daoSession.getLoginDao();
-        /////toke数据库
-        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(BaseApplication.getContext(), "Login.db", null);
-        SQLiteDatabase db2 = helper2.getWritableDatabase();
-        DaoMaster daoMaster2 = new DaoMaster(db2);
-        DaoSession daoSession2 = daoMaster2.newSession();
-        loginDao = daoSession2.getLoginDao();
-    }
-
     @Override
     protected void dataView() {
 
