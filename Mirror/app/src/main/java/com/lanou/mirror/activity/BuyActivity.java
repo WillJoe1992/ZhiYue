@@ -63,8 +63,8 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         imageLoaderHelper.loadImage(intent.getStringExtra("img"),buyImageView);
         buyGlassesTitle.setText(intent.getStringExtra("goods_name"));
         buyMore.setText("你所购买的商品为官网正品现货,我们将于三个工作日内为您免费发货,你所购买的商品均使用顺丰输运进行配送");
-        freight.setText(intent.getStringExtra("goods_price"));
-        subtotal.setText("免运费");
+        subtotal.setText(intent.getStringExtra("goods_price"));
+        freight.setText("免运费");
         placeAnOrder.setOnClickListener(this);
         buyDelete.setOnClickListener(this);
     }
