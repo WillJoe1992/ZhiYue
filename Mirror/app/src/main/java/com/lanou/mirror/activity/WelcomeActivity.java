@@ -16,17 +16,23 @@ import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.bean.WelcomeBean;
 import com.lanou.mirror.net.NetImageLoader;
 import com.lanou.mirror.net.SingletonPattern;
+import com.lanou.mirror.tool.MyLog;
+import com.lanou.mirror.tool.MyToast;
 import com.lanou.mirror.tool.URL;
+
 import org.json.JSONObject;
 
 /**
  * Created by wyc on 16/4/12.
+ *
  */
+
 public class WelcomeActivity extends BaseActivity {
+
     public SingletonPattern singletonPattern;
     private WelcomeBean data;
     private ImageView welcomeIv;
-    private Handler handler;
+
 
     @Override
     protected void initView() {
@@ -34,35 +40,32 @@ public class WelcomeActivity extends BaseActivity {
         data = new WelcomeBean();
         welcomeIv = bindView(R.id.welcome_iv);
 
+
+        //Volley 请求数据
         RequestQueue queue = SingletonPattern.getSingletonPattern().getRequestQueue();
         JsonObjectRequest request = new JsonObjectRequest(URL.INDEX_STARTED_IMG, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+
+                //成功的获取数据
                 data = new Gson().fromJson(response.toString(), WelcomeBean.class);
-                Log.d("WelcomeActivity", "data:" + data);
-                handler.sendEmptyMessage(1);
+                new NetImageLoader().getImgOfLoader(welcomeIv, data.getImg());
             }
         }
                 , new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                MyToast.myToast("首页图片数据拉取失败");
             }
         });
+        //将request请求加入队列
         queue.add(request);
     }
 
     @Override
     protected void initData() {
-        handler = new Handler(new Handler.Callback() {
-            @Override
-            public boolean handleMessage(Message msg) {
-                Log.d("WelcomeActivity", data.getImg());
-                new NetImageLoader().getImgOfLoader(welcomeIv, data.getImg());
-                return false;
-            }
-        });
 
+        //子线程睡眠3秒
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -83,8 +86,10 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     public void jump() {
+        //直接跳转
         Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
         startActivity(intent);
+        //结束页面
         finish();
     }
 }
