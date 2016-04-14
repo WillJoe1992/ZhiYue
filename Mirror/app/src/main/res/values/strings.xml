@@ -17,6 +17,13 @@
     <string name="register_password">設置密碼</string>
     <string name="register_newuser">創建賬號</string>
     <string name="shopping">购物车</string>
+    <string name="all_address_add_address_text">添加地址</string>
+    <string name="all_address_text">我的所有地址</string>
+    <string name="addaddress_text">添加地址</string>
+    <string name="addaddress_add_name">添加添加收件人姓名</string>
+    <string name="addaddress_add_phonenumber">添加联系人电话号码</string>
+    <string name="addaddress_addaddress">添加收货地址</string>
+    <string name="addaddress_addaddressbtn">提交地址</string>
 
 
 </resources>

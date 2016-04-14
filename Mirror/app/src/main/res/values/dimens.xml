@@ -205,6 +205,21 @@
     <dimen name="activity_everyglasses_button_buy_height">46dp</dimen>
     <dimen name="activity_everyglasses_button_buy_marginRight">20dp</dimen>
     <dimen name="activity_everyglasses_button_layoutmarginbottom_height">0dp</dimen>
+    <dimen name="all_address_add_address_hei">159px</dimen>
+    <dimen name="all_address_add_address_margin_left">28px</dimen>
+    <dimen name="all_address_add_address_marginright">28px</dimen>
+    <dimen name="all_address_add_address_margintop">169px</dimen>
+    <dimen name="all_address_add_address_text_margintop">224px</dimen>
+    <dimen name="add_name_margintop">30px</dimen>
+    <dimen name="addaddress_add_nameedt_hei">80px</dimen>
+    <dimen name="addadress_add_name_margintop">20px</dimen>
+    <dimen name="addaddress_addnumber_margintop">20px</dimen>
+    <dimen name="addaddress_addnumberedt_hei">80px</dimen>
+    <dimen name="addaddress_addnumberedt_margintop">20px</dimen>
+    <dimen name="addaddress_addaddress_margintop">20px</dimen>
+    <dimen name="addaddress_addaddressedt_hei">280px</dimen>
+    <dimen name="addaddress_addaddressedt_margintop">20px</dimen>
+    <dimen name="addaddress_addaddressbtn_margintop">25px</dimen>
 
 
 </resources>

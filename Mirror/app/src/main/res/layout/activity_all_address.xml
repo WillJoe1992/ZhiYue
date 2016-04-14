@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/login_marginleft"
         android:layout_marginTop="@dimen/login_marginright"
-        android:text="我的所有地址"
+        android:text="@string/all_address_text"
         android:textSize="@dimen/login_logintext"
         android:textStyle="bold" />
 
@@ -34,10 +34,10 @@
     <ImageView
         android:id="@+id/add_address_jump"
         android:layout_width="match_parent"
-        android:layout_height="159px"
-        android:layout_marginLeft="28px"
-        android:layout_marginRight="28px"
-        android:layout_marginTop="169px"
+        android:layout_height="@dimen/all_address_add_address_hei"
+        android:layout_marginLeft="@dimen/all_address_add_address_margin_left"
+        android:layout_marginRight="@dimen/all_address_add_address_marginright"
+        android:layout_marginTop="@dimen/all_address_add_address_margintop"
         android:background="@color/text_color"
         android:src="@color/text_color" />
 
@@ -45,8 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="224px"
-        android:text="添加地址" />
+        android:layout_marginTop="@dimen/all_address_add_address_text_margintop"
+        android:text="@string/all_address_add_address_text" />
 
 
 </RelativeLayout>
