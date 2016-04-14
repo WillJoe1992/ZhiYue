@@ -22,10 +22,10 @@ import com.lanou.mirror.base.BaseFragment;
 import com.lanou.mirror.bean.JSONAll;
 import com.lanou.mirror.bean.JSONSpecial;
 import com.lanou.mirror.bean.SelectTitleRecyclerBean;
-import com.lanou.mirror.greendaodemo.entity.greendao.AllHolder;
-import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
-import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
-import com.lanou.mirror.greendaodemo.entity.greendao.UsingData;
+import com.lanou.mirror.greendao.AllHolder;
+import com.lanou.mirror.greendao.DaoMaster;
+import com.lanou.mirror.greendao.DaoSession;
+import com.lanou.mirror.greendao.UsingData;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.MyLog;
 import com.lanou.mirror.tool.ShowToast;
@@ -38,6 +38,7 @@ import java.util.HashMap;
 /**
  * Created by dllo on 16/4/1.
  */
+
 public class AllFragment extends BaseFragment {
     private RecyclerView homePageRecyclerView;
     private AllRecyclerViewAdapter allRecyclerViewAdapter;
@@ -57,21 +58,21 @@ public class AllFragment extends BaseFragment {
     private NotNetAllAdapter notNetAllAdapter;
     @Override
     public int getLayout() {
-        Log.d("ssssssssssss", "sssssssssssss");
         return R.layout.fragment_homepage;
     }
 
     @Override
     protected void initView() {
-        MyLog.showLog("AllFragment","启动");
         titleSelect = bindView(R.id.title_select);
         homePageRecyclerView = bindView(R.id.fragment_homepage_recyclerview);
         fragmentHomepageTitle = bindView(R.id.fragment_homepage_title);
 
+        //bundle 传值的获取
         Bundle bundle = getArguments();
         String titleName = (String) bundle.get("titleName");
         String url = (String) bundle.get("CategoryId");
         fragmentHomepageTitle.setText(titleName);
+
         headGlasses = new HashMap<>();
         headGlasses.put("device_type", "1");
         //用户已登录返回token
@@ -86,7 +87,6 @@ public class AllFragment extends BaseFragment {
         NetOkHttpClient.postAsyn(URL.INDEX_MRTJ, new NetOkHttpClient.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
-                Log.d("111", "111");
                 addNotNet();
                 ShowToast.showToast("网络连接错误");
             }
@@ -100,7 +100,6 @@ public class AllFragment extends BaseFragment {
                 gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 homePageRecyclerView.setLayoutManager(gridLayoutManager);
                 homePageRecyclerView.setAdapter(allRecyclerViewAdapter);
-             //   allHolderDao.deleteAll();
                 UsingData.GetUsingData().deleteAllHolderDao(UsingData.GetUsingData().getHolderDa());
                 addHolder(jsonAll);
             }
@@ -152,6 +151,8 @@ public class AllFragment extends BaseFragment {
 //                startActivity(intent);
 //            }
 //        });
+
+       //标签点击后弹popupwindow
         titleSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,7 +162,7 @@ public class AllFragment extends BaseFragment {
             }
         });
     }
-
+//没有网络时的处理方式
     private void addNotNet() {
         if (UsingData.GetUsingData().getAllHolderDao().size()>0) {
             notNetAllAdapter = new NotNetAllAdapter(getContext(), UsingData.GetUsingData().getHolderDa());

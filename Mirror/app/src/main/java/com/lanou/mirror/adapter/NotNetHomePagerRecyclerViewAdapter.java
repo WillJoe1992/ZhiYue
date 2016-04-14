@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONGlasses;
-import com.lanou.mirror.greendaodemo.entity.greendao.HomePagerDao;
+import com.lanou.mirror.greendao.HomePagerDao;
 import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
 

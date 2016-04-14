@@ -17,9 +17,9 @@ import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.bean.SelectTitleRecyclerBean;
 import com.lanou.mirror.constant.Constant;
-import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
-import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
-import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
+import com.lanou.mirror.greendao.DaoMaster;
+import com.lanou.mirror.greendao.DaoSession;
+import com.lanou.mirror.greendao.LabelEntityDao;
 import com.lanou.mirror.tool.MyLog;
 
 import java.util.ArrayList;
