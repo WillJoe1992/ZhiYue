@@ -20,12 +20,12 @@ import com.lanou.mirror.adapter.NotNetHomePagerRecyclerViewAdapter;
 import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.base.BaseFragment;
 import com.lanou.mirror.bean.JSONGlasses;
-import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
-import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
-import com.lanou.mirror.greendaodemo.entity.greendao.HomePager;
-import com.lanou.mirror.greendaodemo.entity.greendao.HomePagerDao;
-import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
-import com.lanou.mirror.greendaodemo.entity.greendao.UsingData;
+import com.lanou.mirror.greendao.DaoMaster;
+import com.lanou.mirror.greendao.DaoSession;
+import com.lanou.mirror.greendao.HomePager;
+import com.lanou.mirror.greendao.HomePagerDao;
+import com.lanou.mirror.greendao.LoginDao;
+import com.lanou.mirror.greendao.UsingData;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.MyLog;
 import com.lanou.mirror.tool.ShowToast;
@@ -115,6 +115,7 @@ public class HomePagerFragment extends BaseFragment {
         });
     }
 
+    //当没有网络时走的方法
     private void addNotNet() {
         if (UsingData.GetUsingData().getHomePagerDao() != null) {
             notNetHomePagerRecyclerViewAdapter = new NotNetHomePagerRecyclerViewAdapter(getContext(), UsingData.GetUsingData().getHomePagerDao());
@@ -127,6 +128,7 @@ public class HomePagerFragment extends BaseFragment {
         }
     }
 
+    //获取数据。 并赋值
     private void addHolder() {
         for (int i = 0; i < jsonGlasses.getData().getList().size(); i++) {
             HomePager homePager = new HomePager();
@@ -147,9 +149,4 @@ public class HomePagerFragment extends BaseFragment {
     }
 
 
-    @Override
-    public void onDestroy() {
-        Log.d("Sysout", "Destroy");
-        super.onDestroy();
-    }
 }

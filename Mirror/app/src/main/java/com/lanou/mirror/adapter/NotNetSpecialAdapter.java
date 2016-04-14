@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONSpecial;
-import com.lanou.mirror.greendaodemo.entity.greendao.SpecialDao;
+import com.lanou.mirror.greendao.SpecialDao;
 import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
 import com.lanou.mirror.tool.ShowToast;

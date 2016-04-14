@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lanou.mirror.R;
-import com.lanou.mirror.greendaodemo.entity.greendao.AllHolderDao;
+import com.lanou.mirror.greendao.AllHolderDao;
 import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
 import com.lanou.mirror.tool.MyLog;

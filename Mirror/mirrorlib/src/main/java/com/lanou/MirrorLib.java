@@ -9,7 +9,7 @@ public class MirrorLib {
         // 创建Schema对象
         // 构造方法第一个参数为数据库版本号
         // 第二个参数为自动生成的实体类将要存放的位置,前面为我的Android Module的包名
-        Schema schema = new Schema(1000, "com.lanou.mirror.greendaodemo.entity.greendao");
+        Schema schema = new Schema(1000, "com.lanou.mirror.greendao");
         // 添加需要创建的实体类信息
         addNote(schema);
         try {

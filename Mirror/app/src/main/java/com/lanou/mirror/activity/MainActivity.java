@@ -32,12 +32,12 @@ import com.lanou.mirror.constant.Constant;
 import com.lanou.mirror.fragment.AllFragment;
 import com.lanou.mirror.fragment.HomePagerFragment;
 import com.lanou.mirror.fragment.ShoppingCarFragment;
-import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
-import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
-import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntity;
-import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
+import com.lanou.mirror.greendao.DaoMaster;
+import com.lanou.mirror.greendao.DaoSession;
+import com.lanou.mirror.greendao.LabelEntity;
+import com.lanou.mirror.greendao.LabelEntityDao;
 import com.lanou.mirror.bean.JSONGlassesClassification;
-import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
+import com.lanou.mirror.greendao.LoginDao;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.fragment.SpecialFragment;
 import com.lanou.mirror.tool.MyLog;
@@ -94,6 +94,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
         setupDatabase();
         //用户已登录返回token
+        //获取数据库的值 。如果有值将登陆改成购物车
         if (loginDao.loadAll().size() > 0) {
             MyLog.showLog("dbtoken", loginDao.loadAll().get(0).getToken());
             head.put("token", loginDao.loadAll().get(0).getToken());
@@ -108,7 +109,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
                 }
             });
         } else {
-            MyLog.showLog("dbtoken", "用户未登录");
+            //否则跳转到登陆页面
             head.put("token", "");
             loginText.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -124,12 +125,13 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
             @Override
             public void onError(Request request, Exception e) {
                 addNotData();
+                //如果没检查出数据检查网络
                 ShowToast.showToast("请检查网络");
             }
 
             @Override
             public void onResponse(String response) {
-                Log.d("bbbbbb", response);
+                //获取所有竖滑的fragment的标签。再将fragment放入adapter
                 Gson gson = new Gson();
                 jsonGlassesClassification = gson.fromJson(response, JSONGlassesClassification.class);
                 data = getFragmentList();
@@ -141,6 +143,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     }
 
     private void addNotData() {
+        //没有获取fragment数据的时候，加入数据库中的数据和写死的数据
         data = NoGetFragmentList();
         VerticalPagerAdapter fragmentAdapter = new VerticalPagerAdapter(
                 getSupportFragmentManager(), data);
@@ -151,14 +154,16 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     protected void initView() {
         verticalViewPager = bindView(R.id.vertical_viewpager);
         head = new HashMap<>();
+        //帮布局
         goToLogin();
+        //美若图片添加动画。
         setMirrorAnim();
-        //只加载一个
+        //竖滑ViewPager每次只加载一个
         verticalViewPager.setOffscreenPageLimit(0);
     }
 
     public List<Fragment> getFragmentList() {
-        List<Fragment> listFragments = new ArrayList<Fragment>();
+        List<Fragment> listFragments = new ArrayList();
 
 
         Bundle bundleAll = new Bundle();
@@ -298,6 +303,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     }
 
     public void setMirrorAnim() {
+
         mirrorIv = bindView(R.id.mirror_icon);
         mirrorIv.setOnClickListener(new View.OnClickListener() {
             @Override
