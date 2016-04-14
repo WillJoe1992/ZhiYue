@@ -18,6 +18,8 @@ public class AllHolderDao extends AbstractDao<AllHolder, Long> {
 
     public static final String TABLENAME = "ALL_HOLDER";
 
+
+
     /**
      * Properties of entity AllHolder.<br/>
      * Can be used for QueryBuilder and for referencing column names.

@@ -46,6 +46,7 @@
         android:text="添加添加收件人姓名" />
 
     <EditText
+        android:id="@+id/add_name"
         android:layout_width="match_parent"
         android:layout_height="92px"
         android:layout_marginLeft="@dimen/login_image_marginleft"
@@ -61,13 +62,28 @@
         android:text="添加联系人电话号码" />
 
     <EditText
+        android:id="@+id/add_phone_number"
         android:layout_width="match_parent"
         android:layout_height="92px"
         android:layout_marginLeft="@dimen/login_image_marginleft"
         android:layout_marginRight="@dimen/login_image_marginright"
         android:layout_marginTop="20px"
         android:background="@android:color/white" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:text="添加城市" />
 
+    <EditText
+        android:id="@+id/add_city"
+        android:layout_width="match_parent"
+        android:layout_height="92px"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:layout_marginTop="20px"
+        android:background="@android:color/white" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,6 +93,7 @@
         android:text="添加收货地址" />
 
     <EditText
+        android:id="@+id/add_address"
         android:layout_width="match_parent"
         android:layout_height="300px"
         android:layout_marginLeft="@dimen/login_image_marginleft"
@@ -85,6 +102,7 @@
         android:background="@android:color/white" />
 
     <Button
+        android:id="@+id/add_address_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/login_image_marginleft"

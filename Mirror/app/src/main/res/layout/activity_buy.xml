@@ -35,19 +35,40 @@
     <LinearLayout
         android:id="@+id/body_one"
         android:layout_width="match_parent"
-        android:layout_height="160px"
+        android:layout_height="200px"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/line_image_view"
         android:layout_marginTop="50px"
-        android:background="@drawable/bg_liner">
-
+        android:background="@drawable/bg_liner"
+        android:orientation="vertical">
         <TextView
+            android:id="@+id/name_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_marginTop="20px"
             android:gravity="center"
-            android:text="请添加收件人信息" />
+            android:text=""
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/address_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="20px"
+            android:gravity="center"
+            android:text="请添加收件人信息"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/phone_number_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="20px"
+            android:gravity="center"
+            android:text=""
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <LinearLayout

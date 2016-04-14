@@ -12,8 +12,10 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
+import com.lanou.mirror.bean.JSONAddress;
 import com.lanou.mirror.greendaodemo.entity.greendao.AllHolderDao;
 import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetOkHttpClient;
@@ -32,7 +34,7 @@ import java.util.HashMap;
  */
 public class BuyActivity extends BaseActivity implements View.OnClickListener {
     private HashMap<String, String> head;
-    private TextView buyGlassesTitle, buyMore, freight, subtotal, placeAnOrder, goToAllAddress;
+    private TextView buyGlassesTitle, buyMore, freight, subtotal, placeAnOrder, goToAllAddress,nameDetails,addressDetails,phoneNumberDetails;
     private ImageView buyImageView, buyDelete;
 
     @Override
@@ -49,6 +51,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
 
         head.put("token", intent.getStringExtra("getToken"));
         head.put("goods_id", intent.getStringExtra("buyGoods_id"));
+        head.put("device_type", "1");
         NetOkHttpClient.postAsyn(URL.JION_SHOPPING_CART, new NetOkHttpClient.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -58,6 +61,24 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onResponse(String response) throws JSONException {
                 MyLog.showLog("wwwwwwwwww", response);
+
+
+            }
+        }, head);
+        NetOkHttpClient.postAsyn(URL.USER_ADDRESS_LIST, new NetOkHttpClient.ResultCallback<String>() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) throws JSONException {
+                MyLog.showLog("cvxcvxcv", response);
+                Gson gson = new Gson();
+                JSONAddress jsonAddress = gson.fromJson(response, JSONAddress.class);
+                nameDetails.setText(jsonAddress.getData().getList().get(0).getUsername());
+                addressDetails.setText(jsonAddress.getData().getList().get(0).getAddr_info());
+                phoneNumberDetails.setText(jsonAddress.getData().getList().get(0).getCellphone());
             }
         }, head);
         ImageLoaderHelper imageLoaderHelper = new ImageLoaderHelper();
@@ -81,6 +102,9 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         placeAnOrder = bindView(R.id.place_an_order);
         buyDelete = bindView(R.id.buy_delete);
         goToAllAddress = bindView(R.id.goto_alladdress);
+        nameDetails=bindView(R.id.name_details);
+        addressDetails=bindView(R.id.address_details);
+        phoneNumberDetails=bindView(R.id.phone_number_details);
     }
 
     @Override
@@ -103,7 +127,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
                     }
                 });
                 builder.setView(view1);
-                builder.show().getWindow();
+                builder.show();
                 break;
             case R.id.buy_delete:
                 finish();

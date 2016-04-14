@@ -38,6 +38,7 @@ import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntity;
 import com.lanou.mirror.greendaodemo.entity.greendao.LabelEntityDao;
 import com.lanou.mirror.bean.JSONGlassesClassification;
 import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
+import com.lanou.mirror.greendaodemo.entity.greendao.UsingData;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.fragment.SpecialFragment;
 import com.lanou.mirror.tool.MyLog;
@@ -81,8 +82,8 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     // 会话
     private DaoSession daoSession;
     // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
-    private LabelEntityDao labelEntityDao;
-    private LoginDao loginDao;
+//    private LabelEntityDao labelEntityDao;
+//    private LoginDao loginDao;
 
     @Override
     protected void initData() {
@@ -94,9 +95,9 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
         setupDatabase();
         //用户已登录返回token
-        if (loginDao.loadAll().size() > 0) {
-            MyLog.showLog("dbtoken", loginDao.loadAll().get(0).getToken());
-            head.put("token", loginDao.loadAll().get(0).getToken());
+        if (UsingData.GetUsingData().getAllLoginDao().size() > 0) {
+            MyLog.showLog("dbtoken", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+            head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
             loginText.setVisibility(View.GONE);
             shoppingText.setVisibility(View.VISIBLE);
             shoppingText.setOnClickListener(new View.OnClickListener() {
@@ -169,15 +170,17 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         listFragments.add(fragmentAll);
 
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "mirrorlib.db", null);
-        db = helper.getWritableDatabase();
-        mDaoMaster = new DaoMaster(db);
-        mDaoSession = mDaoMaster.newSession();
-        labelEntityDao = mDaoSession.getLabelEntityDao();
+//        db = helper.getWritableDatabase();
+//        mDaoMaster = new DaoMaster(db);
+//        mDaoSession = mDaoMaster.newSession();
+//        labelEntityDao = mDaoSession.getLabelEntityDao();
         if (jsonGlassesClassification != null) {
-            labelEntityDao.deleteAll();
+          //  labelEntityDao.deleteAll();
+            UsingData.GetUsingData().deleteLabelEntityDao();
             for (int i = 0; i < jsonGlassesClassification.getData().size(); i++) {
                 LabelEntity labelEntity = new LabelEntity((long) i, jsonGlassesClassification.getData().get(i).getCategory_name());
-                labelEntityDao.insert(labelEntity);
+            //    labelEntityDao.insert(labelEntity);
+                UsingData.GetUsingData().addLabelEntityDao(labelEntity);
             }
             for (int i = 0; i < jsonGlassesClassification.getData().size(); i++) {
                 Bundle bundleFlatGlass = new Bundle();
@@ -331,11 +334,11 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
 //获取title如果数据库没有手动添加
 
-        if (labelEntityDao != null) {
+        if (UsingData.GetUsingData().getLabelEntityDao() != null) {
             selectTitleRecyclerBeans = new ArrayList<>();
             selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("瀏覽所有分類"));
-            for (int i = 0; i < labelEntityDao.loadAll().size(); i++) {
-                selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean(labelEntityDao.loadAll().get(i).getLabelname()));
+            for (int i = 0; i <UsingData.GetUsingData().getAllLabelEntityDao() .size(); i++) {
+                selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean(UsingData.GetUsingData().getAllLabelEntityDao().get(i).getLabelname()));
             }
             selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("专题分享"));
             selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("我的购物车"));
@@ -392,18 +395,18 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
    //配置数据库
     private void setupDatabase() {
-        //初始化数据库
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "mirrorlib.db", null);
-        db = helper.getWritableDatabase();
-        daoMaster = new DaoMaster(db);
-        daoSession = daoMaster.newSession();
-        labelEntityDao = daoSession.getLabelEntityDao();
-        /////toke数据库
-        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(this, "Login.db", null);
-        SQLiteDatabase db2 = helper2.getWritableDatabase();
-        DaoMaster daoMaster2 = new DaoMaster(db2);
-        DaoSession daoSession2 = daoMaster2.newSession();
-        loginDao = daoSession2.getLoginDao();
+//        //初始化数据库
+//        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "mirrorlib.db", null);
+//        db = helper.getWritableDatabase();
+//        daoMaster = new DaoMaster(db);
+//        daoSession = daoMaster.newSession();
+//        labelEntityDao = daoSession.getLabelEntityDao();
+//        /////toke数据库
+//        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(this, "Login.db", null);
+//        SQLiteDatabase db2 = helper2.getWritableDatabase();
+//        DaoMaster daoMaster2 = new DaoMaster(db2);
+//        DaoSession daoSession2 = daoMaster2.newSession();
+//        loginDao = daoSession2.getLoginDao();
     }
 
     public List<Fragment> NoGetFragmentList() {
@@ -414,11 +417,11 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         AllFragment fragmentAll = new AllFragment();
         fragmentAll.setArguments(bundleAll);
         listFragments.add(fragmentAll);
-        if (labelEntityDao != null) {
-            for (int i = 0; i < labelEntityDao.loadAll().size(); i++) {
+        if (UsingData.GetUsingData().getAllLabelEntityDao() != null) {
+            for (int i = 0; i < UsingData.GetUsingData().getAllLabelEntityDao().size(); i++) {
                 Bundle bundleFlatGlass = new Bundle();
-                bundleFlatGlass.putString("titleName", labelEntityDao.loadAll().get(i).getLabelname());
-                bundleFlatGlass.putString("CategoryId", String.valueOf(labelEntityDao.loadAll().get(i).getId()));
+                bundleFlatGlass.putString("titleName", UsingData.GetUsingData().getAllLabelEntityDao().get(i).getLabelname());
+                bundleFlatGlass.putString("CategoryId", String.valueOf(UsingData.GetUsingData().getAllLabelEntityDao().get(i).getId()));
                 HomePagerFragment fragmentFlatGlass = new HomePagerFragment();
                 fragmentFlatGlass.setArguments(bundleFlatGlass);
                 listFragments.add(fragmentFlatGlass);
