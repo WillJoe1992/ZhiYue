@@ -40,12 +40,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30px"
         android:layout_marginLeft="@dimen/login_image_marginleft"
         android:layout_marginRight="@dimen/login_image_marginright"
+        android:layout_marginTop="30px"
         android:text="添加添加收件人姓名" />
 
     <EditText
+        android:id="@+id/add_address_add_name"
         android:layout_width="match_parent"
         android:layout_height="92px"
         android:layout_marginLeft="@dimen/login_image_marginleft"
@@ -61,6 +62,7 @@
         android:text="添加联系人电话号码" />
 
     <EditText
+        android:id="@+id/add_address_add_phone"
         android:layout_width="match_parent"
         android:layout_height="92px"
         android:layout_marginLeft="@dimen/login_image_marginleft"
@@ -77,6 +79,7 @@
         android:text="添加收货地址" />
 
     <EditText
+        android:id="@+id/add_address_add_address"
         android:layout_width="match_parent"
         android:layout_height="300px"
         android:layout_marginLeft="@dimen/login_image_marginleft"
@@ -85,6 +88,7 @@
         android:background="@android:color/white" />
 
     <Button
+        android:id="@+id/add_address_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/login_image_marginleft"
@@ -92,5 +96,6 @@
         android:layout_marginTop="25px"
         android:background="#f85453"
         android:text="提交地址"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white" />'
+
 </LinearLayout>

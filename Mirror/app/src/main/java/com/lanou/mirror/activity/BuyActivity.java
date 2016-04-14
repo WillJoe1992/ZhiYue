@@ -109,7 +109,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.goto_alladdress:
-                Intent intent = new Intent(BuyActivity.this,AllAddressActivity.class);
+                Intent intent = new Intent(BuyActivity.this, AllAddressActivity.class);
                 startActivity(intent);
                 break;
         }

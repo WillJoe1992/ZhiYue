@@ -68,7 +68,7 @@ public class HomePagerFragment extends BaseFragment {
         //给head赋值然后进行网络拉取
         head.put("device_type", "1");
         //用户已登录返回token
-        if (UsingData.GetUsingData().getAllLoginDao().size() > 0 && UsingData.GetUsingData().getAllLoginDao().get(0).getToken() != null) {
+        if (UsingData.GetUsingData().getAllLoginDao()!=null&& UsingData.GetUsingData().getAllLoginDao().size()>0) {
             MyLog.showLog("HomePagerdbtoken", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
             head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
         } else {

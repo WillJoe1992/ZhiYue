@@ -12,6 +12,7 @@ import com.lanou.mirror.base.BaseActivity;
  */
 public class AllAddressActivity extends BaseActivity {
     private ImageView addAdressIv;
+
     @Override
     protected void initData() {
 
@@ -23,7 +24,7 @@ public class AllAddressActivity extends BaseActivity {
         addAdressIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllAddressActivity.this,AddAddressActivity.class);
+                Intent intent = new Intent(AllAddressActivity.this, AddAddressActivity.class);
                 startActivity(intent);
             }
         });

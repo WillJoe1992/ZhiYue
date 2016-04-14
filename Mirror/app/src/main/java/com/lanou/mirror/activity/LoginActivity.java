@@ -51,14 +51,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText phoneEdt, passwordEdt;
     private Button loginBtn, registerBtn;
     private MyTextWatcher myTextWatcher;
-    private ImageView closeImage,sinaLogin,weChatLogin;
-    String phone,password;
+    private ImageView closeImage, sinaLogin, weChatLogin;
+    String phone, password;
 
-//    private SQLiteDatabase db;
+    //    private SQLiteDatabase db;
 //    private LoginDao loginDao;
 //    private DaoMaster daoMaster;
 //    private DaoSession daoSession;
-    private HashMap<String,String>head;
+    private HashMap<String, String> head;
+
     @Override
     protected void initData() {
 
@@ -110,7 +111,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.sina_login:
                 sinaGoToLogin();
                 break;
@@ -145,12 +146,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 loginBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        phone=phoneEdt.getText().toString();
-                        password=passwordEdt.getText().toString();
-                        head=new HashMap<String, String>();
-                        head.put("phone_number",phone);
-                        head.put("password",password);
-                        NetOkHttpClient.postAsyn(URL.USER_LOGIN, new NetOkHttpClient.ResultCallback<String> (){
+                        phone = phoneEdt.getText().toString();
+                        password = passwordEdt.getText().toString();
+                        head = new HashMap<String, String>();
+                        head.put("phone_number", phone);
+                        head.put("password", password);
+                        NetOkHttpClient.postAsyn(URL.USER_LOGIN, new NetOkHttpClient.ResultCallback<String>() {
                             @Override
                             public void onError(Request request, Exception e) {
                                 ShowToast.showToast("网络连接错误");
@@ -158,29 +159,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                             @Override
                             public void onResponse(String response) throws JSONException {
-                               MyLog.showLog("登录状态",response.toString());
-                                LoginBean loginBean=new LoginBean();
-                                Map<String,String> data=new HashMap<>();
-                                data=loginBean.getLoginBean(response);
-                               if(data.get("result").equals("1")&&data!=null){
-                                   ShowToast.showToast("登录成功");
-                                   //将凭证传入数据库
-                                   setupDatabase();
-                                //   loginDao.deleteAll();
-                                   UsingData.GetUsingData().deleteLoginDao();
-                                   Login login=new Login();
-                                   login.setToken(data.get("token"));
-                                   login.setUid(data.get("uid"));
-                               //    loginDao.insert(login);
-                                   UsingData.GetUsingData().addLoginDao(login);
-                                   Intent intent=new Intent(BaseApplication.getContext(),MainActivity.class);
-                                   startActivity(intent);
-                                   finish();
-                               }else {
-                                   ShowToast.showToast(data.get("msg"));
-                               }
+                                MyLog.showLog("登录状态", response.toString());
+                                LoginBean loginBean = new LoginBean();
+                                Map<String, String> data = new HashMap<>();
+                                data = loginBean.getLoginBean(response);
+                                if (data.get("result").equals("1") && data != null) {
+                                    ShowToast.showToast("登录成功");
+                                    //将凭证传入数据库
+                                    setupDatabase();
+                                    //   loginDao.deleteAll();
+                                    UsingData.GetUsingData().deleteLoginDao();
+                                    Login login = new Login();
+                                    login.setToken(data.get("token"));
+                                    login.setUid(data.get("uid"));
+                                    //    loginDao.insert(login);
+                                    UsingData.GetUsingData().addLoginDao(login);
+                                    Intent intent = new Intent(BaseApplication.getContext(), MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    ShowToast.showToast(data.get("msg"));
+                                }
                             }
-                        },head);
+                        }, head);
                     }
                 });
             }
@@ -194,8 +195,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected int setContent() {
         return R.layout.activity_login;
     }
+
     private void setupDatabase() {
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"Login.db",null);
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "Login.db", null);
 //        db=helper.getWritableDatabase();
 //        daoMaster=new DaoMaster(db);
 //        daoSession=daoMaster.newSession();
@@ -207,6 +209,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         return super.onKeyDown(keyCode, event);
     }
+
     public void sinaGoToLogin() {
         ShareSDK.initSDK(this);
         Platform sinaPlatform = ShareSDK.getPlatform(SinaWeibo.NAME);
@@ -232,6 +235,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         sinaPlatform.SSOSetting(false);
         sinaPlatform.showUser(null);
     }
+
     public void weChatGoToLogin() {
         ShareSDK.initSDK(this);
         Platform sinaPlatform = ShareSDK.getPlatform(Wechat.NAME);
@@ -257,7 +261,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         sinaPlatform.SSOSetting(false);
         sinaPlatform.showUser(null);
     }
-
 
 
 }

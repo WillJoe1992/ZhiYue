@@ -3,6 +3,7 @@ package com.lanou.mirror.greendaodemo.entity.greendao;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.lanou.mirror.base.BaseApplication;
+import com.lanou.mirror.tool.MyLog;
 
 import java.util.List;
 
@@ -82,9 +83,7 @@ public class UsingData {
     }
 
     /**
-     *
-     * @return
-     * HolderDa
+     * @return HolderDa
      */
 
     public AllHolderDao getHolderDa() {
@@ -101,6 +100,7 @@ public class UsingData {
     public List<AllHolder> getAllHolderDao() {
         return getHolderDa().loadAll();
     }
+
     /**
      * 插入数据
      * 插入集合
@@ -112,9 +112,7 @@ public class UsingData {
     }
 
     /**
-     *
-     * @return
-     * LoginDao
+     * @return LoginDao
      */
     public LoginDao getLoginDao() {
         if (loginDao == null) {
@@ -122,6 +120,7 @@ public class UsingData {
         }
         return loginDao;
     }
+
     public void deleteLoginDao() {
         getLoginDao().deleteAll();
     }
@@ -136,6 +135,7 @@ public class UsingData {
 
     /**
      * HomePagerDao
+     *
      * @return
      */
     public HomePagerDao getHomePagerDao() {
@@ -151,15 +151,16 @@ public class UsingData {
     }
 
     public List<HomePager> getAllHomePagerDao(HomePager homePager) {
-      return getHomePagerDao().loadAll();
+        return getHomePagerDao().loadAll();
     }
 
     public void addHomePagerDao(HomePager homePager) {
-      getHomePagerDao().insert(homePager);
+        getHomePagerDao().insert(homePager);
     }
 
     /**
      * SpecialDao
+     *
      * @return
      */
     public SpecialDao getSpecialDao() {
@@ -183,6 +184,7 @@ public class UsingData {
 
     /**
      * LabelEntityDao
+     *
      * @return
      */
     public LabelEntityDao getLabelEntityDao() {
@@ -203,8 +205,6 @@ public class UsingData {
     public void addLabelEntityDao(LabelEntity labelEntity) {
         getLabelEntityDao().insert(labelEntity);
     }
-
-
 
 
 }
