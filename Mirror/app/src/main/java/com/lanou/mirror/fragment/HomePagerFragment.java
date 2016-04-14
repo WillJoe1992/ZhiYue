@@ -75,8 +75,7 @@ public class HomePagerFragment extends BaseFragment {
             head.put("token", "");
         }
         head.put("goods_id", url);
-        Log.d("aaaaaaaa", url);
-        // addNotNet();
+
         //网络拉取
         NetOkHttpClient.postAsyn(URL.GOODS_LIST, new NetOkHttpClient.ResultCallback<String>() {
             @Override

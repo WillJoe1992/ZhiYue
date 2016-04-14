@@ -51,7 +51,6 @@ import java.util.HashMap;
 import java.util.List;
 
 
-
 public class MainActivity extends BaseActivity implements SelectTitleRecyclerViewAdapter.ClickListener {
     private VerticalViewPager verticalViewPager;
     private TextView loginText, shoppingText;
@@ -315,15 +314,17 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         });
     }
 
+
+    //弹出来的popwindow
     public void showPopupWindow(View v, String title) {
-//设置popwindow里的参数
+    //设置popwindow里的参数
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         View view = getLayoutInflater().inflate(R.layout.activity_select_title, null);
         popupWindow = new PopupWindow(view, dm.widthPixels, dm.heightPixels - 190, true);
 
-//设置view的监听点其他地方退出
+    //设置view的监听点其他地方退出
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -335,7 +336,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
             }
         });
 
-//获取title如果数据库没有手动添加
+    //获取title如果数据库没有手动添加
 
         if (labelEntityDao != null) {
             selectTitleRecyclerBeans = new ArrayList<>();
@@ -396,7 +397,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
     }
 
-   //配置数据库
+    //配置数据库
     private void setupDatabase() {
         //初始化数据库
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "mirrorlib.db", null);

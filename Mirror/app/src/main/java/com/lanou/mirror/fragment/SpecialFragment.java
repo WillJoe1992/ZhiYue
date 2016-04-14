@@ -48,18 +48,7 @@ public class SpecialFragment extends BaseFragment{
     private SpecialAdapter specialAdapter;
     private JSONSpecial jsonSpecial;
     private String title;
-//
-//    private NotNetAllAdapter notNetAllAdapter;
-//    // 数据库
-//    private SQLiteDatabase db;
-//    // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
-//    private SpecialDao specialDao;
-//    //操作数据库
-//    // 管理者
-//    private DaoMaster daoMaster;
-//    // 会话
-//    private DaoSession daoSession;
-//    private LoginDao loginDao;
+
     private NotNetSpecialAdapter notNetSpecialAdapter;
     @Override
     public int getLayout() {
@@ -112,7 +101,6 @@ public class SpecialFragment extends BaseFragment{
                 homePageRecyclerView.setLayoutManager(gridLayoutManager);
                 specialAdapter=new SpecialAdapter(jsonSpecial);
                 homePageRecyclerView.setAdapter(specialAdapter);
-                //specialDao.deleteAll();
                 UsingData.GetUsingData().deleteSpecialDao();
                 addHolder();
                 specialAdapter.MySpecialOnClick(new SpecialAdapter.SpecialOnClick() {
@@ -136,7 +124,7 @@ public class SpecialFragment extends BaseFragment{
             notNetSpecialAdapter=new NotNetSpecialAdapter(UsingData.GetUsingData().getSpecialDao());
             homePageRecyclerView.setAdapter(notNetSpecialAdapter);
         }
-    //    MyLog.showLog("wewewewewew",""+specialDao.loadAll().get(0).getStory_img());
+
     }
 
     private void addHolder() {
@@ -145,7 +133,6 @@ public class SpecialFragment extends BaseFragment{
                 Special special=new Special();
                 special.setStory_img(jsonSpecial.getData().getList().get(i).getStory_img());
                 special.setStory_title(jsonSpecial.getData().getList().get(i).getStory_title());
-              //  specialDao.insert(special);
                 UsingData.GetUsingData().addSpecialDao(special);
             }
         }else {
@@ -159,18 +146,5 @@ public class SpecialFragment extends BaseFragment{
         homePageRecyclerView = bindView(R.id.fragment_homepage_recyclerview);
     }
 
-//    private void setupDatabase() {
-//        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(getActivity()
-//                , "AllHolder.db", null);
-//        db = helper.getWritableDatabase();
-//        daoMaster = new DaoMaster(db);
-//        daoSession = daoMaster.newSession();
-//        specialDao = daoSession.getSpecialDao();
-//        /////toke数据库
-//        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(BaseApplication.getContext(), "Login.db", null);
-//        SQLiteDatabase db2 = helper2.getWritableDatabase();
-//        DaoMaster daoMaster2 = new DaoMaster(db2);
-//        DaoSession daoSession2 = daoMaster2.newSession();
-//        loginDao = daoSession2.getLoginDao();
-//    }
+
 }
