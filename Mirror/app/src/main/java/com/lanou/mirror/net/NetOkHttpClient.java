@@ -63,7 +63,7 @@ public class NetOkHttpClient {
     //对外暴漏的方法,post表格形式请求,参数网址,接口,post头文件
     public static void postAsyn(String url, final ResultCallback callback, Map<String, String> params)
     {
-        getInstance()._postAsyn(url, callback, params);
+        getInstance().postAsynAll(url, callback, params);
     }
     /**
      * 异步的post请求
@@ -72,7 +72,7 @@ public class NetOkHttpClient {
      * @param callback 接口
      * @param params 头文件
      */
-    private void _postAsyn(String url, final ResultCallback callback, Map<String, String> params)
+    private void postAsynAll(String url, final ResultCallback callback, Map<String, String> params)
     {
         Param[] paramsArr = map2Params(params);
         Request request = buildPostRequest(url, paramsArr);
