@@ -1,11 +1,14 @@
 package com.lanou.mirror.activity;
-
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import android.view.View;
+import android.widget.ImageView;
+
 
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
@@ -20,6 +23,7 @@ import java.util.HashMap;
 /**
  * Created by wyc on 16/4/13.
  */
+
 public class AddAddressActivity extends BaseActivity implements View.OnClickListener {
     private EditText addName, addPhone, addAddress;
     private Button addAddressBtn;
@@ -28,14 +32,17 @@ public class AddAddressActivity extends BaseActivity implements View.OnClickList
 
     public static HashMap<String, String> data;
 
+
     @Override
     protected void initData() {
+        back();
 
 
     }
 
     @Override
     protected void initView() {
+
         addName = bindView(R.id.add_address_add_name);
         addPhone = bindView(R.id.add_address_add_phone);
         addAddress = bindView(R.id.add_address_add_address);
@@ -43,8 +50,18 @@ public class AddAddressActivity extends BaseActivity implements View.OnClickList
         closeIv = bindView(R.id.add_address_close);
         closeIv.setOnClickListener(this);
         addAddressBtn.setOnClickListener(this);
+        closeIv = bindView(R.id.add_address_close);
+
+    }
 
 
+    public void back(){
+        closeIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override

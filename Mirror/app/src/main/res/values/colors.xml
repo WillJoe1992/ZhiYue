@@ -13,4 +13,6 @@
     <color name="special_content_picture_item_text_textcolor">#ffffff</color>
     <color name="select_item">#00000000</color>
     <color name="select_item_textcolor">#536482</color>
+    <color name="button_background">#f85453</color>
+
 </resources>
