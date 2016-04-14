@@ -21,6 +21,7 @@ import com.lanou.mirror.greendaodemo.entity.greendao.DaoMaster;
 import com.lanou.mirror.greendaodemo.entity.greendao.DaoSession;
 import com.lanou.mirror.greendaodemo.entity.greendao.Login;
 import com.lanou.mirror.greendaodemo.entity.greendao.LoginDao;
+import com.lanou.mirror.greendaodemo.entity.greendao.UsingData;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.MyLog;
 import com.lanou.mirror.tool.MyToast;
@@ -53,10 +54,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private ImageView closeImage,sinaLogin,weChatLogin;
     String phone,password;
 
-    private SQLiteDatabase db;
-    private LoginDao loginDao;
-    private DaoMaster daoMaster;
-    private DaoSession daoSession;
+//    private SQLiteDatabase db;
+//    private LoginDao loginDao;
+//    private DaoMaster daoMaster;
+//    private DaoSession daoSession;
     private HashMap<String,String>head;
     @Override
     protected void initData() {
@@ -165,11 +166,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                    ShowToast.showToast("登录成功");
                                    //将凭证传入数据库
                                    setupDatabase();
-                                   loginDao.deleteAll();
+                                //   loginDao.deleteAll();
+                                   UsingData.GetUsingData().deleteLoginDao();
                                    Login login=new Login();
                                    login.setToken(data.get("token"));
                                    login.setUid(data.get("uid"));
-                                   loginDao.insert(login);
+                               //    loginDao.insert(login);
+                                   UsingData.GetUsingData().addLoginDao(login);
                                    Intent intent=new Intent(BaseApplication.getContext(),MainActivity.class);
                                    startActivity(intent);
                                    finish();
@@ -193,10 +196,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
     private void setupDatabase() {
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"Login.db",null);
-        db=helper.getWritableDatabase();
-        daoMaster=new DaoMaster(db);
-        daoSession=daoMaster.newSession();
-        loginDao=daoSession.getLoginDao();
+//        db=helper.getWritableDatabase();
+//        daoMaster=new DaoMaster(db);
+//        daoSession=daoMaster.newSession();
+//        loginDao=daoSession.getLoginDao();
     }
 
     @Override
