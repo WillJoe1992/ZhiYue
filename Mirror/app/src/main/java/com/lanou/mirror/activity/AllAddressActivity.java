@@ -113,4 +113,5 @@ public class AllAddressActivity extends BaseActivity {
     protected int setContent() {
         return R.layout.activity_all_address;
     }
+
 }

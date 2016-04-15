@@ -15,8 +15,11 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
+import com.lanou.mirror.base.BaseApplication;
+import com.lanou.mirror.bean.JSONOrder;
 import com.lanou.mirror.greendao.AllHolderDao;
 import com.lanou.mirror.bean.JSONAddress;
+import com.lanou.mirror.greendao.UsingData;
 import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.MyLog;
@@ -34,9 +37,9 @@ import java.util.HashMap;
  */
 public class BuyActivity extends BaseActivity implements View.OnClickListener {
     private HashMap<String, String> head;
-    private TextView buyGlassesTitle, buyMore, freight, subtotal, placeAnOrder, goToAllAddress,nameDetails,addressDetails,phoneNumberDetails;
+    private TextView buyGlassesTitle, buyMore, freight, subtotal, placeAnOrder, goToAllAddress, nameDetails, addressDetails, phoneNumberDetails;
     private ImageView buyImageView, buyDelete;
-
+    private String orderNo, addId, goodName;
     @Override
     protected void initData() {
         head = new HashMap<>();
@@ -102,9 +105,9 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         placeAnOrder = bindView(R.id.place_an_order);
         buyDelete = bindView(R.id.buy_delete);
         goToAllAddress = bindView(R.id.goto_alladdress);
-        nameDetails=bindView(R.id.name_details);
-        addressDetails=bindView(R.id.address_details);
-        phoneNumberDetails=bindView(R.id.phone_number_details);
+        nameDetails = bindView(R.id.name_details);
+        addressDetails = bindView(R.id.address_details);
+        phoneNumberDetails = bindView(R.id.phone_number_details);
     }
 
     @Override
@@ -118,12 +121,56 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
             case R.id.place_an_order:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 // builder.setTitle("请选择支付方式");
-                View view1 = LayoutInflater.from(this).inflate(R.layout.item_buy_view, null);
+                final View view1 = LayoutInflater.from(this).inflate(R.layout.item_buy_view, null);
                 LinearLayout linearLayout = (LinearLayout) view1.findViewById(R.id.buy_linear_layout);
+
+                HashMap<String, String> head = new HashMap<String, String>();
+                Intent intent = getIntent();
+                head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+                head.put("goods_id", intent.getStringExtra("buyGoods_id"));
+                head.put("goods_num", "1");
+                head.put("price", intent.getStringExtra("getToken"));
+                head.put("device_type", "1");
+                NetOkHttpClient.postAsyn(URL.ORDER_SUB, new NetOkHttpClient.ResultCallback<String>() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) throws JSONException {
+                        MyLog.showLog("ORDER_SUB", response);
+                        Gson gson=new Gson();
+                        JSONOrder jsonOrder=gson.fromJson(response,JSONOrder.class);
+                        orderNo=jsonOrder.getData().getOrder_id();
+                        addId=jsonOrder.getData().getAddress().getAddr_id();
+                        goodName=jsonOrder.getData().getGoods().getGoods_name();
+                    }
+                }, head);
+
                 linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         ShowToast.showToast("支付宝支付");
+                        final PayActivity payActivity = new PayActivity();
+                        HashMap<String, String> head = new HashMap<String, String>();
+                        head.put("token",UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+                        head.put("order_no",orderNo);
+                        head.put("addr_id",addId);
+                        head.put("goodsname",goodName);
+                        NetOkHttpClient.postAsyn(URL.PAY_ALI, new NetOkHttpClient.ResultCallback<String>() {
+                            @Override
+                            public void onError(Request request, Exception e) {
+
+                            }
+
+                            @Override
+                            public void onResponse(String response) throws JSONException {
+                                payActivity.sign(response);
+                                payActivity.pay(view1);
+
+                            }
+                        }, head);
                     }
                 });
                 builder.setView(view1);
@@ -133,8 +180,8 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.goto_alladdress:
-                Intent intent = new Intent(BuyActivity.this, AllAddressActivity.class);
-                startActivity(intent);
+                //    Intent intent = new Intent(BuyActivity.this, AllAddressActivity.class);
+                //    startActivity(intent);
                 break;
         }
     }
