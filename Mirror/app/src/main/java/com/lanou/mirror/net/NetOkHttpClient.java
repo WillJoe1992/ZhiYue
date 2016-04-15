@@ -24,6 +24,7 @@ import java.util.Set;
 
 /**
  * Created by SAZ on 16/3/30.
+ * 网络封装类.
  */
 public class NetOkHttpClient {
     private static NetOkHttpClient mInstance;
@@ -60,6 +61,12 @@ public class NetOkHttpClient {
         return mInstance;
     }
 
+    /**
+     *
+     * @param url 网址
+     * @param callback 回调接口,需要规定泛型
+     * @param params 头文件,即post请求头
+     */
     //对外暴漏的方法,post表格形式请求,参数网址,接口,post头文件
     public static void postAsyn(String url, final ResultCallback callback, Map<String, String> params)
     {

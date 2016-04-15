@@ -165,7 +165,7 @@ public class AllFragment extends BaseFragment {
 //没有网络时的处理方式
     private void addNotNet() {
         if (UsingData.GetUsingData().getAllHolderDao().size()>0) {
-            notNetAllAdapter = new NotNetAllAdapter(getContext(), UsingData.GetUsingData().getHolderDa());
+            notNetAllAdapter = new NotNetAllAdapter(BaseApplication.getContext(), UsingData.GetUsingData().getHolderDa());
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
             gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             homePageRecyclerView.setLayoutManager(gridLayoutManager);

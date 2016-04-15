@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginLeft="30px"
     android:layout_marginRight="30px"
     android:layout_marginTop="20px"
@@ -105,7 +106,8 @@
             android:layout_toRightOf="@id/buy_glasses_iv"
             android:textSize="25px"
             android:textColor="@android:color/black"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            tools:ignore="HardcodedText"/>
         <TextView
             android:id="@+id/buy_more"
             android:layout_width="wrap_content"

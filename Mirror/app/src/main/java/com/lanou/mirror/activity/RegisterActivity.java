@@ -10,6 +10,7 @@ import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.MyLog;
+import com.lanou.mirror.tool.MyToast;
 import com.lanou.mirror.tool.ShowToast;
 import com.lanou.mirror.tool.URL;
 import com.squareup.okhttp.Request;
@@ -77,7 +78,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
                         @Override
                         public void onResponse(String response) throws JSONException {
-                            MyLog.showLog("注册", response);
+                        //    MyLog.showLog("注册", response);
+                            MyToast.myToast(response);
                         }
                     }, head);
                 } else {

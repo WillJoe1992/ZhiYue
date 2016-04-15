@@ -74,8 +74,12 @@ public class HomePagerFragment extends BaseFragment {
         } else {
             head.put("token", "");
         }
-        head.put("goods_id", url);
-
+        /**
+         * 分类id
+         */
+    //    head.put("category_id", url);
+        MyLog.showLog("aaaaaaaaaaaaaa","initView");
+        MyLog.showLog("rrrrrrrrrrrrrrrrr", url);
         //网络拉取
         NetOkHttpClient.postAsyn(URL.GOODS_LIST, new NetOkHttpClient.ResultCallback<String>() {
             @Override
@@ -117,7 +121,7 @@ public class HomePagerFragment extends BaseFragment {
     //当没有网络时走的方法
     private void addNotNet() {
         if (UsingData.GetUsingData().getHomePagerDao() != null) {
-            notNetHomePagerRecyclerViewAdapter = new NotNetHomePagerRecyclerViewAdapter(getContext(), UsingData.GetUsingData().getHomePagerDao());
+            notNetHomePagerRecyclerViewAdapter = new NotNetHomePagerRecyclerViewAdapter(BaseApplication.getContext(), UsingData.GetUsingData().getHomePagerDao());
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
             gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             homePageRecyclerView.setLayoutManager(gridLayoutManager);

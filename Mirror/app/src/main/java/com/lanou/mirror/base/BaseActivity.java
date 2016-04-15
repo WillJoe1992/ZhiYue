@@ -17,10 +17,8 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //设置屏幕全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(setContent());
         initView();
         initData();
@@ -36,14 +34,21 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     //绑定布局
     protected abstract int setContent() ;
 
-
+    /**
+     * 销毁同时,移除队列
+      */
     @Override
     protected void onDestroy() {
         BaseApplication.removeActivity(this);
         super.onDestroy();
     }
 
-    //方便绑定布局的
+    /***
+     * findViewById
+     * @param id 组件的id
+     * @param <T> 组件的类型,要求是View子类
+     * @return 相应类型的View
+     */
     protected <T extends View>T bindView(int id){
         return (T)findViewById(id);
     }
