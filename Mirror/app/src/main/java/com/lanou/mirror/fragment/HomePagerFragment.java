@@ -49,6 +49,7 @@ public class HomePagerFragment extends BaseFragment {
     private String title;
     private NotNetHomePagerRecyclerViewAdapter notNetHomePagerRecyclerViewAdapter;
 
+
     @Override
     public int getLayout() {
         return R.layout.fragment_homepage;

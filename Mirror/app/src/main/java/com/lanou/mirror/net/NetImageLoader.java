@@ -168,7 +168,7 @@ public class NetImageLoader {
      * @param string
      * @return
      */
-    private   String MD5(String string) {
+    private String MD5(String string) {
         byte[] hash;
         try {
             hash = MessageDigest.getInstance("MD5").digest(

@@ -54,7 +54,7 @@ public class AddAddressActivity extends BaseActivity {
                 head = new HashMap<>();
                 if (addAddress.getText().length() > 0 &&
                         addCity.getText().length() > 0 &&
-                        addPhoneNumber.getText().length() > 0 &&
+                        addPhoneNumber.getText().length() > 0 &
                         addName.getText().length() > 0) {
                     head.put("username", addName.getText().toString());
                     head.put("cellphone", addPhoneNumber.getText().toString());

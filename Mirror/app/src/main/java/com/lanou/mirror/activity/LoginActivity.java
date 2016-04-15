@@ -54,10 +54,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private ImageView closeImage, sinaLogin, weChatLogin;
     String phone, password;
 
-    //    private SQLiteDatabase db;
-//    private LoginDao loginDao;
-//    private DaoMaster daoMaster;
-//    private DaoSession daoSession;
     private HashMap<String, String> head;
 
     @Override
@@ -75,9 +71,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         sinaLogin = bindView(R.id.sina_login);
         weChatLogin = bindView(R.id.weichat_login);
         sinaLogin.setOnClickListener(this);
-        setLoginBtn(); // 设置登录按钮在editText没输入东西的时候为不可点击状态
-        goBack(); // 返回首页
-        goToRegister(); // 去注册界面
+        // 设置登录按钮在editText没输入东西的时候为不可点击状态
+        setLoginBtn();
+        // 返回首页
+        goBack();
+        // 去注册界面
+        goToRegister();
     }
 
     public void goBack() {
@@ -101,10 +100,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     public void setLoginBtn() {
         MyTextWatcher myTextWatcher = new MyTextWatcher();
-        phoneEdt.addTextChangedListener(myTextWatcher); // 添加phoneEdt的监听
-        passwordEdt.addTextChangedListener(myTextWatcher);//添加passwordEdt的监听
+        // 添加phoneEdt的监听
+        phoneEdt.addTextChangedListener(myTextWatcher);
+        //添加passwordEdt的监听
+        passwordEdt.addTextChangedListener(myTextWatcher);
         if (phoneEdt.getText().toString().isEmpty() || passwordEdt.getText().toString().isEmpty()) {
-            loginBtn.setEnabled(false);// 使loginBtn为不可点击状态
+            // 使loginBtn为不可点击状态
+            loginBtn.setEnabled(false);
             loginBtn.setBackgroundResource(R.mipmap.login_btn_gray);
         }
     }
@@ -141,7 +143,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 loginBtn.setEnabled(false);
                 loginBtn.setBackgroundResource(R.mipmap.login_btn_gray);
             } else if (phoneEdt.getText().toString().length() > 0 || passwordEdt.getText().toString().length() > 3) {
-                loginBtn.setEnabled(true);// 使loginBtn为可点击状态
+                // 使loginBtn为可点击状态
+                loginBtn.setEnabled(true);
                 loginBtn.setBackgroundResource(R.drawable.login_btn);
                 loginBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -167,12 +170,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                     ShowToast.showToast("登录成功");
                                     //将凭证传入数据库
                                     setupDatabase();
-                                    //   loginDao.deleteAll();
                                     UsingData.GetUsingData().deleteLoginDao();
                                     Login login = new Login();
                                     login.setToken(data.get("token"));
                                     login.setUid(data.get("uid"));
-                                    //    loginDao.insert(login);
                                     UsingData.GetUsingData().addLoginDao(login);
                                     Intent intent = new Intent(BaseApplication.getContext(), MainActivity.class);
                                     startActivity(intent);
@@ -198,10 +199,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void setupDatabase() {
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "Login.db", null);
-//        db=helper.getWritableDatabase();
-//        daoMaster=new DaoMaster(db);
-//        daoSession=daoMaster.newSession();
-//        loginDao=daoSession.getLoginDao();
     }
 
     @Override

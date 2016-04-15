@@ -29,7 +29,7 @@ import org.json.JSONObject;
 
 public class WelcomeActivity extends BaseActivity {
 
-    public SingletonPattern singletonPattern;
+    private SingletonPattern singletonPattern;
     private WelcomeBean data;
     private ImageView welcomeIv;
 
