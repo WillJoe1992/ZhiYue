@@ -22,7 +22,6 @@ import java.util.HashMap;
  * Created by wyc on 16/4/13.
  */
 public class AllAddressActivity extends BaseActivity {
-
     private ImageView addAdressIv,closeIv;
     private HashMap<String, String> head;
     @Override

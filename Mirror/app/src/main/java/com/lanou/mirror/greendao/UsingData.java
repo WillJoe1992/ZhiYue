@@ -123,7 +123,16 @@ public class UsingData {
         getHolderDa().deleteByKey(Long.valueOf(name));
     public AllHolder queryAllHolderOne(String name){
       return getHolderDa().load(Long.valueOf(name));
-UsingData.java
+       getHolderDa().insertOrReplaceInTx(allHolder);
+      //  getHolderDa().insert(allHolder);
+    }
+    public void addOneAllHolderDao(AllHolder allHolder) {
+        getHolderDa().insertOrReplace(allHolder);
+        //  getHolderDa().insert(allHolder);
+    }
+
+    public AllHolder queryAllHolderOne(String name){
+      return getHolderDa().load(Long.valueOf(name));
     }
 
     public void deleteOneHolder(String name){
@@ -155,12 +164,12 @@ UsingData.java
         getLoginDao().insertOrReplace(login);
         //  getHolderDa().insert(allHolder);
     }
-
     public Login queryLoginDao(String name) {
         return getLoginDao().load(Long.valueOf(name));
     }
 
     public void deleteOneLoginDao(String name) {
+greendao/UsingData.java
     public Login queryLoginDao(String name){
         return getLoginDao().load(Long.valueOf(name));
     }
@@ -192,6 +201,7 @@ UsingData.java
 
     public void addHomePagerDao(HomePager homePager) {
         getHomePagerDao().insertOrReplaceInTx(homePager);
+greendao/UsingData.java
     }
 
 
@@ -200,12 +210,6 @@ UsingData.java
         //  getHolderDa().insert(allHolder);
     }
 
-    public HomePager queryHomePagerDao(String name) {
-        return getHomePagerDao().load(Long.valueOf(name));
-    }
-
-    public void deleteHomePagerDao(String name) {
-        getHomePagerDao().deleteByKey(Long.valueOf(name));
     public HomePager queryHomePagerDao(String name){
         return getHomePagerDao().load(Long.valueOf(name));
     }
@@ -253,10 +257,6 @@ UsingData.java
     public Special querySpecialDao(String name){
         return getSpecialDao().load(Long.valueOf(name));
     }
-
-    public void deleteSpecialDao(String name){
-        getSpecialDao().deleteByKey(Long.valueOf(name));
-    }
     /**
      * LabelEntityDao
      *
@@ -279,10 +279,8 @@ UsingData.java
 
     public void addLabelEntityDao(LabelEntity labelEntity) {
         getLabelEntityDao().insertOrReplaceInTx(labelEntity);    }
-
-    public void addOneLabelEntityDao(LabelEntity labelEntity) {
-        getLabelEntityDao().insertOrReplace(labelEntity);
-        //  getHolderDa().insert(allHolder);
+        getLabelEntityDao().insertOrReplaceInTx(labelEntity);
+    }
     }
 
 
@@ -297,13 +295,13 @@ UsingData.java
         getLabelEntityDao().insertOrReplace(labelEntity);
         //  getHolderDa().insert(allHolder);
     }
+    }
 
     public LabelEntity queryLabelEntityDao(String name){
         return getLabelEntityDao().load(Long.valueOf(name));
     }
 
     public void deleteLabelEntityDao(String name){
-
         getLabelEntityDao().deleteByKey(Long.valueOf(name));
     }
 

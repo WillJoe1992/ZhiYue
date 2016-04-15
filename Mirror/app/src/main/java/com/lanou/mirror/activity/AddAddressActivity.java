@@ -15,6 +15,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import com.lanou.mirror.R;
 import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.net.NetOkHttpClient;
@@ -22,7 +27,6 @@ import com.lanou.mirror.greendaodemo.entity.greendao.UsingData;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.MyLog;
 import com.lanou.mirror.tool.ShowToast;
->>>>>>> 添加地址
 import com.lanou.mirror.tool.URL;
 import com.squareup.okhttp.Request;
 
@@ -71,7 +75,6 @@ public class AddAddressActivity extends BaseActivity {
                     NetOkHttpClient.postAsyn(URL.USER_ADD_ADDRESS, new NetOkHttpClient.ResultCallback<String>() {
                         @Override
                         public void onError(Request request, Exception e) {
->>>>>>> 添加地址
 
                         }
 
@@ -97,7 +100,6 @@ public class AddAddressActivity extends BaseActivity {
         closeIv.setOnClickListener(this);
         addAddressBtn.setOnClickListener(this);
         closeIv = bindView(R.id.add_address_close);
-
     }
 
 
