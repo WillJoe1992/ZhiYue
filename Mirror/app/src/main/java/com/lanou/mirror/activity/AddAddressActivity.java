@@ -44,6 +44,7 @@ public class AddAddressActivity extends BaseActivity {
     private EditText addName, addPhoneNumber, addCity, addAddress;
     private Button button;
     private HashMap<String, String> head;
+    private String token = UsingData.GetUsingData().getAllLoginDao().get(0).getToken();
 
     @Override
     protected void initData() {
@@ -55,14 +56,12 @@ public class AddAddressActivity extends BaseActivity {
                         addCity.getText().length() > 0 &&
                         addPhoneNumber.getText().length() > 0 &&
                         addName.getText().length() > 0) {
-                    Toast.makeText(AddAddressActivity.this, "fdsfdsfsdf", Toast.LENGTH_SHORT).show();
                     head.put("username", addName.getText().toString());
                     head.put("cellphone", addPhoneNumber.getText().toString());
                     head.put("addr_info", addAddress.getText().toString());
                     head.put("zip_code", "150018");
                     head.put("city", addCity.getText().toString());
-                    //    head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
-                    head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+                    head.put("token", token);
                     NetOkHttpClient.postAsyn(URL.USER_ADD_ADDRESS, new NetOkHttpClient.ResultCallback<String>() {
                         @Override
                         public void onError(Request request, Exception e) {
@@ -72,10 +71,15 @@ public class AddAddressActivity extends BaseActivity {
                         @Override
                         public void onResponse(String response) throws JSONException {
                             MyLog.showLog("dsdsdsd", response);
+                            Intent intent = new Intent(AddAddressActivity.this,AllAddressActivity.class);
+                            intent.putExtra("token",token);
+                            startActivity(intent);
+                            finish();
+                            Toast.makeText(AddAddressActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
                         }
                     }, head);
                 } else {
-                    ShowToast.showToast("请输入完整参数");
+                    ShowToast.showToast("啊哦,你没写全哦");
                 }
             }
         });

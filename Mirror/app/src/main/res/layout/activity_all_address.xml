@@ -48,5 +48,11 @@
         android:layout_marginTop="@dimen/all_address_add_address_text_margintop"
         android:text="@string/all_address_add_address_text" />
 
+    <com.lanou.mirror.tool.SwipeDeleteView
+        android:id="@+id/all_address_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="340px"></com.lanou.mirror.tool.SwipeDeleteView>
+
 
 </RelativeLayout>
