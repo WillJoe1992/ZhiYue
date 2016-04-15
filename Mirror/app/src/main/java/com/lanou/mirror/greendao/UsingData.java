@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.tool.MyLog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.dao.query.QueryBuilder;
@@ -113,19 +114,21 @@ public class UsingData {
         //  getHolderDa().insert(allHolder);
     }
 
-    public void addOneAllHolderDao(AllHolder allHolder) {
-        getHolderDa().insertOrReplace(allHolder);
-        //  getHolderDa().insert(allHolder);
     }
-
     public AllHolder queryAllHolderOne(String name) {
         return getHolderDa().load(Long.valueOf(name));
     }
 
     public void deleteOneHolder(String name) {
         getHolderDa().deleteByKey(Long.valueOf(name));
+    public AllHolder queryAllHolderOne(String name){
+      return getHolderDa().load(Long.valueOf(name));
+UsingData.java
     }
 
+    public void deleteOneHolder(String name){
+        getHolderDa().deleteByKey(Long.valueOf(name));
+    }
     /**
      * @return LoginDao
      */
@@ -158,6 +161,11 @@ public class UsingData {
     }
 
     public void deleteOneLoginDao(String name) {
+    public Login queryLoginDao(String name){
+        return getLoginDao().load(Long.valueOf(name));
+    }
+
+    public void deleteOneLoginDao(String name){
         getLoginDao().deleteByKey(Long.valueOf(name));
     }
 
@@ -183,7 +191,6 @@ public class UsingData {
     }
 
     public void addHomePagerDao(HomePager homePager) {
-
         getHomePagerDao().insertOrReplaceInTx(homePager);
     }
 
@@ -199,7 +206,12 @@ public class UsingData {
 
     public void deleteHomePagerDao(String name) {
         getHomePagerDao().deleteByKey(Long.valueOf(name));
->>>>>>> feature/邹玮:Mirror/app/src/main/java/com/lanou/mirror/greendao/UsingData.java
+    public HomePager queryHomePagerDao(String name){
+        return getHomePagerDao().load(Long.valueOf(name));
+    }
+
+    public void deleteHomePagerDao(String name){
+        getHomePagerDao().deleteByKey(Long.valueOf(name));
     }
 
     /**
@@ -231,7 +243,6 @@ public class UsingData {
         getSpecialDao().insertOrReplace(special);
         //  getHolderDa().insert(allHolder);
     }
-
     public Special querySpecialDao(String name) {
         return getSpecialDao().load(Long.valueOf(name));
     }
@@ -239,8 +250,13 @@ public class UsingData {
     public void deleteSpecialDao(String name) {
         getSpecialDao().deleteByKey(Long.valueOf(name));
     }
+    public Special querySpecialDao(String name){
+        return getSpecialDao().load(Long.valueOf(name));
+    }
 
-
+    public void deleteSpecialDao(String name){
+        getSpecialDao().deleteByKey(Long.valueOf(name));
+    }
     /**
      * LabelEntityDao
      *
@@ -262,8 +278,7 @@ public class UsingData {
     }
 
     public void addLabelEntityDao(LabelEntity labelEntity) {
-        getLabelEntityDao().insertOrReplaceInTx(labelEntity);
-    }
+        getLabelEntityDao().insertOrReplaceInTx(labelEntity);    }
 
     public void addOneLabelEntityDao(LabelEntity labelEntity) {
         getLabelEntityDao().insertOrReplace(labelEntity);
@@ -276,6 +291,19 @@ public class UsingData {
     }
 
     public void deleteLabelEntityDao(String name) {
+    }
+
+    public void addOneLabelEntityDao(LabelEntity labelEntity) {
+        getLabelEntityDao().insertOrReplace(labelEntity);
+        //  getHolderDa().insert(allHolder);
+    }
+
+    public LabelEntity queryLabelEntityDao(String name){
+        return getLabelEntityDao().load(Long.valueOf(name));
+    }
+
+    public void deleteLabelEntityDao(String name){
+
         getLabelEntityDao().deleteByKey(Long.valueOf(name));
     }
 
