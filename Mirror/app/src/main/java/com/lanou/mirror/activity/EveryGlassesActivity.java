@@ -25,6 +25,7 @@ import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.bean.JSONAllson;
 import com.lanou.mirror.bean.JSONGlasses;
+import com.lanou.mirror.greendao.UsingData;
 import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
 import com.lanou.mirror.greendao.DaoMaster;
@@ -284,10 +285,10 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
             case R.id.everyglasses_button_buy:
              //   Toast.makeText(EveryGlassesActivity.this, "点击了购买按钮", Toast.LENGTH_SHORT).show();
              //   MyLog.showLog("cccccccc",loginDao.loadAll().get(0).getToken());
-                if(!loginDao.loadAll().isEmpty()&&!jsonAllson.getData().getGoods_id().isEmpty()){
+                if(!UsingData.GetUsingData().getAllLoginDao().isEmpty()&&!jsonAllson.getData().getGoods_id().isEmpty()){
                     Intent intent1=new Intent(EveryGlassesActivity.this,BuyActivity.class);
                     intent1.putExtra("buyGoods_id",jsonAllson.getData().getGoods_id());
-                    intent1.putExtra("getToken",loginDao.loadAll().get(0).getToken());
+                    intent1.putExtra("getToken",UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
                     intent1.putExtra("img",jsonAllson.getData().getDesign_des().get(0).getImg());
                     intent1.putExtra("goods_name",jsonAllson.getData().getGoods_name());
                     intent1.putExtra("goods_price",jsonAllson.getData().getGoods_price());
@@ -295,7 +296,6 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
                 }else {
                     Intent intentEveryGlasses=new Intent(EveryGlassesActivity.this,LoginActivity.class);
                     startActivity(intentEveryGlasses);
-
                 }
                 break;
         }

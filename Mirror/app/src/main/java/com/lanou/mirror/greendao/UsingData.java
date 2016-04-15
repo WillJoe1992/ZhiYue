@@ -14,7 +14,6 @@ import de.greenrobot.dao.query.QueryBuilder;
  * Created by dllo on 16/4/14.
  */
 public class UsingData {
-
     // 数据库
     private static SQLiteDatabase db;
     // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
@@ -69,7 +68,6 @@ public class UsingData {
         }
         return db;
     }
-
     private DaoMaster getDaoMaster() {
         if (daoMaster == null) {
             daoMaster = new DaoMaster(getDb());
@@ -86,7 +84,9 @@ public class UsingData {
 
 
     /**
-     * @return HolderDa
+     *
+     * @return
+     * HolderDa
      */
 
     public AllHolderDao getHolderDa() {
@@ -103,7 +103,6 @@ public class UsingData {
     public List<AllHolder> getAllHolderDao() {
         return getHolderDa().loadAll();
     }
-
     /**
      * 插入数据
      * 插入集合
@@ -113,33 +112,22 @@ public class UsingData {
         getHolderDa().insertOrReplaceInTx(allHolder);
         //  getHolderDa().insert(allHolder);
     }
-
-    }
-    public AllHolder queryAllHolderOne(String name) {
-        return getHolderDa().load(Long.valueOf(name));
-    }
-
-    public void deleteOneHolder(String name) {
-        getHolderDa().deleteByKey(Long.valueOf(name));
-    public AllHolder queryAllHolderOne(String name){
-      return getHolderDa().load(Long.valueOf(name));
-       getHolderDa().insertOrReplaceInTx(allHolder);
-      //  getHolderDa().insert(allHolder);
-    }
     public void addOneAllHolderDao(AllHolder allHolder) {
         getHolderDa().insertOrReplace(allHolder);
         //  getHolderDa().insert(allHolder);
     }
 
     public AllHolder queryAllHolderOne(String name){
-      return getHolderDa().load(Long.valueOf(name));
+        return getHolderDa().load(Long.valueOf(name));
     }
 
     public void deleteOneHolder(String name){
         getHolderDa().deleteByKey(Long.valueOf(name));
     }
     /**
-     * @return LoginDao
+     *
+     * @return
+     * LoginDao
      */
     public LoginDao getLoginDao() {
         if (loginDao == null) {
@@ -147,7 +135,6 @@ public class UsingData {
         }
         return loginDao;
     }
-
     public void deleteLoginDao() {
         getLoginDao().deleteAll();
     }
@@ -164,12 +151,7 @@ public class UsingData {
         getLoginDao().insertOrReplace(login);
         //  getHolderDa().insert(allHolder);
     }
-    public Login queryLoginDao(String name) {
-        return getLoginDao().load(Long.valueOf(name));
-    }
 
-    public void deleteOneLoginDao(String name) {
-greendao/UsingData.java
     public Login queryLoginDao(String name){
         return getLoginDao().load(Long.valueOf(name));
     }
@@ -180,7 +162,6 @@ greendao/UsingData.java
 
     /**
      * HomePagerDao
-     *
      * @return
      */
     public HomePagerDao getHomePagerDao() {
@@ -201,7 +182,6 @@ greendao/UsingData.java
 
     public void addHomePagerDao(HomePager homePager) {
         getHomePagerDao().insertOrReplaceInTx(homePager);
-greendao/UsingData.java
     }
 
 
@@ -220,7 +200,6 @@ greendao/UsingData.java
 
     /**
      * SpecialDao
-     *
      * @return
      */
     public SpecialDao getSpecialDao() {
@@ -247,19 +226,17 @@ greendao/UsingData.java
         getSpecialDao().insertOrReplace(special);
         //  getHolderDa().insert(allHolder);
     }
-    public Special querySpecialDao(String name) {
-        return getSpecialDao().load(Long.valueOf(name));
-    }
-
-    public void deleteSpecialDao(String name) {
-        getSpecialDao().deleteByKey(Long.valueOf(name));
-    }
     public Special querySpecialDao(String name){
         return getSpecialDao().load(Long.valueOf(name));
     }
+
+    public void deleteSpecialDao(String name){
+        getSpecialDao().deleteByKey(Long.valueOf(name));
+    }
+
+
     /**
      * LabelEntityDao
-     *
      * @return
      */
     public LabelEntityDao getLabelEntityDao() {
@@ -278,23 +255,12 @@ greendao/UsingData.java
     }
 
     public void addLabelEntityDao(LabelEntity labelEntity) {
-        getLabelEntityDao().insertOrReplaceInTx(labelEntity);    }
         getLabelEntityDao().insertOrReplaceInTx(labelEntity);
-    }
-    }
-
-
-    public LabelEntity queryLabelEntityDao(String name) {
-        return getLabelEntityDao().load(Long.valueOf(name));
-    }
-
-    public void deleteLabelEntityDao(String name) {
     }
 
     public void addOneLabelEntityDao(LabelEntity labelEntity) {
         getLabelEntityDao().insertOrReplace(labelEntity);
         //  getHolderDa().insert(allHolder);
-    }
     }
 
     public LabelEntity queryLabelEntityDao(String name){
@@ -304,7 +270,5 @@ greendao/UsingData.java
     public void deleteLabelEntityDao(String name){
         getLabelEntityDao().deleteByKey(Long.valueOf(name));
     }
-
-
 
 }
