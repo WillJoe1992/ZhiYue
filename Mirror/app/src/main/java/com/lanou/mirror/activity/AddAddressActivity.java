@@ -53,7 +53,7 @@ public class AddAddressActivity extends BaseActivity {
                 head = new HashMap<>();
                 if (addAddress.getText().length() > 0 &&
                         addCity.getText().length() > 0 &&
-                        addPhoneNumber.getText().length() > 0 &&
+                        addPhoneNumber.getText().length() > 0 &
                         addName.getText().length() > 0) {
                     Toast.makeText(AddAddressActivity.this, "fdsfdsfsdf", Toast.LENGTH_SHORT).show();
                     head.put("username", addName.getText().toString());

@@ -29,7 +29,7 @@ import org.json.JSONObject;
 
 public class WelcomeActivity extends BaseActivity {
 
-    public SingletonPattern singletonPattern;
+    private SingletonPattern singletonPattern;
     private WelcomeBean data;
     private ImageView welcomeIv;
 
@@ -51,8 +51,7 @@ public class WelcomeActivity extends BaseActivity {
                 data = new Gson().fromJson(response.toString(), WelcomeBean.class);
                 new NetImageLoader().getImgOfLoader(welcomeIv, data.getImg());
             }
-        }
-                , new Response.ErrorListener() {
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 MyToast.myToast("首页图片数据拉取失败");

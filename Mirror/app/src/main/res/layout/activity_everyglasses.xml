@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EveryGlassesActivity">
+    tools:context=".EveryGlassesActivity"
+    android:background="@android:color/white">
     <ImageView
         android:id="@+id/background"
         android:layout_width="match_parent"
@@ -52,7 +53,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/activity_everyglasses_englishTitle_marginTop"
-                        android:text="FINLAYC0"
                         android:textColor="#ffffff"
                         android:textSize="@dimen/activity_everyglasses_englishTitle_textSize" />
 
@@ -72,7 +72,6 @@
                         android:layout_below="@id/everyglasses_whiteLine"
                         android:layout_centerHorizontal="true"
                         android:gravity="center"
-                        android:text="水蓝色晶透板材太阳镜"
                         android:textColor="#ffffff"
                         android:textSize="@dimen/activity_everyglasses_everyglasses_name_textSize" />
 
@@ -169,6 +168,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="#ffffff">
 
                 <RelativeLayout
@@ -179,7 +180,7 @@
 
                     <TextView
                         android:id="@+id/everyglasses_name_beforerecyclerview"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:textColor="#333"

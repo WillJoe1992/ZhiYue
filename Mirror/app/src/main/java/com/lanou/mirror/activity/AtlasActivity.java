@@ -1,5 +1,6 @@
 package com.lanou.mirror.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,9 +31,13 @@ public class AtlasActivity extends BaseActivity {
     private JCVideoPlayer jcVideoPlayer;
     private RecyclerView recyclerView;
     private AtlasAdapter atlasAdapter;
+private int position;
 
     @Override
     protected void initData(){
+        Intent intent =getIntent();
+        position=intent.getIntExtra("position",100);
+
         head = new HashMap<>();
         head.put("token","");
         head.put("device_type","1");
@@ -51,7 +56,7 @@ public class AtlasActivity extends BaseActivity {
             public void onResponse(String response) {
                 Gson gson = new Gson();
                 data = gson.fromJson(response,JSONAtlas.class);
-                Log.d("asd","asd"+data.getData().getList().get(0).getWear_video().get(0).getData());
+                Log.d("asd","asd"+data.getData().getList().get(position).getWear_video().get(0).getData());
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(atlasActivity,1);
                 Log.d("AtlasActivity", response);
                 recyclerView.setLayoutManager(gridLayoutManager);

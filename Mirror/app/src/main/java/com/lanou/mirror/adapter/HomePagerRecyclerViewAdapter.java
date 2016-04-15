@@ -57,7 +57,7 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
         homePageViewHolder.homepageProduct.setText(jsonGlasses.getData().getList().get(position).getProduct_area());
         homePageViewHolder.homepagePrice.setText(jsonGlasses.getData().getList().get(position).getGoods_price());
         homePageViewHolder.position=position;
-        Log.d("IIIIIII",""+jsonGlasses.getData().getList().get(position).getGoods_img());
+
     }
 
     @Override
@@ -90,8 +90,9 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
                     Intent intent =new Intent(context, EveryGlassesActivity.class);
 
                     intent.putExtra("goodsId",jsonGlasses.getData().getList().get(position).getGoods_id());
-                    intent.putExtra("picUrl",jsonGlasses.getData().getList().get(position).getGoods_img());
-                    Log.d("HomePageViewHolder", jsonGlasses.getData().getList().get(position).getGoods_id());
+                    intent.putExtra("picUrl", jsonGlasses.getData().getList().get(position).getGoods_img());
+                    intent.putExtra("position",position);
+
 
 
                     context.startActivity(intent);

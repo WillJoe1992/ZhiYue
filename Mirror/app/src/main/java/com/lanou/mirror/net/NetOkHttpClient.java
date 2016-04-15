@@ -32,8 +32,6 @@ public class NetOkHttpClient {
     private Gson mGson;
 
 
-    private static final String TAG = "OkHttpClientManager";
-
     public NetOkHttpClient() {
         mOkHttpClient = new OkHttpClient();
         //cookie enabled

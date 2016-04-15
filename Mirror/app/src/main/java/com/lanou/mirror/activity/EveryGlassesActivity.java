@@ -85,6 +85,8 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
     private TextView everyglassesEnglishTitle,everyglassesName,everyglassesGlassesContent,everyglassesPrice,everyglassesNameBeforerecyclerview;
     private ImageView backGround;
 
+    private int position;
+
     @Override
     protected void initView() {
         buttonLayout = bindView(R.id.everyglasses_button_layout);
@@ -111,6 +113,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
 
         Intent intent =getIntent();
         goodsId=intent.getStringExtra("goodsId");
+        position =intent.getIntExtra("position",100);
       //  NetImageLoader netImageLoader =new NetImageLoader();
        // netImageLoader.getImgOfLoader(backGround,intent.getStringExtra("picUrl"));
         ImageLoaderHelper imageLoaderHelper=new ImageLoaderHelper();
@@ -279,6 +282,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
             case R.id.everyglasses_button_topic:
                 if(!jsonAllson.getData().getGoods_id().isEmpty()){
                     Intent intent = new Intent(EveryGlassesActivity.this,AtlasActivity.class);
+                    intent.putExtra("position",position);
                     startActivity(intent);
                 }
                 break;
