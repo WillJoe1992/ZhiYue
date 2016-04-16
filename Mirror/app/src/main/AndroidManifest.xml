@@ -51,6 +51,7 @@
 
         <activity android:name=".activity.AllAddressActivity" />
 
+        <activity android:name=".activity.PayActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
