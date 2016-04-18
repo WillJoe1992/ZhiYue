@@ -52,7 +52,7 @@
         android:id="@+id/all_address_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="340px"></com.lanou.mirror.tool.SwipeDeleteView>
+        android:layout_marginTop="@dimen/activity_alladdress_deleteview_margintop"/>
 
 
 </RelativeLayout>

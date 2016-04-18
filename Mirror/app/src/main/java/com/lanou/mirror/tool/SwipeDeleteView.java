@@ -28,7 +28,6 @@ public class SwipeDeleteView extends ListView {
 
     private int mRightViewWidth;
 
-    // private boolean mIsInAnimation = false;
     private final int mDuration = 100;
 
     private final int mDurationStep = 10;
@@ -243,7 +242,6 @@ public class SwipeDeleteView extends ListView {
         mCurrentItemView.setPressed(false);
         setPressed(false);
         refreshDrawableState();
-        // invalidate();
     }
 
     private void showRight(View view) {
