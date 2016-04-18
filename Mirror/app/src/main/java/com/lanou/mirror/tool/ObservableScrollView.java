@@ -34,14 +34,12 @@ public class ObservableScrollView extends ScrollView {
     @Override
     protected void onScrollChanged(int x, int y, int oldx, int oldy) {
         super.onScrollChanged(x, y, oldx, oldy);
-        Log.i("8888888888888888888", "y    " + y);
         if (scrollViewListener != null) {
             int newY= (int) (y*0.8);
             scrollViewListener.onScrollChanged(this, x, newY, oldx, oldy);
 
         }
         int chanceY = y - oldy;
-        Log.i("8888888888888888888",  "chance    " + chanceY);
 
     }
 
