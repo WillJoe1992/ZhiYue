@@ -24,6 +24,20 @@
     <string name="addaddress_add_phonenumber">添加联系人电话号码</string>
     <string name="addaddress_addaddress">添加收货地址</string>
     <string name="addaddress_addaddressbtn">提交地址</string>
+    <string name="fragment_shopping_text">您的购物车没有商品</string>
+    <string name="activity_buy_my_alladdress_text">我所有地址</string>
+    <string name="activity_buy_addperdson_text">请添加收件人信息</string>
+    <string name="activity_buy_add_address_text">填写地址</string>
+    <string name="activity_buy_pricelayout_text">运费 :</string>
+    <string name="activity_buy_sumtext">小计 :</string>
+    <string name="activity_buy_buybtn_text">确认下单</string>
+    <string name="activity_addaddress_addnametext">添加添加收件人姓名</string>
+    <string name="activity_addaddress_addcity">添加城市</string>
+    <string name="activity_addaddress_addaddresstext">提交地址</string>
+    <string name="alladdress_item_delete_text">删除</string>
+    <string name="buy_item_choose_howtopay">选择支付方式</string>
+    <string name="buy_item_wechat_text">微信支付</string>
+    <string name="buy_item_ali_pay_text">支付宝支付</string>
 
 
 </resources>

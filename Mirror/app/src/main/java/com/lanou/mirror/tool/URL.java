@@ -7,7 +7,6 @@ package com.lanou.mirror.tool;
 public interface URL {
     String URL = "http://api101.test.mirroreye.cn/";
 
-
     /**
      *故事列表
      */

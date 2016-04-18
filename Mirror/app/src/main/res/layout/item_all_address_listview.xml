@@ -9,23 +9,22 @@
         android:id="@+id/item_left"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="20px"
-        android:layout_marginRight="20px"
+        android:layout_marginLeft="@dimen/alladdress_item_relayout_marginleft"
+        android:layout_marginRight="@dimen/alladdress_item_relayout_marginright"
         android:background="@color/text_color"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="5dp">
+        android:paddingBottom="@dimen/alladdress_item_relayout_padding_top"
+        android:paddingLeft="@dimen/alladdress_item_relayout_paddingleft"
+        android:paddingRight="@dimen/alladdress_item_relayout_paddingleft"
+        android:paddingTop="@dimen/alladdress_item_relayout_padding_top">
 
         <TextView
             android:id="@+id/item_listview_activity_myaddress_receiveman"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="20dp"
-            android:text="1"
-            android:textColor="#333"
-            android:textSize="13sp"
+            android:layout_marginLeft="@dimen/alladdress_item_name_marginleft"
+            android:layout_marginTop="@dimen/alladdress_item_name_margintop"
+            android:textColor="@color/alladdress_textcolor"
+            android:textSize="@dimen/alladdress_item_name_textsize"
             android:textStyle="bold" />
 
         <TextView
@@ -33,22 +32,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_listview_activity_myaddress_receiveman"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
-            android:text="2"
-            android:textColor="#333"
-            android:textSize="12sp" />
+            android:layout_marginLeft="@dimen/alladdress_item_number_marginleft"
+            android:layout_marginTop="@dimen/alladdress_item_number_maegintop"
+            android:textColor="@color/alladdress_textcolor"
+            android:textSize="@dimen/alladdress_item_number_textsize" />
 
         <TextView
             android:id="@+id/item_listview_activity_myaddress_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_listview_activity_myaddress_address"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
-            android:text="3"
-            android:textColor="#333"
-            android:textSize="12sp" />
+            android:layout_marginLeft="@dimen/alladdress_item_address_marginleft"
+            android:layout_marginTop="@dimen/alladdress_item_address_margintop"
+            android:textColor="@color/alladdress_textcolor"
+            android:textSize="@dimen/alladdress_item_address_textsize" />
 
         <ImageView
             android:id="@+id/item_listview_activity_myaddress_edit"
@@ -56,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="@dimen/alladdress_item_edit_marginright"
             android:src="@mipmap/edit" />
 
     </RelativeLayout>
@@ -73,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="删除"
+            android:text="@string/alladdress_item_delete_text"
             android:textColor="@color/text_color" />
     </RelativeLayout>
 

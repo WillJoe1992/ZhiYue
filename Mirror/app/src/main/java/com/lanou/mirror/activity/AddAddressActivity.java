@@ -43,11 +43,13 @@ import java.util.HashMap;
 public class AddAddressActivity extends BaseActivity {
     private EditText addName, addPhoneNumber, addCity, addAddress;
     private Button button;
+    private ImageView closeIv;
     private HashMap<String, String> head;
     private String token = UsingData.GetUsingData().getAllLoginDao().get(0).getToken();
 
     @Override
     protected void initData() {
+        setCloseIv();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +94,15 @@ public class AddAddressActivity extends BaseActivity {
         addCity = bindView(R.id.add_city);
         addAddress = bindView(R.id.add_address);
         button = bindView(R.id.add_address_btn);
+        closeIv = bindView(R.id.add_address_close);
+    }
+    public void setCloseIv(){
+        closeIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override

@@ -14,5 +14,8 @@
     <color name="select_item">#00000000</color>
     <color name="select_item_textcolor">#536482</color>
     <color name="button_background">#f85453</color>
-
+    <color name="activity_buy_relayout_background">#f1f1f1</color>
+    <color name="black">#000000</color>
+    <color name="alladdress_textcolor">#333</color>
+    <color name="buy_item_view">#44393339</color>
 </resources>
