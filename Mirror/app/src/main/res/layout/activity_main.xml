@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@mipmap/background"
     tools:context=".activity.MainActivity"
-    android:id="@+id/main_relative_layout">
+    android:id="@+id/main_relative_layout"
+    >
 
 
     <com.lanou.mirror.tool.VerticalViewPager

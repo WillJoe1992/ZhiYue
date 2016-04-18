@@ -20,13 +20,11 @@ import com.lanou.mirror.tool.ShowToast;
  * Created by dllo on 16/4/7.
  */
 public class NotNetSpecialAdapter extends RecyclerView.Adapter<NotNetSpecialAdapter.NotNetHolderSpecialAdapter>{
-  //  private NetImageLoader netImageLoader;
     private ImageLoaderHelper imageLoaderHelper;
     private SpecialDao specialDao;
 
     public NotNetSpecialAdapter(SpecialDao specialDao) {
         this.specialDao = specialDao;
-    //    netImageLoader=new NetImageLoader();
         imageLoaderHelper=new ImageLoaderHelper();
     }
 
@@ -40,7 +38,6 @@ public class NotNetSpecialAdapter extends RecyclerView.Adapter<NotNetSpecialAdap
     @Override
     public void onBindViewHolder(NotNetHolderSpecialAdapter holder, int position) {
        holder.specialTitle.setText(specialDao.loadAll().get(position).getStory_title());
-    //   netImageLoader.getImgOfLoader(holder.specialIv, specialDao.loadAll().get(position).getStory_img());
         imageLoaderHelper.loadImage(specialDao.loadAll().get(position).getStory_img(),holder.specialIv);
        holder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override

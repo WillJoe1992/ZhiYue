@@ -26,12 +26,13 @@ import java.util.HashMap;
  * Created by wyc on 16/4/13.
  */
 public class AllAddressActivity extends BaseActivity {
-    private ImageView addAddressIv,closeIv;
+    private ImageView addAddressIv, closeIv;
     private HashMap<String, String> head;
     private AllAddressAdapter adapter;
     private SwipeDeleteView listView;
     private JSONAddress data;
     private String token = UsingData.GetUsingData().getAllLoginDao().get(0).getToken();
+
     @Override
     protected void initData() {
         jump();
@@ -45,7 +46,8 @@ public class AllAddressActivity extends BaseActivity {
         listView = bindView(R.id.all_address_listview);
 
     }
-    public void jump(){
+
+    public void jump() {
         addAddressIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +55,7 @@ public class AllAddressActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-        head=new HashMap<>();
+        head = new HashMap<>();
         head.put("token", token);
         head.put("device_type", "1");
         NetOkHttpClient.postAsyn(URL.USER_ADDRESS_LIST, new NetOkHttpClient.ResultCallback<String>() {
@@ -64,13 +66,10 @@ public class AllAddressActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) throws JSONException {
-                MyLog.showLog("cvxcvxcv", response);
                 data = new JSONAddress();
                 Gson gson = new Gson();
-                data = gson.fromJson(response,JSONAddress.class);
-                Log.d("AllAddressActivity", "datas:" + data);
-                Log.d("AllAddressActivity", response);
-                adapter = new AllAddressAdapter(data,AllAddressActivity.this,token,listView.getRightViewWidth());
+                data = gson.fromJson(response, JSONAddress.class);
+                adapter = new AllAddressAdapter(data, AllAddressActivity.this, token, listView.getRightViewWidth());
                 // 删除
                 adapter.setOnRightItemClickListener(new AllAddressAdapter.onRightItemClickListener() {
                     @Override
@@ -79,9 +78,9 @@ public class AllAddressActivity extends BaseActivity {
                         data.getData().getList().remove(position);
                         adapter.setData(data);
                         listView.setAdapter(adapter);
-                        HashMap<String,String> delete = new HashMap<String, String>();
-                        delete.put("token",token);
-                        delete.put("addr_id",addressId);
+                        HashMap<String, String> delete = new HashMap<String, String>();
+                        delete.put("token", token);
+                        delete.put("addr_id", addressId);
                         NetOkHttpClient.postAsyn(URL.USER_DEL_ADDRESS, new NetOkHttpClient.ResultCallback<String>() {
                             @Override
                             public void onError(Request request, Exception e) {
@@ -100,7 +99,8 @@ public class AllAddressActivity extends BaseActivity {
             }
         }, head);
     }
-    public void back(){
+
+    public void back() {
         closeIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

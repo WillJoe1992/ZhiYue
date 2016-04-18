@@ -23,12 +23,10 @@ import java.util.ArrayList;
 public class NotNetAllAdapter extends RecyclerView.Adapter{
     private Context context;
     private AllHolderDao allHolderDao;
- //   private NetImageLoader netImageLoader;
     private ImageLoaderHelper imageLoaderHelper;
     public NotNetAllAdapter(Context context, AllHolderDao allHolderDao) {
         this.context = context;
         this.allHolderDao = allHolderDao;
-  //      netImageLoader=new NetImageLoader();
         imageLoaderHelper=new ImageLoaderHelper();
     }
 
@@ -56,14 +54,12 @@ public class NotNetAllAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         int viewType = getItemViewType(position);
-        Log.d("ShowNewstabsonAdapter", "viewType:" + viewType);
 
 
         switch (viewType) {
 
             case 1:
                 HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
-         //       MyLog.showLog("NotNetAllAdapter",allHolderDao.loadAll().get(position).getStory_img());
                 imageLoaderHelper.loadImage(allHolderDao.loadAll().get(position).getGoods_img(),homePageViewHolder.allImageView);
                 homePageViewHolder.homepageBrand.setText(allHolderDao.loadAll().get(position).getBrand());
                 homePageViewHolder.homepageModel.setText(allHolderDao.loadAll().get(position).getModel());
@@ -107,7 +103,6 @@ public class NotNetAllAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemViewType(int position) {
-       // return Integer.valueOf(allHolderDao.loadAll().get(position).);
         return allHolderDao.loadAll().get(position).getType()!=null? Integer.parseInt(allHolderDao.loadAll().get(position).getType()):1;
     }
 }

@@ -60,7 +60,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
     private AnimationDrawable animationDrawable;
 
     // 按钮
-    private ImageView ivBack, ivBuy,ivShare;
+    private ImageView ivBack, ivBuy, ivShare;
     private TextView tvToPic;
     private RelativeLayout buttonLayout;
     private boolean btnBL = false;
@@ -82,7 +82,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
 
     private LoginDao loginDao;
 
-    private TextView everyglassesEnglishTitle,everyglassesName,everyglassesGlassesContent,everyglassesPrice,everyglassesNameBeforerecyclerview;
+    private TextView everyglassesEnglishTitle, everyglassesName, everyglassesGlassesContent, everyglassesPrice, everyglassesNameBeforerecyclerview;
     private ImageView backGround;
 
     private int position;
@@ -93,44 +93,33 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
         ivBack = bindView(R.id.everyglasses_button_back);
         ivBuy = bindView(R.id.everyglasses_button_buy);
         tvToPic = bindView(R.id.everyglasses_button_topic);
-        backGround= bindView(R.id.background);
+        backGround = bindView(R.id.background);
 
         backGround.setImageResource(R.drawable.loading);
         animationDrawable = (AnimationDrawable) backGround.getDrawable();
         animationDrawable.start();
 
-        everyglassesEnglishTitle=bindView(R.id.everyglasses_englishTitle);
-        everyglassesName=bindView(R.id.everyglasses_name);
-        everyglassesGlassesContent=bindView(R.id.everyglasses_glassesContent);
-        everyglassesPrice=bindView(R.id.everyglasses_price);
-        everyglassesNameBeforerecyclerview=bindView(R.id.everyglasses_name_beforerecyclerview);
+        everyglassesEnglishTitle = bindView(R.id.everyglasses_englishTitle);
+        everyglassesName = bindView(R.id.everyglasses_name);
+        everyglassesGlassesContent = bindView(R.id.everyglasses_glassesContent);
+        everyglassesPrice = bindView(R.id.everyglasses_price);
+        everyglassesNameBeforerecyclerview = bindView(R.id.everyglasses_name_beforerecyclerview);
 
         ivShare = bindView(R.id.everyglasses_share);
         share(); // 分享
         setupDatabase();
 
 
-
-        Intent intent =getIntent();
-        goodsId=intent.getStringExtra("goodsId");
-        position =intent.getIntExtra("position",100);
-      //  NetImageLoader netImageLoader =new NetImageLoader();
-       // netImageLoader.getImgOfLoader(backGround,intent.getStringExtra("picUrl"));
-        ImageLoaderHelper imageLoaderHelper=new ImageLoaderHelper();
-        imageLoaderHelper.loadImage(intent.getStringExtra("picUrl"),backGround);
-        Log.d("EveryGlassesActivity", goodsId);
-        head=new HashMap<>();
+        Intent intent = getIntent();
+        goodsId = intent.getStringExtra("goodsId");
+        position = intent.getIntExtra("position", 100);
+        ImageLoaderHelper imageLoaderHelper = new ImageLoaderHelper();
+        imageLoaderHelper.loadImage(intent.getStringExtra("picUrl"), backGround);
+        head = new HashMap<>();
         //给head赋值然后进行网络拉取
         head.put("device_type", "1");
         head.put("token", "");
         head.put("goods_id", goodsId);
-
-
-
-
-
-//        Animation animation = AnimationUtils.loadAnimation(this, R.anim.translate_create);
-//        buttonLayout.setAnimation(animation);
 
         // 属性动画  刚进入页面时就隐藏到屏幕左边
         ObjectAnimator.ofFloat(buttonLayout, "translationX", 0, -800).setDuration(100).start();
@@ -139,7 +128,6 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
         scrollViewFront = bindView(R.id.everyglasses_scrollView_front);
         scrollViewFront.setScrollViewListener(this);
         scrollViewBack = bindView(R.id.everyglasses_scrollView_back);
-//        scrollViewBack.setScrollViewListener(this);
 
         recyclerViewBack = bindView(R.id.everyglasses_recyclerviewBack);
         recyclerViewFront = bindView(R.id.everyglasses_recyclerviewFront);
@@ -191,17 +179,12 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
                 colorChanceRelativeLayout.setAlpha((float) 0.8);
                 colorChanceLinearLayout.setAlpha((float) 0.8);
 
-                Log.d("EveryGlassesActivity", jsonAllson.getData().getGoods_name());
-                Log.d("EveryGlassesActivity", jsonAllson.getData().getBrand());
-                Log.d("EveryGlassesActivity", jsonAllson.getData().getInfo_des());
-                Log.d("EveryGlassesActivity", jsonAllson.getData().getGoods_price());
 
                 everyglassesEnglishTitle.setText(jsonAllson.getData().getGoods_name());
                 everyglassesName.setText(jsonAllson.getData().getBrand());
                 everyglassesGlassesContent.setText(jsonAllson.getData().getInfo_des());
                 everyglassesPrice.setText(jsonAllson.getData().getGoods_price());
                 everyglassesNameBeforerecyclerview.setText(jsonAllson.getData().getModel());
-
 
 
             }
@@ -267,43 +250,40 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        EventBus.getDefault().unregister(this);
     }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.everyglasses_button_back:
-                // TODO 跳转
                 finish();
                 Toast.makeText(EveryGlassesActivity.this, "点击了返回按钮", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.everyglasses_button_topic:
-                if(!jsonAllson.getData().getGoods_id().isEmpty()){
-                    Intent intent = new Intent(EveryGlassesActivity.this,AtlasActivity.class);
-                    intent.putExtra("position",position);
+                if (!jsonAllson.getData().getGoods_id().isEmpty()) {
+                    Intent intent = new Intent(EveryGlassesActivity.this, AtlasActivity.class);
+                    intent.putExtra("position", position);
                     startActivity(intent);
                 }
                 break;
             case R.id.everyglasses_button_buy:
-             //   Toast.makeText(EveryGlassesActivity.this, "点击了购买按钮", Toast.LENGTH_SHORT).show();
-             //   MyLog.showLog("cccccccc",loginDao.loadAll().get(0).getToken());
-                if(!UsingData.GetUsingData().getAllLoginDao().isEmpty()&&!jsonAllson.getData().getGoods_id().isEmpty()){
-                    Intent intent1=new Intent(EveryGlassesActivity.this,BuyActivity.class);
-                    intent1.putExtra("buyGoods_id",jsonAllson.getData().getGoods_id());
-                    intent1.putExtra("getToken",UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
-                    intent1.putExtra("img",jsonAllson.getData().getDesign_des().get(0).getImg());
-                    intent1.putExtra("goods_name",jsonAllson.getData().getGoods_name());
-                    intent1.putExtra("goods_price",jsonAllson.getData().getGoods_price());
+                if (!UsingData.GetUsingData().getAllLoginDao().isEmpty() && !jsonAllson.getData().getGoods_id().isEmpty()) {
+                    Intent intent1 = new Intent(EveryGlassesActivity.this, BuyActivity.class);
+                    intent1.putExtra("buyGoods_id", jsonAllson.getData().getGoods_id());
+                    intent1.putExtra("getToken", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+                    intent1.putExtra("img", jsonAllson.getData().getDesign_des().get(0).getImg());
+                    intent1.putExtra("goods_name", jsonAllson.getData().getGoods_name());
+                    intent1.putExtra("goods_price", jsonAllson.getData().getGoods_price());
                     startActivity(intent1);
-                }else {
-                    Intent intentEveryGlasses=new Intent(EveryGlassesActivity.this,LoginActivity.class);
+                } else {
+                    Intent intentEveryGlasses = new Intent(EveryGlassesActivity.this, LoginActivity.class);
                     startActivity(intentEveryGlasses);
                 }
                 break;
         }
     }
+
     //初始化数据库
     private void setupDatabase() {
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "Login.db", null);
@@ -313,7 +293,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
         loginDao = daoSession.getLoginDao();
     }
 
-    public void share(){
+    public void share() {
         ivShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

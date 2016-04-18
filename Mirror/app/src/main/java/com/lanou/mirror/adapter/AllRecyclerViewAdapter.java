@@ -1,15 +1,18 @@
 package com.lanou.mirror.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lanou.mirror.R;
+import com.lanou.mirror.activity.EveryGlassesActivity;
 import com.lanou.mirror.bean.JSONAll;
 import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetImageLoader;
@@ -25,14 +28,13 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
 
     private SpecialOnClick specialOnClick;
     private Random random=new Random();
- //   private NetImageLoader netImageLoader;
+
 
     private ImageLoaderHelper imageLoaderHelper;
     public AllRecyclerViewAdapter(Context context, JSONAll jsonAll) {
 
             this.context = context;
             this.jsonAll = jsonAll;
-//            netImageLoader=new NetImageLoader();
             imageLoaderHelper=new ImageLoaderHelper();
 
 
@@ -41,6 +43,8 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
     class HomePageViewHolder extends RecyclerView.ViewHolder {
         ImageView allImageView;
         TextView homepageBrand, homepagePrice, homepageProduct, homepageModel;
+        RelativeLayout line ;
+        int position;
 
         public HomePageViewHolder(View itemView) {
             super(itemView);
@@ -49,6 +53,22 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
             homepagePrice = (TextView) itemView.findViewById(R.id.homepage_price);
             homepageProduct = (TextView) itemView.findViewById(R.id.homepage_comefrom);
             homepageModel = (TextView) itemView.findViewById(R.id.homepage_modle);
+            line = (RelativeLayout) itemView.findViewById(R.id.line);
+
+            line.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent =new Intent(context, EveryGlassesActivity.class);
+
+                    intent.putExtra("goodsId",jsonAll.getData().getList().get(position).getData_info().getGoods_id());
+                    intent.putExtra("picUrl", jsonAll.getData().getList().get(position).getData_info().getGoods_img());
+                    intent.putExtra("position",position);
+
+
+
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
@@ -94,20 +114,17 @@ public class AllRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         int viewType = getItemViewType(position);
-        Log.d("ShowNewstabsonAdapter", "viewType:" + viewType);
-
-
             switch (viewType) {
 
                 case 1:
-                    HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
 
-//                    netImageLoader.getImgOfLoader(homePageViewHolder.allImageView,jsonAll.getData().getList().get(position).getData_info().getGoods_img());
+                    HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
                     imageLoaderHelper.loadImage(jsonAll.getData().getList().get(position).getData_info().getGoods_img(),homePageViewHolder.allImageView);
                     homePageViewHolder.homepageBrand.setText(jsonAll.getData().getList().get(position).getData_info().getBrand());
                     homePageViewHolder.homepageModel.setText(jsonAll.getData().getList().get(position).getData_info().getModel());
                     homePageViewHolder.homepageProduct.setText(jsonAll.getData().getList().get(position).getData_info().getProduct_area());
                     homePageViewHolder.homepagePrice.setText(jsonAll.getData().getList().get(position).getData_info().getGoods_price());
+                    homePageViewHolder.position=position;
                     break;
                 case 2:
 

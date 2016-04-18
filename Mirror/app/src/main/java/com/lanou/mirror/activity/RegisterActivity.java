@@ -69,7 +69,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 head = new HashMap<>();
                 if (phoneNumber.getText() != null) {
                     head.put("phone number", phoneNumber.getText().toString());
-                    MyLog.showLog("view.getId()", "sms");
                     NetOkHttpClient.postAsyn(URL.USER_SEND_CODE, new NetOkHttpClient.ResultCallback<String>() {
                         @Override
                         public void onError(Request request, Exception e) {
@@ -78,7 +77,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
                         @Override
                         public void onResponse(String response) throws JSONException {
-                        //    MyLog.showLog("注册", response);
                             MyToast.myToast(response);
                         }
                     }, head);
@@ -101,7 +99,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         @Override
                         public void onResponse(String response) throws JSONException {
                             finish();
-                            MyLog.showLog("注册", response);
                         }
                     }, head);
                 }

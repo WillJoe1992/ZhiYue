@@ -100,40 +100,40 @@ public class PayActivity extends Activity {
          * 特别注意，这里的签名逻辑需要放在服务端，切勿将私钥泄露在代码中！
          */
 
-            String sign = sign(orderInfo);
-            try {
-                /**
-                 * 仅需对sign 做URL编码
-                 */
-                sign = URLEncoder.encode(sign, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
+        String sign = sign(orderInfo);
+        try {
             /**
-             * 完整的符合支付宝参数规范的订单信息
+             * 仅需对sign 做URL编码
              */
-            final String payInfo = orderInfo + "&sign=\"" + sign + "\"&" + getSignType();
+            sign = URLEncoder.encode(sign, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
-            Runnable payRunnable = new Runnable() {
+        /**
+         * 完整的符合支付宝参数规范的订单信息
+         */
+        final String payInfo = orderInfo + "&sign=\"" + sign + "\"&" + getSignType();
 
-                @Override
-                public void run() {
-                    // 构造PayTask 对象
-                    PayTask alipay = new PayTask(PayActivity.this);
-                    // 调用支付接口，获取支付结果
-                    String result = alipay.pay(payInfo, true);
+        Runnable payRunnable = new Runnable() {
 
-                    Message msg = new Message();
-                    msg.what = SDK_PAY_FLAG;
-                    msg.obj = result;
-                    mHandler.sendMessage(msg);
-                }
-            };
+            @Override
+            public void run() {
+                // 构造PayTask 对象
+                PayTask alipay = new PayTask(PayActivity.this);
+                // 调用支付接口，获取支付结果
+                String result = alipay.pay(payInfo, true);
 
-            // 必须异步调用
-            Thread payThread = new Thread(payRunnable);
-            payThread.start();
+                Message msg = new Message();
+                msg.what = SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+
+        // 必须异步调用
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
     }
 
 

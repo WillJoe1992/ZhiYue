@@ -70,12 +70,11 @@ public class SelectTitleActivity extends BaseActivity implements SelectTitleRecy
 
         Intent getIntent = getIntent();
         String title = getIntent.getStringExtra("title");
-        Log.d("aaa", title);
         setupDatabase();
         if (labelEntityDao.loadAll().size() > 0) {
             selectTitleRecyclerBeans = new ArrayList<>();
             selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("瀏覽所有分類"));
-            for (int i = 0; i <labelEntityDao.loadAll().size() ; i++) {
+            for (int i = 0; i < labelEntityDao.loadAll().size(); i++) {
                 selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean(labelEntityDao.loadAll().get(i).getLabelname()));
             }
             selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("专题分享"));
@@ -94,11 +93,8 @@ public class SelectTitleActivity extends BaseActivity implements SelectTitleRecy
             selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("退出"));
         }
 
-        Log.d("SelectTitleActivity", title);
         for (int i = 0; i < selectTitleRecyclerBeans.size(); i++) {
-            Log.d("SelectTitleActivity", selectTitleRecyclerBeans.get(i).getTitleName());
             if (selectTitleRecyclerBeans.get(i).getTitleName().equals(title)) {
-                Log.d("SelectTitleActivity", title + "1111111111");
                 selectTitleRecyclerBeans.get(i).setUnderLine(true);
 
             }
@@ -126,7 +122,6 @@ public class SelectTitleActivity extends BaseActivity implements SelectTitleRecy
     public void setClickListener(int popMenuPosition) {
         finish();
         Intent intent = new Intent();
-        Log.e("SelectTitleActivity", "popMenuPosition:" + popMenuPosition);
         intent.setAction(Constant.ACTION_POSITION);
         intent.putExtra("position", popMenuPosition);
         sendBroadcast(intent);
@@ -142,8 +137,7 @@ public class SelectTitleActivity extends BaseActivity implements SelectTitleRecy
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        MyLog.showLog("aaaaa", "finish()");
-        Intent intent=new Intent(BaseApplication.getContext(),MainActivity.class);
+        Intent intent = new Intent(BaseApplication.getContext(), MainActivity.class);
         startActivity(intent);
         finish();
         return super.onKeyDown(keyCode, event);

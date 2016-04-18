@@ -21,12 +21,10 @@ import com.lanou.mirror.net.NetImageLoader;
 public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.HolderSpecialAdapter>{
 private JSONSpecial jsonSpecial;
 private SpecialOnClick specialOnClick;
- //   private NetImageLoader netImageLoader;
     private ImageLoaderHelper imageLoaderHelper;
     private AnimationDrawable animationDrawable;
     public SpecialAdapter(JSONSpecial jsonSpecial) {
         this.jsonSpecial = jsonSpecial;
-    //    netImageLoader=new NetImageLoader();
         imageLoaderHelper=new ImageLoaderHelper();
     }
 
@@ -40,13 +38,11 @@ private SpecialOnClick specialOnClick;
     @Override
     public void onBindViewHolder(HolderSpecialAdapter holder, final int position) {
       holder.specialTitle.setText(jsonSpecial.getData().getList().get(position).getStory_title());
-    //  netImageLoader.getImgOfLoader(holder.specialIv, jsonSpecial.getData().getList().get(position).getStory_img());
         imageLoaderHelper.loadImage(jsonSpecial.getData().getList().get(position).getStory_img(),holder.specialIv);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 specialOnClick.specialOnClick(position);
-                Log.d("Sysout", "relativeLayout");
             }
         });
     }

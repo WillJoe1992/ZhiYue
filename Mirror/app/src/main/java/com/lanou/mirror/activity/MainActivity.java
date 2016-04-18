@@ -69,20 +69,8 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
     private PopupWindow popupWindow;
 
-
-    // 数据库
-    private SQLiteDatabase db;
-    // 管理者
-    private DaoMaster mDaoMaster;
-    // 会话
-    private DaoSession mDaoSession;
-    // 管理者
-    private DaoMaster daoMaster;
-    // 会话
-    private DaoSession daoSession;
+    private List<Fragment> listFragments;
     // 对应的表,由java代码生成的,对数据库内相应的表操作使用此对象
-//    private LabelEntityDao labelEntityDao;
-//    private LoginDao loginDao;
 
     @Override
     protected void initData() {
@@ -92,9 +80,8 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         filter.addAction(Constant.ACTION_POSITION);
         registerReceiver(receiver, filter);
 
-        setupDatabase();
         //用户已登录返回token
-       if (UsingData.GetUsingData().getAllLoginDao().size() > 0) {
+        if (UsingData.GetUsingData().getAllLoginDao().size() > 0) {
             MyLog.showLog("dbtoken", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
             head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
             loginText.setVisibility(View.GONE);
@@ -162,7 +149,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
     }
 
     public List<Fragment> getFragmentList() {
-        List<Fragment> listFragments = new ArrayList();
+        listFragments = new ArrayList();
 
 
         Bundle bundleAll = new Bundle();
@@ -172,17 +159,10 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         fragmentAll.setArguments(bundleAll);
         listFragments.add(fragmentAll);
 
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "mirrorlib.db", null);
-//        db = helper.getWritableDatabase();
-//        mDaoMaster = new DaoMaster(db);
-//        mDaoSession = mDaoMaster.newSession();
-//        labelEntityDao = mDaoSession.getLabelEntityDao();
         if (jsonGlassesClassification != null) {
-          //  labelEntityDao.deleteAll();
             UsingData.GetUsingData().deleteLabelEntityDao();
             for (int i = 0; i < jsonGlassesClassification.getData().size(); i++) {
                 LabelEntity labelEntity = new LabelEntity((long) i, jsonGlassesClassification.getData().get(i).getCategory_name());
-            //    labelEntityDao.insert(labelEntity);
                 UsingData.GetUsingData().addLabelEntityDao(labelEntity);
             }
             for (int i = 0; i < jsonGlassesClassification.getData().size(); i++) {
@@ -194,40 +174,6 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
                 listFragments.add(fragmentFlatGlass);
             }
         }
-        /*
-        * else if(labelEntityDao!=null){
-            for (int i = 0; i <labelEntityDao.loadAll().size() ; i++) {
-                Bundle bundleFlatGlass = new Bundle();
-                bundleFlatGlass.putString("titleName", labelEntityDao.loadAll().get(i).getLabelname());
-                bundleFlatGlass.putString("CategoryId", String.valueOf(labelEntityDao.loadAll().get(i).getId()));
-                HomePagerFragment fragmentFlatGlass = new HomePagerFragment();
-                fragmentFlatGlass.setArguments(bundleFlatGlass);
-                listFragments.add(fragmentFlatGlass);
-            }
-        }*/
-
-
-        ///////////////////////////
-        //将网络拉取的titile复用一个fragment代码如上
-//        Bundle bundleFlatGlass = new Bundle();
-//        bundleFlatGlass.putString("titleName", jsonGlassesClassification.getData().get(0).getCategory_name());
-//        HomePagerFragment fragmentFlatGlass = new HomePagerFragment();
-//        fragmentFlatGlass.setArguments(bundleFlatGlass);
-//        listFragments.add(fragmentFlatGlass);
-//
-//        Bundle bundleSunGlass = new Bundle();
-//        bundleSunGlass.putString("titleName", jsonGlassesClassification.getData().get(1).getCategory_name());
-//        HomePagerFragment fragmentSunGlass = new HomePagerFragment();
-//        fragmentSunGlass.setArguments(bundleSunGlass);
-//        listFragments.add(fragmentSunGlass);
-//
-//        Bundle bundleHandGlass = new Bundle();
-//        Log.d("sssss",jsonGlassesClassification.getData().get(2).getCategory_name());
-//        bundleHandGlass.putString("titleName", jsonGlassesClassification.getData().get(2).getCategory_name());
-//        HomePagerFragment fragmentHandGlass  = new HomePagerFragment();
-//        fragmentHandGlass .setArguments(bundleHandGlass);
-//        listFragments.add(fragmentHandGlass);
-        ////////////////////////////
 
 
         Bundle bundleSpecial = new Bundle();
@@ -244,9 +190,9 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         shoppingCarFragment.setArguments(bundleShoppingCart);
         listFragments.add(shoppingCarFragment);
 
-
         return listFragments;
     }
+
 
     @Override
     protected int setContent() {
@@ -264,7 +210,6 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
             String action = intent.getAction();
             if (action.equals(Constant.ACTION_POSITION)) {
                 int position = intent.getIntExtra("position", 0);
-                Log.e("MainActivity", "position:" + position);
                 verticalViewPager.setCurrentItem(position);
 
             }
@@ -319,14 +264,14 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
     //弹出来的popwindow
     public void showPopupWindow(View v, String title) {
-    //设置popwindow里的参数
+        //设置popwindow里的参数
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         View view = getLayoutInflater().inflate(R.layout.activity_select_title, null);
         popupWindow = new PopupWindow(view, dm.widthPixels, dm.heightPixels - 190, true);
 
-    //设置view的监听点其他地方退出
+        //设置view的监听点其他地方退出
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -338,12 +283,12 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
             }
         });
 
-    //获取title如果数据库没有手动添加
+        //获取title如果数据库没有手动添加
 
         if (UsingData.GetUsingData().getLabelEntityDao() != null) {
             selectTitleRecyclerBeans = new ArrayList<>();
             selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("瀏覽所有分類"));
-            for (int i = 0; i <UsingData.GetUsingData().getAllLabelEntityDao() .size(); i++) {
+            for (int i = 0; i < UsingData.GetUsingData().getAllLabelEntityDao().size(); i++) {
                 selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean(UsingData.GetUsingData().getAllLabelEntityDao().get(i).getLabelname()));
             }
             selectTitleRecyclerBeans.add(new SelectTitleRecyclerBean("专题分享"));
@@ -399,21 +344,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
 
     }
 
-    //配置数据库
-    private void setupDatabase() {
-//        //初始化数据库
-//        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "mirrorlib.db", null);
-//        db = helper.getWritableDatabase();
-//        daoMaster = new DaoMaster(db);
-//        daoSession = daoMaster.newSession();
-//        labelEntityDao = daoSession.getLabelEntityDao();
-//        /////toke数据库
-//        DaoMaster.DevOpenHelper helper2 = new DaoMaster.DevOpenHelper(this, "Login.db", null);
-//        SQLiteDatabase db2 = helper2.getWritableDatabase();
-//        DaoMaster daoMaster2 = new DaoMaster(db2);
-//        DaoSession daoSession2 = daoMaster2.newSession();
-//        loginDao = daoSession2.getLoginDao();
-    }
+
 
     public List<Fragment> NoGetFragmentList() {
         List<Fragment> listFragments = new ArrayList<Fragment>();

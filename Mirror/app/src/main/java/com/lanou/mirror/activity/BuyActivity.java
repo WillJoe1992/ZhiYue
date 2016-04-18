@@ -40,17 +40,12 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
     private TextView buyGlassesTitle, buyMore, freight, subtotal, placeAnOrder, goToAllAddress, nameDetails, addressDetails, phoneNumberDetails;
     private ImageView buyImageView, buyDelete;
     private String orderNo, addId, goodName;
+
     @Override
     protected void initData() {
         head = new HashMap<>();
         Intent intent = getIntent();
-        //  intent.getStringExtra("buyGoods_id");
-        //  MyLog.showLog("sssssss", intent.getStringExtra("getToken"));
-        MyLog.showLog("0000000", intent.getStringExtra("getToken"));
-        MyLog.showLog("0000000", intent.getStringExtra("img"));
-        MyLog.showLog("0000000", intent.getStringExtra("goods_name"));
-        MyLog.showLog("0000000", intent.getStringExtra("goods_price"));
-        MyLog.showLog("0000000", intent.getStringExtra("buyGoods_id"));
+
 
         head.put("token", intent.getStringExtra("getToken"));
         head.put("goods_id", intent.getStringExtra("buyGoods_id"));
@@ -63,7 +58,6 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void onResponse(String response) throws JSONException {
-                MyLog.showLog("wwwwwwwwww", response);
 
 
             }
@@ -76,7 +70,6 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void onResponse(String response) throws JSONException {
-                MyLog.showLog("cvxcvxcv", response);
                 Gson gson = new Gson();
                 JSONAddress jsonAddress = gson.fromJson(response, JSONAddress.class);
                 nameDetails.setText(jsonAddress.getData().getList().get(0).getUsername());
@@ -120,10 +113,8 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.place_an_order:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                // builder.setTitle("请选择支付方式");
                 final View view1 = LayoutInflater.from(this).inflate(R.layout.item_buy_view, null);
                 LinearLayout linearLayout = (LinearLayout) view1.findViewById(R.id.buy_linear_layout);
-
                 HashMap<String, String> head = new HashMap<String, String>();
                 Intent intent = getIntent();
                 head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
@@ -139,12 +130,11 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
 
                     @Override
                     public void onResponse(String response) throws JSONException {
-                        MyLog.showLog("ORDER_SUB", response);
-                        Gson gson=new Gson();
-                        JSONOrder jsonOrder=gson.fromJson(response,JSONOrder.class);
-                        orderNo=jsonOrder.getData().getOrder_id();
-                        addId=jsonOrder.getData().getAddress().getAddr_id();
-                        goodName=jsonOrder.getData().getGoods().getGoods_name();
+                        Gson gson = new Gson();
+                        JSONOrder jsonOrder = gson.fromJson(response, JSONOrder.class);
+                        orderNo = jsonOrder.getData().getOrder_id();
+                        addId = jsonOrder.getData().getAddress().getAddr_id();
+                        goodName = jsonOrder.getData().getGoods().getGoods_name();
                     }
                 }, head);
 
@@ -154,10 +144,10 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
                         ShowToast.showToast("支付宝支付");
                         final PayActivity payActivity = new PayActivity();
                         HashMap<String, String> head = new HashMap<String, String>();
-                        head.put("token",UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
-                        head.put("order_no",orderNo);
-                        head.put("addr_id",addId);
-                        head.put("goodsname",goodName);
+                        head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+                        head.put("order_no", orderNo);
+                        head.put("addr_id", addId);
+                        head.put("goodsname", goodName);
                         NetOkHttpClient.postAsyn(URL.PAY_ALI, new NetOkHttpClient.ResultCallback<String>() {
                             @Override
                             public void onError(Request request, Exception e) {

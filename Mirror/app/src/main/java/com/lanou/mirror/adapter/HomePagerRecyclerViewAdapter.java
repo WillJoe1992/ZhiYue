@@ -27,17 +27,12 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     private JSONGlasses jsonGlasses;
 
 
- //   private NetImageLoader netImageLoader;
-
-
     private NetImageLoader netImageLoader;
     private AnimationDrawable animationDrawable;
- //   private NetImageLoader netImageLoader;
     private ImageLoaderHelper imageLoaderHelper;
     public HomePagerRecyclerViewAdapter(Context context,JSONGlasses jsonGlasses) {
         this.context = context;
         this.jsonGlasses=jsonGlasses;
-  //      netImageLoader=new NetImageLoader();
         imageLoaderHelper=new ImageLoaderHelper();
     }
 
@@ -50,7 +45,6 @@ public class HomePagerRecyclerViewAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
-    //    netImageLoader.getImgOfLoader(homePageViewHolder.imageView,jsonGlasses.getData().getList().get(position).getGoods_img());
         imageLoaderHelper.loadImage(jsonGlasses.getData().getList().get(position).getGoods_img(),homePageViewHolder.imageView);
         homePageViewHolder.homepageBrand.setText(jsonGlasses.getData().getList().get(position).getBrand());
         homePageViewHolder.homepageModle.setText(jsonGlasses.getData().getList().get(position).getModel());
