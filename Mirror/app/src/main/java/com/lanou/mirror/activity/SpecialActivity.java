@@ -25,7 +25,6 @@ public class SpecialActivity extends BaseActivity {
     private SpecialPictureAdapter specialPictureAdapter;
     private LinearLayoutManager linearLayoutManager;
     private ImageView activitySpecialContentImageView,fragmentLoadingIv;
- //   private NetImageLoader netImageLoader;
     private ImageLoaderHelper imageLoaderHelper;
     private JSONSpecial jsonSpecial;
     private int position;
@@ -33,8 +32,6 @@ public class SpecialActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-    //    netImageLoader=new NetImageLoader();
-        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         imageLoaderHelper=new ImageLoaderHelper();
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -46,7 +43,6 @@ public class SpecialActivity extends BaseActivity {
         specialPictureAdapter = new SpecialPictureAdapter(this, jsonSpecial, position);
         recyclerView.setAdapter(specialPictureAdapter);
 
-      //   netImageLoader.getImgOfLoader(activitySpecialContentImageView, jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(0));
         imageLoaderHelper.loadImage(jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(0),activitySpecialContentImageView);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -57,9 +53,8 @@ public class SpecialActivity extends BaseActivity {
                     //判断Fragment划过两个
                     if (linearLayoutManager.findFirstVisibleItemPosition() % 2 == 0) {
                         int i = linearLayoutManager.findFirstVisibleItemPosition() / 2;
-                    //    netImageLoader.getImgOfLoader(activitySpecialContentImageView, jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i));
                         imageLoaderHelper.loadImage(jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i),activitySpecialContentImageView);
-                        Log.d("aaaaaaaaaa", jsonSpecial.getData().getList().get(position).getStory_data().getImg_array().get(i));
+
                     }
                 }
 
@@ -77,9 +72,7 @@ public class SpecialActivity extends BaseActivity {
     protected void initView() {
         activitySpecialContentImageView = bindView(R.id.activity_special_content_image_view);
         recyclerView = bindView(R.id.activity_special_content_rv);
-
         fragmentLoadingIv= (ImageView)findViewById(R.id.fragment_loading_iv);
-
         fragmentLoadingIv.setImageResource(R.drawable.loading);
         animationDrawable = (AnimationDrawable) fragmentLoadingIv.getDrawable();
         animationDrawable.start();
@@ -92,8 +85,6 @@ public class SpecialActivity extends BaseActivity {
 
     @Override
     protected void onPause() {
-        Log.d("aaaaaaa","finish()");
-
         finish();
         super.onPause();
     }

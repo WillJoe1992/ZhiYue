@@ -75,12 +75,7 @@ public class AtlasAdapter extends RecyclerView.Adapter {
                     NetImageLoader netImageLoader = new NetImageLoader();
                     netImageLoader.getImgOfLoader(imageViewHolder.imageView, data.getData().getList().get(0).getWear_video().get(position+1).getData());
                 }
-//
-//                Glide.with(activity)
-//                        .load( data.getData().getList().get(0).getWear_video().get(position+1).getData())
-//                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-//                        .crossFade()
-//                        .into(imageViewHolder.imageView);
+
 
                 imageViewHolder.imageView.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -22,13 +22,6 @@ public class EveryGlassesFrontRecyclerViewAdapter extends RecyclerView.Adapter<R
 
     private List<JSONAllson.DataEntity.GoodsDataEntity> data;
 
-//    private MyItemListener listener;
-
-//    public void setMyItemListener(MyItemListener listener) {
-//        this.listener = listener;
-
-//    }
-
     /**
      * 自定义 添加数据方法
      */
@@ -85,7 +78,6 @@ public class EveryGlassesFrontRecyclerViewAdapter extends RecyclerView.Adapter<R
      */
     @Override
     public int getItemCount() {
-       // TODO
         return data.size()!=0?data.size():0;
     }
 

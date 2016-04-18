@@ -26,25 +26,25 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
  * Created by wyc on 16/3/31.
  */
 public class AtlasActivity extends BaseActivity {
-    public static HashMap<String,String> head;
+    public static HashMap<String, String> head;
     private JSONAtlas data;
     private JCVideoPlayer jcVideoPlayer;
     private RecyclerView recyclerView;
     private AtlasAdapter atlasAdapter;
-private int position;
+    private int position;
 
     @Override
-    protected void initData(){
-        Intent intent =getIntent();
-        position=intent.getIntExtra("position",100);
+    protected void initData() {
+        Intent intent = getIntent();
+        position = intent.getIntExtra("position", 100);
 
         head = new HashMap<>();
-        head.put("token","");
-        head.put("device_type","1");
-        head.put("page","");
-        head.put("last_time","");
+        head.put("token", "");
+        head.put("device_type", "1");
+        head.put("page", "");
+        head.put("last_time", "");
         head.put("category_id", "");
-        head.put("version","1.0.1");
+        head.put("version", "1.0.1");
         final AtlasActivity atlasActivity = this;
         NetOkHttpClient.postAsyn(URL.GOODS_LIST, new NetOkHttpClient.ResultCallback<String>() {
             @Override
@@ -55,15 +55,13 @@ private int position;
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
-                data = gson.fromJson(response,JSONAtlas.class);
-                Log.d("asd","asd"+data.getData().getList().get(position).getWear_video().get(0).getData());
-                GridLayoutManager gridLayoutManager = new GridLayoutManager(atlasActivity,1);
-                Log.d("AtlasActivity", response);
+                data = gson.fromJson(response, JSONAtlas.class);
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(atlasActivity, 1);
                 recyclerView.setLayoutManager(gridLayoutManager);
-                atlasAdapter = new AtlasAdapter(atlasActivity,data);
+                atlasAdapter = new AtlasAdapter(atlasActivity, data);
                 recyclerView.setAdapter(atlasAdapter);
             }
-        },head);
+        }, head);
 
 
     }

@@ -57,7 +57,7 @@ public class AddAddressActivity extends BaseActivity {
                 if (addAddress.getText().length() > 0 &&
                         addCity.getText().length() > 0 &&
                         addPhoneNumber.getText().length() > 0 &
-                        addName.getText().length() > 0) {
+                                addName.getText().length() > 0) {
                     head.put("username", addName.getText().toString());
                     head.put("cellphone", addPhoneNumber.getText().toString());
                     head.put("addr_info", addAddress.getText().toString());
@@ -72,9 +72,8 @@ public class AddAddressActivity extends BaseActivity {
 
                         @Override
                         public void onResponse(String response) throws JSONException {
-                            MyLog.showLog("dsdsdsd", response);
-                            Intent intent = new Intent(AddAddressActivity.this,AllAddressActivity.class);
-                            intent.putExtra("token",token);
+                            Intent intent = new Intent(AddAddressActivity.this, AllAddressActivity.class);
+                            intent.putExtra("token", token);
                             startActivity(intent);
                             finish();
                             Toast.makeText(AddAddressActivity.this, "添加成功", Toast.LENGTH_SHORT).show();

@@ -77,15 +77,8 @@ public class SelectTitleRecyclerViewAdapter extends RecyclerView.Adapter<SelectT
 
         @Override
         public void onClick(View v) {
-//            SelectTitleRecyclerBean selectTitleRecyclerBean = selectTitleRecyclerBeans.get(position);
-//
-//            Intent intent =new Intent();
-//            intent.putExtra("n", tvAll.getText());
 
             clickListener.setClickListener(position);
-
-            Log.d("TitleViewHolder", "!!!!!!!!!!");
-            Log.e("TitleViewHolder", "position:" + position);
 
             SelectTitleRecyclerBean selectTitleRecyclerBean = selectTitleRecyclerBeans.get(position);
 
