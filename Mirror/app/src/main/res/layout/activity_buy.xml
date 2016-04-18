@@ -42,11 +42,6 @@
         android:background="@drawable/bg_liner"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/name_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_buy_nulltext_margintop" />
 
         <TextView
             android:id="@+id/address_details"
@@ -57,6 +52,27 @@
             android:gravity="center"
             android:text="@string/activity_buy_addperdson_text"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/name_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_buy_nulltext_margintop"
+            android:layout_marginTop="@dimen/activity_buy_nulltext_margintop"
+            android:gravity="center"
+            android:text=""
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/phone_number_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="20px"
+            android:gravity="center"
+            android:text=""
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

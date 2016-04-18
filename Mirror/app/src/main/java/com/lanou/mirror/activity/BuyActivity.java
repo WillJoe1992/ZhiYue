@@ -24,6 +24,7 @@ import com.lanou.mirror.base.BaseActivity;
 import com.lanou.mirror.bean.JSONAddress;
 import com.lanou.mirror.bean.JSONOrder;
 import com.lanou.mirror.bean.JSONpay;
+import com.lanou.mirror.greendao.UsingData;
 import com.lanou.mirror.net.ImageLoaderHelper;
 import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.pay.H5PayDemoActivity;
@@ -42,12 +43,11 @@ import java.util.HashMap;
 /**
  * Created by dllo on 16/4/11.
  */
+
 public class BuyActivity extends BaseActivity implements View.OnClickListener {
     private HashMap<String, String> head;
     private TextView buyGlassesTitle, buyMore, freight, subtotal, placeAnOrder, goToAllAddress, nameDetails, addressDetails, phoneNumberDetails;
     private ImageView buyImageView, buyDelete;
-    private String orderNo, addId, goodName;
-
     private JSONOrder jsonorder;
     private String goodsName;
     private String addrId;
@@ -58,34 +58,23 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
     public static String RSA_PRIVATE = "";// 商户私钥，pkcs8格式
 
 
-
     @Override
     protected void initData() {
         head = new HashMap<>();
         Intent intent = getIntent();
-
+        //  intent.getStringExtra("buyGoods_id");
+        //  MyLog.showLog("sssssss", intent.getStringExtra("getToken"));
+        MyLog.showLog("0000000", intent.getStringExtra("getToken"));
+        MyLog.showLog("0000000", intent.getStringExtra("img"));
+        MyLog.showLog("0000000", intent.getStringExtra("goods_name"));
+        MyLog.showLog("0000000", intent.getStringExtra("goods_price"));
 
         head.put("token", intent.getStringExtra("getToken"));
         head.put("goods_id", intent.getStringExtra("buyGoods_id"));
         head.put("goods_num", "1");
         head.put("price", intent.getStringExtra("goods_price"));
         head.put("device_type", "1");
-
-        NetOkHttpClient.postAsyn(URL.JION_SHOPPING_CART, new NetOkHttpClient.ResultCallback<String>() {
-            @Override
-            public void onError(Request request, Exception e) {
-
-            }
-
-            @Override
-            public void onResponse(String response) throws JSONException {
-
-
-            }
-        }, head);
-
         head.put("discout_id", "");
-
         NetOkHttpClient.postAsyn(URL.USER_ADDRESS_LIST, new NetOkHttpClient.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -94,6 +83,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void onResponse(String response) throws JSONException {
+                MyLog.showLog("cvxcvxcv", response);
                 Gson gson = new Gson();
                 JSONAddress jsonAddress = gson.fromJson(response, JSONAddress.class);
                 if (!jsonAddress.getData().getList().isEmpty()) {
@@ -139,18 +129,6 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.place_an_order:
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                final View view1 = LayoutInflater.from(this).inflate(R.layout.item_buy_view, null);
-                LinearLayout linearLayout = (LinearLayout) view1.findViewById(R.id.buy_linear_layout);
-                HashMap<String, String> head = new HashMap<String, String>();
-                Intent intent = getIntent();
-                head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
-                head.put("goods_id", intent.getStringExtra("buyGoods_id"));
-                head.put("goods_num", "1");
-                head.put("price", intent.getStringExtra("getToken"));
-                head.put("device_type", "1");
-
-
                 NetOkHttpClient.postAsyn(URL.ORDER_SUB, new NetOkHttpClient.ResultCallback<String>() {
 
 
@@ -161,12 +139,6 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
 
                     @Override
                     public void onResponse(String response) throws JSONException {
-
-                        Gson gson = new Gson();
-                        JSONOrder jsonOrder = gson.fromJson(response, JSONOrder.class);
-                        orderNo = jsonOrder.getData().getOrder_id();
-                        addId = jsonOrder.getData().getAddress().getAddr_id();
-                        goodName = jsonOrder.getData().getGoods().getGoods_name();
                         MyLog.showLog("wwwwwwwwww", response);
                         Gson gson = new Gson();
                         jsonorder = gson.fromJson(response, JSONOrder.class);
@@ -184,17 +156,9 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
                     @Override
                     public void onClick(View view) {
                         ShowToast.showToast("支付宝支付");
-
-                        final PayActivity payActivity = new PayActivity();
-                        HashMap<String, String> head = new HashMap<String, String>();
-                        head.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
-                        head.put("order_no", orderNo);
-                        head.put("addr_id", addId);
-                        head.put("goodsname", goodName);
                         head.put("order_no", orderNo);
                         head.put("addr_id", addrId);
                         head.put("goodsname", goodsName);
-
                         NetOkHttpClient.postAsyn(URL.PAY_ALI, new NetOkHttpClient.ResultCallback<String>() {
                             @Override
                             public void onError(Request request, Exception e) {
@@ -290,6 +254,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
                 default:
                     break;
             }
+
         }
     };
 
