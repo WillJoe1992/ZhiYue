@@ -78,9 +78,8 @@ public class HomePagerFragment extends BaseFragment {
         /**
          * 分类id
          */
-    //    head.put("category_id", url);
-        MyLog.showLog("aaaaaaaaaaaaaa","initView");
-        MyLog.showLog("rrrrrrrrrrrrrrrrr", url);
+        MyLog.showLog("分类id", url);
+        head.put("category_id",url);
         //网络拉取
         NetOkHttpClient.postAsyn(URL.GOODS_LIST, new NetOkHttpClient.ResultCallback<String>() {
             @Override

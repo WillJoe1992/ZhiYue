@@ -66,8 +66,6 @@ public class SpecialFragment extends BaseFragment {
         String titleName = (String) bundle.get("titleName");
         fragmentHomepageTitle.setText(titleName);
         head.put("device_type", "1");
-        //初始化数据库
-        //   setupDatabase();
         //用户已登录返回token
         if (UsingData.GetUsingData().getAllLoginDao().size() > 0 && UsingData.GetUsingData().getAllLoginDao().get(0).getToken() != null) {
             MyLog.showLog("SpecialPagerdbtoken", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());

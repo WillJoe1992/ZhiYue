@@ -56,6 +56,7 @@ public class AllFragment extends BaseFragment {
     private RecyclerView selectTitleRc;
     private SelectTitleRecyclerViewAdapter selectTitleRecyclerViewAdapter;
     private NotNetAllAdapter notNetAllAdapter;
+
     @Override
     public int getLayout() {
         return R.layout.fragment_homepage;
@@ -66,7 +67,6 @@ public class AllFragment extends BaseFragment {
         titleSelect = bindView(R.id.title_select);
         homePageRecyclerView = bindView(R.id.fragment_homepage_recyclerview);
         fragmentHomepageTitle = bindView(R.id.fragment_homepage_title);
-
         //bundle 传值的获取
         Bundle bundle = getArguments();
         String titleName = (String) bundle.get("titleName");
@@ -76,9 +76,9 @@ public class AllFragment extends BaseFragment {
         headGlasses = new HashMap<>();
         headGlasses.put("device_type", "1");
         //用户已登录返回token
-        if (UsingData.GetUsingData().getAllLoginDao().size()>0 && UsingData.GetUsingData().getAllLoginDao().get(0).getToken() != null) {
-            MyLog.showLog("ALLdbtoken",UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
-           headGlasses.put("token",UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+        if (UsingData.GetUsingData().getAllLoginDao().size() > 0 && UsingData.GetUsingData().getAllLoginDao().get(0).getToken() != null) {
+            MyLog.showLog("ALLdbtoken", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+            headGlasses.put("token", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
         } else {
             headGlasses.put("token", "");
         }
@@ -104,55 +104,7 @@ public class AllFragment extends BaseFragment {
                 addHolder(jsonAll);
             }
         }, headGlasses);
-//        headSpecial=new HashMap<>();
-//        headSpecial.put("device_type","1");
-//        headSpecial.put("token","");
-//        headSpecial.put("uid","");
-//        headSpecial.put("page","");
-//        headSpecial.put("last_time", "");
-//
-//        NetOkHttpClient.postAsyn(URL.TEST_STORY_LIST, new NetOkHttpClient.ResultCallback<String>() {
-//            @Override
-//            public void onError(Request request, Exception e) {
-//
-//
-//            }
-//
-//            @Override
-//            public void onResponse(String response) {
-//                Gson gson = new Gson();
-//                jsonSpecial = gson.fromJson(response, JSONSpecial.class);
-//                allRecyclerViewAdapter = new AllRecyclerViewAdapter(getContext(),jsonGlasses,jsonSpecial);
-//                GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),1);
-//                gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-//                homePageRecyclerView.setLayoutManager(gridLayoutManager);
-//                homePageRecyclerView.setAdapter(allRecyclerViewAdapter);
-//
-//
-//
-//            }
-//        }, headSpecial);
-
-
-        ////////////
-//        allRecyclerViewAdapter = new AllRecyclerViewAdapter(getContext(),jsonGlasses,jsonSpecial);
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),1);
-//        gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        homePageRecyclerView.setLayoutManager(gridLayoutManager);
-//        homePageRecyclerView.setAdapter(allRecyclerViewAdapter);
-//
-//
-//
-//        titleSelect.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), SelectTitleActivity.class);
-//                intent.putExtra("title",fragmentHomepageTitle.getText());
-//                startActivity(intent);
-//            }
-//        });
-
-       //标签点击后弹popupwindow
+        //标签点击后弹popupwindow
         titleSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,9 +114,10 @@ public class AllFragment extends BaseFragment {
             }
         });
     }
-//没有网络时的处理方式
+
+    //没有网络时的处理方式
     private void addNotNet() {
-        if (UsingData.GetUsingData().getAllHolderDao().size()>0) {
+        if (UsingData.GetUsingData().getAllHolderDao().size() > 0) {
             notNetAllAdapter = new NotNetAllAdapter(BaseApplication.getContext(), UsingData.GetUsingData().getHolderDa());
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
             gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -182,11 +135,11 @@ public class AllFragment extends BaseFragment {
             allHolder.setModel(jsonAll.getData().getList().get(i).getData_info().getModel());
             allHolder.setGoods_price(jsonAll.getData().getList().get(i).getData_info().getGoods_price());
             allHolder.setType(jsonAll.getData().getList().get(i).getType());
-         //   allHolderDao.insert(allHolder);
             UsingData.GetUsingData().addAllHolderDao(allHolder);
         }
 
     }
+
     @Override
     protected void dataView() {
 
