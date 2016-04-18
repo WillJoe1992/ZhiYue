@@ -85,9 +85,11 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
                 MyLog.showLog("cvxcvxcv", response);
                 Gson gson = new Gson();
                 JSONAddress jsonAddress = gson.fromJson(response, JSONAddress.class);
-                nameDetails.setText(jsonAddress.getData().getList().get(0).getUsername());
-                addressDetails.setText(jsonAddress.getData().getList().get(0).getAddr_info());
-                phoneNumberDetails.setText(jsonAddress.getData().getList().get(0).getCellphone());
+                if (!jsonAddress.getData().getList().isEmpty()) {
+                    nameDetails.setText(jsonAddress.getData().getList().get(0).getUsername());
+                    addressDetails.setText(jsonAddress.getData().getList().get(0).getAddr_info());
+                    phoneNumberDetails.setText(jsonAddress.getData().getList().get(0).getCellphone());
+                }
             }
         }, head);
         ImageLoaderHelper imageLoaderHelper = new ImageLoaderHelper();
@@ -243,7 +245,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
                             // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
                             //  Toast.makeText(MainActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                             ShowToast.showToast("支付失败");
-                            MyLog.showLog("ssss",resultStatus);
+                            MyLog.showLog("ssss", resultStatus);
                         }
                     }
                     break;
@@ -269,6 +271,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
     private String getSignType() {
         return "sign_type=\"RSA\"";
     }
+
     /**
      * 原生的H5（手机网页版支付切natvie支付） 【对应页面网页支付按钮】
      *
