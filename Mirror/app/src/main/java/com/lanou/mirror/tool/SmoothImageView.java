@@ -243,12 +243,7 @@ public class SmoothImageView extends ImageView {
             }
 
             if (mTransformStart) {
-                Log.d("SmoothImageView", "mTransfrom.startScale:" + mTransfrom.startScale);
-                Log.d("SmoothImageView", "mTransfrom.startScale:" + mTransfrom.endScale);
-                Log.d("SmoothImageView", "mTransfrom.scale:" + mTransfrom.scale);
-                Log.d("SmoothImageView", "mTransfrom.startRect:" + mTransfrom.startRect.toString());
-                Log.d("SmoothImageView", "mTransfrom.endRect:" + mTransfrom.endRect.toString());
-                Log.d("SmoothImageView", "mTransfrom.rect:" + mTransfrom.rect.toString());
+
             }
 
             mPaint.setAlpha(mBgAlpha);

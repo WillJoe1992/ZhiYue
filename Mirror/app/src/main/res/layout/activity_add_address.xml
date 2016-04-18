@@ -40,11 +40,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginLeft="@dimen/login_image_marginleft"
         android:layout_marginRight="@dimen/login_image_marginright"
-        android:layout_marginTop="30px"
-        android:text="添加添加收件人姓名" />
+        android:layout_marginTop="@dimen/activity_addaddress_addname_margintop"
+        android:text="@string/activity_addaddress_addnametext" />
 
 
     <EditText
@@ -77,15 +76,15 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/login_image_marginleft"
         android:layout_marginRight="@dimen/login_image_marginright"
-        android:text="添加城市" />
+        android:text="@string/activity_addaddress_addcity" />
 
     <EditText
         android:id="@+id/add_city"
         android:layout_width="match_parent"
-        android:layout_height="92px"
+        android:layout_height="@dimen/activity_addaddress_edithei"
         android:layout_marginLeft="@dimen/login_image_marginleft"
         android:layout_marginRight="@dimen/login_image_marginright"
-        android:layout_marginTop="20px"
+        android:layout_marginTop="@dimen/activity_addaddress_addcityedt_margintop"
         android:background="@android:color/white" />
     <TextView
         android:layout_width="wrap_content"
@@ -110,9 +109,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/login_image_marginleft"
         android:layout_marginRight="@dimen/login_image_marginright"
-        android:layout_marginTop="25px"
-        android:background="#f85453"
-        android:text="提交地址"
+        android:layout_marginTop="@dimen/activity_addaddress_btn_margintop"
+        android:background="@color/button_background"
+        android:text="@string/activity_addaddress_addaddresstext"
         android:textColor="@android:color/white" />'
 
 

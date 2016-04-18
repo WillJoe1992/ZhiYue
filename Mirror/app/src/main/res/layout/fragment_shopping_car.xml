@@ -28,6 +28,7 @@
                 android:textSize="@dimen/fragment_homepage_title_text_size" />
 
             <ImageView
+                android:layout_marginTop="@dimen/fragment_shoppingcar_pull_iv_margintop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/fragment_homepage_title"
@@ -53,7 +54,7 @@
     </LinearLayout>
 <ImageView
     android:id="@+id/shopping_car_iv"
-    android:layout_marginTop="350px"
+    android:layout_marginTop="@dimen/fragment_shopping_cariv"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
@@ -63,8 +64,8 @@
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="您的购物车没有商品"
+        android:text="@string/fragment_shopping_text"
         android:layout_below="@+id/shopping_car_iv"
         android:textColor="@color/special_content_picture_item_text_textcolor"
-        android:textSize="30px"/>
+        android:textSize="@dimen/fragment_shopping_textsize"/>
 </RelativeLayout>
