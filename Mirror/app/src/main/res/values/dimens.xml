@@ -311,6 +311,23 @@
     <dimen name="alladdress_item_address_margintop">10dp</dimen>
     <dimen name="alladdress_item_address_textsize">12sp</dimen>
     <dimen name="alladdress_item_edit_marginright">30dp</dimen>
+    <dimen name="buy_item_choose_text_hei">86px</dimen>
+    <dimen name="buy_item_view_hei">1dp</dimen>
+    <dimen name="buy_item_wechat_linlayout_wid">400px</dimen>
+    <dimen name="buy_item_wechat_linlayout_hei">80px</dimen>
+    <dimen name="buy_item_wechat_linlayout_margintop">50px</dimen>
+    <dimen name="buy_item_wechat_relayout_wid">200px</dimen>
+    <dimen name="buy_item_wechat_icon_wid">40px</dimen>
+    <dimen name="buy_item_wechat_icon_hei">40px</dimen>
+    <dimen name="buy_item_wechat_textsize">30px</dimen>
+    <dimen name="buy_item_ali_linlayout_wid">400px</dimen>
+    <dimen name="buy_item_ali_linlayout_hei">80px</dimen>
+    <dimen name="buy_item_ali_linlayout_margintop">40px</dimen>
+    <dimen name="buy_item_ali_linlayout_marginbottom">50px</dimen>
+    <dimen name="buy_item_ali_relayout_wid">200px</dimen>
+    <dimen name="buy_item_ali_icon_wid">40px</dimen>
+    <dimen name="buy_item_ali_icon_hei">40px</dimen>
+    <dimen name="buy_item_ali_textsize">30px</dimen>
 
 
 </resources>
