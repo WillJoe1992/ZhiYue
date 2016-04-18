@@ -34,6 +34,7 @@
     <string name="activity_addaddress_addnametext">添加添加收件人姓名</string>
     <string name="activity_addaddress_addcity">添加城市</string>
     <string name="activity_addaddress_addaddresstext">提交地址</string>
+    <string name="alladdress_item_delete_text">删除</string>
 
 
 </resources>

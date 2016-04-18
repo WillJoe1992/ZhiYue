@@ -8,10 +8,9 @@
         android:id="@+id/atlas_item_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/activity_atlas_item_image_margin"
         android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher"
-        />
+        android:src="@mipmap/ic_launcher" />
 
 
 </LinearLayout>

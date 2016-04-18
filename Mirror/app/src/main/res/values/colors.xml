@@ -16,4 +16,5 @@
     <color name="button_background">#f85453</color>
     <color name="activity_buy_relayout_background">#f1f1f1</color>
     <color name="black">#000000</color>
+    <color name="alladdress_textcolor">#333</color>
 </resources>

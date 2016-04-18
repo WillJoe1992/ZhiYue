@@ -276,6 +276,41 @@
     <dimen name="activity_everyglasses_content_textsize">13sp</dimen>
     <dimen name="activity_everyglasses_linlayout_hei">15dp</dimen>
     <dimen name="activity_everyglasses_null_linlayout_hei">307dp</dimen>
+    <dimen name="activity_everyrecyclerview_imageview">550dp</dimen>
+    <dimen name="activity_everyglasses_front_toplayout_hei">200dp</dimen>
+    <dimen name="activity_everyglasses_front_centerlayout_marginleft">27dp</dimen>
+    <dimen name="activity_everyglasses_front_centerlayout_marginright">27dp</dimen>
+    <dimen name="activity_everyglasses_front_blackline_marginleft">15dp</dimen>
+    <dimen name="activity_everyglasses_front_blackline_marginright">15dp</dimen>
+    <dimen name="activity_everyglasses_front_black_margintop">14dp</dimen>
+    <dimen name="activity_everyglasses_front_title_margintop">16dp</dimen>
+    <dimen name="activity_everyglasses_front_title_textsize">30sp</dimen>
+    <dimen name="activity_everyglasses_front_centerline_marginleft">15dp</dimen>
+    <dimen name="activity_everyglasses_front_centerline_marginright">15dp</dimen>
+    <dimen name="activity_everyglasses_front_centerline_margintop">17dp</dimen>
+    <dimen name="activity_everyglasses_front_content_text_marginleft">15dp</dimen>
+    <dimen name="activity_everyglasses_front_content_text_marginright">15dp</dimen>
+    <dimen name="activity_everyglasses_front_content_text_margintop">15dp</dimen>
+    <dimen name="activity_everyglasses_front_content_textsize">13sp</dimen>
+    <dimen name="activity_everyglasses_front_bottom_layout_hei">15dp</dimen>
+    <dimen name="activity_everyglasses_front_blowlayout_hei">307dp</dimen>
+    <dimen name="activity_select_under_textsize">22px</dimen>
+    <dimen name="activity_atlas_item_image_margin">10dp</dimen>
+    <dimen name="activity_atlas_video_hei">200dp</dimen>
+    <dimen name="alladdress_item_relayout_marginleft">20px</dimen>
+    <dimen name="alladdress_item_relayout_marginright">20px</dimen>
+    <dimen name="alladdress_item_relayout_padding_top">5dp</dimen>
+    <dimen name="alladdress_item_relayout_paddingleft">10dp</dimen>
+    <dimen name="alladdress_item_name_marginleft">12dp</dimen>
+    <dimen name="alladdress_item_name_margintop">20dp</dimen>
+    <dimen name="alladdress_item_name_textsize">13sp</dimen>
+    <dimen name="alladdress_item_number_marginleft">12dp</dimen>
+    <dimen name="alladdress_item_number_maegintop">10dp</dimen>
+    <dimen name="alladdress_item_number_textsize">12sp</dimen>
+    <dimen name="alladdress_item_address_marginleft">12dp</dimen>
+    <dimen name="alladdress_item_address_margintop">10dp</dimen>
+    <dimen name="alladdress_item_address_textsize">12sp</dimen>
+    <dimen name="alladdress_item_edit_marginright">30dp</dimen>
 
 
 </resources>
