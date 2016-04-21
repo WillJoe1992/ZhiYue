@@ -41,7 +41,7 @@ import java.util.HashMap;
  */
 
 public class AddAddressActivity extends BaseActivity {
-    private EditText addName, addPhoneNumber, addCity, addAddress;
+    private EditText addName, addPhoneNumber, addAddress;
     private Button button;
     private ImageView closeIv;
     private HashMap<String, String> head;
@@ -55,14 +55,12 @@ public class AddAddressActivity extends BaseActivity {
             public void onClick(View view) {
                 head = new HashMap<>();
                 if (addAddress.getText().length() > 0 &&
-                        addCity.getText().length() > 0 &&
                         addPhoneNumber.getText().length() > 0 &
                                 addName.getText().length() > 0) {
                     head.put("username", addName.getText().toString());
                     head.put("cellphone", addPhoneNumber.getText().toString());
                     head.put("addr_info", addAddress.getText().toString());
                     head.put("zip_code", "150018");
-                    head.put("city", addCity.getText().toString());
                     head.put("token", token);
                     NetOkHttpClient.postAsyn(URL.USER_ADD_ADDRESS, new NetOkHttpClient.ResultCallback<String>() {
                         @Override
@@ -90,7 +88,6 @@ public class AddAddressActivity extends BaseActivity {
     protected void initView() {
         addName = bindView(R.id.add_name);
         addPhoneNumber = bindView(R.id.add_phone_number);
-        addCity = bindView(R.id.add_city);
         addAddress = bindView(R.id.add_address);
         button = bindView(R.id.add_address_btn);
         closeIv = bindView(R.id.add_address_close);
