@@ -26,14 +26,16 @@ public class AllAddressAdapter extends BaseAdapter {
     private onRightItemClickListener mListener;
     private int mRigthWidth = 0;
     private String token;
+    private AllAddressItemListener listener;
 
 
-    public AllAddressAdapter(JSONAddress data, Context context, String token, int mRigthWidth) {
+    public AllAddressAdapter(JSONAddress data, Context context, String token, int mRigthWidth,AllAddressItemListener listener) {
         super();
         this.data = data;
         this.mRigthWidth = mRigthWidth;
         this.context = context;
         this.token = token;
+        this.listener=listener;
     }
 
     public void setData(JSONAddress data) {
@@ -101,8 +103,9 @@ public class AllAddressAdapter extends BaseAdapter {
     class MyViewHolder {
         private TextView receiveTv, addressTv, numberTv, rigthTv;
         private ImageView editIv;
-        private RelativeLayout itemRight;
+        private RelativeLayout itemRight,item_left;
         private int position;
+
 
         MyViewHolder(View view) {
             itemRight = (RelativeLayout) view.findViewById(R.id.item_right);
@@ -111,6 +114,7 @@ public class AllAddressAdapter extends BaseAdapter {
             numberTv = (TextView) view.findViewById(R.id.item_listview_activity_myaddress_number);
             editIv = (ImageView) view.findViewById(R.id.item_listview_activity_myaddress_edit);
             rigthTv = (TextView) view.findViewById(R.id.item_right_txt);
+            item_left= (RelativeLayout) view.findViewById(R.id.item_left);
             itemRight.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -119,9 +123,19 @@ public class AllAddressAdapter extends BaseAdapter {
                     }
                 }
             });
+            item_left.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                 listener.myItemListener(receiveTv.getText().toString(),addressTv.getText().toString(),numberTv.getText().toString());
+                }
+            });
 
         }
 
+    }
+    public interface AllAddressItemListener {
+
+        void  myItemListener(String receive,String address,String number);
     }
 
     public void setOnRightItemClickListener(onRightItemClickListener listener) {

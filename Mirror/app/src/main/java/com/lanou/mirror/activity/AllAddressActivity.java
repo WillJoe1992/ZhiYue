@@ -25,7 +25,7 @@ import java.util.HashMap;
 /**
  * Created by wyc on 16/4/13.
  */
-public class AllAddressActivity extends BaseActivity {
+public class AllAddressActivity extends BaseActivity implements AllAddressAdapter.AllAddressItemListener {
     private ImageView addAddressIv, closeIv;
     private HashMap<String, String> head;
     private AllAddressAdapter adapter;
@@ -51,6 +51,7 @@ public class AllAddressActivity extends BaseActivity {
         addAddressIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent intent = new Intent(AllAddressActivity.this, AddAddressActivity.class);
                 startActivity(intent);
             }
@@ -69,7 +70,7 @@ public class AllAddressActivity extends BaseActivity {
                 data = new JSONAddress();
                 Gson gson = new Gson();
                 data = gson.fromJson(response, JSONAddress.class);
-                adapter = new AllAddressAdapter(data, AllAddressActivity.this, token, listView.getRightViewWidth());
+                adapter = new AllAddressAdapter(data, AllAddressActivity.this, token, listView.getRightViewWidth(), AllAddressActivity.this);
                 // 删除
                 adapter.setOnRightItemClickListener(new AllAddressAdapter.onRightItemClickListener() {
                     @Override
@@ -114,4 +115,14 @@ public class AllAddressActivity extends BaseActivity {
         return R.layout.activity_all_address;
     }
 
+
+    @Override
+    public void myItemListener(String receive, String address, String number) {
+        Intent intent= new Intent();
+        intent.putExtra("receive",receive);
+        intent.putExtra("address",address);
+        intent.putExtra("number",number);
+        setResult(1,intent);
+        finish();
+    }
 }

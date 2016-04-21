@@ -269,13 +269,13 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
                 break;
             case R.id.everyglasses_button_buy:
                 if (!UsingData.GetUsingData().getAllLoginDao().isEmpty() && !jsonAllson.getData().getGoods_id().isEmpty()) {
-                    Intent intent1 = new Intent(EveryGlassesActivity.this, BuyActivity.class);
-                    intent1.putExtra("buyGoods_id", jsonAllson.getData().getGoods_id());
-                    intent1.putExtra("getToken", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
-                    intent1.putExtra("img", jsonAllson.getData().getDesign_des().get(0).getImg());
-                    intent1.putExtra("goods_name", jsonAllson.getData().getGoods_name());
-                    intent1.putExtra("goods_price", jsonAllson.getData().getGoods_price());
-                    startActivity(intent1);
+                    Intent intentBuy = new Intent(EveryGlassesActivity.this, BuyActivity.class);
+                    intentBuy.putExtra("buyGoods_id", jsonAllson.getData().getGoods_id());
+                    intentBuy.putExtra("getToken", UsingData.GetUsingData().getAllLoginDao().get(0).getToken());
+                    intentBuy.putExtra("img", jsonAllson.getData().getDesign_des().get(0).getImg());
+                    intentBuy.putExtra("goods_name", jsonAllson.getData().getGoods_name());
+                    intentBuy.putExtra("goods_price", jsonAllson.getData().getGoods_price());
+                    startActivity(intentBuy);
                 } else {
                     Intent intentEveryGlasses = new Intent(EveryGlassesActivity.this, LoginActivity.class);
                     startActivity(intentEveryGlasses);
