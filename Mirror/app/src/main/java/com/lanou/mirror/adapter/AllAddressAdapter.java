@@ -32,6 +32,7 @@ public class AllAddressAdapter extends BaseAdapter {
     private String token;
 
 
+
     public AllAddressAdapter(JSONAddress data, Context context, String token, int mRigthWidth) {
         super();
         this.data = data;
@@ -85,13 +86,13 @@ public class AllAddressAdapter extends BaseAdapter {
         holder.editIv.setOnClickListener(new View.OnClickListener() { //编辑监听，跳转编辑页面
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(context, ReviseAddressActivity.class);
                 intent.putExtra("name", data.getData().getList().get(position).getUsername());
                 intent.putExtra("address", data.getData().getList().get(position).getAddr_info());
                 intent.putExtra("phoneNumber", data.getData().getList().get(position).getCellphone());
                 intent.putExtra("addressId", data.getData().getList().get(position).getAddr_id());
-                ((AllAddressActivity)context).startActivityForResult(intent,666);
+                context.startActivity(intent);
+                ((AllAddressActivity)context).finish();
 
             }
 
@@ -134,4 +135,5 @@ public class AllAddressAdapter extends BaseAdapter {
     public interface onRightItemClickListener {
         void onRightItemClick(View v, int position);
     }
+
 }

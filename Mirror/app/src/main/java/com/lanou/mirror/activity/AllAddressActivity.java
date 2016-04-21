@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lanou.mirror.R;
@@ -15,6 +16,7 @@ import com.lanou.mirror.net.NetOkHttpClient;
 import com.lanou.mirror.tool.MyLog;
 import com.lanou.mirror.tool.SwipeDeleteView;
 import com.lanou.mirror.tool.URL;
+import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 
 import org.json.JSONException;
@@ -58,6 +60,7 @@ public class AllAddressActivity extends BaseActivity {
         head = new HashMap<>();
         head.put("token", token);
         head.put("device_type", "1");
+
         NetOkHttpClient.postAsyn(URL.USER_ADDRESS_LIST, new NetOkHttpClient.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -114,4 +117,28 @@ public class AllAddressActivity extends BaseActivity {
         return R.layout.activity_all_address;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode) {
+            case 992:
+                Log.d("AllAddressActivity", "resultCode:" + resultCode);
+                HashMap<String, String> edit = new HashMap<>();
+                edit.put("token", token);
+                edit.put("device_type", "1");
+                NetOkHttpClient.postAsyn(URL.USER_ADDRESS_LIST, new NetOkHttpClient.ResultCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Object response) throws JSONException {
+
+                        Toast.makeText(AllAddressActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                    }
+                }, edit);
+                break;
+        }
+    }
 }

@@ -60,7 +60,6 @@ public class AddAddressActivity extends BaseActivity {
                     head.put("username", addName.getText().toString());
                     head.put("cellphone", addPhoneNumber.getText().toString());
                     head.put("addr_info", addAddress.getText().toString());
-                    head.put("zip_code", "150018");
                     head.put("token", token);
                     NetOkHttpClient.postAsyn(URL.USER_ADD_ADDRESS, new NetOkHttpClient.ResultCallback<String>() {
                         @Override
