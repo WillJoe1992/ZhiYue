@@ -142,6 +142,8 @@ public class AllAddressActivity extends BaseActivity implements AllAddressAdapte
         }
 
 
+    }
+
     @Override
     public void myItemListener(String receive, String address, String number) {
         Intent intent= new Intent();
@@ -150,6 +152,7 @@ public class AllAddressActivity extends BaseActivity implements AllAddressAdapte
         intent.putExtra("number",number);
         setResult(1,intent);
         finish();
+
 
     }
 }
