@@ -50,7 +50,6 @@ import cn.sharesdk.wechat.friends.Wechat;
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private EditText phoneEdt, passwordEdt;
     private Button loginBtn, registerBtn;
-    private MyTextWatcher myTextWatcher;
     private ImageView closeImage, sinaLogin, weChatLogin;
     String phone, password;
 
