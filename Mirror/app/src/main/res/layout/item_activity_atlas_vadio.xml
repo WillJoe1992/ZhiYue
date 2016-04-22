@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
 
     <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
         android:id="@+id/atlas_jcvideo"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_atlas_video_hei" />
 
-</LinearLayout>
+
+
+</RelativeLayout>
