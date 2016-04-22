@@ -206,7 +206,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
 
 
             // Y值改变的量
-            int chanceY = (int) ((y / 0.8) - oldy);
+            int chanceY = (int) ((y / 0.9) - oldy);
 
             // 透明度渐变
             if (y > 0 && y <= 800) {
