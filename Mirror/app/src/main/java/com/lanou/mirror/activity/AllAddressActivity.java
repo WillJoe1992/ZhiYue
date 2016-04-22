@@ -117,32 +117,6 @@ public class AllAddressActivity extends BaseActivity implements AllAddressAdapte
     protected int setContent() {
         return R.layout.activity_all_address;
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (resultCode) {
-            case 992:
-                Log.d("AllAddressActivity", "resultCode:" + resultCode);
-                HashMap<String, String> edit = new HashMap<>();
-                edit.put("token", token);
-                edit.put("device_type", "1");
-                NetOkHttpClient.postAsyn(URL.USER_ADDRESS_LIST, new NetOkHttpClient.ResultCallback() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(Object response) throws JSONException {
-
-                        Toast.makeText(AllAddressActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
-                    }
-                }, edit);
-                break;
-        }
-
-
-    }
 
     @Override
     public void myItemListener(String receive, String address, String number) {
@@ -152,7 +126,6 @@ public class AllAddressActivity extends BaseActivity implements AllAddressAdapte
         intent.putExtra("number",number);
         setResult(1,intent);
         finish();
-
 
     }
 }

@@ -75,7 +75,7 @@ public class ReviseAddressActivity extends BaseActivity implements View.OnClickL
                 public void onResponse(String response) throws JSONException {
                     Intent intent = new Intent(ReviseAddressActivity.this,AllAddressActivity.class);
                     intent.putExtra("token", token);
-                    startActivityForResult(intent,992);
+                    startActivity(intent);
                     finish();
                 }
             }, edit);
