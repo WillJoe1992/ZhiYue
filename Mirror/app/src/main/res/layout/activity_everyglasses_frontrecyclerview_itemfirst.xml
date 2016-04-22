@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_everyglasses_nulllayout_hei" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_everyglasses_layout_marginleft"
+        android:layout_marginRight="@dimen/activity_everyglasses_layout_marginright"
+        android:background="@color/black"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_everyglasses_marginleft"
+            android:layout_marginRight="@dimen/activity_everyglasses_margin_right"
+            android:layout_marginTop="@dimen/activity_everyglasses_margintop"
+            android:background="@mipmap/iv_line_of_title_bottom" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_everyglasses_margin_right"
+            android:layout_marginTop="@dimen/activity_everyglasses_relayout_margintop">
+
+            <TextView
+                android:id="@+id/everyglasses_frontrecyclerview_itemfirst_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/activity_everyglasses_title_textsize" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/activity_everyglasses_linlayout_marginright"
+                android:layout_toLeftOf="@id/everyglasses_frontrecyclerview_itemfirst_city"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/everyglasses_frontrecyclerview_itemfirst_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/activity_everyglasses_textsize" />
+
+                <TextView
+                    android:id="@+id/everyglasses_frontrecyclerview_itemfirst_englisrfrom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_everyglasses_title_margintop"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/activity_everyglasses_othertitle_textsize" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_everyglasses_blackline_marginleft"
+            android:layout_marginRight="@dimen/activity_everyglasses_blackline_marginright"
+            android:layout_marginTop="@dimen/activity_everyglasses_blackline_margintop"
+            android:background="@mipmap/iv_line_of_title_bottom" />
+
+        <TextView
+            android:id="@+id/everyglasses_frontrecyclerview_itemfirst_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_everyglasses_text_margintop"
+            android:layout_marginRight="@dimen/activity_everyglasses_text_margintop"
+            android:layout_marginTop="@dimen/activity_everyglasses_text_margintop"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/activity_everyglasses_content_textsize" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_everyglasses_linlayout_hei" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_everyglasses_null_linlayout_hei" />
+</LinearLayout>

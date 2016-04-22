@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/login_marginleft"
+            android:layout_marginTop="@dimen/login_marginright"
+            android:text="@string/addaddress_addaddress"
+            android:textSize="@dimen/login_logintext"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/add_address_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/login_image_close_marginright"
+            android:layout_marginTop="@dimen/login_image_close_margintop"
+            android:src="@mipmap/login_close" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/login_image_marginleft"
+            android:layout_marginRight="@dimen/login_image_marginright"
+            android:layout_marginTop="@dimen/login_image_margintop"
+            android:src="@mipmap/black_horizontal_line" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:layout_marginTop="@dimen/activity_addaddress_addname_margintop"
+        android:text="@string/addaddress_add_name" />
+
+
+    <EditText
+        android:id="@+id/add_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/addaddress_add_nameedt_hei"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:layout_marginTop="@dimen/addadress_add_name_margintop"
+        android:background="@android:color/white" />
+
+    <TextView
+        android:layout_marginTop="@dimen/addaddress_addnumber_margintop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:text="@string/addaddress_add_phonenumber" />
+
+    <EditText
+        android:id="@+id/add_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/addaddress_addnumberedt_hei"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:layout_marginTop="@dimen/addaddress_addnumberedt_margintop"
+        android:background="@android:color/white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:layout_marginTop="@dimen/addaddress_addaddress_margintop"
+        android:text="@string/addaddress_addaddress" />
+
+    <EditText
+        android:id="@+id/add_address"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/addaddress_addaddressedt_hei"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:layout_marginTop="@dimen/addaddress_addaddressedt_margintop"
+        android:background="@android:color/white" />
+
+    <Button
+        android:id="@+id/add_address_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:layout_marginTop="@dimen/activity_addaddress_btn_margintop"
+        android:background="@color/button_background"
+        android:text="@string/activity_addaddress_addaddresstext"
+        android:textColor="@android:color/white" />'
+
+
+</LinearLayout>

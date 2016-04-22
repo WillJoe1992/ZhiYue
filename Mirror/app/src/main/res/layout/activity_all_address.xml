@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginTop="@dimen/login_marginright"
+        android:text="@string/all_address_text"
+        android:textSize="@dimen/login_logintext"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/all_address_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/login_image_close_marginright"
+        android:layout_marginTop="@dimen/login_image_close_margintop"
+        android:src="@mipmap/login_close" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:layout_marginTop="@dimen/login_image_margintop"
+        android:src="@mipmap/black_horizontal_line" />
+
+
+    <ImageView
+        android:id="@+id/add_address_jump"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/all_address_add_address_hei"
+        android:layout_marginLeft="@dimen/all_address_add_address_margin_left"
+        android:layout_marginRight="@dimen/all_address_add_address_marginright"
+        android:layout_marginTop="@dimen/all_address_add_address_margintop"
+        android:background="@color/text_color"
+        android:src="@color/text_color" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/all_address_add_address_text_margintop"
+        android:text="@string/all_address_add_address_text" />
+
+    <com.lanou.mirror.tool.SwipeDeleteView
+        android:id="@+id/all_address_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_alladdress_deleteview_margintop"/>
+
+
+</RelativeLayout>

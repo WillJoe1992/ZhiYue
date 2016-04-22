@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    tools:context=".activity.MainActivity"
+    android:id="@+id/main_relative_layout"
+    >
+
+
+    <com.lanou.mirror.tool.VerticalViewPager
+        android:id="@+id/vertical_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/mirror_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/activity_main_mirror_login_marginbottom"
+        android:layout_marginLeft="@dimen/activity_main_mirror_login_marginleft_or_right"
+        android:src="@mipmap/mirror_home" />
+
+    <TextView
+        android:id="@+id/goto_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/activity_main_mirror_login_marginbottom"
+        android:layout_marginRight="@dimen/activity_main_mirror_login_marginleft_or_right"
+        android:text="@string/login"
+        android:textColor="@color/text_color" />
+    <TextView
+        android:id="@+id/shopping_car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/activity_main_mirror_login_marginbottom"
+        android:layout_marginRight="@dimen/activity_main_mirror_login_marginleft_or_right"
+        android:text="@string/shopping"
+        android:textColor="@color/text_color"
+        android:visibility="gone"/>
+</RelativeLayout>

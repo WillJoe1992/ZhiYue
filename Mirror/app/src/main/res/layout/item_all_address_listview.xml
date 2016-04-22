@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <RelativeLayout
+        android:id="@+id/item_left"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/alladdress_item_relayout_marginleft"
+        android:layout_marginRight="@dimen/alladdress_item_relayout_marginright"
+        android:background="@color/text_color"
+        android:paddingBottom="@dimen/alladdress_item_relayout_padding_top"
+        android:paddingLeft="@dimen/alladdress_item_relayout_paddingleft"
+        android:paddingRight="@dimen/alladdress_item_relayout_paddingleft"
+        android:paddingTop="@dimen/alladdress_item_relayout_padding_top">
+
+        <TextView
+            android:id="@+id/item_listview_activity_myaddress_receiveman"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/alladdress_item_name_marginleft"
+            android:layout_marginTop="@dimen/alladdress_item_name_margintop"
+            android:textColor="@color/alladdress_textcolor"
+            android:textSize="@dimen/alladdress_item_name_textsize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_listview_activity_myaddress_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_listview_activity_myaddress_receiveman"
+            android:layout_marginLeft="@dimen/alladdress_item_number_marginleft"
+            android:layout_marginTop="@dimen/alladdress_item_number_maegintop"
+            android:textColor="@color/alladdress_textcolor"
+            android:textSize="@dimen/alladdress_item_number_textsize" />
+
+        <TextView
+            android:id="@+id/item_listview_activity_myaddress_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_listview_activity_myaddress_address"
+            android:layout_marginLeft="@dimen/alladdress_item_address_marginleft"
+            android:layout_marginTop="@dimen/alladdress_item_address_margintop"
+            android:textColor="@color/alladdress_textcolor"
+            android:textSize="@dimen/alladdress_item_address_textsize" />
+
+        <ImageView
+            android:id="@+id/item_listview_activity_myaddress_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/alladdress_item_edit_marginright"
+            android:src="@mipmap/edit" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/item_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/button_background">
+
+        <TextView
+            android:id="@+id/item_right_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/alladdress_item_delete_text"
+            android:textColor="@color/text_color" />
+    </RelativeLayout>
+
+
+</LinearLayout>

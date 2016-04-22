@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="500px"
+    android:layout_height="800px"
+    android:layout_marginLeft="@dimen/special_item_relayout_marginleft">
+
+
+    <ImageView
+        android:id="@+id/fragment_loading_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        />
+
+    <ImageView
+        android:id="@+id/special_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="@dimen/special_item_linlayout_wid"
+        android:layout_height="@dimen/special_item_linlayout_hei"
+        android:background="@color/text_color"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+            android:layout_marginRight="@dimen/fragment_homepage_recycler_text_image_marginleft_right"
+            android:layout_marginTop="@dimen/special_item_black_underline_margintop"
+            android:background="@mipmap/black_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/special_item_linlayout_marginleft"
+            android:layout_marginTop="@dimen/special_item_linlayout_margintop"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/special_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/special_item_textsize" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

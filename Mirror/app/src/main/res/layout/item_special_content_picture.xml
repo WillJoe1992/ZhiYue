@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/special_content_picture_item_rv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/glass_content_lucecy_background"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/special_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/login_image_close_marginright"
+        android:layout_marginTop="@dimen/login_image_close_margintop"
+        android:src="@mipmap/login_close" />
+    <LinearLayout
+        android:layout_width="@dimen/special_content_picture_item_layoutwid"
+        android:layout_height="@dimen/special_content_picture_item_layouthei"
+        android:layout_above="@+id/special_content_item_share_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/special_content_picture_item_layout_marginbottom"
+        android:background="@mipmap/exhibition06"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/special_content_item_share_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/special_content_picture_item_destext_marginleft"
+            android:layout_marginTop="@dimen/special_content_picture_item_destext_margintop"
+            android:textColor="@color/special_content_picture_item_text_textcolor"
+            android:textSize="@dimen/special_content_picture_item_destext_size" />
+
+        <TextView
+            android:id="@+id/special_content_item_share_tv_big_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/special_content_picture_item_titletext_marginleft"
+            android:layout_marginTop="@dimen/special_content_picture_item_titletext_margintop"
+            android:textColor="@color/special_content_picture_item_text_textcolor"
+            android:textSize="@dimen/special_content_picture_item_titletext_size" />
+
+        <TextView
+            android:id="@+id/special_content_item_share_tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/special_content_picture_item_contenttext_marginend"
+            android:layout_marginLeft="@dimen/special_content_picture_item_contenttext_marginleft"
+            android:layout_marginTop="@dimen/special_content_picture_item_contenttext_margintop"
+            android:textColor="@color/special_content_picture_item_text_textcolor"
+            android:textSize="@dimen/special_content_picture_item_contenttext_size" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/special_content_item_share_btn"
+        android:layout_width="@dimen/special_content_picture_item_sharebtn_wid_hei"
+        android:layout_height="@dimen/special_content_picture_item_sharebtn_wid_hei"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/special_content_picture_item_sharebtn_margin_bottom_right"
+        android:layout_marginEnd="@dimen/special_content_picture_item_sharebtn_marginend"
+        android:layout_marginRight="@dimen/special_content_picture_item_sharebtn_margin_bottom_right"
+        android:background="@mipmap/share"
+        android:paddingBottom="@dimen/special_content_picture_item_sharebtn_paddingbottom" />
+</RelativeLayout>

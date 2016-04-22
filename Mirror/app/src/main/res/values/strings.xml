@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Mirror</string>
+    <string name="activity_main_home">瀏覽所有分類</string>
+    <string name="activity_main_rank">顯示排序為 最新推廣</string>
+    <string name="login">登錄</string>
+    <string name="atlas_title">商品細節展示</string>
+    <string name="login_text">賬號登錄</string>
+    <string name="login_phone">手機號</string>
+    <string name="login_password">密碼</string>
+    <string name="login_logintext">登錄</string>
+    <string name="login_register">創建賬號</string>
+    <string name="login_snstext">使用社交賬號</string>
+    <string name="register_text">創建賬號</string>
+    <string name="register_phone_text">手機號</string>
+    <string name="register_authcode_text">驗證碼</string>
+    <string name="register_authcode">發送驗證碼</string>
+    <string name="register_password">設置密碼</string>
+    <string name="register_newuser">創建賬號</string>
+    <string name="shopping">购物车</string>
+    <string name="all_address_add_address_text">添加地址</string>
+    <string name="all_address_text">我的所有地址</string>
+    <string name="addaddress_text">添加地址</string>
+    <string name="addaddress_add_name">添加添加收件人姓名</string>
+    <string name="addaddress_add_phonenumber">添加联系人电话号码</string>
+    <string name="addaddress_addaddress">添加收货地址</string>
+    <string name="addaddress_addaddressbtn">提交地址</string>
+    <string name="fragment_shopping_text">您的购物车没有商品</string>
+    <string name="activity_buy_my_alladdress_text">我所有地址</string>
+    <string name="activity_buy_addperdson_text">请添加收件人信息</string>
+    <string name="activity_buy_add_address_text">填写地址</string>
+    <string name="activity_buy_pricelayout_text">运费 :</string>
+    <string name="activity_buy_sumtext">小计 :</string>
+    <string name="activity_buy_buybtn_text">确认下单</string>
+    <string name="activity_addaddress_addnametext">添加添加收件人姓名</string>
+    <string name="activity_addaddress_addcity">添加城市</string>
+    <string name="activity_addaddress_addaddresstext">提交地址</string>
+    <string name="alladdress_item_delete_text">删除</string>
+    <string name="buy_item_choose_howtopay">选择支付方式</string>
+    <string name="buy_item_wechat_text">微信支付</string>
+    <string name="buy_item_ali_pay_text">支付宝支付</string>
+    <string name="revise_address_text">修改地址</string>
+    <string name="revise_address_name">修改收件人姓名</string>
+    <string name="revise_address_number">修改联系人电话号码</string>
+    <string name="revise_address_address">修改收货地址</string>
+
+
+</resources>

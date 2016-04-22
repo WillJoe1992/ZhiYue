@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginTop="@dimen/login_marginright"
+        android:text="@string/login_text"
+        android:textSize="@dimen/login_logintext"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/activity_login_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/login_image_close_marginright"
+        android:layout_marginTop="@dimen/login_image_close_margintop"
+        android:src="@mipmap/login_close" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_image_marginleft"
+        android:layout_marginRight="@dimen/login_image_marginright"
+        android:layout_marginTop="@dimen/login_image_margintop"
+        android:src="@mipmap/black_horizontal_line" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginTop="@dimen/login_phonetext_margintop"
+        android:text="@string/login_phone"
+        android:textSize="@dimen/login_phone_textsize" />
+
+    <EditText
+        android:id="@+id/login_phone_edt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_phoneedt_hei"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginRight="@dimen/login_marginright"
+        android:layout_marginTop="@dimen/login_phoneedt_margintop"
+        android:background="@color/text_color"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginTop="@dimen/login_passwordtext_margintop"
+        android:text="@string/login_password"
+        android:textSize="@dimen/login_passwrod_textsize" />
+
+    <EditText
+        android:password="true"
+        android:id="@+id/login_password_edt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_passwordedt_hei"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginRight="@dimen/login_marginright"
+        android:layout_marginTop="@dimen/login_passwordedt_margintop"
+        android:background="@color/text_color"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginRight="@dimen/login_marginright"
+        android:layout_marginTop="@dimen/login_loginbtn_margintop"
+        android:background="@drawable/login_btn"
+        android:enabled="true"
+        android:text="@string/login_logintext"
+        android:textColor="@color/text_color" />
+
+    <Button
+        android:id="@+id/login_register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_marginleft"
+        android:layout_marginRight="@dimen/login_marginright"
+        android:layout_marginTop="@dimen/login_registerbtn_margintop"
+        android:background="@drawable/login_new_user"
+        android:text="@string/login_register"
+        android:textColor="@color/text_color" />
+
+    <ImageView
+        android:id="@+id/sina_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/login_sina_marginbottom"
+        android:layout_marginLeft="@dimen/login_sina_marginleft"
+        android:src="@mipmap/sina_icon" />
+
+    <ImageView
+        android:id="@+id/weichat_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/login_wechat_marginbottom"
+        android:layout_marginRight="@dimen/login_wechat_marginright"
+        android:src="@mipmap/wechat_icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/login_snstext_marginbottom"
+        android:text="@string/login_snstext"
+        android:textSize="@dimen/login_sns_textsize"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

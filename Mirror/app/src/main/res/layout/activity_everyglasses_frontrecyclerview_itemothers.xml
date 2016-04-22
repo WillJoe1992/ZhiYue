@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_everyglasses_front_toplayout_hei"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_everyglasses_front_centerlayout_marginleft"
+        android:layout_marginRight="@dimen/activity_everyglasses_front_centerlayout_marginright"
+        android:background="@color/black"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_everyglasses_front_blackline_marginleft"
+            android:layout_marginRight="@dimen/activity_everyglasses_front_blackline_marginright"
+            android:layout_marginTop="@dimen/activity_everyglasses_front_black_margintop"
+            android:background="@mipmap/iv_line_of_title_bottom" />
+
+        <TextView
+            android:id="@+id/everyglasses_frontrecyclerview_itemother_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_everyglasses_front_title_margintop"
+            android:gravity="center"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/activity_everyglasses_front_title_textsize" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_everyglasses_front_centerline_marginleft"
+            android:layout_marginRight="@dimen/activity_everyglasses_front_centerline_marginright"
+            android:layout_marginTop="@dimen/activity_everyglasses_front_centerline_margintop"
+            android:background="@mipmap/iv_line_of_title_bottom" />
+
+        <TextView
+            android:id="@+id/everyglasses_frontrecyclerview_itemother_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_everyglasses_front_content_text_marginleft"
+            android:layout_marginRight="@dimen/activity_everyglasses_front_content_text_marginright"
+            android:layout_marginTop="@dimen/activity_everyglasses_front_content_text_margintop"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/activity_everyglasses_front_content_textsize" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_everyglasses_front_bottom_layout_hei" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_everyglasses_front_blowlayout_hei"/>
+</LinearLayout>
