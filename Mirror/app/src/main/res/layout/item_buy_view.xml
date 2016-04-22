@@ -65,12 +65,12 @@
         android:gravity="center_horizontal">
 
         <RelativeLayout
-            android:id="@+id/relativeLayout1"
+            android:id="@+id/relativeLayoutNext"
             android:layout_width="@dimen/buy_item_ali_relayout_wid"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/imageViewNext"
                 android:layout_width="@dimen/buy_item_ali_icon_wid"
                 android:layout_height="@dimen/buy_item_ali_icon_hei"
                 android:layout_alignParentStart="true"
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/imageView1"
+                android:layout_toEndOf="@+id/imageViewNext"
                 android:text="@string/buy_item_ali_pay_text"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/buy_item_ali_textsize" />

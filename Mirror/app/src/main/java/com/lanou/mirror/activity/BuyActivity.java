@@ -139,7 +139,6 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
 
                     @Override
                     public void onResponse(String response) throws JSONException {
-                        MyLog.showLog("wwwwwwwwww", response);
                         Gson gson = new Gson();
                         jsonorder = gson.fromJson(response, JSONOrder.class);
                         orderNo = jsonorder.getData().getOrder_id();
@@ -150,58 +149,63 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 // builder.setTitle("请选择支付方式");
-                final View view1 = LayoutInflater.from(this).inflate(R.layout.item_buy_view, null);
-                LinearLayout linearLayout = (LinearLayout) view1.findViewById(R.id.buy_linear_layout);
+                final View viewDialog = LayoutInflater.from(this).inflate(R.layout.item_buy_view, null);
+                LinearLayout linearLayout = (LinearLayout) viewDialog.findViewById(R.id.buy_linear_layout);
                 linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ShowToast.showToast("支付宝支付");
-                        head.put("order_no", orderNo);
-                        head.put("addr_id", addrId);
-                        head.put("goodsname", goodsName);
-                        NetOkHttpClient.postAsyn(URL.PAY_ALI, new NetOkHttpClient.ResultCallback<String>() {
-                            @Override
-                            public void onError(Request request, Exception e) {
+                        try {
+                            ShowToast.showToast("支付宝支付");
+                            head.put("order_no", orderNo);
+                            head.put("addr_id", addrId);
+                            head.put("goodsname", goodsName);
+                            NetOkHttpClient.postAsyn(URL.PAY_ALI, new NetOkHttpClient.ResultCallback<String>() {
+                                @Override
+                                public void onError(Request request, Exception e) {
 
-                            }
+                                }
 
-                            @Override
-                            public void onResponse(String response) throws JSONException {
-                                MyLog.showLog("解析支付宝", response);
-                                Gson gson = new Gson();
-                                JSONpay jsoNpay = gson.fromJson(response, JSONpay.class);
-                                str = jsoNpay.getData().getStr();
-                                MyLog.showLog("字符串", str);
-                                String sign = sign(str);
-                                /**
-                                 * 完整的符合支付宝参数规范的订单信息
-                                 */
-                                final String payInfo = str + "&sign=\"" + sign + "\"&" + getSignType();
+                                @Override
+                                public void onResponse(String response) throws JSONException {
+                                    MyLog.showLog("解析支付宝", response);
+                                    Gson gson = new Gson();
+                                    JSONpay jsoNpay = gson.fromJson(response, JSONpay.class);
+                                    str = jsoNpay.getData().getStr();
+                                    MyLog.showLog("字符串", str);
+                                    String sign = sign(str);
+                                    /**
+                                     * 完整的符合支付宝参数规范的订单信息
+                                     */
+                                    final String payInfo = str + "&sign=\"" + sign + "\"&" + getSignType();
 
-                                Runnable payRunnable = new Runnable() {
+                                    Runnable payRunnable = new Runnable() {
 
-                                    @Override
-                                    public void run() {
-                                        // 构造PayTask 对象
-                                        PayTask alipay = new PayTask(BuyActivity.this);
-                                        // 调用支付接口，获取支付结果
-                                        String result = alipay.pay(payInfo, true);
+                                        @Override
+                                        public void run() {
+                                            // 构造PayTask 对象
+                                            PayTask alipay = new PayTask(BuyActivity.this);
+                                            // 调用支付接口，获取支付结果
+                                            String result = alipay.pay(payInfo, true);
 
-                                        Message msg = new Message();
-                                        msg.what = SDK_PAY_FLAG;
-                                        msg.obj = result;
-                                        mHandler.sendMessage(msg);
-                                    }
-                                };
-                                // 必须异步调用
-                                Thread payThread = new Thread(payRunnable);
-                                payThread.start();
-                            }
-                        }, head);
+                                            Message msg = new Message();
+                                             msg.what = SDK_PAY_FLAG;
+                                            msg.obj = result;
+                                            mHandler.sendMessage(msg);
+                                        }
+                                    };
+                                    // 必须异步调用
+                                    Thread payThread = new Thread(payRunnable);
+                                    payThread.start();
+                                }
+                            }, head);
+                        }catch (Exception e){
+
+                        }
+
 
                     }
                 });
-                builder.setView(view1);
+                builder.setView(viewDialog);
                 builder.show();
                 break;
             case R.id.buy_delete:
@@ -209,7 +213,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.goto_alladdress:
                 Intent intent = new Intent(BuyActivity.this, AllAddressActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
                 break;
         }
     }
@@ -293,5 +297,15 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         intent.putExtras(extras);
         startActivity(intent);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data != null) {
+            nameDetails.setText(data.getStringExtra("receive"));
+            addressDetails.setText(data.getStringExtra("address"));
+            phoneNumberDetails.setText(data.getStringExtra("number"));
+        }
     }
 }

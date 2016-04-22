@@ -10,6 +10,8 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        manifestPlaceholders = [ UMENG_CHANNEL_VALUE:"UMENG_CHANNEL" ]
     }
     buildTypes {
         release {
@@ -17,6 +19,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        wandoujia {}
+        baidu {}
+        c360 {}
+        uc {}
+
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+
+    }
+
+
+
 }
 
 dependencies {
@@ -36,3 +53,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile files('libs/alipaySdk-20160223.jar')
 }
+
+
+
+

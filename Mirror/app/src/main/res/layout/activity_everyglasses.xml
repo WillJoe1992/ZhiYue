@@ -112,7 +112,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_everyglasses_price_marginLeft"
-                            android:text="2150"
                             android:textColor="#ffffff"
                             android:textSize="@dimen/activity_everyglasses_price_textSize" />
                     </LinearLayout>

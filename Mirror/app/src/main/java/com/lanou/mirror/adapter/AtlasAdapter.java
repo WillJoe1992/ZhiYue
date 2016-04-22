@@ -6,13 +6,12 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.lanou.mirror.R;
 import com.lanou.mirror.bean.JSONAtlas;
 import com.lanou.mirror.net.NetImageLoader;
@@ -51,6 +50,7 @@ public class AtlasAdapter extends RecyclerView.Adapter {
                 View imageView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity_atlas_image, null);
                 holder = new AtlasImageViewHolder(imageView);
                 break;
+
         }
         return holder;
     }
@@ -61,13 +61,20 @@ public class AtlasAdapter extends RecyclerView.Adapter {
         int type = getItemViewType(position);
         String atlasType = data.getData().getList().get(0).getWear_video().get(0).getType();
 
+        Log.d("AtlasAdapter", atlasType);
         switch (type) {
             case TYPE_VIDEO:
                 AtlasVideoViewHolder videoViewHolder = (AtlasVideoViewHolder) holder;
                 if (Integer.valueOf(atlasType) == 8) {
-                    videoViewHolder.jcVideoPlayer.setUp(data.getData().getList().get(0).getWear_video().get(0).getData()," ");
+                    videoViewHolder.jcVideoPlayer.setUp(data.getData().getList().get(0).getWear_video().get(0).getData(), " ");
+
+
+                    Log.d("AtlasAdapter", data.getData().getList().get(0).getWear_video().get(1).getData());
+                        NetImageLoader netImageLoader = new NetImageLoader();
+                        netImageLoader.getImgOfLoader(videoViewHolder.jcVideoPlayer.ivThumb,data.getData().getList().get(0).getWear_video().get(1).getData());
 
                 }
+
                 break;
             case TYPE_IMAGE:
                 AtlasImageViewHolder imageViewHolder = (AtlasImageViewHolder) holder;
@@ -110,6 +117,10 @@ public class AtlasAdapter extends RecyclerView.Adapter {
 
 
                 break;
+            case 9:
+
+                break;
+
         }
     }
 
@@ -141,9 +152,12 @@ public class AtlasAdapter extends RecyclerView.Adapter {
     class AtlasVideoViewHolder extends RecyclerView.ViewHolder {
         private JCVideoPlayer jcVideoPlayer;
 
+
         public AtlasVideoViewHolder(View itemView) {
             super(itemView);
             jcVideoPlayer = (JCVideoPlayer) itemView.findViewById(R.id.atlas_jcvideo);
+
+
         }
     }
 }
