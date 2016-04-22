@@ -1,6 +1,7 @@
 package com.lanou.mirror.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lanou.mirror.R;
+import com.lanou.mirror.activity.AllAddressActivity;
+import com.lanou.mirror.activity.BuyActivity;
+import com.lanou.mirror.activity.ReviseAddressActivity;
 import com.lanou.mirror.base.BaseApplication;
 import com.lanou.mirror.bean.JSONAddress;
 
@@ -26,6 +30,7 @@ public class AllAddressAdapter extends BaseAdapter {
     private onRightItemClickListener mListener;
     private int mRigthWidth = 0;
     private String token;
+
 
 
     public AllAddressAdapter(JSONAddress data, Context context, String token, int mRigthWidth) {
@@ -78,23 +83,22 @@ public class AllAddressAdapter extends BaseAdapter {
         holder.numberTv.setText("电话 ：" + data.getData().getList().get(position).getCellphone());
         holder.addressTv.setText("地址: " + data.getData().getList().get(position).getAddr_info());
         holder.receiveTv.setText("收件人: " + data.getData().getList().get(position).getUsername());
-//        holder.editIv.setOnClickListener(new View.OnClickListener() { //编辑监听，跳转编辑页面
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(context, BuyActivity.class);
-//                intent.putExtra("token", token);
-//                intent.putExtra("addressee", data.getData().getList().get(position).getUsername());
-//                intent.putExtra("address", data.getData().getList().get(position).getAddr_info());
-//                intent.putExtra("phoneNumber", data.getData().getList().get(position).getCellphone());
-//                intent.putExtra("addressId", data.getData().getList().get(position).getAddr_id());
-//                ((AllAddressActivity)context).startActivityForResult(intent,666);
-//
-//            }
-//
-//
-//        }
-//        );
+        holder.editIv.setOnClickListener(new View.OnClickListener() { //编辑监听，跳转编辑页面
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ReviseAddressActivity.class);
+                intent.putExtra("name", data.getData().getList().get(position).getUsername());
+                intent.putExtra("address", data.getData().getList().get(position).getAddr_info());
+                intent.putExtra("phoneNumber", data.getData().getList().get(position).getCellphone());
+                intent.putExtra("addressId", data.getData().getList().get(position).getAddr_id());
+                context.startActivity(intent);
+                ((AllAddressActivity)context).finish();
+
+            }
+
+
+        }
+        );
         return convertView;
     }
 
@@ -131,4 +135,5 @@ public class AllAddressAdapter extends BaseAdapter {
     public interface onRightItemClickListener {
         void onRightItemClick(View v, int position);
     }
+
 }

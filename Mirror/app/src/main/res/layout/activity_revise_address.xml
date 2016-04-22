@@ -13,12 +13,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/login_marginleft"
             android:layout_marginTop="@dimen/login_marginright"
-            android:text="@string/addaddress_addaddress"
+            android:text="@string/revise_address_text"
             android:textSize="@dimen/login_logintext"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/add_address_close"
+            android:id="@+id/revise_add_address_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -43,11 +43,11 @@
         android:layout_marginLeft="@dimen/login_image_marginleft"
         android:layout_marginRight="@dimen/login_image_marginright"
         android:layout_marginTop="@dimen/activity_addaddress_addname_margintop"
-        android:text="@string/addaddress_add_name" />
+        android:text="@string/revise_address_name" />
 
 
     <EditText
-        android:id="@+id/add_name"
+        android:id="@+id/revise_add_name"
         android:layout_width="match_parent"
         android:layout_height="@dimen/addaddress_add_nameedt_hei"
         android:layout_marginLeft="@dimen/login_image_marginleft"
@@ -61,27 +61,26 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/login_image_marginleft"
         android:layout_marginRight="@dimen/login_image_marginright"
-        android:text="@string/addaddress_add_phonenumber" />
+        android:text="@string/revise_address_number" />
 
     <EditText
-        android:id="@+id/add_phone_number"
+        android:id="@+id/revise_add_phone_number"
         android:layout_width="match_parent"
         android:layout_height="@dimen/addaddress_addnumberedt_hei"
         android:layout_marginLeft="@dimen/login_image_marginleft"
         android:layout_marginRight="@dimen/login_image_marginright"
         android:layout_marginTop="@dimen/addaddress_addnumberedt_margintop"
         android:background="@android:color/white" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/login_image_marginleft"
         android:layout_marginRight="@dimen/login_image_marginright"
         android:layout_marginTop="@dimen/addaddress_addaddress_margintop"
-        android:text="@string/addaddress_addaddress" />
+        android:text="@string/revise_address_address" />
 
     <EditText
-        android:id="@+id/add_address"
+        android:id="@+id/revise_address"
         android:layout_width="match_parent"
         android:layout_height="@dimen/addaddress_addaddressedt_hei"
         android:layout_marginLeft="@dimen/login_image_marginleft"
@@ -90,7 +89,7 @@
         android:background="@android:color/white" />
 
     <Button
-        android:id="@+id/add_address_btn"
+        android:id="@+id/revise_address_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/login_image_marginleft"

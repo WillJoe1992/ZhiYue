@@ -85,7 +85,6 @@ public class SpecialActivity extends BaseActivity {
 
     @Override
     protected void onPause() {
-        finish();
         super.onPause();
     }
 }

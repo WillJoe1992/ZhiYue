@@ -38,6 +38,10 @@
     <string name="buy_item_choose_howtopay">选择支付方式</string>
     <string name="buy_item_wechat_text">微信支付</string>
     <string name="buy_item_ali_pay_text">支付宝支付</string>
+    <string name="revise_address_text">修改地址</string>
+    <string name="revise_address_name">修改收件人姓名</string>
+    <string name="revise_address_number">修改联系人电话号码</string>
+    <string name="revise_address_address">修改收货地址</string>
 
 
 </resources>
