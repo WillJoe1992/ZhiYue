@@ -206,7 +206,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
 
 
             // Y值改变的量
-            int chanceY = (int) ((y / 0.9) - oldy);
+            int chanceY = (int) ((y / 0.85) - oldy);
 
             // 透明度渐变
             if (y > 0 && y <= 800) {
@@ -264,6 +264,7 @@ public class EveryGlassesActivity extends BaseActivity implements ScrollViewList
                 if (!jsonAllson.getData().getGoods_id().isEmpty()) {
                     Intent intent = new Intent(EveryGlassesActivity.this, AtlasActivity.class);
                     intent.putExtra("position", position);
+                    intent.putExtra("goodsId", goodsId);
                     startActivity(intent);
                 }
                 break;

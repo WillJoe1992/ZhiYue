@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -269,6 +270,7 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         View view = getLayoutInflater().inflate(R.layout.activity_select_title, null);
+
         popupWindow = new PopupWindow(view, dm.widthPixels, dm.heightPixels - 190, true);
 
         //设置view的监听点其他地方退出
@@ -318,7 +320,8 @@ public class MainActivity extends BaseActivity implements SelectTitleRecyclerVie
         }
 
         selectTitleRc = (RecyclerView) view.findViewById(R.id.select_title_rc);
-
+        selectTitleRc.setAnimation(AnimationUtils.loadAnimation(this,
+                R.anim.change));
         selectTitleRecyclerViewAdapter = new SelectTitleRecyclerViewAdapter(view.getContext(), selectTitleRecyclerBeans);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 1);
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

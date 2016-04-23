@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_atlas_marginleft_right"
@@ -14,8 +15,10 @@
         android:textStyle="bold" />
 
     <ImageView
+        android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv"
         android:layout_marginLeft="@dimen/activity_atlas_marginleft_right"
         android:layout_marginRight="@dimen/activity_atlas_marginleft_right"
         android:layout_marginTop="@dimen/activity_atlas_line_margintop"
@@ -25,12 +28,20 @@
         android:id="@+id/atlas_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/iv"
         android:layout_marginLeft="@dimen/activity_atlas_marginleft_right"
         android:layout_marginRight="@dimen/activity_atlas_marginleft_right"
         android:layout_marginTop="@dimen/activity_atlas_line_margintop" />
 
+    <ImageView
+        android:id="@+id/everyglasses_button_buy"
+        android:layout_width="@dimen/activity_everyglasses_button_buy_width"
+        android:layout_height="@dimen/activity_everyglasses_button_buy_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="@dimen/activity_everyglasses_button_buy_marginRight"
+        android:src="@mipmap/btn_buy" />
 
 
-
-
-</LinearLayout>
+</RelativeLayout>

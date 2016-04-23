@@ -105,7 +105,7 @@ public class AtlasAdapter extends RecyclerView.Adapter {
                         Bundle b = new Bundle();
                         b.putStringArray(GalleryActivity.PHOTO_SOURCE_ID,urls);
                         intent.putExtras(b);
-                        intent.putExtra(GalleryActivity.PHOTO_SELECT_POSITION, position);
+                        intent.putExtra(GalleryActivity.PHOTO_SELECT_POSITION, position-1);
                         intent.putExtra(GalleryActivity.PHOTO_SELECT_X_TAG, location[0]);
                         intent.putExtra(GalleryActivity.PHOTO_SELECT_Y_TAG, location[1]);
                         intent.putExtra(GalleryActivity.PHOTO_SELECT_W_TAG, width);

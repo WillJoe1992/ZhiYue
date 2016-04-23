@@ -1,5 +1,7 @@
 package com.lanou.mirror.activity;
 
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,7 @@ import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * Created by wyc on 16/4/5.
@@ -66,6 +69,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sms:
+                sms.setEnabled(false);
+                sms.setBackgroundResource(R.mipmap.login_btn_gray);
                 head = new HashMap<>();
                 if (phoneNumber.getText() != null) {
                     head.put("phone number", phoneNumber.getText().toString());
@@ -78,8 +83,48 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         @Override
                         public void onResponse(String response) throws JSONException {
                             MyToast.myToast(response);
+
+
+                            final Handler handler = new Handler(new Handler.Callback() {
+                                @Override
+                                public boolean handleMessage(Message msg) {
+                                    sms.setText(msg.arg1 + "");
+
+                                    if (msg.arg1 == 0) {
+                                        sms.setClickable(true);
+                                        sms.setText("發送驗證碼");
+                                        sms.setBackgroundResource(R.drawable.login_btn);
+                                    }
+                                    return false;
+                                }
+                            });
+
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        for (int i = 5; i >= 0; i--) {
+                                            Message message = new Message();
+                                            message.arg1 = i;
+                                            handler.sendMessage(message);
+                                            Thread.sleep(1000);
+
+
+
+                                        }
+
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }).start();
                         }
                     }, head);
+
+
+
+
+
                 } else {
                     ShowToast.showToast("请输入手机号");
                 }
